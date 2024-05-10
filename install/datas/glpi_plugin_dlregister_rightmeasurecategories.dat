@@ -1,0 +1,14 @@
+1	01 Informer les personnes	La personne doivent être informées, au moment où les données sont collectées, sur leur utilisation et sur la manière d'exercer les droits.\
+L’information communiquée aux personnes doit se faire dans les conditions prévues par les articles 12, 13 et 14 du RGPD	0	1	2022-12-12 14:11:53	4344	2023-01-03 11:10:39	2
+2	10 Suivre des demandes de droits	Une personne concernée fait valoir ses droits concernant ses données	0	1	2022-12-12 14:34:42	4344	2023-01-03 08:31:18	2
+3	11 Suivre les violations et incidents sur les données	Un événement a engendré une violation de données	0	1	2022-12-12 22:49:43	2	2023-01-03 08:31:34	2
+4	12 Autres		0	1	2022-12-12 22:49:55	2	2023-01-03 08:29:43	2
+5	02 Obtenir le consentement, gérer les échéances et évolutions	Le consentement est défini comme « toute manifestation de volonté, libre, spécifique, éclairée et univoque par laquelle la personne concernée accepte, par une déclaration ou par un acte positif clair, que des données à caractère personnel la concernant fassent l'objet d'un traitement ».\
+Une fois le consentement obtenu : conserver les preuves / gérer les échéances /  relancer / donner aux personnes l'accès aux données et la maîtrise des droits	0	1	2023-01-03 08:25:33	2	2023-01-03 08:30:40	2
+6	03 Droit d'accès et de modification	La personne peut obtenir et vérifier les données que l'organisme détient sur elle. Elle peut mettre à jour ou corriger les informations la concernant. 	0	1	2023-01-03 08:26:27	2	2023-10-09 05:36:49	2
+7	06 droit à la portabilité et au respect des volontés	La personne peut emporter une copie de ses données pour les réutiliser ailleurs. En fonction d'événements, elle peut déléguer leur utilisation à d'autres personnes.	0	1	2023-01-03 08:26:46	2	2023-10-09 05:41:02	2
+8	05 Droit à l'effacement	La suppression des données à l'issue du traitement doit être effective. Les durées et les phases de conservation sont gérées.	0	1	2023-01-03 08:26:58	2	2023-10-09 05:47:14	2
+9	07 Maîtriser et contractualiser l'usage des DCP avec les tierces-parties	Les noms des sous-traitants sont indiqués. Leur gestion des données doit être en conformité avec les réglements  	0	1	2023-01-03 08:27:14	2	2023-10-09 05:49:18	2
+10	08 Suivre et retrouver les DCP	L'organisme sait à tout moment retrouver et communiquer l'ensemble des données concerant une personne	0	1	2023-01-03 08:27:23	2	2023-10-09 05:50:12	2
+11	04 Droit d'opposition, droit à la limitation	La personne concernée peut à tout moment retirer un consentement. Elle peut s'opposer à ce que l'organisme utilise certaines de ses données ou demander la suspension d'un traitement 	0	1	2023-01-03 10:59:24	2	2023-10-09 05:39:51	2
+12	09 Gérer les décisions automatisées	La personne peut remonter le fil du profilage, s'y opposer et demander l’intervention d’un humain dans une décision automatisée la concernant.	0	1	2023-01-03 11:07:17	2	2023-01-03 11:07:17	\N

@@ -1,0 +1,4 @@
+1	Utilisateur	lire, ajouter, modifier, supprimer	0	0	1	2023-09-28 17:08:30	2023-01-12 08:45:05
+2	Administrateur	donner des droits, lire les journaux, accéder à toutes les données	0	0	1	2023-09-28 17:07:42	2023-01-12 08:47:37
+3	Lecture seule	voir les données	0	0	1	2023-09-28 17:08:03	2023-01-12 08:48:10
+4	Aucun	Le catalogue stocke ce compte en tant qu'annuaire	0	0	0	2023-10-02 18:18:39	2023-10-02 18:18:39

@@ -1,0 +1,5 @@
+1	01 Base active	Phase n° 1, celle de l'utilisation courante des données	0	1	2022-01-20 18:15:00	856	2022-07-20 12:56:09	2
+2	03 Archives intermédiaires	Phase n°2 : l’objectif de traitement est atteint, ("dossier clos") mais les données sont néanmoins conservées \
+(obligation légale, rétention pour preuve, ...)	0	1	2022-01-20 18:15:00	856	2022-07-16 10:10:13	2
+3	04 Archives définitives	Archivage sans limitation de durée à des fins archivistiques dans l’intérêt public	0	1	2022-01-20 18:15:00	856	2022-07-16 10:11:41	2
+4	02 Stockage mixte	Bases courantes et archives dans la même unité de stockage	0	1	2022-02-01 22:22:09	2	2022-07-16 10:12:10	2

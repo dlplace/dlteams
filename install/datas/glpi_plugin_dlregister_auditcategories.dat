@@ -1,0 +1,27 @@
+1	Audit d’architecture	L’audit d’architecture consiste en la vérification de la conformité des pratiques de sécurité relatives au choix, au positionnement et à la mise en oeuvre des dispositifs matériel et logiciels déployés dans un système d’information à l’état de l’art et aux exigences et règles internes de l’organisme audité. L’audit peut être étendu aux interconnexions avec des réseaux tiers, et notamment Internet.	0	1	2022-06-13 11:32:21	2022-06-13 11:28:06
+2	Audit de configuration	L’audit de configuration a pour vocation de vérifier la mise en oeuvre de pratiques de sécurité conformes à l’état de l’art et aux exigences et règles internes de l’organisme audité en matière de\
+configuration des dispositifs matériels et logiciels déployés dans un système d’information. Ces dispositifs peuvent notamment être des équipements réseau, des systèmes d'exploitation (serveur ou poste de travail), des applications ou des produits de sécurité.	0	1	2022-06-13 11:32:48	2022-06-13 11:28:18
+3	Audit de code	L’audit de code source consiste en l’analyse de tout ou partie du code source ou des conditions de compilation d’une application dans le but d’y découvrir des vulnérabilités, liées à de mauvaises pratiques de programmation ou des erreurs de logique, qui pourraient avoir un impact en matière de sécurité.	0	1	2022-06-13 11:32:34	2022-06-13 11:28:32
+4	Audit organisationnel & physique	L’audit de l’organisation de la sécurité vise à s’assurer que les politiques et procédures de sécurité définies par l’audité pour assurer le maintien en conditions opérationnelles et de sécurité d’une application ou de tout ou partie du système d’information sont conformes au besoin de sécurité de l’organisme audité, à l’état de l’art ou aux normes en vigueur, complètent correctement les mesures\
+techniques mises en place, et enfin sont efficacement mises en pratique.	0	1	2022-06-13 11:33:06	2022-06-13 11:28:47
+5	Audit utilisateurs	Le test utilisateur permet d'évaluer l'adoption des utilisateurs face à l'usage d'un logiciel ou matériel, leur réaction face à un événement ou leur sensibilité à une thématique.\
+Un debriefing peut être organisé avec les utilisateurs, sur site ou à distance, afin de présenter les résultats et répondre aux questions.\
+Des formations et sensibilisations peuvent être utilisées en complément.	0	1	2022-09-27 10:55:47	2022-06-13 11:29:03
+6	Audit Red Team	L’audit de type Red Team vise à simuler une attaque réelle afin d'éprouver la sécurité globale d'un système d'information ainsi que la sensibilisation des employés. Le but est de démontrer les\
+conséquences potentielles d'une attaque, et également de tester la réactivité des équipes de défense en place.\
+Les étapes suivantes doivent pouvoir être effectuées\
+ Reconnaissance\
+ Attaque des ressources externe\
+ Ingénierie sociale\
+ Infiltration des locaux\
+ Attaque des ressources internes\
+L’équipe d’audit devra se déplacer silencieusement au sein du réseau, sans se faire détecter par le SOC ou une équipe dédiée (Blue Team)	0	1	2022-06-13 11:33:21	2022-06-13 11:29:28
+7	Analyse d’impact relative à la protection des données (AIPD)	L’AIPD est un outil qui permet de construire un traitement conforme au RGPD et respectueux de la vie privée. Elle concerne les traitements de données personnelles qui sont susceptibles d'engendrer un risque élevé pour les droits et libertés des personnes concernées. 	0	1	2022-06-13 11:31:46	2022-06-13 11:31:46
+8	Auto-diagnostic	Evaluation générale par l'organisme lui-même d'un niveau (de sécurité, de maturité, ...) face à un référentiel au travers d'un questionnaire	0	1	2022-07-28 17:58:58	2022-07-28 11:51:33
+9	Audit de documents de collecte	Les obligations en terme de collecte de données sont énoncées dans les articles 12 &#38; 13 du RGPD	0	1	2023-11-16 06:47:43	2022-07-28 11:52:36
+10	Audit de conformité		0	1	2022-09-27 10:00:24	2022-09-27 10:00:24
+11	Audit des personnes concernées		0	1	2023-11-16 08:47:17	2023-11-16 08:47:17
+12	Audit d'un traitement	Il s'agit pour le DPO d'indiquer pour les les écarts constatés avec le référentiel RGPD, en vue d'indiquer le niveau de conformité, des actions correctrices ou d'amélioration	0	1	2023-11-20 10:19:59	2023-11-20 10:18:36
+13	Pentest	Le pentesting (abréviation de "penetration testing" en anglais) est également appelé test d'intrusion ou test de pénétration. C'est une technique qui consiste à analyser une cible en se comportant comme un pirate informatique.	0	1	2023-11-20 10:23:49	2023-11-20 10:23:19
+14	Personnes concernées	L'audit des personnes concernées consiste à fournir des indicateurs volumétriques (quantités de personnes concernées), et de sensibilité (vulnérabilité supposée des personnes)	0	1	2023-11-20 10:25:14	2023-11-20 10:25:14
+15	Audit "poste informatique"		0	1	2024-02-16 18:52:42	2024-02-16 18:52:42

@@ -1,0 +1,108 @@
+0	01 Identifiants		\N	2022-01-14 12:36:53	0	0	\N	0	16
+0	09 Identifiants : adresse ip, terminal utilisé, id d'authentification, source		\N	2022-01-14 12:36:53	0	0	\N	0	38
+0	14 Identifiants : ID unique de publicité (internet, cookie third party)		\N	2022-01-14 12:36:53	0	0	\N	0	39
+0	29 Activités : navigation internet, cookie (URL, adresse ip de l'ordinateur, moment, actions effectués…)		\N	2022-01-14 12:36:53	0	0	\N	0	40
+0	70 Données RH	Données concernant les employés, leurs activités, la paie	\N	2022-01-14 12:36:53	0	0	\N	0	49
+0	02 Identifiants : domicile privé (adresse postale)		\N	2022-01-14 12:36:53	0	0	\N	0	61
+0	03 Identifiants : adresse de messagerie personnelle		\N	2022-01-14 12:36:53	0	0	\N	0	62
+0	03 Identifiants : téléphone privé (portable, fixe)		\N	2022-01-14 12:36:53	0	0	\N	0	63
+0	01 Identifiants : état civil (nom, prénom, civilité)		\N	2022-01-14 12:36:53	0	0	\N	0	64
+0	03 Identifiants : identifiant, pseudo de réseau social (facebook, linkedin, ..)		\N	2022-01-14 12:36:53	0	0	\N	0	68
+0	15 Etat civil : date et lieu de naissance		\N	2022-01-14 12:36:53	0	0	\N	0	69
+0	21 Activités : correspondance ou message par téléphone, mail, en ligne, courrier (moment, destinataires, contenu...)		\N	2022-01-14 12:36:53	0	0	\N	0	70
+0	41 Situation et relations : profession, domaine d'activité, catégorie socio-professionnelle		\N	2022-01-14 12:36:53	0	0	\N	0	71
+0	70 Données RH : CV, diplômes, expériences, centres d'intérêts		\N	2022-01-14 12:36:53	0	0	\N	0	72
+0	75 Données RH : entretiens (dates, évaluateur, objectifs, appréciations)	dates des entretiens, évaluateur, objectifs assignés, résultats obtenus \
+appréciation des aptitudes professionnelles\
+observations et souhaits formulés par l'employé, prévisions d'évolution de carrière	\N	2022-01-14 12:36:53	0	0	\N	0	73
+0	04 Identifiants : coordonnées professionnelles (organisme, poste, tél, mail)		\N	2022-01-14 12:36:53	0	0	\N	0	75
+0	23 Activités : éléments de vente (n° commande, bl, facture, date, liste de produits ou services, quantités, prix)	Suivi des transactions commerciales	\N	2022-01-14 12:36:53	0	0	\N	0	76
+0	05 Identifiants : copie de carte id ou passeport, permis conduire		\N	2022-01-14 12:36:53	0	0	\N	0	87
+0	08 Identifiants : photographie (type identité)		\N	2022-01-14 12:36:53	0	0	\N	0	88
+0	12 Identifiants : NIR (numéro sécurité sociale)		\N	2022-01-14 12:36:53	0	0	\N	0	89
+0	71 Données RH : classement conventionnel (coefficient, indice, échelon)		\N	2022-01-14 12:36:53	0	0	\N	0	90
+0	71 Données RH : contrat de travail, salaire mensuel, forfait jour, salaire horaire		\N	2022-01-14 12:36:53	0	0	\N	0	91
+0	72 Données RH : nature de l'emploi, poste, statut catégoriel, ancienneté		\N	2022-01-14 12:36:53	0	0	\N	0	92
+0	73 Données RH : données de prévoyance et de mutuelle		\N	2022-01-14 12:36:53	0	0	\N	0	93
+0	72 Données RH : spécificités du salarié, handicap, liste des pénibilités		\N	2022-01-14 12:36:53	0	0	\N	0	94
+0	31 Vie personnelle : prénoms, âge des enfants		\N	2022-01-14 12:36:53	0	0	\N	0	95
+0	10 Identifiants : signature (manuscrite, numérique)		\N	2022-01-14 12:36:53	0	0	\N	0	96
+0	75 Données RH : évaluations, formations	CPF acquis, suivi des demandes de formation et des périodes de formation effectuées\
+organisation des sessions de formation, évaluation des connaissances et des formations	\N	2022-01-14 12:36:53	0	0	\N	0	97
+0	25 Activités : activités sur les réseaux sociaux (posts, forums...)		\N	2022-01-14 12:36:53	0	0	\N	0	101
+0	22 Activités : devis, propositions, essais, négociations	Suivi de la relation commerciale	\N	2022-01-14 12:36:53	0	0	\N	0	117
+0	35 Opinions : date, avis, retour d'expérience, note	nominatif ou sous pseudonyme	\N	2022-01-14 12:36:53	0	0	\N	0	130
+0	76 Données RH : absences, congés, heures suppl.		\N	2022-01-14 12:36:53	0	0	\N	0	209
+0	76 Données RH : salaire, acomptes, coef. retenue à la source, domiciliation bancaire		\N	2022-01-14 12:36:53	0	0	\N	0	210
+0	23 Activités : éléments comptables (nom, date, famille produits, montants, prix, règlements)	Suivi des transactions commerciales	\N	2022-01-14 12:36:53	0	0	\N	0	239
+0	23 Activités : éléments de vente (adresses de livraison, historiques achats, échéances, remises, paiement, retours)	Suivi des transactions commerciales	\N	2022-01-14 12:36:53	0	0	\N	0	240
+0	51 Economique et financière : chèque, nom, adresse, banque, signature		\N	2022-01-14 12:36:53	0	0	\N	0	242
+0	20 Données d'activités		\N	2022-01-14 12:36:53	0	0	\N	0	262
+0	10 Identifiants : login & mots de passe, code pin, schéma		\N	2022-01-14 12:36:53	0	0	\N	0	516
+0	78 Données RH : planning du salarié, liste d'activités, rendez vous		\N	2022-01-14 12:36:53	0	0	\N	0	517
+0	77 Données RH : date, heure d'arrivée, heure de départ		\N	2022-01-14 12:36:53	0	0	\N	0	518
+0	29 Activités : appel téléphonique (moment, numéro destinataire, appareil émetteur)		\N	2022-01-14 12:36:53	0	0	\N	0	519
+0	29 Activités : traces informatiques (logs, journaux, id, moment, poste, action effectuée)		\N	2022-01-14 12:36:53	0	0	\N	0	520
+0	24 Activités : habitudes, activités, présence à des événements…		\N	2022-01-14 12:36:53	0	0	\N	0	521
+0	27 Activités : photo ou vidéo (événements publics)		\N	2022-01-14 12:36:53	0	0	\N	0	522
+0	34 Vie personnelle : goûts, centres d'intérêt		\N	2022-01-14 12:36:53	0	0	\N	0	523
+0	35 Opinions : motivation à effectuer une action		\N	2022-01-14 12:36:53	0	0	\N	0	524
+0	44 Situation & relations : appartenances à une association, un groupe, un mouvement		\N	2022-01-14 12:36:53	0	0	\N	0	525
+0	07 Identifiants : de badge, de carte de pointage, de fidélité...		\N	2022-01-14 12:36:53	0	0	\N	0	526
+0	78 Données RH : matériel confié, date, signature		\N	2022-01-14 12:36:53	0	0	\N	0	527
+0	27 Activités : film (vidéo vidéoprotection, vidéo-surveillance)		\N	2022-01-14 12:36:53	0	0	\N	0	528
+0	90 Données de sauvegardes		\N	2022-01-14 12:36:53	0	0	\N	0	529
+0	91 Archives : données variées à conserver long terme		\N	2022-01-14 12:36:53	0	0	\N	0	530
+0	21 Activités : participation à une réunion, présence un événement		\N	2022-01-14 12:36:53	0	0	\N	0	531
+0	81 Données judiciaires : condamnations et peines		\N	2022-01-14 12:36:53	0	0	\N	0	532
+0	31 Vie personnelle : vie maritale, composition foyer, nb enfants		\N	2022-01-14 12:36:53	0	0	\N	0	533
+0	26 Activités : géolocalisation (lieu, moment, mouvement, vitesse)		\N	2022-01-14 12:36:53	0	0	\N	0	550
+0	26 Activités : pointage (lieu, moment)		\N	2022-01-14 12:36:53	0	0	\N	0	551
+0	50 Economique et financière : carte bancaire (propriétaire, numéro, expiration)		\N	2022-01-14 12:36:53	0	0	\N	0	709
+0	24 Activités : profil d'acheteur, souhaits potentiels d'achat		\N	2022-01-14 12:36:53	0	0	\N	0	729
+1	06 Identifiants : copie de visa, permis de travail, droit de séjour		\N	2022-02-25 11:05:24	0	0	\N	0	958
+1	30 Vie personnelle, entourage & relations		\N	2022-02-25 11:10:24	0	0	\N	0	959
+0	31 Vie personnelle : fratrie (entourage)		\N	2022-02-25 11:10:50	0	0	\N	0	960
+0	33 Vie personnelle : intérêts et attentes de la personne		\N	2022-02-25 11:11:24	0	0	\N	0	961
+0	36 Opinions : pratique religieuse en vue d'organiser un accompagnement		\N	2022-02-25 11:12:03	0	0	\N	0	962
+0	38 Opinions : soutien à une cause caritative, un organisme associatif, un artiste		\N	2022-02-25 11:12:46	0	0	\N	0	963
+0	39 Opinions : politiques, convictions religieuses, philosophiques ou appartenance syndicale		\N	2022-02-25 11:13:02	0	0	\N	0	964
+0	40 Situation & relations		\N	2022-02-25 11:13:26	0	0	\N	0	965
+0	42 Situation & relations : identité du ou des accompagnant(s)		\N	2022-02-25 11:14:24	0	0	\N	0	966
+0	43 Situation & relations : notes ou appréciations sur la personne		\N	2022-02-25 11:14:36	0	0	\N	0	967
+0	46 Situations et relations : avis, note, retour d'expérience		\N	2022-02-25 11:15:05	0	0	\N	0	968
+0	50 Economique et financière		\N	2022-02-25 11:15:10	0	0	\N	0	969
+0	51 Economique et financière : numéro de la carte bancaire, date d'expiration, cryptogramme visuel		\N	2022-02-25 11:16:47	0	0	\N	0	970
+0	52 Economique et financière : domiciliation bancaires (IBAN, RIB)		\N	2022-02-25 11:17:09	0	0	\N	0	971
+0	53 Economique et financière : moyens et historiques des paiements		\N	2022-02-25 11:17:19	0	0	\N	0	972
+0	54 Economique et financière : étude de solvabilité de la personne		\N	2022-02-25 11:17:26	0	0	\N	0	973
+0	55 Economique et financière : revenus fiscaux		\N	2022-02-25 11:17:31	0	0	\N	0	974
+0	56 Economique et financière : patrimoine (montant, impôts, statut financier)		\N	2022-02-25 11:17:40	0	0	\N	0	975
+0	57 Données financières : allocations, aides, pensions, dons, subventions		\N	2022-02-25 11:17:45	0	0	\N	0	976
+0	58 Economique et financière : assurances (date, montant, risques couverts…)		\N	2022-02-25 11:17:54	0	0	\N	0	977
+0	59 Economique et financière : dettes, emprunts, cautions (type, montant, dates)		\N	2022-02-25 11:18:10	0	0	\N	0	978
+0	60 Evaluation sociale de la personne concernée		\N	2022-02-25 11:18:40	0	0	\N	0	979
+0	60 Santé (physique, mentale)		\N	2022-02-25 11:18:48	0	0	\N	0	980
+0	61 Santé (physique, mentale) informations cliniques ou biologiques		\N	2022-02-25 11:19:08	0	0	\N	0	981
+0	62 Santé (physique, mentale) comptes rendus et prescriptions médicales		\N	2022-02-25 11:19:25	0	0	\N	0	982
+0	64 Santé (physique, mentale) difficultés relationnelle de vie		\N	2022-02-25 11:19:32	0	0	\N	0	983
+0	65 Santé (physique, mentale) évaluation médico-sociale de la personne concernée		\N	2022-02-25 11:19:42	0	0	\N	0	984
+0	65 Santé (physique, mentale) évaluations concernant la personnalité ou le caractère		\N	2022-02-25 11:20:36	0	0	\N	0	985
+0	66 Santé (médico-social) Domaine Grand Age		\N	2022-02-25 11:20:43	0	0	\N	0	986
+0	66 Santé (médico-social) Domaine Handicap		\N	2022-02-25 11:20:53	0	0	\N	0	987
+0	66 Santé (types de soins de suites) Domaine Sanitaire		\N	2022-02-25 11:21:05	0	0	\N	0	988
+0	67 Santé, appartenance culturelle à des fins de prise en charge		\N	2022-02-25 11:21:12	0	0	\N	0	989
+0	68 Santé, prise en compte de la vie affective et sexuelle à des fins d'accompagnement		\N	2022-02-25 11:21:22	0	0	\N	0	990
+0	74 Données RH : visites médicales, date, résultat		\N	2022-02-25 11:22:01	0	0	\N	0	991
+0	80 Données judiciaires		\N	2022-02-25 11:22:52	0	0	\N	0	992
+0	82 Données judiciaires : mise sous tutelle, sous administration provisoire, internement, collocation		\N	2022-02-25 11:23:18	0	0	\N	0	993
+0	83 Données judiciaires : suspicion d’infractions ou d’association de malfaiteurs connus		\N	2022-02-25 11:23:38	0	0	\N	0	994
+0	83 Données judiciaires :  données pouvant permettre la constatation, la défense ou l'exercice de droits en justice	Toute donnée ayant trait à un conflit en justice actuel ou futur : récolte de preuves, photographies, témoignages...		2022-09-22 11:57:22	0	0	\N	0	2791
+0	23 Activités : éléments constitutifs du contrat			2023-03-03 08:21:18	0	0	\N	0	3030
+0	23 Activités : éléments traités durant l'exécution du contrat			2023-03-03 08:25:24	0	0	\N	0	3031
+0	Informations permettant d'améliorer et de personnaliser la navigation des internautes			2023-08-03 08:54:27	0	0	\N	0	3072
+0	Données nécessaires à la réalisation des contrats, la fourniture des produits et services			2023-11-30 07:12:19	0	0	\N	0	3211
+0	Eléments nécessaires à l'exécution des contrats établis			2023-11-30 07:13:03	0	0	\N	0	3212
+0	Données nécessaires pour réaliser les achats et suivre les activités partenaires			2023-11-30 07:13:17	0	0	\N	0	3213
+0	Informations RH concernant les employés et leurs activités			2023-11-30 07:13:34	0	0	\N	0	3214
+0	Informations nécessaires aux activités pré commerciales (prospection, devis)			2023-12-04 09:38:58	0	0	\N	0	3221

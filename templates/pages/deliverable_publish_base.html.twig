@@ -1,0 +1,162 @@
+{#- -----------------------------------------------------------------------  -#}
+{# DLTeams plugin for GLPI #}
+{#- -----------------------------------------------------------------------  -#}
+{# LICENSE : This file is part of DLTeams Plugin. #}
+
+{# DLTeams Plugin is a GNU Free Copylefted software. #}
+{# It disallow others people than DLPlace developers to distribute, sell, #}
+{# or add additional requirements to this software. #}
+{# Though, a limited set of safe added requirements can be allowed, but #}
+{# for private or internal usage only ;  without even the implied warranty #}
+{# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #}
+
+{# You should have received a copy of the GNU General Public License #}
+{# along with DLTeams Plugin. If not, see <http://www.gnu.org/licenses/>. #}
+{#- ------------------------------------------------------------------------  -#}
+{# @package   dlteams #}
+{# @author    DLPlace developers #}
+{# @copyright Copyright (c) 2022 DLPlace #}
+{# @inspired	 DPO register plugin (Karhel Tmarr) & gdprropa (Yild) #}
+{# @license   GPLv3+ http://www.gnu.org/licenses/gpl.txt #}
+{# @link      https://github.com/dlplace/dlteams #}
+{# @since     2021 #}
+{#- ------------------------------------------------------------------------  -#}
+
+{% extends '@dlteams/layout/page_guest.html.twig' %}
+{% block header_logo %}
+    {% if deliverable.print_logo %}
+        <center>
+            <img id='logo' alt='Organisation logo' src='{{ logo_uri }}'>
+            <hr>
+        </center>
+    {% endif %}
+{% endblock %}
+{% set ispdf = false %}
+
+{% block cover_page %}
+    <div class="container">
+        <table border='1' cellspacing='0' class="table table-bordered">
+            {% for data in first_page_datas %}
+                <tr>
+                    <td width="50%">{{ data.section | raw }} </td>
+                    <td width="50%"> {{ data.value | raw }} </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+{% endblock %}
+
+
+{% block content_block %}
+
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem">
+        <h1 style="font-size: 1.8rem;">
+            {{ deliverable.document_title }}
+        </h1>
+
+        <button id="expandAllBtn" class="print-hidden-btn"
+                style="background-color: transparent; border: 0px solid; color: royalblue" type="button">Ouvrir/Fermer
+            Tout
+        </button>
+    </div>
+    <div style="margin-top: 0.3rem">
+        {% if print_comments %}
+            <blockquote><i>{{ deliverable.document_comment | raw }}</i></blockquote>
+        {% endif %}
+        {{ deliverable.document_content | raw }}
+    </div>
+    <br>
+
+    {% for section in section_list %}
+        <div class="mb-5">
+            {% set currentParentIndex = loop.index %}
+            <h1 style="background-color: #767171;color: white;padding: 0.3rem;border-radius: 5px; font-size: 1.8rem;">{{ section.name }}</h1>
+            {% if print_comments %}
+                <blockquote><i>{{ section.comment | raw }}</i></blockquote>
+            {% endif %}
+
+            <p class="mb-2">
+                {{ section.content | raw }}
+            </p>
+
+
+            <div {% if not ispdf %} class="accordion" id="accordionPanelsStayOpenExample" {% endif %}>
+                {% for content in section.section_content %}
+                    <div {% if not ispdf %} class="accordion-item" {% endif %}>
+                        {% set currentIndex = loop.index %}
+                        <h2 {% if not ispdf %} class="accordion-header" id="heading-{{ currentParentIndex }}{{ currentIndex }}" {% endif %}>
+                            <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                                    {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panel-{{ currentParentIndex }}{{ currentIndex }}"
+                                aria-expanded="false"
+                                aria-controls="panel-{{ currentParentIndex }}{{ currentIndex }}" {% endif %}>
+                                {{ content.name | raw }}
+                            </button>
+                        </h2>
+                        <div {% if not ispdf %} id="panel-{{ currentParentIndex }}{{ currentIndex }}"
+                            class="accordion-collapse collapse show"
+                            aria-labelledby="heading-{{ currentParentIndex }}{{ currentIndex }}" {% endif %}>
+                            <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                                {% autoescape %}
+                                    {% if print_comments %}
+                                        <blockquote>
+                                            <i>{{ content.comment | raw }}</i>
+                                        </blockquote>
+                                    {% endif %}
+                                    {{ content.content | raw }}
+                                {% endautoescape %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% endfor %}
+
+    {% if prevent_contextmenu is defined and prevent_contextmenu %}
+        <script>
+            document.addEventListener('contextmenu', event => event.preventDefault());
+        </script>
+    {% endif %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const expandAllBtn = document.getElementById("expandAllBtn");
+            const accordionItems = document.querySelectorAll(".accordion-collapse");
+            const btnText = document.getElementById("btnText");
+
+            expandAllBtn.addEventListener("click", function () {
+                accordionItems.forEach((item) => {
+                    const isExpanded = item.classList.contains("show");
+                    if (isExpanded) {
+                        item.classList.remove("show");
+                    } else {
+                        item.classList.add("show");
+                    }
+                });
+
+                // Mettre à jour le texte du bouton
+                const areAllPanelsOpen = [...accordionItems].every(
+                    (item) => item.classList.contains("show")
+                );
+
+                if (areAllPanelsOpen) {
+                    btnText.innerText = "Résumer";
+                } else {
+                    btnText.innerText = "Lire tout";
+                }
+            });
+        });
+    </script>
+
+    <style>
+        @media print {
+            .print-hidden-btn {
+                display: none;
+            }
+        }
+    </style>
+
+{% endblock %}

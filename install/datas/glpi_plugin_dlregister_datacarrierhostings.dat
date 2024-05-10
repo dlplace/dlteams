@@ -1,0 +1,8 @@
+1	2. Local (poste)	2. Local (poste)	Sur un poste, géré par un utilisateur	1	[]	{"1":"1"}	0	1
+2	1. Local (serveur)	1. Local (serveur)	La base de données est stockée sur un serveur, dans le réseau de l'organisme.	1	[]	{"2":"2"}	0	1
+3	3. Cloud privé géré	3. Cloud privé géré	L'infrastructure informatique sous-jacente est spécifique à l'organisme, l'accès est entièrement isolé	1	[]	{"3":"3"}	0	1
+4	4. Cloud dédié	4. Cloud dédié	Cloud au sein d'un autre cloud. Par exemple, un cloud spécialisé dans un cloud public ou dans un cloud privé (un service de comptabilité au sein du cloud privé de l'entreprise)	1	[]	{"4":"4"}	0	0
+5	5. Cloud hybride	5. Cloud hybride	Environnement informatique unique créé à partir de plusieurs environnements connectés via des réseaux locaux (LAN), des réseaux étendus (WAN), des réseaux privés virtuels (VPN) et/ou des API	1	[]	{"5":"5"}	0	1
+6	7. MultiCloud	7. MultiCloud	Interconnexion de plusieurs services cloud et plusieurs fournisseurs de cloud, public ou privé	1	[]	{"6":"6"}	0	1
+7	6. Cloud Public	6. Cloud Public	Cloud créé à partir d'une infrastructure informatique qui n'appartient pas à l'organisme. Microsoft Azure, Google Cloud, Amazon Web Services (AWS) pour les plus connus	1	[]	{"7":"7"}	0	1
+8	8. Physique	8. Physique		1	[]	\N	0	1

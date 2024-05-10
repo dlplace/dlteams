@@ -1,0 +1,74 @@
+{#- -----------------------------------------------------------------------    -#}
+{# DLTeams plugin for GLPI #}
+{#- -----------------------------------------------------------------------    -#}
+{# LICENSE : This file is part of DLTeams Plugin. #}
+
+{# DLTeams Plugin is a GNU Free Copylefted software. #}
+{# It disallow others people than DLPlace developers to distribute, sell, #}
+{# or add additional requirements to this software. #}
+{# Though, a limited set of safe added requirements can be allowed, but #}
+{# for private or internal usage only ;  without even the implied warranty #}
+{# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #}
+
+{# You should have received a copy of the GNU General Public License #}
+{# along with DLTeams Plugin. If not, see <http://www.gnu.org/licenses/>. #}
+{#- ------------------------------------------------------------------------    -#}
+{# @package   dlteams #}
+{# @author    DLPlace developers #}
+{# @copyright Copyright (c) 2022 DLPlace #}
+{# @inspired	 DPO register plugin (Karhel Tmarr) & gdprropa (Yild) #}
+{# @license   GPLv3+ http://www.gnu.org/licenses/gpl.txt #}
+{# @link      https://github.com/dlplace/dlteams #}
+{# @since     2021 #}
+{#- ------------------------------------------------------------------------    -#}
+
+
+{% set currentParentIndex = 0 %}
+{% set currentIndex = 0 %}
+{% set keyIndex = key %}
+
+{#<h4 style="background-color: #174494; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;">#}
+{#    {{ pri_data.pri_title }}#}
+{#</h4>#}
+
+<table border='1' cellspacing='0' style='width:100%'>
+    {% for item in pri_data.pri_rows %}
+        <tr style="border: solid 1px gray;" width="100%">
+            <td width="20%" style="background:#d0cece;color:black"> {{ item.section }} </td>
+            <td width="80%"> {{ item.value | raw }} </td>
+        </tr>
+    {% endfor %}
+</table>
+<br/>
+<br/>
+
+
+{#<div class="accordion-item">#}
+
+{#    <h6 class="accordion-header" id="heading-{{ currentParentIndex }}{{ currentIndex }}{{ keyIndex }}">#}
+{#        <button style="font-size: 1.3rem;" class="accordion-button mt-3" type="button" data-bs-toggle="collapse"#}
+{#                data-bs-target="#panel-{{ currentParentIndex }}{{ currentIndex }}{{ keyIndex }}"#}
+{#                aria-expanded="false"#}
+{#                aria-controls="panel-{{ currentParentIndex }}{{ currentIndex }}{{ keyIndex }}">#}
+{#            {{ pri_data.pri_title }}#}
+{#        </button>#}
+{#    </h6>#}
+
+
+{#    <div id="panel-{{ currentParentIndex }}{{ currentIndex }}{{ keyIndex }}"#}
+{#         class="accordion-collapse collapse show"#}
+{#         aria-labelledby="heading-{{ currentParentIndex }}{{ currentIndex }}{{ keyIndex }}">#}
+{#        <div class="accordion-body">#}
+{#            <table border='1' cellspacing='0' style='width:100%'>#}
+{#                {% for item in pri_data.pri_rows %}#}
+{#                    <tr style="border: solid 1px gray;" width="100%">#}
+{#                        <td width="20%" style="background:#d0cece;color:black"> {{ item.section }} </td>#}
+{#                        <td width="80%"> {{ item.value | raw }} </td>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#            </table>#}
+{#            <br/>#}
+{#            <br/>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}

@@ -1,0 +1,1883 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-27 13:17+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: inc/datacatalog_item.class.php:41 inc/accountkey.class.php:141
+#: inc/datacatalog.class.php:52
+msgid "Data catalog"
+msgid_plural "Data catalogs"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/datacatalog_item.class.php:46 inc/record_tab3.class.php:100
+#: inc/storageperiod_item.class.php:107 inc/record_legalbasi.class.php:102
+msgid "Eléments rattachés"
+msgstr ""
+
+#: inc/datacatalog_item.class.php:889 inc/record_element.class.php:622
+#: inc/record_external.class.php:898 inc/record_securitymeasure.class.php:582
+#: inc/record_personalanddatacategory.class.php:623
+#: inc/record_tab3.class.php:206 inc/protectivemeasure_item.class.php:1174
+#: inc/database_item.class.php:172 inc/legalbasi_item.class.php:1443
+#: inc/storageperiod_item.class.php:1497 inc/concernedperson_item.class.php:863
+#: inc/processeddata_item.class.php:797
+#: inc/thirdpartycategory_item.class.php:635
+#: inc/rightmeasure_item.class.php:653 inc/documentsrgpd.class.php:291
+#: inc/groupsrgpd.class.php:266 inc/usersrgpd.class.php:319
+#: inc/suppliersrgpd.class.php:266 inc/record_legalbasi.class.php:990
+msgid "Update dlteams relations"
+msgstr ""
+
+#: inc/datacatalog_item.class.php:893 inc/record_external.class.php:903
+#: inc/record_tab3.class.php:210 inc/record_item.class.php:1158
+#: inc/database.class.php:66 inc/legalbasi_item.class.php:1447
+#: inc/storageperiod_item.class.php:1502 inc/rightmeasure_item.class.php:657
+#: inc/usersrgpd.class.php:324
+msgid "Delete dlteams relation"
+msgid_plural "Delete dlteams relations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/deliverable.class.php:35
+msgid "Delivrable"
+msgid_plural "Delivrables"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/deliverable.class.php:95 inc/audit.class.php:108
+#: inc/storageperiod_onglet.class.php:141
+#: inc/tierscategory_onglet.class.php:198 inc/rightmeasure.class.php:119
+#: inc/record_item.class.php:1043 inc/protectivemeasure_item.class.php:1058
+#: inc/protectivemeasure.class.php:80 inc/personaldcp_onglet.class.php:198
+#: inc/personaldatacategory_onglet_ext.class.php:144 inc/process.class.php:95
+#: inc/personaldatacategory_onglet.class.php:198
+#: inc/personaldatacategory_onglet.class.php:312 inc/createpdf.class.php:1485
+#: inc/createpdf.class.php:2772 inc/createpdf.class.php:3115
+#: inc/legalbasi_item.class.php:1328 inc/storageperiod_item.class.php:1300
+#: inc/thirdpartycategory_item.class.php:496
+msgid "Type"
+msgstr ""
+
+#: inc/deliverable.class.php:180 inc/application.class.php:203
+#: inc/datacatalog_databasetype.class.php:108 inc/accountkey.class.php:747
+#: inc/accountkeycat.class.php:340 inc/record_element.class.php:127
+#: inc/record_securitymeasure.class.php:1178
+#: inc/record_personalanddatacategory.class.php:1247
+#: inc/record_tab3.class.php:130 inc/thirdpartycategory.class.php:223
+#: inc/storageperiod.class.php:266 inc/riskassessment.class.php:252
+#: inc/record_basedonnee.class.php:150 inc/record.class.php:275
+#: inc/record_storage.class.php:302 inc/protectivemeasure.class.php:312
+#: inc/legalbasi.class.php:330 inc/exportable.class.php:154
+#: inc/exportable.class.php:635 inc/policieform.class.php:237
+#: inc/processeddata.class.php:266 inc/database.class.php:742
+#: inc/datacatalog.class.php:1464 inc/concernedperson.class.php:220
+#: inc/record_legalbasi.class.php:132
+#, php-format
+msgid "failed to copy the %1$s record"
+msgstr ""
+
+#: inc/deliverable.class.php:210 inc/application.class.php:235
+#: inc/thirdpartycategory.class.php:254 inc/storageperiod.class.php:297
+#: inc/object_document.class.php:358 inc/record.class.php:320
+#: inc/protectivemeasure.class.php:343 inc/legalbasi.class.php:360
+#: inc/processeddata.class.php:297 inc/concernedperson.class.php:252
+#, php-format
+msgid "Record copied: %s"
+msgstr ""
+
+#: inc/datacategory.class.php:34
+#: inc/record_personalanddatacategory.class.php:198
+#: inc/record_personalanddatacategory.class.php:255
+#: inc/createpdf.class.php:1889 inc/concernedperson_item.class.php:347
+#: inc/processeddata_item.class.php:161
+msgid "Personal Data Category"
+msgid_plural "Personal Data Categories"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/allitem.class.php:268 inc/record_element.class.php:693
+msgid "Add Documents"
+msgstr ""
+
+#: inc/allitem.class.php:273 inc/documentsrgpd.class.php:121
+#: inc/groupsrgpd.class.php:122 inc/usersrgpd.class.php:124
+#: inc/suppliersrgpd.class.php:122
+msgid "Related objects"
+msgstr ""
+
+#: inc/application.class.php:38
+msgid "Applications"
+msgid_plural "Applications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/application.class.php:49 inc/accountkey.class.php:49
+#: inc/accountkeycat.class.php:50 inc/thirdpartycategory.class.php:51
+#: inc/storageperiod.class.php:50 inc/trainingcertification.class.php:45
+#: inc/riskassessment.class.php:48 inc/rightmeasure.class.php:45
+#: inc/userprofile.class.php:55 inc/protectivemeasure.class.php:66
+#: inc/legalbasi.class.php:56 inc/policieform.class.php:49
+#: inc/processeddata.class.php:51 inc/database.class.php:111
+#: inc/datacatalog.class.php:64 inc/createpdf.class.php:1282
+#: inc/createpdf.class.php:1484 inc/createpdf.class.php:2771
+#: inc/createpdf.class.php:3103 inc/createpdf.class.php:3238
+#: inc/createpdf.class.php:3355 inc/createpdf.class.php:3475
+#: inc/concernedperson.class.php:52
+msgid "Name"
+msgstr ""
+
+#: inc/application.class.php:58 inc/thirdpartycategory.class.php:60
+#: inc/storageperiod.class.php:59 inc/riskassessment.class.php:82
+#: inc/rightmeasure.class.php:54 inc/protectivemeasure.class.php:73
+#: inc/legalbasi.class.php:77 inc/policieform.class.php:58
+#: inc/processeddata.class.php:74 inc/createpdf.class.php:1493
+#: inc/createpdf.class.php:3106 inc/concernedperson.class.php:61
+#: inc/legalbasi_item.class.php:825
+msgid "Content"
+msgstr ""
+
+#: inc/auditcategory.class.php:34
+msgid "Audit Categories"
+msgstr ""
+
+#: inc/audit.class.php:33
+msgid "Audit"
+msgid_plural "Audits"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/audit.class.php:54
+msgid "Audit catégorie"
+msgstr ""
+
+#: inc/datacatalog_databasetype.class.php:81 inc/record_tab3.class.php:95
+#: inc/record_legalbasi.class.php:97
+msgid "Legality and retention period"
+msgstr ""
+
+#: inc/datacatalog_databasetype.class.php:178 inc/legalbasi_item.class.php:731
+#: inc/legalbasi_item.class.php:734
+#: inc/record_legalbasi_show_for_record.class.php:120
+#: inc/record_legalbasi.class.php:831
+msgid "Add Legal Basis"
+msgstr ""
+
+#: inc/datacatalog_databasetype.class.php:180 inc/legalbasi_item.class.php:736
+#: inc/record_legalbasi_show_for_record.class.php:122
+#: inc/record_legalbasi.class.php:833
+msgid "Organism must be based on legal bases that allow this processing"
+msgstr ""
+
+#: inc/datacatalog_databasetype.class.php:184
+#: inc/record_legalbasi_show_for_record.class.php:126
+#: inc/record_legalbasi.class.php:837
+msgid "Add Legal Basis to record"
+msgstr ""
+
+#: inc/accountkey.class.php:38 inc/accountkeycat.class.php:38
+msgid "Accounts and Keys"
+msgid_plural "Accounts and Keys"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/accountkey.class.php:55
+msgid "Account Management (Directory Service)"
+msgstr ""
+
+#: inc/accountkey.class.php:67
+msgid "Properties"
+msgstr ""
+
+#: inc/accountkey.class.php:137
+msgid "Catalogues accessibles"
+msgstr ""
+
+#: inc/accountkey.class.php:152 inc/accountkey.class.php:647
+msgid "Access rules"
+msgstr ""
+
+#: inc/accountkey.class.php:184
+msgid "Catalog"
+msgstr ""
+
+#: inc/accountkey.class.php:317
+msgid "Attribution du compte (Utilisateurs)"
+msgstr ""
+
+#: inc/accountkey.class.php:470
+msgid "Attribution du compte (groupes)"
+msgstr ""
+
+#: inc/accountkeycat.class.php:57
+msgid "Annuaire de stockage"
+msgstr ""
+
+#: inc/accountkeycat.class.php:68 inc/keytype.class.php:34
+msgid "Type de clé"
+msgid_plural "Type de clé"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/accountkeycat.class.php:79
+msgid "Alternative"
+msgstr ""
+
+#: inc/accountkeycat.class.php:90
+msgid "Feature"
+msgstr ""
+
+#: inc/accountkeycat.class.php:123 inc/thirdpartycategory.class.php:68
+#: inc/storageperiod.class.php:97 inc/riskassessment.class.php:89
+#: inc/rightmeasure.class.php:76 inc/userprofile.class.php:64
+#: inc/protectivemeasure.class.php:128 inc/legalbasi.class.php:85
+#: inc/policieform.class.php:66 inc/processeddata.class.php:82
+#: inc/database.class.php:351 inc/concernedperson.class.php:69
+msgid "Comment"
+msgstr ""
+
+#: inc/accountkeycat.class.php:129
+msgid "Recovery method"
+msgstr ""
+
+#: inc/accountkeycat.class.php:136 inc/thirdpartycategory_item.class.php:412
+msgid "Utilisateur"
+msgstr ""
+
+#: inc/accountkeycat.class.php:146 inc/thirdpartycategory_item.class.php:411
+msgid "Groupe"
+msgstr ""
+
+#: inc/record_element.class.php:96
+msgid "Contracts, DB"
+msgstr ""
+
+#: inc/record_element.class.php:627
+#: inc/record_personalanddatacategory.class.php:619
+#: inc/protectivemeasure_item.class.php:1178 inc/database_item.class.php:177
+#: inc/concernedperson_item.class.php:868 inc/processeddata_item.class.php:801
+#: inc/documentsrgpd.class.php:296 inc/groupsrgpd.class.php:271
+#: inc/record_legalbasi.class.php:994
+msgid "Delete dlteams relations"
+msgstr ""
+
+#: inc/record_element.class.php:698
+msgid "Documents in which data may be stored"
+msgstr ""
+
+#: inc/record_external.class.php:68
+msgid "Actor, subcontractor, recipient"
+msgid_plural "Actors, subcontractors, recipients"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/record_external.class.php:145 inc/record_juridique.class.php:72
+msgid "Process"
+msgstr ""
+
+#: inc/record_external.class.php:148 inc/record_juridique.class.php:75
+msgid ""
+"The UE law says that user should give and informed consent if data is "
+"treated outside of UE"
+msgstr ""
+
+#: inc/record_external.class.php:152 inc/record_juridique.class.php:79
+#: inc/createpdf.class.php:2283
+msgid "France"
+msgstr ""
+
+#: inc/record_external.class.php:153 inc/record_juridique.class.php:80
+#: inc/createpdf.class.php:2284
+msgid "European Union"
+msgstr ""
+
+#: inc/record_external.class.php:154 inc/record_juridique.class.php:81
+#: inc/createpdf.class.php:2285
+msgid "World"
+msgstr ""
+
+#: inc/record_external.class.php:165
+msgid "Recipient : to which organism or persons data are communicated"
+msgstr ""
+
+#: inc/record_external.class.php:183 inc/record_rights.class.php:69
+#: inc/record_conservationtime.class.php:73
+#: inc/thirdpartycategory_item.class.php:407
+msgid "Right exercice"
+msgstr ""
+
+#: inc/record_external.class.php:187 inc/thirdpartycategory_item.class.php:410
+msgid "------"
+msgstr ""
+
+#: inc/record_external.class.php:188
+msgid "Personnes Concernees"
+msgstr ""
+
+#: inc/record_external.class.php:189 inc/thirdpartycategory_item.class.php:413
+msgid "Tiers Categories"
+msgstr ""
+
+#: inc/record_external.class.php:190 inc/thirdpartycategory_item.class.php:414
+msgid "Tiers"
+msgstr ""
+
+#: inc/record_external.class.php:246 inc/createpdf.class.php:3255
+msgid "Reason of the sending"
+msgstr ""
+
+#: inc/record_external.class.php:1411 inc/record_external.class.php:1442
+#: inc/record_external.class.php:1474
+msgid "Motif d'envoi "
+msgstr ""
+
+#: inc/record_software.class.php:55 inc/createpdf.class.php:2731
+msgid "Software"
+msgid_plural "Software"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/record_software.class.php:120
+msgid "Add a software"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:57
+msgid "Data security and confidentiality"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:74
+msgid "Protection tab"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:165
+msgid "General questions"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:167 inc/createpdf.class.php:2857
+msgid "Personally sensitive"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:168
+msgid "Could this processing be seen sensitive by persons"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:176 inc/createpdf.class.php:2861
+msgid "Permit profiling"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:177
+msgid ""
+"Using personal data to analyse/predict behaviour in order to plan automated "
+"actions"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:205
+msgid "In case of a data leak, what would be the impact on people ?"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:206
+msgid "Avoiding data leaks is an important objective of GDPR"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:223
+msgid "Which impact level could lead to a data violation"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:224
+msgid "Protect data permit to reduce risks"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:240 inc/createpdf.class.php:2894
+msgid "Specific security measures"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:241
+msgid ""
+"In addition to the general measures, what specifics measures have been "
+"taken ?"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:282
+#: inc/protectivemeasure_item.class.php:819
+#: inc/protectivemeasure_item.class.php:988
+msgid "Add Security Measure"
+msgstr ""
+
+#: inc/record_securitymeasure.class.php:1140 inc/createpdf.class.php:2865
+msgid ""
+"Is there a fully automated process involved (without human intervention)? "
+"Precise"
+msgstr ""
+
+#: inc/record_rights.class.php:31
+msgid "Rights exercice"
+msgstr ""
+
+#: inc/record_rights.class.php:79
+msgid "Add right exercice"
+msgstr ""
+
+#: inc/record_rights.class.php:81 inc/createpdf.class.php:2059
+msgid "Is the consent implicit or explicit?"
+msgstr ""
+
+#: inc/record_rights.class.php:84 inc/createpdf.class.php:2060
+msgid "Implicit"
+msgstr ""
+
+#: inc/record_rights.class.php:85 inc/createpdf.class.php:2060
+msgid "Explicit"
+msgstr ""
+
+#: inc/record_rights.class.php:104 inc/createpdf.class.php:2067
+msgid "Information right"
+msgstr ""
+
+#: inc/record_rights.class.php:105
+msgid "Indicate different phases of information following the moment"
+msgstr ""
+
+#: inc/record_rights.class.php:109 inc/createpdf.class.php:2071
+msgid "Opposition right"
+msgstr ""
+
+#: inc/record_rights.class.php:113 inc/createpdf.class.php:2075
+msgid "Portability right"
+msgstr ""
+
+#: inc/record_rights.class.php:114
+msgid "Explain modalities, or justify the absence of portability"
+msgstr ""
+
+#: inc/record_rights.class.php:131 inc/createpdf.class.php:2063
+msgid "Consent"
+msgstr ""
+
+#: inc/record_rights.class.php:135
+msgid "&nbsp;Punctual or contractual engagement"
+msgstr ""
+
+#: inc/record_rights.class.php:136
+msgid "&nbsp;Prior consent to a third-party"
+msgstr ""
+
+#: inc/record_rights.class.php:137
+msgid "&nbsp;Legitimate ou pre-contractual process"
+msgstr ""
+
+#: inc/record_rights.class.php:138
+msgid "&nbsp;Legal obligation"
+msgstr ""
+
+#: inc/record_rights.class.php:139
+msgid "&nbsp;Public interest mission or safeguard of vital interests"
+msgstr ""
+
+#: inc/record_rights.class.php:148 inc/createpdf.class.php:2063
+msgid "Explicit consent"
+msgstr ""
+
+#: inc/record_rights.class.php:149
+msgid "Detail consent collect process"
+msgstr ""
+
+#: inc/record_personalanddatacategory.class.php:92
+msgid "Personnes concernées par ce traitement et catégories de données"
+msgstr ""
+
+#: inc/record_personalanddatacategory.class.php:173
+msgid "Add Category of data subjects linked to a personal data type"
+msgstr ""
+
+#: inc/record_personalanddatacategory.class.php:176
+msgid "Art 4.1, 5.1, 30.1(f) concernant les données relatives au traitement"
+msgstr ""
+
+#: inc/record_personalanddatacategory.class.php:183
+#: inc/record_personalanddatacategory.class.php:254
+#: inc/createpdf.class.php:1882
+msgid "Category of data subjects"
+msgid_plural "Categories of data subjects"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/record_personalanddatacategory.class.php:214
+#: inc/record_personalanddatacategory.class.php:256
+msgid "Mandatory"
+msgstr ""
+
+#: inc/thirdpartycategory.class.php:39
+msgid "Third Party Category"
+msgid_plural "Third Party Categories"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/storageperiod.class.php:37
+msgid "Conservation duration"
+msgid_plural "Conservation durations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/storageperiod.class.php:79 inc/storageperiod.class.php:88
+#: inc/trainingcertification.class.php:78
+#: inc/trainingcertification.class.php:85 inc/legalbasi.class.php:93
+#: inc/legalbasi.class.php:101 inc/database.class.php:340
+msgid "URL"
+msgstr ""
+
+#: inc/storageperiod_onglet.class.php:140
+#: inc/tierscategory_onglet.class.php:197 inc/personaldcp_onglet.class.php:197
+#: inc/personaldatacategory_onglet_ext.class.php:143
+#: inc/personaldatacategory_onglet.class.php:197
+#: inc/personaldatacategory_onglet.class.php:311
+msgid "Nom"
+msgstr ""
+
+#: inc/storageperiod_onglet.class.php:142 inc/record_storage.class.php:381
+#: inc/createpdf.class.php:1716 inc/storageperiod_item.class.php:1040
+#: inc/record_legalbasi.class.php:284 inc/record_legalbasi.class.php:537
+msgid "Stockage"
+msgstr ""
+
+#: inc/storageperiod_onglet.class.php:143
+msgid "Action fin période"
+msgstr ""
+
+#: inc/storagetype.class.php:34
+msgid "Storage"
+msgid_plural "Storage"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/trainingcertification.class.php:36
+msgid "Training Certification"
+msgid_plural "Training Certifications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/tierscategory_onglet.class.php:199
+#: inc/personaldatacategory_onglet_ext.class.php:145
+#: inc/personaldatacategory_onglet.class.php:313
+msgid "Motif d'envoi d'informations"
+msgstr ""
+
+#: inc/storageendaction.class.php:34
+msgid "Action fin periode"
+msgid_plural "Action fin période"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/riskassessment.class.php:38
+msgid "Risk Assessment"
+msgid_plural "Risk Assessment"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/sendingreason.class.php:34
+msgid "Motif Envoi"
+msgid_plural "Motif Envoi"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/servertype.class.php:34
+msgid "Type de serveur"
+msgid_plural "Type de serveur"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/rightmeasure.class.php:34
+msgid "Right Measure"
+msgid_plural "Right Measures"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/rightmeasure.class.php:62 inc/rightmeasurecategory.class.php:34
+msgid "Catégorie de mesure"
+msgid_plural "Catégorie de mesure"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/record_basedonnee.class.php:122
+msgid "Base de donnée"
+msgstr ""
+
+#: inc/record_basedonnee.class.php:226
+msgid "Add databases"
+msgstr ""
+
+#: inc/record_basedonnee.class.php:232
+msgid "Add the databases on which this processing is based"
+msgstr ""
+
+#: inc/record_conservationtime.class.php:31
+#: inc/record_conservationtime.class.php:81
+#: inc/record_conservationtime.class.php:86 inc/record_storage.class.php:362
+#: inc/storageperiod_item.class.php:1021 inc/record_legalbasi.class.php:258
+#: inc/record_legalbasi.class.php:518
+msgid "Conservation time"
+msgstr ""
+
+#: inc/record_conservationtime.class.php:87
+msgid "Of data used actively in your processing"
+msgstr ""
+
+#: inc/record_conservationtime.class.php:93
+msgid "Do you store archived data ?"
+msgstr ""
+
+#: inc/record_conservationtime.class.php:125
+msgid "Archive conservation time"
+msgstr ""
+
+#: inc/record_contract.class.php:44
+msgid "Contract"
+msgid_plural "Contracts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/record_contract.class.php:83
+msgid "Joint controller contract type not set."
+msgstr ""
+
+#: inc/record_contract.class.php:86
+msgid "Processor contract type not set."
+msgstr ""
+
+#: inc/record_contract.class.php:89
+msgid "Third country/internalional organization contract type not set."
+msgstr ""
+
+#: inc/record_contract.class.php:92
+msgid "Internal contract type not set."
+msgstr ""
+
+#: inc/record_contract.class.php:95
+msgid "Other contract type not set."
+msgstr ""
+
+#: inc/record_contract.class.php:100
+#, php-format
+msgid "Go to %s tab at %s and assign contract type."
+msgstr ""
+
+#: inc/record_contract.class.php:138
+msgid "Add Joint Controller/Processor"
+msgstr ""
+
+#: inc/record_contract.class.php:140
+msgid "GDPR Article 30 1d, 1e"
+msgstr ""
+
+#: inc/record_contract.class.php:198 inc/createpdf.class.php:1080
+#: inc/createpdf.class.php:1490 inc/createpdf.class.php:2641
+#: inc/createpdf.class.php:2777 inc/createpdf.class.php:3110
+msgid "Introduced in"
+msgstr ""
+
+#: inc/record_contract.class.php:314
+msgid "Joint controller contract"
+msgstr ""
+
+#: inc/record_contract.class.php:315
+msgid "Processor contract"
+msgstr ""
+
+#: inc/record_contract.class.php:316
+msgid "Thirdparty contract"
+msgstr ""
+
+#: inc/record_contract.class.php:317
+msgid "Internal contract"
+msgstr ""
+
+#: inc/record_contract.class.php:318
+msgid "Other contract"
+msgstr ""
+
+#: inc/record_contract.class.php:560
+msgid "Name (select from list)"
+msgstr ""
+
+#: inc/recordcategory.class.php:34
+msgid "Catégorie traitement"
+msgid_plural "Catégorie traitement"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/menu.class.php:33
+msgid "GDPR Compliance"
+msgstr ""
+
+#: inc/menu.class.php:76 inc/menu.class.php:158
+msgid "Create PDF for all records within active entity and its sons"
+msgstr ""
+
+#: inc/menu.class.php:110 front/record.php:59 front/processeddata.php:55
+#: front/protectivemeasure.php:54 front/thirdpartycategory.php:54
+#: front/storageperiod.php:54 front/rightmeasure.php:56
+#: front/concernedperson.php:56 front/audit.php:58 front/deliverable.php:54
+#: front/policieform.php:54 front/legalbasi.php:59 front/application.php:54
+msgid "Swap to model view"
+msgstr ""
+
+#: inc/legalbasistype.class.php:34 inc/legalbasi.class.php:65
+msgid "Type de bases légales"
+msgstr ""
+
+#: inc/record.class.php:33
+msgid "Third party politic"
+msgstr ""
+
+#: inc/record.class.php:34
+msgid "Employees politic"
+msgstr ""
+
+#: inc/record.class.php:35
+msgid "Internal politic"
+msgstr ""
+
+#: inc/record.class.php:70
+msgid "Processing Activity"
+msgid_plural "Processing Activities"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/record.class.php:81 inc/record.class.php:554
+msgid "Number (order)"
+msgstr ""
+
+#: inc/record.class.php:88
+msgid "Title"
+msgstr ""
+
+#: inc/record.class.php:89
+msgid "Record objective, must be unique, understandable"
+msgstr ""
+
+#: inc/record.class.php:96
+msgid "Purpose (GDPR Article 30 1b)"
+msgstr ""
+
+#: inc/record.class.php:97
+msgid "Details of objective into sub-purposes (different stages/parts)"
+msgstr ""
+
+#: inc/record.class.php:105 inc/record.class.php:591
+#: inc/createpdf.class.php:1321
+msgid "Broadcast"
+msgstr ""
+
+#: inc/record.class.php:106
+msgid "In which document it appears"
+msgstr ""
+
+#: inc/record.class.php:132
+msgid "Catégorie de traitement"
+msgstr ""
+
+#: inc/record.class.php:147 inc/createpdf.class.php:1291
+msgid "Process responsible"
+msgstr ""
+
+#: inc/record.class.php:161 inc/createpdf.class.php:1292
+msgid "Process auditor"
+msgstr ""
+
+#: inc/record.class.php:175 inc/createpdf.class.php:1293
+msgid "Process actor"
+msgstr ""
+
+#: inc/record.class.php:190
+msgid "First entry date"
+msgstr ""
+
+#: inc/record.class.php:201 inc/record.class.php:582
+#: inc/createpdf.class.php:1313 inc/createpdf.class.php:2451
+msgid "Additional information"
+msgstr ""
+
+#: inc/record.class.php:225
+msgid "Consent storage"
+msgstr ""
+
+#: inc/record.class.php:419 inc/record.class.php:437
+#: inc/legalbasi.class.php:168
+msgid "Undefined"
+msgstr ""
+
+#: inc/record.class.php:438
+msgid "Paper only"
+msgstr ""
+
+#: inc/record.class.php:439
+msgid "Paper and electronic"
+msgstr ""
+
+#: inc/record.class.php:440
+msgid "Electronic only"
+msgstr ""
+
+#: inc/record.class.php:573 inc/createpdf.class.php:1286
+msgid "Purpose"
+msgstr ""
+
+#: inc/record.class.php:651
+msgid "Catégorie"
+msgstr ""
+
+#: inc/record_storage.class.php:39
+msgid "Durée de conservation2"
+msgid_plural "Durée de conservation5"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/record_storage.class.php:364 inc/storageperiod_item.class.php:1023
+#: inc/record_legalbasi.class.php:260 inc/record_legalbasi.class.php:520
+msgid ""
+"In application of legal basis, what are conservation times of the data "
+"retained"
+msgstr ""
+
+#: inc/record_storage.class.php:370 inc/storageperiod_item.class.php:1029
+#: inc/record_legalbasi.class.php:526
+msgid ""
+"Specify the retention periods and the future of the personal data concerned "
+"by this processing"
+msgstr ""
+
+#: inc/record_storage.class.php:393 inc/storageperiod_item.class.php:1052
+#: inc/record_legalbasi.class.php:296 inc/record_legalbasi.class.php:549
+msgid "Action Fin Periode"
+msgstr ""
+
+#: inc/record_item.class.php:96 inc/legalbasi.class.php:45
+#: inc/legalbasi_item.class.php:97
+msgid "Legal basis"
+msgid_plural "Legal bases"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/record_item.class.php:101 inc/protectivemeasure_item.class.php:102
+#: inc/legalbasi_item.class.php:102 inc/concernedperson_item.class.php:93
+#: inc/processeddata_item.class.php:94 inc/rightmeasure_item.class.php:93
+msgid "Eléments reliés"
+msgstr ""
+
+#: inc/record_item.class.php:973 inc/legalbasi_item.class.php:1259
+#: inc/storageperiod_item.class.php:1230
+msgid "Add Legal basi"
+msgstr ""
+
+#: inc/record_item.class.php:1044 inc/protectivemeasure_item.class.php:1059
+#: inc/legalbasi_item.class.php:1329 inc/storageperiod_item.class.php:1301
+msgid "Category"
+msgstr ""
+
+#: inc/userprofile.class.php:33
+msgid "Profile and role"
+msgid_plural "Profiles and roles"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/protectivetype.class.php:35
+msgid "Protective measure type"
+msgstr ""
+
+#: inc/protectivemeasure_item.class.php:97
+msgid "protective measures"
+msgstr ""
+
+#: inc/protectivemeasure.class.php:37
+msgid "Protective measure"
+msgid_plural "Protective measure"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/protectivemeasure.class.php:91
+msgid "Catégories"
+msgstr ""
+
+#: inc/protectivecategory.class.php:34
+msgid "Catégorie (mesure protection)"
+msgid_plural "Catégorie (mesure protection)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/legalbasi.class.php:169
+msgid "GDPR Article"
+msgstr ""
+
+#: inc/legalbasi.class.php:170
+msgid "Local law regulation"
+msgstr ""
+
+#: inc/legalbasi.class.php:171
+msgid "International regulation"
+msgstr ""
+
+#: inc/legalbasi.class.php:172
+msgid "Controller internal regulation"
+msgstr ""
+
+#: inc/legalbasi.class.php:173
+msgid "Other regulation"
+msgstr ""
+
+#: inc/impact.class.php:34 inc/createpdf.class.php:2879
+msgid "Impact"
+msgid_plural "Impact"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/policieform.class.php:38
+msgid "Processing documents"
+msgid_plural "Processing documents"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/personaldcp_onglet.class.php:199
+msgid "Categorie de personne"
+msgstr ""
+
+#: inc/personaldcp_onglet.class.php:200
+#: inc/personaldatacategory_onglet.class.php:200
+msgid "Obligatoire"
+msgstr ""
+
+#: inc/processeddata.class.php:39
+msgid "Processed data"
+msgid_plural "Processed data"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/processeddata.class.php:60 inc/processeddata.class.php:174
+msgid "GDPR Sensitive"
+msgstr ""
+
+#: inc/processeddata.class.php:67 inc/processeddata.class.php:183
+msgid "Seen sensitive data"
+msgstr ""
+
+#: inc/personaldatacategory_onglet.class.php:199
+msgid "Categorie de donnée"
+msgstr ""
+
+#: inc/databasetype.class.php:35 inc/datacatalog.class.php:497
+msgid "Specify the data format"
+msgstr ""
+
+#: inc/databasemanagement.class.php:34
+msgid "Management"
+msgid_plural "Management"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/databasehosting.class.php:34
+msgid "Hébergement"
+msgid_plural "Hébergement"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/database.class.php:39
+msgid "Databases"
+msgid_plural "Databases"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/database.class.php:119
+msgid "Storage description"
+msgstr ""
+
+#: inc/database.class.php:129 inc/database.class.php:619
+#: inc/databasecategory.class.php:34
+msgid "Type of storage"
+msgstr ""
+
+#: inc/database.class.php:139
+msgid "Storage location"
+msgstr ""
+
+#: inc/database.class.php:157
+msgid "Technology, engine"
+msgstr ""
+
+#: inc/database.class.php:167
+msgid "Editor, brand"
+msgstr ""
+
+#: inc/database.class.php:185 inc/database.class.php:629
+msgid "Type of place"
+msgstr ""
+
+#: inc/database.class.php:195 inc/database.class.php:639
+msgid "Storage management"
+msgstr ""
+
+#: inc/database.class.php:252
+msgid "Group responsible for maintenance"
+msgstr ""
+
+#: inc/database.class.php:266
+msgid "Contact person for administration"
+msgstr ""
+
+#: inc/database.class.php:289
+msgid "Service provider responsible for maintenance"
+msgstr ""
+
+#: inc/database.class.php:306 inc/database.class.php:659
+msgid "Logs"
+msgstr ""
+
+#: inc/database.class.php:314 inc/database.class.php:668
+#: inc/datacatalog.class.php:104 inc/datacatalog.class.php:1242
+msgid "Means of access"
+msgstr ""
+
+#: inc/database.class.php:322
+msgid "Backup and versions"
+msgstr ""
+
+#: inc/database.class.php:330
+msgid "Alerts and monitoring"
+msgstr ""
+
+#: inc/database.class.php:437
+msgid "Chemins d'accès à l'entrepôt"
+msgstr ""
+
+#: inc/database.class.php:441 inc/datacatalog.class.php:760
+msgid "Moyen d'accès"
+msgstr ""
+
+#: inc/database.class.php:451
+msgid "Indiquer le chemin (url, chemin de dossier, lieu physique...)"
+msgstr ""
+
+#: inc/database.class.php:484 inc/datacatalog.class.php:803
+msgid "Type d'accès"
+msgstr ""
+
+#: inc/database.class.php:486 inc/datacatalog.class.php:805
+msgid "Description du chemin"
+msgstr ""
+
+#: inc/datacatalog.class.php:70 inc/datacatalog.class.php:349
+#: inc/datacatalog.class.php:923 inc/datacatalog.class.php:957
+msgid "Description"
+msgstr ""
+
+#: inc/datacatalog.class.php:82 inc/datacatalog.class.php:1280
+msgid "Information classification"
+msgstr ""
+
+#: inc/datacatalog.class.php:109
+msgid "Profil name"
+msgstr ""
+
+#: inc/datacatalog.class.php:115 inc/datacatalog.class.php:1320
+msgid "Profile rights"
+msgstr ""
+
+#: inc/datacatalog.class.php:282
+msgid "Usages du catalogue"
+msgstr ""
+
+#: inc/datacatalog.class.php:288
+msgid "Choisir un traitement"
+msgstr ""
+
+#: inc/datacatalog.class.php:348
+msgid "Usage des données"
+msgstr ""
+
+#: inc/datacatalog.class.php:450
+msgid "Description des formats"
+msgstr ""
+
+#: inc/datacatalog.class.php:454
+msgid "Type de format"
+msgstr ""
+
+#: inc/datacatalog.class.php:464
+msgid "Description des données"
+msgstr ""
+
+#: inc/datacatalog.class.php:499
+msgid "Data description"
+msgstr ""
+
+#: inc/datacatalog.class.php:756
+msgid "Chemins d'accès au catalogue"
+msgstr ""
+
+#: inc/datacatalog.class.php:909 inc/datacatalog.class.php:956
+msgid "Entrepôts de stockage"
+msgstr ""
+
+#: inc/datacatalog.class.php:913
+msgid "Specify the databases"
+msgstr ""
+
+#: inc/datacatalog.class.php:1057
+msgid "Comptes et clés permettant l'accès"
+msgstr ""
+
+#: inc/datacatalog.class.php:1061
+msgid "Account or key"
+msgstr ""
+
+#: inc/datacatalog.class.php:1071
+msgid "Profil | Règles particulières d'accès"
+msgstr ""
+
+#: inc/datacatalog.class.php:1104
+msgid "Comptes et clés d'accès"
+msgstr ""
+
+#: inc/datacatalog.class.php:1105
+msgid "Profil + spécificité d'accès"
+msgstr ""
+
+#: inc/datacatalog.class.php:1232
+msgid "Intended use"
+msgstr ""
+
+#: inc/datacatalog.class.php:1310
+msgid "Nom du profil"
+msgstr ""
+
+#: inc/createpdfbase.class.php:45
+msgid "Create document"
+msgstr ""
+
+#: inc/createpdfbase.class.php:76
+msgid "Complete report"
+msgstr ""
+
+#: inc/createpdfbase.class.php:79 inc/createpdf.class.php:30
+msgid "Third party data protection politics"
+msgstr ""
+
+#: inc/createpdfbase.class.php:82 inc/createpdf.class.php:31
+msgid "Employees data protection politics"
+msgstr ""
+
+#: inc/createpdfbase.class.php:85 inc/createpdf.class.php:32
+msgid "Internal only"
+msgstr ""
+
+#: inc/createpdf.class.php:118 inc/createpdf.class.php:462
+#: inc/createpdf.class.php:468 inc/createpdf.class.php:474
+#: inc/createpdf.class.php:481 inc/createpdf.class.php:487
+#: inc/createpdf.class.php:494 inc/createpdf.class.php:500
+#: inc/createpdf.class.php:506 inc/createpdf.class.php:556
+#: inc/createpdf.class.php:560 inc/createpdf.class.php:583
+#: inc/createpdf.class.php:589 inc/createpdf.class.php:591
+#: inc/createpdf.class.php:593 inc/createpdf.class.php:613
+#: inc/createpdf.class.php:620 inc/createpdf.class.php:2068
+#: inc/createpdf.class.php:2072 inc/createpdf.class.php:2076
+#: inc/createpdf.class.php:2183 inc/createpdf.class.php:2246
+#: inc/createpdf.class.php:2272 inc/createpdf.class.php:2288
+#: inc/createpdf.class.php:2395 inc/createpdf.class.php:2429
+msgid "N/A"
+msgstr ""
+
+#: inc/createpdf.class.php:177
+msgid "Show comments"
+msgstr ""
+
+#: inc/createpdf.class.php:199
+msgid "Show legal representative and DPO for each record"
+msgstr ""
+
+#: inc/createpdf.class.php:208
+msgid "Show record owner information"
+msgstr ""
+
+#: inc/createpdf.class.php:215
+msgid "Show assets owners"
+msgstr ""
+
+#: inc/createpdf.class.php:223
+msgid "Show full personal data category list"
+msgstr ""
+
+#: inc/createpdf.class.php:251
+msgid "Show print date/time"
+msgstr ""
+
+#: inc/createpdf.class.php:258
+msgid "Page orientation"
+msgstr ""
+
+#: inc/createpdf.class.php:262
+msgid "Portrait"
+msgstr ""
+
+#: inc/createpdf.class.php:263
+msgid "Landscape"
+msgstr ""
+
+#: inc/createpdf.class.php:270
+msgid "Show record status in info header"
+msgstr ""
+
+#: inc/createpdf.class.php:277
+msgid "Show supplier information"
+msgstr ""
+
+#: inc/createpdf.class.php:292
+msgid "Show legal representative"
+msgstr ""
+
+#: inc/createpdf.class.php:299 inc/createpdf.class.php:339
+msgid "Show title"
+msgstr ""
+
+#: inc/createpdf.class.php:306 inc/createpdf.class.php:346
+msgid "Show address"
+msgstr ""
+
+#: inc/createpdf.class.php:313 inc/createpdf.class.php:353
+msgid "Show phone"
+msgstr ""
+
+#: inc/createpdf.class.php:320 inc/createpdf.class.php:360
+msgid "Show email"
+msgstr ""
+
+#: inc/createpdf.class.php:332
+msgid "Show DPO"
+msgstr ""
+
+#: inc/createpdf.class.php:380
+msgid ""
+"Choose which document you'd like to generate according to the broadcast "
+"selected"
+msgstr ""
+
+#: inc/createpdf.class.php:384
+msgid "Don't care about broadcast : generate all"
+msgstr ""
+
+#: inc/createpdf.class.php:421 inc/controllerinfo.class.php:218
+msgid "PDF creation settings"
+msgstr ""
+
+#: inc/createpdf.class.php:439
+msgid "Generate PDF"
+msgstr ""
+
+#: inc/createpdf.class.php:441
+msgid "Generate HTML"
+msgstr ""
+
+#: inc/createpdf.class.php:443
+msgid "Publier DLregister"
+msgstr ""
+
+#: inc/createpdf.class.php:450
+msgid "Controller name not set."
+msgstr ""
+
+#: inc/createpdf.class.php:528
+msgid "Controller"
+msgstr ""
+
+#: inc/createpdf.class.php:698 inc/controllerinfo.class.php:87
+msgid "Controller information not set."
+msgstr ""
+
+#: inc/createpdf.class.php:1032
+msgid "GDPR Record of Processing Activities"
+msgstr ""
+
+#: inc/createpdf.class.php:1036
+#, php-format
+msgid "print date/time: %1s"
+msgstr ""
+
+#: inc/createpdf.class.php:1065
+msgid "List of processing activities for which entity deals with personal data"
+msgstr ""
+
+#: inc/createpdf.class.php:1070
+msgid "There are no activities."
+msgstr ""
+
+#: inc/createpdf.class.php:1077
+msgid "No"
+msgstr ""
+
+#: inc/createpdf.class.php:1078
+msgid "Description of the activity"
+msgstr ""
+
+#: inc/createpdf.class.php:1122
+#, php-format
+msgid "GDPR Records of Processing Activity for entity:<br/>%1s"
+msgstr ""
+
+#: inc/createpdf.class.php:1126
+msgid "Complete GDPR Records of Processing Activity"
+msgstr ""
+
+#: inc/createpdf.class.php:1138
+msgid "Legal representative not set."
+msgstr ""
+
+#: inc/createpdf.class.php:1138 inc/controllerinfo.class.php:102
+#: inc/controllerinfo.class.php:365
+msgid "Legal representative"
+msgstr ""
+
+#: inc/createpdf.class.php:1139
+msgid "DPO not set."
+msgstr ""
+
+#: inc/createpdf.class.php:1139 inc/controllerinfo.class.php:111
+#: inc/controllerinfo.class.php:383
+msgid "Data Protection Officer"
+msgstr ""
+
+#: inc/createpdf.class.php:1271 inc/createpdf.class.php:1274
+msgid "Processing Activity information PDF"
+msgstr ""
+
+#: inc/createpdf.class.php:1333 inc/createpdf.class.php:2781
+msgid "Owner"
+msgstr ""
+
+#: inc/createpdf.class.php:1403 inc/createpdf.class.php:1406
+msgid "Legal basis PDF"
+msgstr ""
+
+#: inc/createpdf.class.php:1456 inc/createpdf.class.php:1459
+msgid "No legal basis act(s)."
+msgstr ""
+
+#: inc/createpdf.class.php:1593 inc/createpdf.class.php:1596
+msgid "Conservation time PDF"
+msgstr ""
+
+#: inc/createpdf.class.php:1690
+msgid "Aucun de temps de conservation designé."
+msgstr ""
+
+#: inc/createpdf.class.php:1715
+msgid "Duration of conversation"
+msgstr ""
+
+#: inc/createpdf.class.php:1720
+msgid "Action en fin de période"
+msgstr ""
+
+#: inc/createpdf.class.php:1825 inc/createpdf.class.php:1828
+msgid "Persons and data PDF"
+msgstr ""
+
+#: inc/createpdf.class.php:1846 inc/createpdf.class.php:1848
+msgid "No data subjects category/ies linked to personal data categories."
+msgstr ""
+
+#: inc/createpdf.class.php:1913
+msgid "GPRD Sensitive"
+msgstr ""
+
+#: inc/createpdf.class.php:2031 inc/createpdf.class.php:2034
+msgid "Rights PDF"
+msgstr ""
+
+#: inc/createpdf.class.php:2044
+msgid "Punctual or contractual engagement"
+msgstr ""
+
+#: inc/createpdf.class.php:2045
+msgid "Prior consent to a third-party"
+msgstr ""
+
+#: inc/createpdf.class.php:2046
+msgid "Legitimate ou pre-contractual process"
+msgstr ""
+
+#: inc/createpdf.class.php:2047
+msgid "Legal obligation"
+msgstr ""
+
+#: inc/createpdf.class.php:2048
+msgid "Public interest mission or safeguard of vital interests"
+msgstr ""
+
+#: inc/createpdf.class.php:2137 inc/createpdf.class.php:2140
+msgid "Acteurs internes"
+msgstr ""
+
+#: inc/createpdf.class.php:2195 inc/createpdf.class.php:2198
+msgid "Acteurs et sous traitants"
+msgstr ""
+
+#: inc/createpdf.class.php:2255 inc/createpdf.class.php:2258
+msgid "Recipient PDF"
+msgstr ""
+
+#: inc/createpdf.class.php:2290
+msgid "Process PDF"
+msgstr ""
+
+#: inc/createpdf.class.php:2345
+msgid "Data retention not set."
+msgstr ""
+
+#: inc/createpdf.class.php:2361
+msgid "Retention regulated by"
+msgstr ""
+
+#: inc/createpdf.class.php:2376
+#, php-format
+msgid "Data retention: %1$s after contract is terminated"
+msgstr ""
+
+#: inc/createpdf.class.php:2379
+msgid "Until contract is valid"
+msgstr ""
+
+#: inc/createpdf.class.php:2398
+#, php-format
+msgid "Contract name/number: %1$s %2$s"
+msgstr ""
+
+#: inc/createpdf.class.php:2400
+#, php-format
+msgid "Begin date: %1$s"
+msgstr ""
+
+#: inc/createpdf.class.php:2401
+#, php-format
+msgid "Comment: %1$s"
+msgstr ""
+
+#: inc/createpdf.class.php:2407 inc/createpdf.class.php:2509
+msgid "Contract info"
+msgstr ""
+
+#: inc/createpdf.class.php:2411
+msgid "Supplier"
+msgstr ""
+
+#: inc/createpdf.class.php:2436
+#, php-format
+msgid "Name: %1$s"
+msgstr ""
+
+#: inc/createpdf.class.php:2443
+msgid "Data retention is not required"
+msgstr ""
+
+#: inc/createpdf.class.php:2480
+msgid "Contracts related to processing activity"
+msgstr ""
+
+#: inc/createpdf.class.php:2492
+msgid "None."
+msgstr ""
+
+#: inc/createpdf.class.php:2510
+msgid "Expiry"
+msgstr ""
+
+#: inc/createpdf.class.php:2560
+msgid "Begin date:"
+msgstr ""
+
+#: inc/createpdf.class.php:2614
+msgid "None assigned."
+msgstr ""
+
+#: inc/createpdf.class.php:2637
+msgid "Complete name"
+msgstr ""
+
+#: inc/createpdf.class.php:2638
+msgid "Special category"
+msgstr ""
+
+#: inc/createpdf.class.php:2736
+msgid "Software not assigned."
+msgstr ""
+
+#: inc/createpdf.class.php:2773
+msgid "Publisher"
+msgstr ""
+
+#: inc/createpdf.class.php:2803
+msgid "Not assigned"
+msgstr ""
+
+#: inc/createpdf.class.php:2841 inc/createpdf.class.php:2844
+msgid "Data security and confidentiality PDF"
+msgstr ""
+
+#: inc/createpdf.class.php:2872
+msgid "Negligible"
+msgstr ""
+
+#: inc/createpdf.class.php:2873
+msgid "Limited"
+msgstr ""
+
+#: inc/createpdf.class.php:2874
+msgid "Important"
+msgstr ""
+
+#: inc/createpdf.class.php:2875
+msgid "Maximum"
+msgstr ""
+
+#: inc/createpdf.class.php:2888
+msgid "Impact level"
+msgstr ""
+
+#: inc/createpdf.class.php:2966 inc/createpdf.class.php:2969
+msgid "General security measures"
+msgstr ""
+
+#: inc/createpdf.class.php:3073 inc/createpdf.class.php:3076
+msgid "None implemented."
+msgstr ""
+
+#: inc/createpdf.class.php:3238 inc/createpdf.class.php:3355
+#: inc/createpdf.class.php:3475
+msgid "Recipient"
+msgstr ""
+
+#: inc/controllerinfo.class.php:35
+msgid "GDPR Controller Info"
+msgstr ""
+
+#: inc/controllerinfo.class.php:92
+msgid "Manage entity Controller information"
+msgstr ""
+
+#: inc/controllerinfo.class.php:98
+msgid "Entete du Registre (RGPD Article 30-1a)"
+msgstr ""
+
+#: inc/controllerinfo.class.php:121
+msgid "Intitulé de l'organisme"
+msgstr ""
+
+#: inc/controllerinfo.class.php:129
+msgid "PDF Header logo"
+msgstr ""
+
+#: inc/controllerinfo.class.php:130
+msgid "Recommended : less than 50KB to avoid slowing down PDF generation"
+msgstr ""
+
+#: inc/controllerinfo.class.php:141
+#, php-format
+msgid "Actual logo document: \"%s\" (filename: \"%s\")"
+msgstr ""
+
+#: inc/controllerinfo.class.php:157
+msgid "Dossier de publication"
+msgstr ""
+
+#: inc/controllerinfo.class.php:161
+msgid "Cliquez pour accéder au dossier"
+msgstr ""
+
+#: inc/controllerinfo.class.php:195
+msgid "Générer GUID"
+msgstr ""
+
+#: inc/controllerinfo.class.php:229
+msgid "Create Controller RoPA PDF for Entity"
+msgstr ""
+
+#: inc/controllerinfo.class.php:238
+msgid "Data Migration"
+msgstr ""
+
+#: inc/controllerinfo.class.php:241
+msgid "Importer des éléments en masse"
+msgstr ""
+
+#: inc/controllerinfo.class.php:253
+msgid "Référentiel RGPD : projet, tâches de projets, évenements, ToDo"
+msgstr ""
+
+#: inc/controllerinfo.class.php:298
+msgid "Migrate"
+msgstr ""
+
+#: inc/controllerinfo.class.php:400 inc/controllerinfo.class.php:418
+msgid "Controller Name"
+msgstr ""
+
+#: inc/catalogclassification.class.php:34
+msgid "Classification"
+msgid_plural "Classification"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/config.class.php:51
+msgid "Config"
+msgid_plural "Config"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/config.class.php:163
+msgid "Manage GDPR RoPA configuration"
+msgstr ""
+
+#: inc/config.class.php:218
+msgid "PDF creating configuration"
+msgstr ""
+
+#: inc/config.class.php:222
+msgid "Codepage"
+msgstr ""
+
+#: inc/config.class.php:231
+msgid "Font name"
+msgstr ""
+
+#: inc/config.class.php:240
+msgid "Font size"
+msgstr ""
+
+#: inc/config.class.php:253
+msgid "Margin left"
+msgstr ""
+
+#: inc/config.class.php:265
+msgid "Margin top"
+msgstr ""
+
+#: inc/config.class.php:277
+msgid "Margin right"
+msgstr ""
+
+#: inc/config.class.php:289
+msgid "Margin bottom"
+msgstr ""
+
+#: inc/config.class.php:301
+msgid "Header margin (from top)"
+msgstr ""
+
+#: inc/config.class.php:313
+msgid "Footer margin (from bottom)"
+msgstr ""
+
+#: inc/config.class.php:325
+msgid "Show logo"
+msgstr ""
+
+#: inc/config.class.php:333
+msgid "Logo image filename (located in /plugins/dlteams/images/)"
+msgstr ""
+
+#: inc/config.class.php:369
+msgid "Import des données modèle"
+msgstr ""
+
+#: inc/config.class.php:374
+msgid "Copier un projet (y inclus ses tâches & événements)"
+msgstr ""
+
+#: inc/config.class.php:377
+msgid "Sélectionner le projet source "
+msgstr ""
+
+#: inc/config.class.php:386 inc/config.class.php:416
+msgid "Indiquer l'entité cible"
+msgstr ""
+
+#: inc/config.class.php:399 inc/config.class.php:428
+msgid "Copier vers"
+msgstr ""
+
+#: inc/config.class.php:405
+msgid "Copier les formulaires de l'entité modèle"
+msgstr ""
+
+#: inc/config.class.php:408
+msgid "Indiquer l'entité modèle"
+msgstr ""
+
+#: inc/config.class.php:438
+msgid "Sample data will be installed for current active entity."
+msgstr ""
+
+#: inc/config.class.php:441 inc/config.class.php:445
+msgid "Categories of data subjects"
+msgstr ""
+
+#: inc/config.class.php:450 inc/config.class.php:454
+msgid "Legal bases"
+msgstr ""
+
+#: inc/config.class.php:459 inc/config.class.php:463
+msgid "Security measures"
+msgstr ""
+
+#: inc/config.class.php:468 inc/config.class.php:472
+msgid "Contract types"
+msgstr ""
+
+#: inc/config.class.php:477 inc/config.class.php:481
+msgid "Personal data types"
+msgstr ""
+
+#: inc/config.class.php:546
+msgid "Entité modèle (model-rgpd)"
+msgstr ""
+
+#: inc/config.class.php:555
+msgid "Créer l'entité model-rgpd"
+msgstr ""
+
+#: inc/config.class.php:561
+msgid "Créer"
+msgstr ""
+
+#: inc/config.class.php:569
+msgid "Importer les données du plug'in vers l'entité rgpd-model"
+msgstr ""
+
+#: inc/config.class.php:572
+msgid "Importer (ou effacer et ré-importer) les traitements et tables annexes"
+msgstr ""
+
+#: inc/config.class.php:577
+msgid "Importer les traitements"
+msgstr ""
+
+#: inc/config.class.php:581
+msgid "Importer (ou effacer et ré-importer) le projet \"Conformité RGPD\""
+msgstr ""
+
+#: inc/config.class.php:586
+msgid "Importer le projet"
+msgstr ""
+
+#: inc/config.class.php:590
+msgid "Importer les formulaires du projet modèle"
+msgstr ""
+
+#: inc/config.class.php:595
+msgid "Importer les formulaires"
+msgstr ""
+
+#: inc/config.class.php:601
+msgid "Exporter les données de l'entité model-rgpd vers le plug'in"
+msgstr ""
+
+#: inc/config.class.php:608
+msgid "Exporter Traitements et éléments liés"
+msgstr ""
+
+#: inc/config.class.php:612
+msgid "Exporter le projet \"conformité RGPD\" (+ tâches & actions)"
+msgstr ""
+
+#: inc/config.class.php:616
+msgid "Exporter Projet"
+msgstr ""
+
+#: inc/config.class.php:620
+msgid "Exporter les formulaires"
+msgstr ""
+
+#: inc/config.class.php:624
+msgid "Exporter Formulaires"
+msgstr ""
+
+#: inc/config.class.php:631
+msgid "Supprimer l'entité model-rgpd et toutes ses données"
+msgstr ""
+
+#: inc/config.class.php:636
+msgid "Supprimer rgpd-model"
+msgstr ""
+
+#: inc/concernedperson.class.php:39
+msgid "Concerned person"
+msgid_plural "Concerned persons"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/storageperiod_item.class.php:102
+msgid "Storage periods"
+msgstr ""
+
+#: inc/concernedperson_item.class.php:98 inc/processeddata_item.class.php:99
+msgid "Records rattachés"
+msgstr ""
+
+#: inc/concernedperson_item.class.php:142 inc/processeddata_item.class.php:133
+#: inc/rightmeasure_item.class.php:118
+msgid "Concerned persons"
+msgstr ""
+
+#: inc/thirdpartycategory_item.class.php:100
+msgid "Third party categories"
+msgstr ""
+
+#: inc/thirdpartycategory_item.class.php:389
+msgid "Actors, subcontractors, recipients"
+msgstr ""
+
+#: inc/elementsrgpd.class.php:13 inc/elementsrgpd.class.php:19
+#: inc/elementsrgpd.class.php:26 inc/elementsrgpd.class.php:33
+msgid "Elements RGPD"
+msgstr ""
+
+#: inc/documentsrgpd.class.php:116 inc/groupsrgpd.class.php:117
+#: inc/usersrgpd.class.php:119 inc/suppliersrgpd.class.php:117
+msgid "Add related objects"
+msgstr ""
+
+#: inc/record_legalbasi.class.php:267
+msgid "Object"
+msgstr ""
+
+#: front/sousmenu.php:40
+msgid "Objects management"
+msgstr ""
+
+#: front/sousmenu.php:48
+msgid "Registre des traitements"
+msgstr ""
+
+#: front/sousmenu.php:52
+msgid "Personnes concernés"
+msgstr ""
+
+#: install/dlteams.php:8
+msgid "My Actiony sllll"
+msgstr ""
+
+#: hook.php:323 hook.php:325 hook.php:327 hook.php:329 hook.php:331
+#: hook.php:333 hook.php:335 hook.php:337 hook.php:339 hook.php:341
+#: hook.php:343 hook.php:345
+msgid "Copy To"
+msgstr ""

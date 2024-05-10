@@ -1,0 +1,10 @@
+.buildpath
+.project
+.settings/*
+.tmp.driveupload
+.tmp.drivedownload
+*desktop.ini
+.idea
+client_secret_935144528784-dtqamo20q8g52tevp8jh3nmj0e1bak92.apps.googleusercontent.com.json
+dlregister-390615-e8bf1d99ed41.json
+dlteams-b14877ea5640.json

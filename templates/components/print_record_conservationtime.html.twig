@@ -1,0 +1,67 @@
+{#- -----------------------------------------------------------------------     -#}
+{# DLTeams plugin for GLPI #}
+{#- -----------------------------------------------------------------------     -#}
+{# LICENSE : This file is part of DLTeams Plugin. #}
+
+{# DLTeams Plugin is a GNU Free Copylefted software. #}
+{# It disallow others people than DLPlace developers to distribute, sell, #}
+{# or add additional requirements to this software. #}
+{# Though, a limited set of safe added requirements can be allowed, but #}
+{# for private or internal usage only ;  without even the implied warranty #}
+{# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #}
+
+{# You should have received a copy of the GNU General Public License #}
+{# along with DLTeams Plugin. If not, see <http://www.gnu.org/licenses/>. #}
+{#- ------------------------------------------------------------------------     -#}
+{# @package   dlteams #}
+{# @author    DLPlace developers #}
+{# @copyright Copyright (c) 2022 DLPlace #}
+{# @inspired	 DPO register plugin (Karhel Tmarr) & gdprropa (Yild) #}
+{# @license   GPLv3+ http://www.gnu.org/licenses/gpl.txt #}
+{# @link      https://github.com/dlplace/dlteams #}
+{# @since     2021 #}
+{#- ------------------------------------------------------------------------     -#}
+
+
+{% set currentParentIndex = 3 %}
+{% set currentIndex = 3 %}
+{% set keyIndex = key %}
+
+<h4 style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;">
+    {{ __("Conservation time PDF", 'dlteams') }}
+</h4>
+
+{% if pct_data.pct_rows|length == 0 %}
+    {{ __("Aucun de temps de conservation designé.", 'dlteams') }}
+{% else %}
+    <table width="100%" border="1" cellpadding="3" cellspacing="0">
+        <thead>
+        <tr>
+            <th>
+                <h5 style="padding:0px!important;margin:0px!important"> {{ __("Durée de conservation", 'dlteams') }}</h5>
+            </th>
+            <th>
+                <h5 style="padding:0px!important;margin:0px!important"> {{ __("Stockage", 'dlteams') }}</h5>
+            </th>
+            <th>
+                <h5 style="padding:0px!important;margin:0px!important"> {{ __("Action en fin de période", 'dlteams') }}</h5>
+            </th>
+            <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("Comment") }}</h5>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for item in pct_data.pct_rows %}
+            <tr style="border: solid 1px gray; color: black" width="100%">
+                <td> {{ item.duree }} </td>
+                <td> {{ item.stockage }} </td>
+                <td> {{ item.endaction }} </td>
+                <td> {{ item.comment | raw }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+<br/>
+<br/>

@@ -1,0 +1,17 @@
+0	2022-04-27 09:07:26	12 Audit Site Internet			3	\N	\N	\N	\N	1
+0	2022-04-27 09:07:37	01 Diagnostic général de l'organisme	Etat des lieux de votre organisme en terme d'organisation\
+Diagnostic initial des actions déjà mises en oeuvre\
+Indicateurs sur les données traitées : volume et sensibilité\
+Objectifs de la direction concernant la Gestion de la vie privée		4	\N	\N	\N	\N	2
+0	2022-04-27 09:07:47	02 Audit des traitements	Il s'agit pour le DPO d'indiquer pour les différents traitements les écarts constatés avec le référentiel, en vue de préparer un plan d'actions		10	\N	\N	\N	\N	3
+0	2022-04-27 09:07:56	07 Audits des documents de collecte	Les obligations en terme de collecte de données sont énoncées dans les articles 12 &#38; 13 du RGPD	Onglet Documents : liste des documents de collecte\
+Onglet Relation : le ou les formulaire "modèle d'audit" \
+on clique sur un bouton "prévoir un audit"	9	\N	\N	\N	\N	4
+0	2022-04-27 09:09:40	10 Audits de réseau	Tests d'intrusion		0	\N	\N	\N	\N	5
+0	2022-04-27 09:09:52	11 Tests de vulnérabilité	En sécurité informatique, un scanner de vulnérabilités est un programme conçu pour identifier des vulnérabilités dans une application, un système d'exploitation ou un réseau.	Un scanner de vulnérabilités se "lance" sur une ou plusieurs cibles, dans un réseau interne ou sur Internet. Ces cibles (URL, adresse IP ou sous-réseau) sont renseignées par l'utilisateur lorsqu'il désire mener son scan.	1	\N	\N	\N	\N	6
+0	2022-09-12 09:33:46	Campagnes de pishing	\N	Regarder qui clique ou -&gt; bilans auprès des clients	0	\N	\N	\N	\N	19
+0	2022-11-19 20:20:24	06 Audit des tiers	Vous devez vérifier que les tiers traitant des DCP concernant des personnes de votre organisme doivent indiquer les garanties de droit et de protection suffisantes.\
+Concernant les sous-traitants et les responsables conjoints de traitements, vous devez, selon l'article  28 du RGPD, recueillir pour chaque traitement l'ensemble des garanties en terme de sécurité technique et d’organisation		9	\N	\N	\N	\N	27
+0	2022-11-20 09:59:33	03 Audit des personnes concernées	L'audit des personnes concernées consiste à fournir des indicateurs volumétriques (quantités de personnes concernées), de sensibilité (vulnérabilité supposée des personnes), puis de décrire les impacts potentiels en cas de violation		10	\N	\N	\N	\N	28
+0	2022-11-20 10:05:18	04 Audit des durées de conservations	La définition de la durée de conservation relève de l’analyse de conformité que le responsable doit mener pour son traitement. La bonne application de ces durées ainsi que des processus mis en œuvre aux échéances sont audités  		10	\N	\N	\N	\N	29
+0	2022-11-20 10:08:40	05 Audits des droits des personnes	Les droits fondamentaux des personnes (droits à la liberté d’expression, à la liberté de pensée, de conscience et de religion, de circuler librement, au respect de sa vie privée et familiale, etc.) ont-elles été prises en compte ?		10	\N	\N	\N	\N	30

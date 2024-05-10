@@ -1,0 +1,112 @@
+PluginDlteamsRecord	pour les enregistrement des horaires	\N	0	2023-05-13 00:00:00	\N	\N	778	283
+PluginDlteamsRecord	pour les enregistrement des horaires	\N	0	2023-05-13 00:00:00	\N	\N	127	283
+PluginDlteamsRecord	suppression automatique	\N	0	2023-05-13 00:00:00	\N	\N	124	284
+PluginDlteamsRecord	en cas de litiges avec la justice	\N	0	2023-05-13 00:00:00	\N	\N	125	284
+PluginDlteamsRecord	3 ans après la date du jeu concours, sauf refus de la personne	\N	0	2023-05-13 00:00:00	1	2	412	285
+PluginDlteamsRecord	Le temps de l'encaissement pour les durées de chèques et de CB	\N	0	2023-05-13 00:00:00	2	1	115	287
+PluginDlteamsRecord	Tickets de caisse	\N	0	2023-05-13 00:00:00	1	1	412	287
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	\N	\N	115	290
+PluginDlteamsRecord	Les avis sont conservés tant que les personnes n'ont pas retiré leur consentement ou tant que l'organisme ou le prestataire assure sa diffusion	\N	0	2023-05-13 00:00:00	1	1	120	291
+PluginDlteamsRecord	Données et documents afférents aux livraisons	\N	0	2023-05-13 00:00:00	\N	\N	115	292
+PluginDlteamsRecord	les coordonnées de contact ainsi que les données essentielles des contrats	\N	0	2023-05-13 00:00:00	\N	\N	114	292
+PluginDlteamsRecord	bons de commande, bons de livraison, lettres de facture, factures	\N	0	2023-05-13 00:00:00	\N	\N	115	298
+PluginDlteamsRecord	pour tous les documents et informations concernant les achats	\N	0	2023-05-13 00:00:00	\N	\N	119	298
+PluginDlteamsRecord	l'année en cours jusqu'à clôture de la comptabilité, pour les documents et fichiers, puis transfert aux archives	\N	0	2023-05-13 00:00:00	2	1	115	299
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	1	2	119	299
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	\N	\N	711	300
+PluginDlteamsRecord	Éléments du plan de formation	\N	0	2023-05-13 00:00:00	\N	\N	115	302
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	\N	\N	127	302
+PluginDlteamsRecord	1 mois pour la base active des bulletins de paie\
+1 an pour les bulletins édités \
+l'année en cours pour les les éléments variables	\N	0	2023-05-13 00:00:00	\N	\N	123	303
+PluginDlteamsRecord	Pour les durées de travail, ensuite anonymisation des états	\N	0	2023-05-13 00:00:00	\N	\N	115	304
+PluginDlteamsRecord	pour les états nominatifs, ensuite anonymisation	\N	0	2023-05-13 00:00:00	\N	\N	127	304
+PluginDlteamsRecord	pour les données de l'activité de représentation	\N	0	2023-05-13 00:00:00	\N	\N	139	305
+PluginDlteamsRecord	données de la dotation (identification des matériels)	\N	0	2023-05-13 00:00:00	\N	\N	120	307
+PluginDlteamsRecord	données concernant l'usage du matériel	\N	0	2023-05-13 00:00:00	\N	\N	124	307
+PluginDlteamsRecord	données partagées ou échanges, conversations, ...	\N	0	2023-05-13 00:00:00	\N	\N	139	308
+PluginDlteamsRecord	6 mois après le départ de l'employé, puis suppression	\N	0	2023-05-13 00:00:00	\N	\N	196	308
+PluginDlteamsRecord	suppression automatique au fil de l'eau, puis effacement sauf cas de rétention	\N	0	2023-05-13 00:00:00	\N	\N	124	309
+PluginDlteamsRecord	uniquement en cas de conservation pour preuves (rétention) puis effacement.	\N	0	2023-05-13 00:00:00	\N	\N	125	309
+PluginDlteamsRecord	conservation des logs et journaux d'appels	\N	0	2023-05-13 00:00:00	\N	\N	124	310
+PluginDlteamsRecord	durée de la procédure (rétention en cas de procédure judiciaire)	\N	0	2023-05-13 00:00:00	\N	\N	125	310
+PluginDlteamsRecord	Effacement automatique sauf en cas de rétention	\N	0	2023-05-13 00:00:00	\N	\N	1506	311
+PluginDlteamsRecord	Pour la conservation de preuves dans le cas d'une plainte , puis effacement manuel	\N	0	2023-05-13 00:00:00	\N	\N	125	311
+PluginDlteamsRecord	suppression automatique par remplacement du jeu de sauvegarde suivant	\N	0	2023-05-13 00:00:00	\N	\N	1173	312
+PluginDlteamsRecord	Une version annuelle est conservée sans durée de temps	\N	0	2023-05-13 00:00:00	\N	\N	1174	312
+PluginDlteamsRecord	Données du contrat &#38; données collectées durant celui-ci	\N	0	2023-05-13 00:00:00	\N	\N	139	313
+PluginDlteamsRecord	Données du contrat &#38; données collectées durant celui-ci	\N	0	2023-05-13 00:00:00	\N	\N	139	313
+PluginDlteamsRecord	Les données sont conservées tant que le contrat est en cours puis pendant l’exercice fiscal. 3 ans après le dernier échange, les coordonnées de contact sont effacés ou anonymisés	\N	0	2023-05-13 00:00:00	\N	\N	139	468
+PluginDlteamsRecord	Les éléments du contrats ainsi que les documents de facturation sont archivés pour une durée de 10 ans, puis effacés	\N	0	2023-05-13 00:00:00	\N	\N	119	468
+PluginDlteamsRecord	Variables selon la nature des données ; les durées sont spécifiés pour chaque traitement	\N	0	2023-05-13 00:00:00	\N	\N	1503	486
+PluginDlteamsRecord	5 ans pour les données utilisées pour le suivi du temps de travail 	\N	0	2023-05-13 00:00:00	\N	\N	196	756
+PluginDlteamsRecord	1 an, une version annuelle est conservée sans durée de temps	\N	0	2023-05-13 00:00:00	\N	\N	196	760
+PluginDlteamsRecord	Variables selon la nature des données ; les durées sont spécifiés pour chaque traitement	\N	0	2023-05-13 00:00:00	\N	\N	196	761
+PluginDlteamsRecord	données et documents concernant les ventes 	\N	0	2023-05-13 00:00:00	1	2	119	425
+PluginDlteamsRecord	Éléments relatifs au contrat et à l'embauche	\N	0	2023-05-13 00:00:00	\N	\N	139	301
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	\N	\N	127	301
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	\N	\N	417	301
+PluginDlteamsRecord	Les durées de conservation des données sont régies par les différents réglements et à défaut par la loi Informatique et Libertés du 17 juin 2019 comportant les dispositions relatives aux « marges de manœuvre nationales » autorisées par le Règlement général sur la protection des données (RGPD)	\N	0	2023-05-13 00:00:00	\N	\N	305	875
+PluginDlteamsRecord	5 ans pour les données utilisées pour le suivi du temps de travail 	\N	0	2023-05-13 00:00:00	\N	\N	196	916
+PluginDlteamsRecord	le temps de la procédure, en cas de litiges avec la justice.	\N	0	2023-05-13 00:00:00	\N	\N	196	921
+PluginDlteamsRecord	1 an, une version annuelle est conservée sans durée de temps	\N	0	2023-05-13 00:00:00	\N	\N	196	922
+PluginDlteamsRecord	Variables selon la nature des données ; les durées sont spécifiés pour chaque traitement	\N	0	2023-05-13 00:00:00	\N	\N	196	923
+PluginDlteamsRecord	5 ans, après la fin du contrat	\N	0	2023-05-13 00:00:00	\N	\N	196	924
+PluginDlteamsRecord	Devis, commandes, bons de livraison, bon de transport, de livraisons	\N	0	2023-05-13 00:00:00	2	1	115	297
+PluginDlteamsRecord	données de commandes, articles, éléments techniques, délais de livraison, éléments nécessaires à la pose / au montage. Restitution à la direction	\N	0	2023-05-13 00:00:00	\N	\N	709	467
+PluginDlteamsRecord	à compter de la clôture de l’exercice considéré (Article L. 123-22)	\N	0	2023-05-13 00:00:00	5	2	315	299
+PluginDlteamsRecord	Devis, commandes, bons de livraison, bon de transport, de livraisons	\N	0	2023-05-13 00:00:00	2	1	115	1032
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	\N	\N	711	1045
+PluginDlteamsRecord	5 ans pour les données utilisées pour le suivi du temps de travail 	\N	0	2023-05-13 00:00:00	\N	\N	196	1052
+PluginDlteamsRecord	le temps de la procédure, en cas de litiges avec la justice.	\N	0	2023-05-13 00:00:00	\N	\N	196	1057
+PluginDlteamsRecord	1 an, une version annuelle est conservée sans durée de temps	\N	0	2023-05-13 00:00:00	\N	\N	196	1058
+PluginDlteamsRecord	Variables selon la nature des données ; les durées sont spécifiés pour chaque traitement	\N	0	2023-05-13 00:00:00	\N	\N	196	1059
+PluginDlteamsRecord	5 ans, après la fin du contrat	\N	0	2023-05-13 00:00:00	\N	\N	196	1060
+PluginDlteamsRecord	réponses aux courriers et correspondances. Tant que les personnes restent abonnées pour les conversations en ligne sur les réseaux sociaux.	\N	0	2023-05-13 00:00:00	\N	\N	112	1063
+PluginDlteamsRecord	pour certains messages ou correspondances constituant des preuves (de décisions, de contrats...)	\N	0	2023-05-13 00:00:00	\N	\N	114	1063
+PluginDlteamsRecord	à compter de la clôture de l'exercice\
+Art L123-22	\N	0	2023-05-13 00:00:00	\N	\N	119	290
+PluginDlteamsRecord	l'année en cours jusqu'à clôture de la comptabilité, pour les documents et fichiers, puis transfert aux archives	\N	0	2023-05-13 00:00:00	\N	\N	115	1225
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	\N	\N	119	1225
+PluginDlteamsRecord	à compter de la clôture de l’exercice considéré (Article L. 123-22)	\N	0	2023-05-13 00:00:00	\N	\N	315	1225
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	\N	\N	711	1226
+PluginDlteamsRecord	durant la période des 2 ans	\N	0	2023-05-13 00:00:00	1	1	120	119
+PluginDlteamsRecord	durant la période des 3 ans	\N	0	2023-05-13 00:00:00	1	1	120	120
+PluginDlteamsRecord	Suite à la validation de ce traitement, les données sont transférées pour archives	\N	0	2023-05-13 00:00:00	\N	\N	1505	467
+PluginDlteamsRecord	Art L218-2	\N	0	2023-05-13 00:00:00	\N	\N	116	294
+PluginDlteamsRecord	Eléments concernant les interventions	\N	0	2023-05-13 00:00:00	\N	\N	115	296
+PluginDlteamsRecord	Coordonnées des personnes concernées et éléments du contrat	\N	0	2023-05-13 00:00:00	\N	\N	139	296
+PluginDlteamsRecord		\N	0	2023-05-13 00:00:00	\N	\N	116	463
+PluginDlteamsRecord	pour les éléments constituant les annuaires et organigrammes	\N	0	2023-05-13 00:00:00	\N	\N	139	304
+PluginDlteamsRecord	pour les enregistrement des horaires	\N	0	\N	\N	\N	778	1313
+PluginDlteamsRecord	pour les enregistrement des horaires	\N	0	\N	\N	\N	127	1313
+PluginDlteamsRecord	durée de la procédure (rétention en cas de procédure judiciaire)	\N	0	\N	\N	\N	125	1314
+PluginDlteamsRecord	données de la dotation (identification des matériels)	\N	0	\N	\N	\N	120	1315
+PluginDlteamsRecord	uniquement en cas de conservation pour preuves (rétention) puis effacement.	\N	0	\N	\N	\N	125	1316
+PluginDlteamsRecord	Effacement automatique sauf en cas de rétention	\N	0	\N	\N	\N	1506	1317
+PluginDlteamsRecord	suppression automatique	\N	0	\N	\N	\N	124	1318
+PluginDlteamsRecord	en cas de litiges avec la justice	\N	0	\N	\N	\N	125	1318
+PluginDlteamsRecord	suppression automatique par remplacement du jeu de sauvegarde suivant	\N	0	\N	\N	\N	1173	1319
+PluginDlteamsRecord	Une version annuelle est conservée sans durée de temps	\N	0	\N	\N	\N	1174	1319
+PluginDlteamsRecord	Les durées de conservation des données sont régies selon chaque finalité de traitement, à défaut par la loi Informatique et Libertés du 17 juin 2019 comportant les dispositions relatives aux « marges de manœuvre nationales » autorisées par le Règlement général sur la Protection des Données (RGPD) et, plus précisément, selon les fondements auxquels notre organisme ou le traitement est soumis	\N	0	2023-12-04 08:29:13	2	1	305	424
+PluginDlteamsRecord	L'organisme archive les informations, documents et fichiers pour répondre à ses obligations légales en matière comptable, fiscale et gestion du personnel (code des impôts, art 3171-16)	\N	0	2023-12-04 08:29:40	1	2	1407	424
+PluginDlteamsRecord	L'organisme archive des informations, documents et fichiers, avec le consentement des personnes concernées, pour faciliter d'autres traitements connexes ou ultérieurs	\N	0	2023-12-04 08:30:13	5	2	1503	424
+PluginDlteamsRecord	à l'issue de la période ou en cas de retrait du consentement, l'internaute est invité à donner à nouveau son consentement ;	\N	0	2023-12-04 08:34:41	1	1	195	117
+PluginDlteamsRecord	et qu'elle reste abonné au réseau social concerné	\N	0	2023-12-04 08:36:12	1	1	120	118
+PluginDlteamsRecord	Devis et annexes, échanges commerciaux en vue de la conclusion d'un contrat	\N	0	2023-12-04 09:13:38	1	2	111	288
+PluginDlteamsRecord	l'année en cours, pour les données d'achat et de livraison, puis archivage 3 ans pour les coordonnées de l'acheteur, puis anonymisation	\N	0	2023-12-04 09:18:12	1	1	412	461
+PluginDlteamsRecord		\N	0	2023-12-04 09:20:20	1	2	119	461
+PluginDlteamsRecord	Les données de commande sont conservées 3 après l'achat ainsi que l'historique des achats, retours et demandes effectuées ; des statistiques anonymes de vente sont effectuées	\N	0	2023-12-04 09:21:55	1	1	412	289
+PluginDlteamsRecord	L'organisme archive les informations, documents et fichiers pour répondre à ses obligations légales en matière comptable, fiscale et gestion du personnel (code des impôts, art 3171-16)	\N	0	2023-12-04 09:22:20	1	2	1407	289
+PluginDlteamsRecord	Les données de réservation sont conservées 3 après l'achat ainsi que l'historique d'achat pour la personne ; des statistiques anonymes de vente sont effectuées	\N	0	2023-12-04 09:23:19	1	1	412	286
+PluginDlteamsRecord	Les données comptable et fiscales sont conservées 10 ans	\N	0	2023-12-04 09:23:46	1	2	1407	286
+PluginDlteamsRecord	Les données nécessaires à l'exécution du contrat sont conservées durant toute la durée de celui-ci plus 3 ans. Après 3 ans, les données de contact sont effacées et les factures archivées.* Les statistiques concernant l'activité sont anonymisées ; celles concernant la personne sont conservées 3 ans après sa dernière communication	\N	0	2023-12-04 09:24:53	1	1	778	288
+PluginDlteamsRecord	données et échanges de prospection	\N	0	2023-12-04 09:27:26	1	1	778	425
+PluginDlteamsRecord	concerne les devis et offres	\N	0	2023-12-04 09:27:54	1	1	112	425
+PluginDlteamsRecord		\N	0	2023-12-04 09:28:52	1	1	115	285
+PluginDlteamsRecord	Chaque envoi contient un lien de désabonnement en 1 clic. Celui-ci provoque l'effacement de la base d'envoi	\N	0	2023-12-04 09:29:44	1	1	120	121
+PluginDlteamsRecord	après le dernier échange ; pour conserver les données, un nouveau consentement est sollicité	\N	0	2023-12-04 09:30:38	2	1	412	120
+PluginDlteamsRecord	à compter du dernier contact avec la personne concernée	\N	0	2023-12-04 09:31:15	1	1	112	119
+PluginDlteamsRecord		\N	0	2023-12-04 09:56:19	1	1	120	462
+PluginDlteamsRecord	pour certains messages ou correspondances constituant des preuves (de décisions, de contrats...)	\N	0	2023-12-08 07:22:45	1	2	125	122
+PluginDlteamsRecord	archive dans l'outil métier ou suppression si la demande est close	\N	0	2023-12-08 07:23:46	2	1	778	122

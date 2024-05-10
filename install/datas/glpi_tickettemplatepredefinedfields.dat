@@ -1,0 +1,62 @@
+2	1	Demande d'inscription à la plateforme DPO Register	2
+2	21	&lt;p&gt;Demande reçue via formulaire&lt;/p&gt;	2
+2	45	600	2
+1	14	2	1
+10	9	9	10
+10	14	2	10
+14	1	Description fonctionnalité ou bug	14
+16	1	Réponse à un formulaire	16
+16	9	7	16
+17	83	0	17
+18	1	Réponse à formulaire "Validation des acquis"	18
+18	21	&#60;p&#62;Permet de valider la participation à une cession de formation ou de sensibilisation, ainsi qu'à évaluer la compréhension de celle-ci&#60;/p&#62;	18
+14	14	2	14
+17	175	2	17
+17	10	3	17
+1	10	3	1
+1	83	0	1
+9	10	3	9
+20	1	Formation	20
+20	21	&#60;p&#62;&#60;strong&#62;Objectifs&#60;/strong&#62; : &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Date, durée&#60;/strong&#62; : &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Type&#60;/strong&#62; : présentiel, e- formation&#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Participants&#60;/strong&#62; : &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Formateur&#60;/strong&#62; : &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Contenu&#60;/strong&#62;  : &#60;/p&#62;\
+&#60;p&#62; &#60;/p&#62;	20
+21	1	Effectuer ceci ou cela	21
+21	21	&#60;p&#62;&#60;strong&#62;Objectifs&#60;/strong&#62; : &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Eléments concernés&#60;/strong&#62; : CF acteurs et éléments liés&#60;/p&#62;	21
+14	21		14
+10	1	Conformité : point du référentiel	10
+10	21	&#60;p&#62;Reliez le projet ou la tâche&#60;br&#62;&#60;br&#62;se référer aux instructions indiquées dans la tâche de projet &#60;/p&#62;	10
+14	175	3	14
+17	14	2	17
+17	1	Réunion du 00/00/2024, sujet : 	17
+9	14	2	9
+1	21	Et obtenez des éléments par défaut correspondant au type d'événement : réunion, question, réclamation, déclarer un problème, ...	1
+23	21	Détails : &#60;br&#62;&#60;/p&#62;&#60;p&#62;Objet / élément concerné -&#38;gt; saisir  Eléments&#60;/p&#62;\
+&#60;p&#62;Personne à l'origine du signalement / concernée(s) par le problème -&#38;gt; saisir Demandeur &#38;amp; Observateur&#60;br&#62;&#60;br&#62;Mode de transmission de la demande / urgence -&#38;gt; saisir Source &#38;amp; Urgence&#60;br&#62;&#60;br&#62;	23
+23	1	Problème : 	23
+23	175	7	23
+9	175	6	9
+1	1	Choisissez une catégorie	1
+22	1	Question : 	22
+22	10	3	22
+22	7	84	22
+22	175	6	22
+17	21		17
+24	1	Réclamation : 	24
+24	21	&#60;p&#62;Détails :&#60;/p&#62;\
+&#60;p&#62;Personne à l'origine de la réclamation / concernée(s) par celle-ci -&#38;gt; saisir Demandeur &#38;amp; Observateur&#60;br&#62;&#60;br&#62;Mode de transmission de la demande / urgence -&#38;gt; saisir Source &#38;amp; Urgence&#60;/p&#62;	24
+25	1	Nom du rapport	25
+25	21		25
+22	21	&#60;p&#62;DETAILS :&#60;/p&#62;\
+&#60;p&#62; &#60;/p&#62;\
+&#60;p&#62;INFORMATIONS :&#60;br&#62;&#60;strong&#62;Demandeur(s) &#60;/strong&#62; : personne à l'origine de la question&#60;br&#62;&#60;strong&#62;Acteur(s)&#60;/strong&#62;  : personne ou groupe chargé de répondre à la question&#60;br&#62;&#60;strong&#62;Urgence et Echeance&#60;/strong&#62; : provoquera un rappel automatique après 7 jours ou à l'échéance&#60;br&#62;&#60;strong&#62;&#60;br&#62;Elément(s) : &#60;/strong&#62;actifs ou sujets en rapport avec la question&#60;br&#62;&#60;strong&#62;Source : &#60;/strong&#62;média ayant permis la réception de la question&#60;/p&#62;	22
+10	175	5	10
+1	7	93	1
+15	1	Nature de la demande : 	15
+15	175	9	15
+15	21		15
+21	175	4	21

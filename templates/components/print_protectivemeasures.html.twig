@@ -1,0 +1,87 @@
+{#- -----------------------------------------------------------------------     -#}
+{# DLTeams plugin for GLPI #}
+{#- -----------------------------------------------------------------------     -#}
+{# LICENSE : This file is part of DLTeams Plugin. #}
+
+{# DLTeams Plugin is a GNU Free Copylefted software. #}
+{# It disallow others people than DLPlace developers to distribute, sell, #}
+{# or add additional requirements to this software. #}
+{# Though, a limited set of safe added requirements can be allowed, but #}
+{# for private or internal usage only ;  without even the implied warranty #}
+{# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #}
+
+{# You should have received a copy of the GNU General Public License #}
+{# along with DLTeams Plugin. If not, see <http://www.gnu.org/licenses/>. #}
+{#- ------------------------------------------------------------------------     -#}
+{# @package   dlteams #}
+{# @author    DLPlace developers #}
+{# @copyright Copyright (c) 2022 DLPlace #}
+{# @inspired	 DPO register plugin (Karhel Tmarr) & gdprropa (Yild) #}
+{# @license   GPLv3+ http://www.gnu.org/licenses/gpl.txt #}
+{# @link      https://github.com/dlplace/dlteams #}
+{# @since     2021 #}
+{#- ------------------------------------------------------------------------     -#}
+
+
+{% set currentParentIndex = 1 %}
+{% set currentIndex = 1 %}
+{% set keyIndex = key %}
+
+
+<h4 style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;">
+    {{ __("Data security and confidentiality PDF", 'dlteams') }}
+</h4>
+
+<table width="100%" border="1" cellpadding="3" cellspacing="0">
+
+    {% for item in psm_data.sensibilite_impact_violation %}
+        <tr style="border: solid 1px gray; color: black" width="100%">
+            <td width="33%" style="background:#d0cece;color:black"> {{ item.section }} </td>
+            <td width="50%"> {{ item.value | raw }} </td>
+        </tr>
+    {% endfor %}
+
+</table>
+<br/>
+<br/>
+
+{# -- -#}
+
+
+{% set currentParentIndex = 2 %}
+{% set currentIndex = 2 %}
+
+<h4 style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;">
+    {{ __("General security measures", 'dlteams') }}
+</h4>
+
+<table width="100%" border="1" cellpadding="3" cellspacing="0">
+    <thead>
+    <tr>
+        <th>
+            <h5 style="padding:0px!important;margin:0px!important"> {{ __("Name", 'dlteams') }}</h5>
+        </th>
+        <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("Content", 'dlteams') }}</h5>
+        </th>
+        <th>
+            <h5 style="padding:0px!important;margin:0px!important"> {{ __("Type", 'dlteams') }}</h5>
+        </th>
+        <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("Comment") }}</h5>
+        </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for item in psm_data.protective_measures %}
+        <tr style="border: solid 1px gray; color: black" width="100%">
+            <td> {{ item.name }} </td>
+            <td> {{ item.content }} </td>
+            <td> {{ item.typename }} </td>
+            <td> {{ item.comment }} </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<br/>
+<br/>

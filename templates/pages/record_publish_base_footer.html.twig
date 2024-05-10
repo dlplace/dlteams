@@ -1,0 +1,205 @@
+<button onclick="topFunction()" id="scrolToTop" title="Go to top">
+    <svg width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+
+            <style>.cls-1{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style>
+
+        </defs>
+
+        <title/>
+
+        <g id="chevron-top">
+
+            <line class="cls-1" x1="16" x2="25" y1="11.5" y2="20.5"/>
+
+            <line class="cls-1" x1="7" x2="16" y1="20.5" y2="11.5"/>
+
+        </g>
+
+    </svg>
+</button>
+</div>
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100vh;
+    }
+
+#scrolToTop {
+display: none;
+position: fixed;
+bottom: 20px;
+right: 30px;
+z-index: 99;
+font-size: 18px;
+border: none;
+outline: none;
+background-color: gray;
+color: white;
+cursor: pointer;
+padding: 15px;
+border-radius: 4px;
+}
+
+#scrolToTop:hover {
+background-color: #555;
+}
+</style>
+
+</div>
+</div>
+</div>
+<footer style="width: 100%; display: flex; justify-content: space-between" class="text-muted">
+    <span>
+        © Édition <a href="https://dlteams.fr">DLTeams</a>
+    </span>
+    {% if show_date %}
+    <span>
+        {{ "now"|date("m/d/Y") }}
+    </span>
+    {% endif %}
+    <span></span>
+</footer>
+
+<style>
+
+    th, td {
+        padding: 6px;
+        border: solid 1px grey;
+    }
+
+    .h3, h3 {
+        font-size: calc(1rem + .6vw);
+    }
+
+    @media (min-width: 1200px)
+        .h3, h3 {
+            font-size: 1.2rem;
+        }
+
+        .accordion-button.mt-3 {
+            background-color: #d0cece;
+            color: white;
+            padding: 0.3rem;
+            border-radius: 5px;
+            font-size: 1.3rem;
+        }
+
+        @media print {
+            .accordion-button.collapsed {
+                display: none; /* Cela masquera les boutons d'accordéon avec la classe "collapsed" lors de l'impression */
+            }
+
+            .title-button.collapsed {
+                display: none;
+            }
+        }
+        table {
+            margin-top: 4px;
+        }
+
+        .title-button[aria-expanded="true"] .fa-chevron-down {
+            display: none;
+        }
+
+        .title-button[aria-expanded="true"] .fa-chevron-up {
+            display: inline-block;
+        }
+
+        /* Icône vers le bas lorsque l'accordéon est fermé */
+        .title-button[aria-expanded="false"] .fa-chevron-up {
+            display: none;
+        }
+
+        .title-button[aria-expanded="false"] .fa-chevron-down {
+            display: inline-block;
+        }
+
+        .accordion-item {
+            border: none;
+        }
+
+        .accordion-header {
+            border: solid 1px;
+            border-radius: 5px;
+        }
+
+        .accordion-button {
+            background-color: #767171;color: white;padding: 0.3rem;border-radius: 5px; font-size: 1.8rem;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #767171;color: white;padding: 0.3rem;border-radius: 5px; font-size: 1.8rem;
+        }
+        .child {
+            background-color: #d0cece;
+            color: black;
+        }
+
+        .child:not(.collapsed) {
+            background-color: #a1a1a1 !important;
+            color: black;
+        }
+
+        .accordion-body {
+            padding: 6px 0 0 0 !important;
+        }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const expandAllBtn = document.getElementById('#expandAllBtn');
+        const accordionItems = document.querySelectorAll(".accordion-collapse");
+        // const btnText = document.getElementById("btnText");
+
+        expandAllBtn.addEventListener("click", function () {
+            accordionItems.forEach((item) => {
+                const isExpanded = item.classList.contains("show");
+                if (isExpanded) {
+                    item.classList.remove("show");
+                } else {
+                    item.classList.add("show");
+                }
+            });
+
+            // Mettre à jour le texte du bouton
+            const areAllPanelsOpen = [...accordionItems].every(
+                (item) => item.classList.contains("show")
+            );
+
+            // if (areAllPanelsOpen) {
+            //     expandAllBtn.innerText = "Résumer";
+            // } else {
+            //     expandAllBtn.innerText = "Lire tout";
+            // }
+        });
+    });
+</script>
+
+<script>
+    // Get the button
+    let mybutton = document.getElementById("scrolToTop");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+{# js #}
+</body>
+</html>

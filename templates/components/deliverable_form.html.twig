@@ -1,0 +1,17 @@
+{% extends "generic_show_form.html.twig" %}
+{% import 'components/form/fields_macros.html.twig' as fields %}
+
+
+{% block form_fields %}
+    {{ fields.textareaField(
+        'description',
+        '',
+        __('Description'), {
+            full_width: true,
+            full_width_adapt_column: false,
+            label_class: 'col-xxl-2',
+            input_class: 'col-xxl-10',
+            enable_richtext: true
+        }
+    ) }}
+{% endblock %}

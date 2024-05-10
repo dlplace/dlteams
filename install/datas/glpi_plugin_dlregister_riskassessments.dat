@@ -1,0 +1,12 @@
+0	2021-06-22 08:33:15	Les identifiants d'un compte administrateur ou sensible sont connus par une personne non autorisée			\N	\N	\N	\N	1
+0	2022-11-27 15:30:26	Les identifiants d'un compte utilisateur sont connus par une personne non autorisée			\N	\N	\N	\N	2
+0	2022-11-27 15:31:06	Un email reçu contient un lien de phishing susceptible d'être activé			\N	\N	\N	\N	3
+0	2022-11-27 15:31:25	Un utilisateur clique sur un lien de phishing			\N	\N	\N	\N	4
+0	2022-11-27 15:33:12	Un utilisateur envoi des données / documents sensibles vers un utilisateur malveillant	Volontairement ou involontairement		\N	\N	\N	\N	5
+0	2022-11-27 15:34:15	Un email/contact/rendez-vous est effacé depuis "éléments supprimés" par erreur			\N	\N	\N	\N	6
+0	2022-11-27 15:34:59	La base de données est accidentellement effacée ou se retrouve crypto-virusée			\N	\N	\N	\N	7
+0	2022-11-27 15:35:16	Un gouvernement étranger accède à la BDD			\N	\N	\N	\N	8
+0	2022-11-27 15:37:00	Lors d'un conflit ou d'une enquête, la BDD n'est pas en mesure de des preuves juridiquement valables			\N	\N	\N	\N	9
+0	2022-12-12 22:29:13	Une catastrophe naturelle détruit la salle serveur			\N	\N	\N	\N	10
+0	2022-12-12 22:30:35	Un utilisateur exporte le fichier des clients et en fait une copie personnelle			\N	\N	\N	\N	11
+0	2022-12-12 22:31:12	Un utilisateur visualise les éléments de la paie			\N	\N	\N	\N	12

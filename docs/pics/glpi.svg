@@ -1,0 +1,98 @@
+<svg viewBox="0 0 400.31 498.83" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+    <g class="graph" transform="translate(4 494.831)">
+        <path fill="#fff" stroke="transparent" d="M-4 4v-498.831h400.308V4H-4z"/>
+        <g class="node">
+            <path fill="none" stroke="#000" d="M273.222-490.831H133.184v36h140.038v-36z"/>
+            <text text-anchor="middle" x="203.203" y="-468.631" font-family="Times,serif" font-size="14">
+                Requête utilisateur
+            </text>
+        </g>
+        <g class="node">
+            <ellipse fill="none" stroke="#000" cx="203.203" cy="-400.831" rx="54.438" ry="18"/>
+            <text text-anchor="middle" x="203.203" y="-396.631" font-family="Times,serif" font-size="14">
+                front/*.php
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M203.203-454.663v25.415"/>
+            <path stroke="#000" d="M206.703-429.245l-3.5 10-3.5-10h7z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="none" stroke="#000" cx="203.203" cy="-328.831" rx="68.359" ry="18"/>
+            <text text-anchor="middle" x="203.203" y="-324.631" font-family="Times,serif" font-size="14">
+                inc/*.class.php
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M203.203-382.663v25.415"/>
+            <path stroke="#000" d="M206.703-357.245l-3.5 10-3.5-10h7z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="none" stroke="#000" cx="101.203" cy="-245.416" rx="101.407" ry="29.331"/>
+            <text text-anchor="middle" x="101.203" y="-249.616" font-family="Times,serif" font-size="14">
+                Méthodes d&apos;affchage
+            </text>
+            <text text-anchor="middle" x="101.203" y="-232.816" font-family="Times,serif" font-size="14">
+                de formualires et listes
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M182.069-311.548l-39.12 31.992"/>
+            <path stroke="#000" d="M145.115-276.806l-9.956 3.621 5.525-9.04 4.431 5.42z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="none" stroke="#000" cx="306.203" cy="-245.416" rx="86.21" ry="18"/>
+            <text text-anchor="middle" x="306.203" y="-241.216" font-family="Times,serif" font-size="14">
+                Méthodes écritures
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M224.545-311.548l52.16 42.244"/>
+            <path stroke="#000" d="M278.966-271.978l5.568 9.014-9.974-3.574 4.406-5.44z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="none" stroke="#000" cx="109.203" cy="-162" rx="93.224" ry="18"/>
+            <text text-anchor="middle" x="109.203" y="-157.8" font-family="Times,serif" font-size="14">
+                Composition de page
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M104.046-215.772l2.42 25.233"/>
+            <path stroke="#000" d="M109.969-190.675l-2.53 10.288-4.438-9.62 6.968-.668z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="none" stroke="#000" cx="203.203" cy="-90" rx="48.116" ry="18"/>
+            <text text-anchor="middle" x="203.203" y="-85.8" font-family="Times,serif" font-size="14">
+                Page web
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M132.44-144.202l41.428 31.732"/>
+            <path stroke="#000" d="M176.031-115.221l5.81 8.86-10.066-3.303 4.256-5.557z"/>
+        </g>
+        <g class="node">
+            <path fill="none" stroke="#000" d="M244.297-36H162.11V0h82.188v-36z"/>
+            <text text-anchor="middle" x="203.203" y="-13.8" font-family="Times,serif" font-size="14">
+                Utilisateur
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M203.203-71.831v25.414"/>
+            <path stroke="#000" d="M206.703-46.413l-3.5 10-3.5-10h7z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="none" stroke="#000" cx="297.203" cy="-162" rx="60.25" ry="18"/>
+            <text text-anchor="middle" x="297.203" y="-157.8" font-family="Times,serif" font-size="14">
+                Redicrection
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M304.25-227.316l-3.998 37.055"/>
+            <path stroke="#000" d="M303.705-189.631l-4.553 9.566-2.407-10.317 6.96.75z"/>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M274.926-144.937l-42.403 32.48"/>
+            <path stroke="#000" d="M234.419-109.501l-10.067 3.302 5.81-8.86 4.257 5.558z"/>
+        </g>
+    </g>
+</svg>

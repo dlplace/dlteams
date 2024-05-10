@@ -1,0 +1,112 @@
+<svg viewBox="0 0 1147 254.46" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+    <g class="graph" transform="translate(4 250.463)">
+        <path fill="#fff" stroke="transparent" d="M-4 4v-254.463h1147V4H-4z"/>
+        <g class="cluster">
+            <path fill="#d3d3d3" stroke="#d3d3d3" d="M8-8v-194.463h1123V-8H8z"/>
+            <text text-anchor="middle" x="569.5" y="-185.863" font-family="Times,serif" font-size="14">
+                Plugin
+            </text>
+        </g>
+        <g class="node">
+            <ellipse fill="#fff" stroke="#fff" cx="794" cy="-140.247" rx="48.139" ry="18"/>
+            <text text-anchor="middle" x="794" y="-136.047" font-family="Times,serif" font-size="14">
+                setup.php
+            </text>
+        </g>
+        <g class="node">
+            <ellipse fill="#fff" stroke="#fff" cx="794" cy="-45.416" rx="97.224" ry="18"/>
+            <text text-anchor="middle" x="794" y="-41.216" font-family="Times,serif" font-size="14">
+                Vérification prérequis
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M794-121.963v48.147"/>
+            <path stroke="#000" d="M797.5-73.644l-3.5 10-3.5-10h7z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="#fff" stroke="#fff" cx="1016" cy="-45.416" rx="106.727" ry="18"/>
+            <text text-anchor="middle" x="1016" y="-41.216" font-family="Times,serif" font-size="14">
+                Déclaration des crochets
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M825.807-126.66L967.341-66.2"/>
+            <path stroke="#000" d="M968.945-69.322l7.821 7.147-10.57-.71 2.749-6.437z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="#fff" stroke="#fff" cx="591" cy="-140.247" rx="125.605" ry="29.331"/>
+            <text text-anchor="middle" x="591" y="-144.447" font-family="Times,serif" font-size="14">
+                hook.php
+            </text>
+            <text text-anchor="middle" x="591" y="-127.647" font-family="Times,serif" font-size="14">
+                Implémentation des crochets
+            </text>
+        </g>
+        <g class="node">
+            <ellipse fill="#fff" stroke="#fff" cx="380" cy="-45.416" rx="105.999" ry="29.331"/>
+            <text text-anchor="middle" x="380" y="-49.616" font-family="Times,serif" font-size="14">
+                Méthodes d&apos;installation
+            </text>
+            <text text-anchor="middle" x="380" y="-32.816" font-family="Times,serif" font-size="14">
+                /désinstallation
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M532.785-114.083l-87.633 39.385"/>
+            <path stroke="#000" d="M446.4-71.42l-10.557.906 7.687-7.291 2.87 6.384z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="#fff" stroke="#fff" cx="591" cy="-45.416" rx="87.095" ry="29.331"/>
+            <text text-anchor="middle" x="591" y="-49.616" font-family="Times,serif" font-size="14">
+                Méthodes déclarés
+            </text>
+            <text text-anchor="middle" x="591" y="-32.816" font-family="Times,serif" font-size="14">
+                dans les crochets
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M591-110.761v25.649"/>
+            <path stroke="#000" d="M594.5-84.883l-3.5 10-3.5-10h7z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="#fff" stroke="#fff" cx="174" cy="-140.247" rx="27" ry="18"/>
+            <text text-anchor="middle" x="174" y="-136.047" font-family="Times,serif" font-size="14">
+                inc/
+            </text>
+        </g>
+        <g class="node">
+            <ellipse fill="#fff" stroke="#fff" cx="136" cy="-45.416" rx="120.347" ry="18"/>
+            <text text-anchor="middle" x="136" y="-41.216" font-family="Times,serif" font-size="14">
+                Même prfrontipe que GLPI
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M167.03-122.853L147.1-73.118"/>
+            <path stroke="#000" d="M150.283-71.65l-6.969 7.982.47-10.585 6.499 2.604z"/>
+        </g>
+        <g class="node">
+            <ellipse fill="#fff" stroke="#fff" cx="97" cy="-140.247" rx="32.481" ry="18"/>
+            <text text-anchor="middle" x="97" y="-136.047" font-family="Times,serif" font-size="14">
+                front/
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M104.336-122.41l20.374 49.543"/>
+            <path stroke="#000" d="M127.998-74.075l.567 10.58-7.04-7.917 6.473-2.663z"/>
+        </g>
+        <g class="node">
+            <path fill="none" stroke="#000" d="M719-246.463h-54v36h54v-36z"/>
+            <text text-anchor="middle" x="692" y="-224.263" font-family="Times,serif" font-size="14">
+                GLPI
+            </text>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M716.352-210.256a395.14 395.14 0 019.648 7.793c14.632 12.248 30.388 26.585 43.045 38.408"/>
+            <path stroke="#000" d="M771.598-166.459l4.89 9.4-9.684-4.299 4.794-5.1z"/>
+        </g>
+        <g class="edge">
+            <path fill="none" stroke="#000" d="M671.073-210.184l-39.424 34.434"/>
+            <path stroke="#000" d="M633.665-172.865l-9.834 3.943 5.23-9.215 4.604 5.272z"/>
+        </g>
+    </g>
+</svg>

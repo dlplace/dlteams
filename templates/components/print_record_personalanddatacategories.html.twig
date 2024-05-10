@@ -1,0 +1,63 @@
+{#- -----------------------------------------------------------------------    -#}
+{# DLTeams plugin for GLPI #}
+{#- -----------------------------------------------------------------------    -#}
+{# LICENSE : This file is part of DLTeams Plugin. #}
+
+{# DLTeams Plugin is a GNU Free Copylefted software. #}
+{# It disallow others people than DLPlace developers to distribute, sell, #}
+{# or add additional requirements to this software. #}
+{# Though, a limited set of safe added requirements can be allowed, but #}
+{# for private or internal usage only ;  without even the implied warranty #}
+{# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #}
+
+{# You should have received a copy of the GNU General Public License #}
+{# along with DLTeams Plugin. If not, see <http://www.gnu.org/licenses/>. #}
+{#- ------------------------------------------------------------------------    -#}
+{# @package   dlteams #}
+{# @author    DLPlace developers #}
+{# @copyright Copyright (c) 2022 DLPlace #}
+{# @inspired	 DPO register plugin (Karhel Tmarr) & gdprropa (Yild) #}
+{# @license   GPLv3+ http://www.gnu.org/licenses/gpl.txt #}
+{# @link      https://github.com/dlplace/dlteams #}
+{# @since     2021 #}
+{#- ------------------------------------------------------------------------    -#}
+
+
+{% set currentParentIndex = 8 %}
+{% set currentIndex = 8 %}
+<h4 style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;">
+    {{ __('Persons and data PDF', 'dlteams') }}
+</h4>
+{% if ppd_data.ppd_rows|length == 0 %}
+    {{ __('No data subjects category/ies linked to personal data categories.', 'dlteams') }}
+{% else %}
+    <table width="100%" border="1" cellpadding="3" cellspacing="0">
+        <thead>
+        <tr>
+            <th>
+                <h5 style="padding:0px!important;margin:0px!important"> {{ _n("Category of data subjects", "Categories of data subjects", 0, 'dlteams') }}</h5>
+            </th>
+            <th>
+                <h5 style="padding:0px!important;margin:0px!important"> {{ _n("Personal Data Category", "Personal Data Categories", 0, 'dlteams') }}</h5>
+            </th>
+            {# <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("GPRD Sensitive", 'dlteams') }}</h5> #}
+            {# </th> #}
+            <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("Commentaire") }}</h5>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for item in ppd_data.ppd_rows %}
+            <tr style="border: solid 1px gray; color: black" width="100%">
+                <td> {{ item.concernedperson }} </td>
+                <td> {{ item.datacategrory }} </td>
+                {# <td> {{ item.content }} </td> #}
+                <td> {{ item.mandatory }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+<br/>
+<br/>

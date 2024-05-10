@@ -1,0 +1,866 @@
+{#- -----------------------------------------------------------------------  -#}
+{# DLTeams plugin for GLPI #}
+{#- -----------------------------------------------------------------------  -#}
+{# LICENSE : This file is part of DLTeams Plugin. #}
+
+{# DLTeams Plugin is a GNU Free Copylefted software. #}
+{# It disallow others people than DLPlace developers to distribute, sell, #}
+{# or add additional requirements to this software. #}
+{# Though, a limited set of safe added requirements can be allowed, but #}
+{# for private or internal usage only ;  without even the implied warranty #}
+{# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #}
+
+{# You should have received a copy of the GNU General Public License #}
+{# along with DLTeams Plugin. If not, see <http://www.gnu.org/licenses/>. #}
+{#- ------------------------------------------------------------------------  -#}
+{# @package   dlteams #}
+{# @author    DLPlace developers #}
+{# @copyright Copyright (c) 2022 DLPlace #}
+{# @inspired	 DPO register plugin (Karhel Tmarr) & gdprropa (Yild) #}
+{# @license   GPLv3+ http://www.gnu.org/licenses/gpl.txt #}
+{# @link      https://github.com/dlplace/dlteams #}
+{# @since     2021 #}
+{#- ------------------------------------------------------------------------  -#}
+
+{% extends '@dlteams/layout/page_guest.html.twig' %}
+{% block header_logo %}
+    {# {% if deliverable.print_logo %} #}
+    {% if options.print_logo == 'on' %}
+    <center>
+        <img id='logo' alt='Organisation logo' src='{{ logo_uri }}'>
+        <hr>
+    </center>
+    {% endif %}
+
+    {# {% endif %} #}
+{% endblock %}
+{% set ispdf = options.ispdf %}
+
+{#{% block cover_page %}#}
+{#    <div class="container">#}
+{#        <table border='1' cellspacing='0' class="table table-bordered">#}
+{#            #}{# {% for data in first_page_datas %} #}
+{#            #}{# <tr> #}
+{#            #}{# <td width="50%">{{ data.section | raw }} </td> #}
+{#            #}{# <td width="50%"> {{ data.value | raw }} </td> #}
+{#            #}{# </tr> #}
+{#            #}{# {% endfor %} #}
+
+{#            <tr>#}
+{#                <td>Ehello world</td>#}
+{#            </tr>#}
+
+{#        </table>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+
+{% block content_block %}
+
+    <div style="display: flex; align-items: center; justify-content: end; margin-bottom: 1rem">
+{#        <h1 style="font-size: 1.8rem;">#}
+{#            title#}
+{#        </h1>#}
+
+        {% if not ispdf %}
+        <button id="expandAllBtn" class="print-hidden-btn"
+                style="background-color: transparent; border: 0px solid; color: royalblue" type="button">Ouvrir/Fermer Tout
+        </button>
+        {% endif %}
+    </div>
+    <div style="margin-top: 0.3rem">
+
+    </div>
+    <br>
+
+    {# {% for section in section_list %} #}
+    <div class="mb-5">
+        <h1 style="background-color: #767171;color: white;padding: 0.4rem;border-radius: 5px; font-size: 1.2rem;">FICHE UTILISATEUR</h1>
+        {# <blockquote><i>lorem ipsum</i></blockquote> #}
+
+        <p style="text-align: justify" class="mb-2">
+            Vous êtes employé ou partie prenante et disposez d’un accès au système d’information de {{ organisme.name }}.
+        </p>
+
+        <p style="text-align: justify;">
+            Dans le but de satisfaire à nos obligations de protection et de confidentialité des informations traitées au
+            nom de {{ organisme.name }}, nous vous proposons de vous fournir tous les moyens techniques qui vous sont
+            nécessaires pour la bonne réalisation de votre mission.
+        </p>
+
+        <p style="text-align: justify;">
+            Vous allez disposer d’identifiants, clés ou secrets qui vous permettront d’accéder au système d’information,
+            à des logiciels, applications et supports de données ; des matériels, documents, fichiers ou divers
+            ressources peuvent vous être confiées.
+        </p>
+
+        <p>
+            Vous êtes <b>Utilisateur</b> des ressources numériques et informationnelles de l’organisme.
+            <b>La Charte « informatiques et libertés » : éthique, usage du numérique et protection des données
+                ci-dessus</b> vous fournit toutes les indications sur les usages, les droits et les devoirs attachés à
+            leur utilisation.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem" {% if not ispdf %} class="accordion" id="accordionPanelsStayOpenExample" {% endif %}>
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-0" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-0"
+                        aria-expanded="false"
+                        aria-controls="panel-0" {% endif %}>
+                        Utilisateur concerné
+                    </button>
+                </h2>
+                <div {% if not ispdf %} id="panel-0" class="accordion-collapse collapse show" aria-labelledby="heading-0" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            <p>
+                                <b>Nom, prénom: </b>
+                                <span>{{ user.firstname }} {{ user.realname }}</span>
+                            </p>
+
+                            <p>
+                                <b>Statut n°1: </b>
+                                <span>{{ user_category.name }}</span>
+                            </p>
+
+                            <table style="width: 100%">
+                                <tr>
+                                    <td><b>Fonction: </b> <span>{{ user.registration_number }}</span></td>
+                                    <td><b>Service: </b> <span>{{ group?groupe.name:'--' }}</span></td>
+                                </tr>
+                            </table>
+
+
+                            <p style="margin-top: 1rem">
+                                <b>Responsable hiérarchique: </b>
+                                {% if supervisor %}
+                                <span>{{ supervisor.firstname }} {{ supervisor.realname }}</span>
+                                {% else %}
+                                <span>--</span>
+                                {% endif %}
+                            </p>
+
+
+                            {# If status = dataprocessor, subcontracting, partners #}
+
+
+{#                            <p>#}
+{#                                <span>Nom du référent dans l'organisme: </span>#}
+{#                                <span>--</span>#}
+{#                            </p>#}
+
+                        {% endautoescape %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-1" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-1"
+                        aria-expanded="false"
+                        aria-controls="panel-1" {% endif %}>
+                        Matériels, logiciels et moyens d’accès aux données
+                    </button>
+                </h2>
+                <div {% if not ispdf %} id="panel-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            <p style="text-align: justify">
+                                Afin de pouvoir accéder aux données et effectuer des traitements, nous vous remettons
+                                les périphériques informatiques, clés ou comptes ci-dessous. De manière générale, ils
+                                fournissent aux administrateurs et contrôleurs chargés de veiller à la sécurité et à la
+                                confidentialité des données de l’entreprise une traçabilité de leur utilisation. Par
+                                exemple, pour un compte, il peut s’agir de la date, l’heure, l’appareil utilisé,
+                                l’adresse ip, les coordonnées géographiques.
+                            </p>
+
+                            <p style="text-align: justify">
+                                Ces appareils sont administrés et entretenus par le service informatique ; pour toute
+                                question merci de s’adresser à eux.
+                            </p>
+
+                        {% endautoescape %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-2" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-2"
+                        aria-expanded="false"
+                        aria-controls="panel-2" {% endif %}>
+                        Périphériques individuels
+                    </button>
+                </h2>
+                <div {% if not ispdf %} id="panel-2" class="accordion-collapse collapse show" aria-labelledby="heading-2" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            <p style="text-align: justify">
+                                Les éléments suivants vous sont remis pour un usage individuel. Vous devez en prendre le
+                                plus grand soin afin de les conserver dans le meilleur état possible.
+                            </p>
+
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Nom</th>
+                                    <th>N° de série</th>
+                                    <th>N° inventaire</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for data in peripheriquesindividuels %}
+                                <tr>
+                                    <td>{{ data.typename }}</td>
+                                    <td>{{ data.name }}</td>
+                                    <td>{{ data.serial }}</td>
+                                    <td>{{ data.otherserial }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        {% endautoescape %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-3" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-3"
+                        aria-expanded="false"
+                        aria-controls="panel-3" {% endif %}>
+                        Périphériques mutualisés
+                    </button>
+                </h2>
+                <div {% if not ispdf %} id="panel-3" class="accordion-collapse collapse show" aria-labelledby="heading-3" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            <p style="text-align: justify">
+                                Les éléments suivants sont mutualisés entre plusieurs utilisateurs, et sont à votre disposition dans le cadre de vos missions.
+                            </p>
+
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Nom</th>
+                                    <th>Usage</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for data in peripheriquesmutualises %}
+
+                                <tr>
+                                    <td>{{ data.typename }}</td>
+                                    <td>{{ data.name }}</td>
+                                    <td></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        {% endautoescape %}
+                    </div>
+                </div>
+            </div>
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-4" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-4"
+                        aria-expanded="false"
+                        aria-controls="panel-4" {% endif %}>
+                        Périphériques administrateur
+                    </button>
+                </h2>
+
+                <div {% if not ispdf %} id="panel-4" class="accordion-collapse collapse show" aria-labelledby="heading-4" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            <p style="text-align: justify">
+                                Vous avez été désigné comme administrateur des périphériques ou logiciels ci-dessous.
+                                Par conséquent, vous pouvez, les configurer, gérer des droits d’accès, visualisez les journaux d’utilisation, installer des mises à jour ou des logiciels
+                            </p>
+
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Nom</th>
+                                    <th>Usage</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for data in peripheriquesadmin.throughuser %}
+                                    <tr>
+                                        <td>{{ data.typename }}</td>
+                                        <td>{{ data.name }}</td>
+                                        <td>
+                                            {#                                            usage a renseigner #}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                            <br/>
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Nom</th>
+                                    <th>Usage</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for data in peripheriquesadmin.throughgroup %}
+
+                                    <tr>
+                                        <td>{{ data.typename }}</td>
+                                        <td>{{ data.name }}</td>
+                                        <td>
+{#                                            usage a renseigner #}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        {% endautoescape %}
+                    </div>
+                </div>
+            </div>
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-5" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-5"
+                        aria-expanded="false"
+                        aria-controls="panel-5" {% endif %}>
+                        Remise de clés physique, de badges, matériels d’identification, puces de téléphonie
+                    </button>
+                </h2>
+                <div {% if not ispdf %} id="panel-5" class="accordion-collapse collapse show" aria-labelledby="heading-5" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            <p style="text-align: justify">
+                                Ces clés ou badges sont destinées à l’accès de locaux, pièces, armoires ou objets sécurisés suivants :
+                            </p>
+
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Type de clé</th>
+                                    <th>Service gestionnaire, personnes contact pour cette clé</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for data in clesphysiques %}
+                                <tr>
+                                    <td>{{ data.name }}</td>
+                                    <td>{{ data.keytypename }}</td>
+                                    <td></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        {% endautoescape %}
+                    </div>
+                </div>
+            </div>
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-6" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-6"
+                        aria-expanded="false"
+                        aria-controls="panel-6" {% endif %}>
+                        Remise d’identifiants, secrets, documents, informations
+                    </button>
+                </h2>
+                <div {% if not ispdf %} id="panel-6" class="accordion-collapse collapse show" aria-labelledby="heading-6" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            <p style="text-align: justify">
+                                Ces identifiants sont destinés à permettre l’accès aux catalogues de données spécifiés.
+                            </p>
+
+                            <p>Ces clés ou badges sont destinées à l’accès de locaux, pièces, armoires ou objets sécurisés suivants:</p>
+
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Type de clé</th>
+                                    <th>Annuaire</th>
+                                    <th>Service gestionnaire, personnes contact pour cette clé</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for data in cles %}
+                                    <tr>
+                                        <td>{{ data.name }}</td>
+                                        <td>{{ data.keytypename }}</td>
+                                        <td>{{ data.annuaire_name??"--" }}</td>
+                                        <td></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        {% endautoescape %}
+                    </div>
+                </div>
+            </div>
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-7" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-7"
+                        aria-expanded="false"
+                        aria-controls="panel-7" {% endif %}>
+                        Déclaration d’utilisation de matériels personnels
+                    </button>
+                </h2>
+                <div {% if not ispdf %} id="panel-7" class="accordion-collapse collapse show" aria-labelledby="heading-7" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            <p style="text-align: justify">
+                                Le service informatique permet dans certaines conditions, l’utilisation de périphériques personnels. Les conditions d’usage sont décrits dans la charte et les appareils sont indiqués ici :
+                            </p>
+
+                            <div>
+                                <h5>
+                                    <u>Dispositif : Smartphone </u>
+                                </h5>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Marque</th>
+                                    <th>Modèle</th>
+                                    <th>Identifiant de l'appareil</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for data in phones %}
+                                <tr>
+                                    <td>{{ data.brand }}</td>
+                                    <td>{{ data.phonemodel_name }}</td>
+                                    <td>--</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <div>
+                                <p>
+                                    <b>Usages prévus :</b>
+                                    s'il accepte, <b>l'utilisateur </b> pourra utiliser son smartphone et sa ligne téléphonique pour effectuer les appels.
+                                </p>
+
+                                <p>
+                                    S’il souhaite ne pas être identifié, l’utilisateur pourra masquer son numéro de manière permanente via son opérateur, sinon il lui suffit de composer le #31# avant un appel.
+                                    <b>L’utilisateur</b> pourra laisser son numéro pour être rappelé
+                                </p>
+
+                                <ul style="list-style-type: none">
+                                    <li><input type="checkbox"> j’accepte l’utilisation de mon appareil et de mon numéro dans les conditions ci-dessus</li>
+                                    <li><input type="checkbox"> je préfère que {{ organisme.name }} me fournisse un numéro spécifique à la mission  que je pourrai utiliser depuis mon smartphone (par exemple avec <u style="color: blue">On/Off</u>)</li>
+                                    <li><input type="checkbox"> je préfère que {{ organisme.name }} me fournisse un appareil et une ligne téléphonique dédiée</li>
+                                </ul>
+
+
+                                <br/>
+                                <div>
+                                    <h5>
+                                        <u>Dispositif : Ordinateur </u>
+                                    </h5>
+                                </div>
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th>Marque</th>
+                                        <th>Modèle</th>
+                                        <th>Identifiant de l'appareil</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    {% for data in phones %}
+                                    <tr>
+                                        <td>{{ data.name }}</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+                        <div>
+                            <p>
+                                <b>Usages prévus :</b>
+                                s'il accepte, <b>l'utilisateur </b> utilisera son propre ordinateur pour se connecter aux supports de données indiqués ci-dessous.
+                            </p>
+
+                            <p>
+                                Il prendra soin de la bonne santé informatique de son (ses) appareils en suivants les préconisations élémentaires de l’ANSII : <a href="https://www.ssi.gouv.fr/entreprise/precautions-elementaires">lien</a>
+                            </p>
+                        </div>
+
+                        {% endautoescape %}
+                    </div>
+                </div>
+            </div>
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-8" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-8"
+                        aria-expanded="false"
+                        aria-controls="panel-8" {% endif %}>
+                        Supports de données mis à disposition de l'utilisateur
+                    </button>
+                </h2>
+                <div {% if not ispdf %} id="panel-8" class="accordion-collapse collapse show" aria-labelledby="heading-8" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            {% for data in usercatalogs %}
+                            <table style="width: 100%; border: solid 1px;">
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Nom du catalogue</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.completename }}
+                                    </td>
+                                </tr>
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Description des données visibles, url, chemin d'accès</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.content }}
+                                    </td>
+                                </tr>
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Traitements et usages</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.records }}
+                                    </td>
+                                </tr>
+
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Types de données contenues</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.datacarriertypes }}
+                                    </td>
+                                </tr>
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Stockage</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.storages }}
+                                    </td>
+                                </tr>
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Modalités d'accès</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.appliances }}
+                                    </td>
+                                </tr>
+
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Identifiants, comptes, clés</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.accountkeys }}
+                                    </td>
+                                </tr>
+
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Personnes ayant accès</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.catalog_users_formatted }}
+                                    </td>
+                                </tr>
+
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Administration et maintenance</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.catalog_admin_formatted }}
+                                    </td>
+                                </tr>
+
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Personnes à contacter en cas de besoin</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        <span style="font-weight: 500">Nom:</span> {{ data.user_contact.realname }} {{ data.user_contact.firstname }} <br/>
+                                        <span style="font-weight: 500">Email:</span> {{ data.user_contact.email }} <br/>
+                                        <span style="font-weight: 500">Télephone:</span> {{ data.user_contact.phone }} <br/>
+
+{#                                        <br/>#}
+{#                                        <span style="font-weight: 500">Nom:</span> {{ data.supplier_contact.realname }} {{ data.user_contact.firstname }} <br/>#}
+{#                                        <span style="font-weight: 500">Email:</span> {{ data.supplier_contact.email }} <br/>#}
+{#                                        <span style="font-weight: 500">Télephone:</span> {{ data.supplier_contact.phone }} <br/>#}
+
+{#                                        <br/>#}
+{#                                        <span style="font-weight: 500">Nom:</span> {{ data.contact_contact.realname }} {{ data.user_contact.firstname }} <br/>#}
+{#                                        <span style="font-weight: 500">Email:</span> {{ data.contact_contact.email }} <br/>#}
+{#                                        <span style="font-weight: 500">Télephone:</span> {{ data.contact_contact.phone }} <br/>#}
+                                    </td>
+                                </tr>
+
+
+                                <tr class="usercatalog-row">
+                                    <td class="usercatalog-leftcell">
+                                        <b>Commentaires</b>
+                                    </td>
+                                    <td class="usercatalog-rightcell">
+                                        {{ data.content }}
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                                <br/>
+                            {% endfor %}
+                        {% endautoescape %}
+                    </div>
+
+                </div>
+            </div>
+
+            <style>
+                .usercatalog-row{
+                    border-bottom: dashed 1px
+                }
+                .usercatalog-leftcell{
+                    border-right: dashed 1px; width: 50%; padding: 10px;
+                }
+                .usercatalog-rightcell{
+                    padding: 10px;
+                }
+            </style>
+
+
+            <div {% if not ispdf %} class="accordion-item" {% endif %}>
+
+                <h2 {% if not ispdf %} class="accordion-header" id="heading-0" {% endif %}>
+                    <button style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;"
+                            {% if not ispdf %} class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panel-9"
+                        aria-expanded="false"
+                        aria-controls="panel-9" {% endif %}>
+                        Signature des parties
+                    </button>
+                </h2>
+                <div {% if not ispdf %} id="panel-9" class="accordion-collapse collapse show" aria-labelledby="heading-9" {% endif %}>
+                    <div {% if not ispdf %} class="accordion-body" {% endif %}>
+                        {% autoescape %}
+
+                            {# <blockquote> #}
+                            {# <i>commm</i> #}
+                            {# </blockquote> #}
+
+                            <span style="text-align: justify">
+                                Par la présente attestation
+                            </span>
+
+                            <ul style="list-style-type: none">
+                                <li><input type="checkbox"> je m’engage à respecter la charte « Informatique et libertés » de {{ organisme.name }}</li>
+                            </ul>
+
+                            <br/>
+
+
+                            <span style="text-align: justify">
+                                J'atteste
+                            </span>
+
+                            <ul style="list-style-type: none">
+                                <li><input type="checkbox"> la remise des matériels, que j’utiliserai en bon père de famille afin de les restituer en bon état</li>
+                                <li><input type="checkbox"> la remise des identifiants, secrets, documents et informations dont je préserverai la confidentialité</li>
+                                <li><input type="checkbox"> avoir compris l’utilisation des supports de données et me conformer aux usages préconisés</li>
+                                <li><input type="checkbox"> avoir pris connaissance des précautions élémentaires en terme de sécurité numérique</li>
+                            </ul>
+
+                        {% endautoescape %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{#        signature fields#}
+        <div style="margin-top: 3rem; margin-bottom: 15rem">
+
+            <p>
+                Fait à
+            </p>
+
+            <table style="width: 100%">
+                <tr>
+                    <td>
+                        <b>L'utilisateur </b>
+                        <br/>
+                        <span>Mention «je m'engage au respect des conditions ci-dessus»</span>
+                    </td>
+                    <td>
+                        <b>Pour {{ organisme.name }}</b>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    {# {% endfor %} #}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const expandAllBtn = document.getElementById("expandAllBtn");
+            const accordionItems = document.querySelectorAll(".accordion-collapse");
+            const btnText = document.getElementById("btnText");
+
+            expandAllBtn.addEventListener("click", function () {
+                accordionItems.forEach((item) => {
+                    const isExpanded = item.classList.contains("show");
+                    if (isExpanded) {
+                        item.classList.remove("show");
+                    } else {
+                        item.classList.add("show");
+                    }
+                });
+
+                // Mettre à jour le texte du bouton
+                const areAllPanelsOpen = [...accordionItems].every(
+                    (item) => item.classList.contains("show")
+                );
+
+                if (areAllPanelsOpen) {
+                    btnText.innerText = "Résumer";
+                } else {
+                    btnText.innerText = "Lire tout";
+                }
+            });
+        });
+    </script>
+
+    <style>
+        @media print {
+            .print-hidden-btn {
+                display: none;
+            }
+        }
+    </style>
+
+{% endblock %}

@@ -1,0 +1,171 @@
+{#- -----------------------------------------------------------------------          -#}
+{# DLTeams plugin for GLPI #}
+{#- -----------------------------------------------------------------------          -#}
+{# LICENSE : This file is part of DLTeams Plugin. #}
+
+{# DLTeams Plugin is a GNU Free Copylefted software. #}
+{# It disallow others people than DLPlace developers to distribute, sell, #}
+{# or add additional requirements to this software. #}
+{# Though, a limited set of safe added requirements can be allowed, but #}
+{# for private or internal usage only ;  without even the implied warranty #}
+{# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #}
+
+{# You should have received a copy of the GNU General Public License #}
+{# along with DLTeams Plugin. If not, see <http://www.gnu.org/licenses/>. #}
+{#- ------------------------------------------------------------------------          -#}
+{# @package   dlteams #}
+{# @author    DLPlace developers #}
+{# @copyright Copyright (c) 2022 DLPlace #}
+{# @inspired	 DPO register plugin (Karhel Tmarr) & gdprropa (Yild) #}
+{# @license   GPLv3+ http://www.gnu.org/licenses/gpl.txt #}
+{# @link      https://github.com/dlplace/dlteams #}
+{# @since     2021 #}
+{#- ------------------------------------------------------------------------          -#}
+
+
+{# groupes #}
+{% set currentParentIndex = 4 %}
+{% set currentIndex = 4 %}
+{% set keyIndex = key %}
+
+<h4 style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;">
+    {{ __("Acteurs internes", 'dlteams') }}
+</h4>
+
+{% if prexternal_data.groups|length == 0 %}
+    {{ __("N/A", 'dlteams') }}
+    <br/>
+    <br/>
+{% else %}
+    <table width="100%" border="1" cellpadding="3" cellspacing="0">
+        <thead>
+        <tr>
+            <th>
+                <h5 style="padding:0px!important;margin:0px!important"> {{ __("Recipient", 'dlteams') }}</h5>
+            </th>
+            <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("Type") }}</h5></th>
+            {# <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("GPRD Sensitive", 'dlteams') }}</h5> #}
+            {# </th> #}
+            <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("Comment") }}</h5>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for item in prexternal_data.groups %}
+            <tr style="border: solid 1px gray; color: black" width="100%">
+                <td> {{ item.name }} </td>
+                <td> {{ item.type }} </td>
+                {# <td> {{ item.content }} </td> #}
+                <td> {{ item.comment }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+{% endif %}
+
+
+{# suppliers #}
+
+
+{% set currentParentIndex = 5 %}
+{% set currentIndex = 5 %}
+<h4 style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;">
+    {{ __("Sous-traitants (autres organismes ayant accès aux données)", 'dlteams') }}
+</h4>
+{% if prexternal_data.tiers|length == 0 %}
+    {{ __("N/A", 'dlteams') }}
+{% else %}
+    <table width="100%" border="1" cellpadding="3" cellspacing="0">
+        <thead>
+        <tr>
+            <th>
+                <h5 style="padding:0px!important;margin:0px!important"> {{ __("Recipient", 'dlteams') }}</h5>
+            </th>
+            <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("Type") }}</h5></th>
+            {# <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("GPRD Sensitive", 'dlteams') }}</h5> #}
+            {# </th> #}
+            <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("Comment") }}</h5>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for item in prexternal_data.tiers %}
+            <tr style="border: solid 1px gray; color: black" width="100%">
+                <td> {{ item.name }} </td>
+                <td> {{ item.type }} </td>
+                {# <td> {{ item.content }} </td> #}
+                <td> {{ item.comment }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+<br/>
+<br/>
+
+{# #}
+
+
+    {% set currentParentIndex = 6 %}
+    {% set currentIndex = 6 %}
+<h4 style="background-color: #d0cece; border-radius: 2px; color: black; padding: 8px;font-size: 16px; width: 100%; text-align: start;">
+    {{ __("Destinataires externes (personnes ou organismes destinataires de tout ou partie des données)", 'dlteams') }}
+</h4>
+{% if prexternal_data.recipients|length == 0 %}
+    {{ __("N/A", 'dlteams') }}
+{% else %}
+    <table width="100%" border="1" cellpadding="3" cellspacing="0">
+        <thead>
+        <tr>
+            <th>
+                <h5 style="padding:0px!important;margin:0px!important"> {{ __("Recipient", 'dlteams') }}</h5>
+            </th>
+            <th>
+                <h5 style="padding:0px!important;margin:0px!important"> {{ __("Reason of the sending", 'dlteams') }}</h5>
+            </th>
+            {# <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("GPRD Sensitive", 'dlteams') }}</h5> #}
+            {# </th> #}
+            <th><h5 style="padding:0px!important;margin:0px!important"> {{ __("Comment") }}</h5>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for item in prexternal_data.recipients %}
+            <tr style="border: solid 1px gray; color: black" width="100%">
+                {% if (item.typename == 'Supplier') and (show_supplier_informations == false) %}
+                    <td class="text-center"> {{ '***' }} </td>
+                {% else %}
+                    <td> {{ item.name }} </td>
+                {% endif %}
+
+                <td> {{ item.name1 }} </td>
+                {# <td> {{ item.content }} </td> #}
+                <td> {{ item.comment }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+<br/>
+<br/>
+
+
+
+{# lieux de traitement #}
+<table width="100%">
+    <tr border="1">
+        <td width="40%"
+            style="background:#d0cece;color:#000;border:1px solid black"> {{ prexternal_data.lieux_de_traitements.section }} </td>
+        <td width="20%"
+            style="border:1px solid black; color: black;"> {{ prexternal_data.lieux_de_traitements.value | raw }}</td>
+        <td width="40%" style="border:none;"></td>
+    </tr>
+</table>
+{# <br/> #}
+<br/>

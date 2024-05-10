@@ -1,0 +1,81 @@
+1	G3 - Définir et vérifier les règles de choix des mots de passe	Conformité RGPD > G - AUTHENTIFIER ET CONTRÔLER LES ACCÈS > G3 - Définir et vérifier les règles de choix des mots de passe		3	{"1":"1"}	\N	2019-09-30 08:47:54	1	20
+1	D - RESPECTER LES DROITS	Conformité RGPD > D - RESPECTER LES DROITS		2	{"2":2,"46":46,"5":5,"24":24,"25":25,"26":26,"27":27,"28":28,"49":49,"73":73}	{"75":75}	2019-09-30 08:48:22	2	75
+1	A - SE PRÉPARER AU RGPD	Conformité RGPD > A - SE PRÉPARER AU RGPD		2	\N	{"75":75}	2019-10-29 18:59:17	4	75
+1	D1a - Etablir les politiques, les publier	Conformité RGPD > D - RESPECTER LES DROITS > D1a - Etablir les politiques, les publier		3	{"5":"5"}	\N	2019-12-12 14:27:18	5	2
+1	B2 - Registres des traitements	Conformité RGPD > B - INVENTAIRE CARTOGRAPHIE REGISTRE > B2 - Registres des traitements		3	{"6":"6"}	\N	2019-12-19 14:05:28	6	7
+1	B - INVENTAIRE CARTOGRAPHIE REGISTRE	Conformité RGPD > B - INVENTAIRE CARTOGRAPHIE REGISTRE		2	{"7":7,"12":12,"6":6}	{"75":75}	2019-12-19 14:05:41	7	75
+1	E - SENSIBILISER, FORMER, FORMALISER	Conformité RGPD > E - SENSIBILISER, FORMER, FORMALISER		2	{"8":8,"54":54,"9":9,"13":13}	{"75":75}	2020-04-29 05:50:27	8	75
+1	E2 - Former les équipes, établir des chartes	Conformité RGPD > E - SENSIBILISER, FORMER, FORMALISER > E2 - Former les équipes, établir des chartes		3	{"9":"9"}	\N	2020-04-29 05:50:40	9	8
+1	G4 - Protéger les mots de passe stockés sur les systèmes	Conformité RGPD > G - AUTHENTIFIER ET CONTRÔLER LES ACCÈS > G4 - Protéger les mots de passe stockés sur les systèmes		3	{"10":"10"}	\N	2020-04-29 06:52:30	10	20
+1	H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD)	Conformité RGPD > H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD)		2	{"11":11,"35":35,"36":36,"37":37,"38":38,"39":39,"40":40,"41":41,"42":42}	{"75":75}	2020-04-29 07:02:56	11	75
+1	B1 - Inventaire des personnes, supports, co-traitants, documents, process	Conformité RGPD > B - INVENTAIRE CARTOGRAPHIE REGISTRE > B1 - Inventaire des personnes, supports, co-traitants, documents, process		3	{"12":"12"}	\N	2020-08-17 12:33:53	12	7
+1	E3 - Sensibiliser les utilisateurs, faire connaître les règles et adopter les bonnes pratiques	Conformité RGPD > E - SENSIBILISER, FORMER, FORMALISER > E3 - Sensibiliser les utilisateurs, faire connaître les règles et adopter les bonnes pratiques		3	{"13":"13"}	\N	2020-08-17 12:35:13	13	8
+1	F - CONNAITRE SON SYSTÈME D'INFORMATION	Conformité RGPD > F - CONNAITRE SON SYSTÈME D'INFORMATION		2	{"15":"15","16":"16","17":"17","18":"18","19":"19"}	{"75":75}	2020-08-17 12:36:52	15	75
+1	F1 - Identifier les matériels et supports ; maintenir un schéma	Conformité RGPD > F - CONNAITRE SON SYSTÈME D'INFORMATION > F1 - Identifier les matériels et supports ; maintenir un schéma		3	{"16":"16"}	\N	2020-08-17 12:37:03	16	15
+1	F2 - Disposer d'un inventaire des comptes, le tenir à jour	Conformité RGPD > F - CONNAITRE SON SYSTÈME D'INFORMATION > F2 - Disposer d'un inventaire des comptes, le tenir à jour		3	{"17":"17"}	\N	2020-08-17 12:37:13	17	15
+1	F3 - Organiser les procédures de départ et les changements de fonction	Conformité RGPD > F - CONNAITRE SON SYSTÈME D'INFORMATION > F3 - Organiser les procédures de départ et les changements de fonction		3	{"18":"18"}	\N	2020-08-17 12:37:24	18	15
+1	F4 - Autoriser les connections aux seuls équipements maîtrisés	Conformité RGPD > F - CONNAITRE SON SYSTÈME D'INFORMATION > F4 - Autoriser les connections aux seuls équipements maîtrisés		3	{"19":"19"}	\N	2020-08-17 12:37:32	19	15
+1	G - AUTHENTIFIER ET CONTRÔLER LES ACCÈS	Conformité RGPD > G - AUTHENTIFIER ET CONTRÔLER LES ACCÈS		2	{"20":20,"21":21,"22":22,"1":1,"10":10,"33":33,"34":34}	{"75":75}	2020-08-17 12:37:39	20	75
+1	G1 - Identifier nommément chaque accès aux systèmes et distinguer les rôles	Conformité RGPD > G - AUTHENTIFIER ET CONTRÔLER LES ACCÈS > G1 - Identifier nommément chaque accès aux systèmes et distinguer les rôles		3	{"21":"21"}	\N	2020-08-17 12:37:53	21	20
+1	G2 - Attribuer les bons droits sur chaque ressource	Conformité RGPD > G - AUTHENTIFIER ET CONTRÔLER LES ACCÈS > G2 - Attribuer les bons droits sur chaque ressource		3	{"22":"22"}	\N	2020-08-17 12:38:06	22	20
+1	D2 - Maîtriser et contractualiser l'usage des DCP avec les tierces-parties	Conformité RGPD > D - RESPECTER LES DROITS > D2 - Maîtriser et contractualiser l'usage des DCP avec les tierces-parties		3	{"24":"24"}	\N	2020-08-17 12:40:01	24	2
+1	D3 - Définir, retrouver et suivre les DCP	Conformité RGPD > D - RESPECTER LES DROITS > D3 - Définir, retrouver et suivre les DCP		3	{"25":"25"}	\N	2020-08-17 12:40:31	25	2
+1	D4 - Donner l'accès aux données et à la maîtrise des droits	Conformité RGPD > D - RESPECTER LES DROITS > D4 - Donner l'accès aux données et à la maîtrise des droits		3	{"26":"26"}	\N	2020-08-17 12:40:43	26	2
+1	D5 - Gérer l'opposition et limitation	Conformité RGPD > D - RESPECTER LES DROITS > D5 - Gérer l'opposition et limitation		3	{"27":"27"}	\N	2020-08-17 12:40:54	27	2
+1	D6 - Portabilité, redonner l'information	Conformité RGPD > D - RESPECTER LES DROITS > D6 - Portabilité, redonner l'information		3	{"28":"28"}	\N	2020-08-17 12:41:05	28	2
+0	C - AUDITER ET PLANIFIER LES ACTIONS	Conformité RGPD > C - AUDITER ET PLANIFIER LES ACTIONS		2	{"29":29,"30":30,"31":31,"32":32}	{"75":75}	2020-08-17 12:54:00	29	75
+0	C1 - Analyse et audit de l'inventaire & des traitements	Conformité RGPD > C - AUDITER ET PLANIFIER LES ACTIONS > C1 - Analyse et audit de l'inventaire & des traitements		3	\N	\N	2020-08-17 12:54:10	30	29
+0	C2 - Restitution, plan d'actions, DPO	Conformité RGPD > C - AUDITER ET PLANIFIER LES ACTIONS > C2 - Restitution, plan d'actions, DPO		3	\N	\N	2020-08-17 12:54:22	31	29
+0	C3 - PIA, tests, inventaire des autres composants	Conformité RGPD > C - AUDITER ET PLANIFIER LES ACTIONS > C3 - PIA, tests, inventaire des autres composants		3	\N	\N	2020-08-17 12:54:35	32	29
+1	G5 - Changer les éléments d'authentification par défaut sur les équipements et services	Conformité RGPD > G - AUTHENTIFIER ET CONTRÔLER LES ACCÈS > G5 - Changer les éléments d'authentification par défaut sur les équipements et services		3	{"33":"33"}	\N	2020-08-17 12:57:18	33	20
+1	G6 - Mettre en place une authentification forte	Conformité RGPD > G - AUTHENTIFIER ET CONTRÔLER LES ACCÈS > G6 - Mettre en place une authentification forte		3	{"34":"34"}	\N	2020-08-17 12:57:31	34	20
+1	H1 - Segmenter le réseau, cloisonner les zones	Conformité RGPD > H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD) > H1 - Segmenter le réseau, cloisonner les zones		3	{"35":"35"}	\N	2020-08-17 12:57:52	35	11
+1	H2 - Sécuriser le wifi, séparer les usages	Conformité RGPD > H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD) > H2 - Sécuriser le wifi, séparer les usages		3	{"36":"36"}	\N	2020-08-17 12:58:03	36	11
+1	H3 - Utiliser des protocoles réseaux sécurisés	Conformité RGPD > H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD) > H3 - Utiliser des protocoles réseaux sécurisés		3	{"37":"37"}	\N	2020-08-17 12:58:14	37	11
+1	H4 - Mettre en place une passerelle Internet	Conformité RGPD > H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD) > H4 - Mettre en place une passerelle Internet		3	{"38":"38"}	\N	2020-08-17 12:58:29	38	11
+1	H5 - Cloisonner les services visibles du reste de l'information	Conformité RGPD > H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD) > H5 - Cloisonner les services visibles du reste de l'information		3	{"39":"39"}	\N	2020-08-17 12:58:43	39	11
+1	H6 - Protéger sa messagerie professionnelle	Conformité RGPD > H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD) > H6 - Protéger sa messagerie professionnelle		3	{"40":"40"}	\N	2020-08-17 12:58:59	40	11
+1	H7 - Sécuriser les connexions distantes avec les utilisateurs et partenaires	Conformité RGPD > H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD) > H7 - Sécuriser les connexions distantes avec les utilisateurs et partenaires		3	{"41":"41"}	\N	2020-08-17 12:59:10	41	11
+1	H8 - Contrôler l'accès physique aux serveurs et baies	Conformité RGPD > H - SÉCURISER L'EXPLOITATION (RÉSEAUX, SERVEURS, CLOUD) > H8 - Contrôler l'accès physique aux serveurs et baies		3	{"42":"42"}	\N	2020-08-17 12:59:23	42	11
+1	I - SÉCURISER L'ADMINISTRATION	Conformité RGPD > I - SÉCURISER L'ADMINISTRATION		2	{"43":"43"}	{"75":75}	2020-08-17 12:59:35	43	75
+1	Documentation GLPI et Dlregister	Documentation GLPI et Dlregister		1	{"44":44,"88":88}	[]	2021-05-12 10:57:40	44	0
+1	D1 - Informer, obtenir le consentement	Conformité RGPD > D - RESPECTER LES DROITS > D1 - Informer, obtenir le consentement		3	{"46":46}	\N	2021-05-25 06:10:43	46	2
+1	N5 - Maturité numérique - DSI - Aides	Conformité RGPD > P - Pour aller plus loin > N5 - Maturité numérique - DSI - Aides		3	{"47":"47"}	\N	2021-06-02 09:32:12	47	48
+1	P - Pour aller plus loin	Conformité RGPD > P - Pour aller plus loin		2	\N	{"75":75}	2021-06-02 09:32:44	48	75
+1	D7 - Durée de conservation, archiver, effacer	Conformité RGPD > D - RESPECTER LES DROITS > D7 - Durée de conservation, archiver, effacer		3	\N	\N	2021-06-10 10:34:03	49	2
+1	M - GERER, SUPERVISER, AUDITER	Conformité RGPD > M - GERER, SUPERVISER, AUDITER		2	{"50":50,"59":59,"53":53,"51":51,"52":52,"74":74,"61":61}	{"75":75}	2021-07-02 19:35:59	50	75
+1	M3 - Définir des procédures de gestion des demandes et incidents	Conformité RGPD > M - GERER, SUPERVISER, AUDITER > M3 - Définir des procédures de gestion des demandes et incidents	Mettre en oeuvre son centre de services	3	{"51":"51"}	\N	2021-07-02 19:36:25	51	50
+1	M4 - Activer les journaux, configurer les tableaux de bord, monitorer	Conformité RGPD > M - GERER, SUPERVISER, AUDITER > M4 - Activer les journaux, configurer les tableaux de bord, monitorer		3	{"52":"52"}	\N	2021-07-02 19:46:36	52	50
+1	M2 - Définir et appliquer une politique de sauvegarde	Conformité RGPD > M - GERER, SUPERVISER, AUDITER > M2 - Définir et appliquer une politique de sauvegarde		3	\N	\N	2021-07-02 19:46:59	53	50
+1	E1 - Analyser et maîtriser ses risques	Conformité RGPD > E - SENSIBILISER, FORMER, FORMALISER > E1 - Analyser et maîtriser ses risques		3	\N	\N	2021-07-05 20:32:00	54	8
+1	L - SÉCURISER LES DCP AU NIVEAU DOCUMENTS ET E-MAILS	Conformité RGPD > L - SÉCURISER LES DCP AU NIVEAU DOCUMENTS ET E-MAILS		2	{"55":55,"58":58,"57":57,"56":56,"60":60}	{"75":75}	2021-07-13 09:27:22	55	75
+1	L3 - Chiffrer les documents et email, partager, faire signer, garantir intégrité	Conformité RGPD > L - SÉCURISER LES DCP AU NIVEAU DOCUMENTS ET E-MAILS > L3 - Chiffrer les documents et email, partager, faire signer, garantir intégrité		3	\N	\N	2021-07-13 09:27:51	56	55
+1	L2 - Aider les utilisateurs à classifier et marquer les DCP selon leur sensibilité	Conformité RGPD > L - SÉCURISER LES DCP AU NIVEAU DOCUMENTS ET E-MAILS > L2 - Aider les utilisateurs à classifier et marquer les DCP selon leur sensibilité		3	\N	\N	2021-07-13 09:28:13	57	55
+1	L1 - Encadrer et superviser les lieux de stockage des données actives et des archives	Conformité RGPD > L - SÉCURISER LES DCP AU NIVEAU DOCUMENTS ET E-MAILS > L1 - Encadrer et superviser les lieux de stockage des données actives et des archives		3	\N	\N	2021-07-13 09:28:33	58	55
+1	M1 - Désigner un référent en sécurité et le faire connaitre	Conformité RGPD > M - GERER, SUPERVISER, AUDITER > M1 - Désigner un référent en sécurité et le faire connaitre	\N	3	\N	\N	2021-07-21 11:51:37	59	50
+1	L4 - Gérer les rétentions	Conformité RGPD > L - SÉCURISER LES DCP AU NIVEAU DOCUMENTS ET E-MAILS > L4 - Gérer les rétentions	\N	3	{"60":60}	\N	2021-07-21 11:53:10	60	55
+1	M6 - Contrôles, audits, obtention d'un label	Conformité RGPD > M - GERER, SUPERVISER, AUDITER > M6 - Contrôles, audits, obtention d'un label	\N	3	\N	\N	2021-07-21 11:53:26	61	50
+1	N1 - Usage de la norme VS règlements, label, certification...	Conformité RGPD > P - Pour aller plus loin > N1 - Usage de la norme VS règlements, label, certification...	\N	3	{"62":62}	\N	2021-07-21 11:53:58	62	48
+1	N2 - Privilégier les produits et services préconisés par l'ANSSI	Conformité RGPD > P - Pour aller plus loin > N2 - Privilégier les produits et services préconisés par l'ANSSI	\N	3	{"63":"63"}	\N	2021-07-21 11:54:11	63	48
+1	N3 - Identifier et protéger le savoir faire et les données clientèle	Conformité RGPD > P - Pour aller plus loin > N3 - Identifier et protéger le savoir faire et les données clientèle	\N	3	\N	\N	2021-07-21 11:54:18	64	48
+1	N4 - Open Data, Data Sharing, Scoring	Conformité RGPD > P - Pour aller plus loin > N4 - Open Data, Data Sharing, Scoring	\N	3	\N	\N	2021-07-21 11:54:26	65	48
+1	04 RSE données et rapports	Numérique responsable > 04 RSE données et rapports	\N	2	{"66":66}	{"78":78}	2021-07-21 11:55:16	66	78
+1	N7 - Données personnelles et démocratie	Conformité RGPD > P - Pour aller plus loin > N7 - Données personnelles et démocratie	\N	3	\N	\N	2021-07-21 11:55:25	67	48
+1	A1 - Obligations légales, vue d'ensemble	Conformité RGPD > A - SE PRÉPARER AU RGPD > A1 - Obligations légales, vue d'ensemble		3	\N	{"75":75,"4":4}	2021-09-13 18:15:43	68	4
+1	A3 - Nommer un DPO, un référent, communiquer	Conformité RGPD > A - SE PRÉPARER AU RGPD > A3 - Nommer un DPO, un référent, communiquer		3	{"69":69}	\N	2021-09-13 18:15:58	69	4
+1	A4 - Organiser le projet et les délais	Conformité RGPD > A - SE PRÉPARER AU RGPD > A4 - Organiser le projet et les délais		3	{"70":"70"}	\N	2021-09-13 18:16:11	70	4
+0	D8 - Procédurer la notification des violations	Conformité RGPD > D - RESPECTER LES DROITS > D8 - Procédurer la notification des violations		3	\N	\N	2022-12-12 13:18:24	73	2
+0	M5 - Etablir la PSSI ; définir les procédures de gestion des incidents de sécurité	Conformité RGPD > M - GERER, SUPERVISER, AUDITER > M5 - Etablir la PSSI ; définir les procédures de gestion des incidents de sécurité		3	\N	\N	2023-05-19 11:58:24	74	50
+1	Conformité RGPD	Conformité RGPD		1	\N	[]	2023-07-26 19:23:14	75	0
+1	02 Etudes des risques et impacts environnementaux	Numérique responsable > 02 Etudes des risques et impacts environnementaux		2	{"76":76}	{"78":78}	2023-07-27 11:32:19	76	78
+0	ISO 27001	ISO 27001		1	\N	[]	2023-07-27 11:38:01	77	0
+0	Numérique responsable	Numérique responsable	"Gouvernance, Risques et Conformité"	1	\N	[]	2023-07-27 11:50:35	78	0
+1	Utilisateurs informatiques	Bonnes pratiques > Utilisateurs informatiques		2	{"80":80}	{"90":90}	2023-09-20 10:42:43	80	90
+1	Audits	Audits		1	{"83":83}	[]	2023-11-26 22:39:44	83	0
+1	A2 - Veille RGPD	Conformité RGPD > A - SE PRÉPARER AU RGPD > A2 - Veille RGPD	Actualités et articles concernant la Protection des données à caractère personnel	3	{"84":84}	{"75":75,"4":4}	2023-11-26 23:37:27	84	4
+1	03 Lutte contre le gaspillage et économie circulaire	Numérique responsable > 03 Lutte contre le gaspillage et économie circulaire		2	{"85":85}	{"78":78}	2023-12-16 16:49:29	85	78
+1	GLPI	Documentation GLPI et Dlregister > GLPI		2	{"88":88}	{"44":44}	2024-02-08 07:02:05	88	44
+1	Administrateurs informatiques	Bonnes pratiques > Administrateurs informatiques		2	{"89":89}	{"90":90}	2024-02-08 07:04:01	89	90
+0	Bonnes pratiques	Bonnes pratiques		1	\N	[]	2024-02-09 07:53:55	90	0
+0	01 Se préparer au numérique au numérique responsable	Numérique responsable > 01 Se préparer au numérique au numérique responsable		2	{"91":91}	{"78":78}	2024-02-09 09:17:30	91	78
+0	Identito-vigilance	Identito-vigilance		1	{"96":96}	[]	2024-02-11 13:04:35	96	0

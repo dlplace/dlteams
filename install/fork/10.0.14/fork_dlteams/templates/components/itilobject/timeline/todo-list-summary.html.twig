@@ -1,0 +1,69 @@
+{#
+# ---------------------------------------------------------------------
+#
+# GLPI - Gestionnaire Libre de Parc Informatique
+#
+# http://glpi-project.org
+#
+# @copyright 2015-2023 Teclib' and contributors.
+# @copyright 2003-2014 by the INDEPNET Development Team.
+# @licence   https://www.gnu.org/licenses/gpl-3.0.html
+#
+# ---------------------------------------------------------------------
+#
+# LICENSE
+#
+# This file is part of GLPI.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+# ---------------------------------------------------------------------
+#}
+
+{% set timeline_stats = item.getTimelineStats() %}
+{% set total_duration = timeline_stats['total_duration'] ?? 0 %}
+{% set total_estimate_duration = timeline_stats['total_estimate_duration'] ?? 0 %}
+{% set todo_percent = timeline_stats['percent_done'] ?? 0 %}
+{% set nb_taches = timeline_stats['nb_taches'] ?? 0 %}
+{% set done_tasks = timeline_stats['done_tasks'] ?? 0 %}
+{% set nb_planifications_done = timeline_stats['nb_planifications_done'] ?? 0 %}
+{% set nb_planifications = timeline_stats['nb_planifications'] ?? 0 %}
+
+<div class="timeline-item timeline_stats pb-3">
+    <div class="mb-2 ms-1 text-muted">
+        {{ __('%s tâches et %s planifications')|format(nb_taches, nb_planifications) }}
+    </div>
+    <div class="mb-2 ms-1 text-muted">
+{#        {{ __('Total duration: %s')|format(total_duration|formatted_duration) }}#}
+        {{ __('Duréee totale prévue: %s')|format(total_estimate_duration|formatted_duration) }}
+    </div>
+    <div class="mb-2 ms-1 text-muted">
+        {#        {{ __('Total duration: %s')|format(total_duration|formatted_duration) }}#}
+        {{ __('Duréee totale effective: %s')|format(total_duration|formatted_duration) }}
+    </div>
+    <div class="mb-2 ms-1 text-muted" id="count_todo">
+        {#        {{ __('Total duration: %s')|format(total_duration|formatted_duration) }}#}
+        {{ __('Reste à faire: ') }}<b>
+            {{ __('%s tâche(s) et %s planification(s)')|format(nb_taches - done_tasks, nb_planifications_done) }}</b>
+    </div>
+    <div class="d-flex">
+      <span class="task-progress-label mx-2">
+         {{ todo_percent }}%
+      </span>
+        <div class="progress mt-1" style="max-width: 260px">
+            <div class="progress-bar progress-bar-striped timeline-progress" role="progressbar" style="width: {{ todo_percent }}%;"
+                 aria-valuenow="{{ todo_percent }}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+</div>

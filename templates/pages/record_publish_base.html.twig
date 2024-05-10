@@ -1,0 +1,230 @@
+{#- -----------------------------------------------------------------------    -#}
+{# DLTeams plugin for GLPI #}
+{#- -----------------------------------------------------------------------    -#}
+{# LICENSE : This file is part of DLTeams Plugin. #}
+
+{# DLTeams Plugin is a GNU Free Copylefted software. #}
+{# It disallow others people than DLPlace developers to distribute, sell, #}
+{# or add additional requirements to this software. #}
+{# Though, a limited set of safe added requirements can be allowed, but #}
+{# for private or internal usage only ;  without even the implied warranty #}
+{# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #}
+
+{# You should have received a copy of the GNU General Public License #}
+{# along with DLTeams Plugin. If not, see <http://www.gnu.org/licenses/>. #}
+{#- ------------------------------------------------------------------------    -#}
+{# @package   dlteams #}
+{# @author    DLPlace developers #}
+{# @copyright Copyright (c) 2022 DLPlace #}
+{# @inspired	 DPO register plugin (Karhel Tmarr) & gdprropa (Yild) #}
+{# @license   GPLv3+ http://www.gnu.org/licenses/gpl.txt #}
+{# @link      https://github.com/dlplace/dlteams #}
+{# @since     2021 #}
+{#- ------------------------------------------------------------------------    -#}
+
+{% extends '@dlteams/layout/page_guest.html.twig' %}
+
+{% block header_logo %}
+{#    {% if record.print_logo and key == 0 %}#}
+        <center>
+            <img id='logo' alt='Organisation logo' src='{{ logo_uri }}'>
+            <hr>
+        </center>
+{#    {% endif %}#}
+
+{% endblock %}
+
+{% block content_block %}
+{#    {% if key == 0 %}#}
+{#        <div style="margin-top: 10px; display: flex; justify-content: end">#}
+{#            <button id="expandAllBtn" class="print-hidden-btn" style="background-color: transparent; border: 0px solid; color: royalblue; margin-bottom: 10px;" type="button">Ouvrir/Fermer Tout</button>#}
+{#        </div>#}
+{#    {% endif %}#}
+
+    <div class="accordion" id="accordion-{{ key }}">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading-{{ key }}">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ key }}"
+                        aria-expanded="true" aria-controls="collapse-{{ key }}">
+                    {{ record.name }}
+                </button>
+            </h2>
+            <div id="collapse-{{ key }}" class="accordion-collapse collapse {% if deplier_traitements %} show {% endif %}" aria-labelledby="heading-{{ key }}"
+                 data-bs-parent="#accordion-{{ key }}">
+                <div class="accordion-body">
+
+                    {% include '@dlteams/components/print_record_information.html.twig' %}
+
+                    {% include '@dlteams/components/print_record_legalbasis.html.twig' %}
+
+                    {% include '@dlteams/components/print_record_personalanddatacategories.html.twig' %}
+
+                    {% include '@dlteams/components/print_record_conservationtime.html.twig' %}
+
+                    {% include '@dlteams/components/print_record_rightexercise.html.twig' %}
+
+                    {% include '@dlteams/components/print_record_external.html.twig' %}
+
+                    {% include '@dlteams/components/print_protectivemeasures.html.twig' %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{#    <div class="accordion-item">#}
+
+{#        <h1 style='color:#fff; background-color: #767171; padding: 3px; border-radius: 5px' class="accordion-header"#}
+{#            id="heading-{{ key }}">#}
+{#            <button class="title-button" style="background-color: transparent; border: none" data-bs-toggle="collapse"#}
+{#                    data-bs-target="#panel-{{ key }}"#}
+{#                    aria-expanded="false"#}
+{#                    aria-controls="panel-{{ key }}">#}
+{#                <small style="color: white">{{ record.name }}</small>#}
+{#            </button>#}
+{#        </h1>#}
+
+
+{#        <div id="panel-{{ key }}"#}
+{#             class="accordion-collapse collapse show"#}
+{#             aria-labelledby="heading-{{ key }}">#}
+{#            <div class="accordion-body">#}
+
+{#                {% include '@dlteams/components/print_record_information.html.twig' %}#}
+
+{#                {% include '@dlteams/components/print_record_legalbasis.html.twig' %}#}
+
+{#                {% include '@dlteams/components/print_record_personalanddatacategories.html.twig' %}#}
+
+{#                {% include '@dlteams/components/print_record_conservationtime.html.twig' %}#}
+
+{#                {% include '@dlteams/components/print_record_rightexercise.html.twig' %}#}
+
+{#                {% include '@dlteams/components/print_record_external.html.twig' %}#}
+
+{#                {% include '@dlteams/components/print_protectivemeasures.html.twig' %}#}
+
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+
+
+
+
+
+    <style>
+        th, td {
+            padding: 6px;
+            border: solid 1px grey;
+        }
+
+        .h3, h3 {
+            font-size: calc(1rem + .6vw);
+        }
+
+        @media (min-width: 1200px)
+            .h3, h3 {
+                font-size: 1.2rem;
+            }
+
+            .accordion-button.mt-3 {
+                background-color: #d0cece;
+                color: white;
+                padding: 0.3rem;
+                border-radius: 5px;
+                font-size: 1.3rem;
+            }
+
+            @media print {
+                .accordion-button.collapsed {
+                    display: none; /* Cela masquera les boutons d'accordéon avec la classe "collapsed" lors de l'impression */
+                }
+
+                .title-button.collapsed {
+                    display: none;
+                }
+            }
+            table {
+                margin-top: 4px;
+            }
+
+            .title-button[aria-expanded="true"] .fa-chevron-down {
+                display: none;
+            }
+
+            .title-button[aria-expanded="true"] .fa-chevron-up {
+                display: inline-block;
+            }
+
+            /* Icône vers le bas lorsque l'accordéon est fermé */
+            .title-button[aria-expanded="false"] .fa-chevron-up {
+                display: none;
+            }
+
+            .title-button[aria-expanded="false"] .fa-chevron-down {
+                display: inline-block;
+            }
+
+            .accordion-item {
+                border: none;
+            }
+
+            .accordion-header {
+                border: solid 1px;
+                border-radius: 5px;
+            }
+
+            .accordion-button {
+                background-color: #767171;color: white;padding: 0.3rem;border-radius: 5px; font-size: 1.8rem;
+            }
+
+            .accordion-button:not(.collapsed) {
+                background-color: #767171;color: white;padding: 0.3rem;border-radius: 5px; font-size: 1.8rem;
+            }
+            .child {
+                background-color: #d0cece;
+                color: black;
+            }
+
+            .child:not(.collapsed) {
+                background-color: #a1a1a1 !important;
+                color: black;
+            }
+
+            .accordion-body {
+                padding: 6px 0 0 0 !important;
+            }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const expandAllBtn = document.getElementById('#expandAllBtn');
+            const accordionItems = document.querySelectorAll(".accordion-collapse");
+            // const btnText = document.getElementById("btnText");
+
+            expandAllBtn.addEventListener("click", function () {
+                accordionItems.forEach((item) => {
+                    const isExpanded = item.classList.contains("show");
+                    if (isExpanded) {
+                        item.classList.remove("show");
+                    } else {
+                        item.classList.add("show");
+                    }
+                });
+
+                // Mettre à jour le texte du bouton
+                const areAllPanelsOpen = [...accordionItems].every(
+                    (item) => item.classList.contains("show")
+                );
+
+                // if (areAllPanelsOpen) {
+                //     expandAllBtn.innerText = "Résumer";
+                // } else {
+                //     expandAllBtn.innerText = "Lire tout";
+                // }
+            });
+        });
+    </script>
+{% endblock %}

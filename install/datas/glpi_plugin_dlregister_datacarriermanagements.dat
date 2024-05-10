@@ -1,0 +1,4 @@
+1	Niveau 1	1. Interne	L'organisme gère l'intégralité du système d'information : serveurs, infrastructure réseau, logiciels, données...	1	[]	{"1":"1"}	0	1
+2	Niveau 2	2. Iaas	L'organisme gère le système d'exploitation et les applications. Le fournisseur gère l'infrastructure (les serveurs, le réseau, la virtualisation et le stockage des données)	1	[]	{"2":"2"}	0	1
+3	Niveau 3	3. PaaS	L'organisme gère l'application et les données. Le fournisseur cloud maintient toute la plate-forme (réseau, serveurs, système d'exploitation, logiciels)	1	[]	{"3":"3"}	0	1
+4	Niveau 4	4. SaaS	L'organisme accède à l'application via une type Web (Software as a Service). L'éditeur gère gère tout de bout en bout (réseau, serveurs, OS, Runtime, application et bases de données). 	1	[]	{"4":"4"}	0	1

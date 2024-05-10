@@ -1,0 +1,8 @@
+1	Application, base de données	Ensemble de données numériques consultables via une application installée ou Internet (Logiciel en tant que service ou Saas)	0	1
+2	Documents papier	Formulaires papiers, classeurs, dossiers, boites d'archives, ... 	0	1
+5	Journaux, logs		0	1
+6	Centre d'administration	Logiciel ou interface d'administration des comptes et clés : gestion des droits et des règles, services d'annuaires, traçabilité des événements, ...	0	1
+7	Boite mail		0	1
+8	Dossier et fichiers, Drive	via serveur (dossiers partagés), un service Cloud (Sharepoint), une GED, ... 	0	1
+9	Sauvegarde		0	1
+10	Composant électronique, IoT	Données stockées dans un composant électronique ou un IoT	0	1

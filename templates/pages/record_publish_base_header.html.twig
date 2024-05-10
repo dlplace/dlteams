@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="{{ lang }}" {% if high_contrast %}data-high-contrast="1"{% endif %}
+        {{ glpi_request_id is defined ? 'data-glpi-request-id=' ~ glpi_request_id : '' }}>
+<head>
+    <title>{{ title }} - GLPI</title>
+
+    <meta charset="utf-8"/>
+
+    {# prevent IE to turn into compatible mode... #}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    {# auto desktop / mobile viewport #}
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    {# prevent robots to index GLPI instances #}
+    <meta name="robots" content="noindex, nofollow"/>
+
+    <meta property="glpi:csrf_token" content="{{ csrf_token(true) }}"/>
+
+    {% for css_file in css_files %}
+        <link rel="stylesheet" type="text/css" href="{{ css_file.path }}"/>
+    {% endfor %}
+
+    {{ custom_css() }}
+
+    <link rel="shortcut icon" type="images/x-icon"
+          href="{{ asset_path('/marketplace/dlteams/images/favicon.ico') }}"/>
+
+    {% for js_file in js_files %}
+        <script type="text/javascript" src="{{ js_file.path }}"></script>
+    {% endfor %}
+
+    {% for js_file in js_modules %}
+        <script type="module" src="{{ js_file.path }}"></script>
+    {% endfor %}
+
+    {{ locales_js() }}
+</head>
+
+{# {% endif %} #}
+
+{% if first_page %}
+<body>
+{% endif %}
+<div class="page-anonymous">
+    <div class="flex-fill d-flex flex-column justify-content-center">
+        {% set style = null %}
+        {% if card_md_width is defined %}
+            {% set style = 'max-width: 40rem' %}
+        {% endif %}
+        {% if card_bg_width is defined %}
+            {% set style = 'max-width: 60rem' %}
+        {% endif %}
+
+        {% if record.print_logo and key == 0 %}
+        <center>
+            <img id='logo' style="margin-top: 10px;" alt='Organisation logo' src='{{ logo_uri }}'>
+            <hr>
+        </center>
+        {% endif %}
+
+        <div class="container">
+            <table border='1' cellspacing='0' class="table table-bordered">
+                {% for data in first_page_datas %}
+                    <tr>
+                        <td width="50%">{{ data.section | raw }} </td>
+                        <td width="50%"> {{ data.value | raw }} </td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div class="container" {% if style is not null %}style="{{ style }}"{% endif %}>
+            {# <img src="https://dlregister.app/marketplace/dlteams/images/banner.png" style="margin-top:-64px"> #}
+            <div class="text-center">
+                <div class="col-md">
+                    <!--span class="glpi-logo mb-4" title="GLPI"></span-->
+                    <!--img src="https://dlregister.app/marketplace/dlteams/images/banner.png"-->
+                </div>
+            </div>
+
+{#                    <div style="margin-top: 10px; display: flex; justify-content: end">#}
+{#                        <button id="expandAllBtn" class="print-hidden-btn" style="background-color: transparent; border: 0px solid; color: royalblue; margin-bottom: 10px;" type="button">Ouvrir/Fermer Tout</button>#}
+{#                    </div>#}
+
+            <div style="background:none;">
+
+                {# include content_placeholder #}
+
+

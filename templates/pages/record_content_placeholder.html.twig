@@ -1,0 +1,49 @@
+{% if record.parentnumber > 0 %}
+<div class="accordion" id="accordion-{{ key }}">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading-{{ key }}">
+            <button style="background-color: #d0cece;border-radius: 2px;color: black;padding: 8px;font-size: 16px;width: 100%;text-align: start;" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ key }}"
+                    aria-expanded="true" aria-controls="collapse-{{ key }}">
+                 {% if record.parentnumber > 0 %}
+                     {{ record.number~'.'~record.parentnumber }}
+                {% else %}
+                    {{ record.number }}
+                {% endif %}
+                 - {{ record.name }}
+            </button>
+        </h2>
+        <div id="collapse-{{ key }}" class="accordion-collapse collapse {% if deplier_traitements %} show {% endif %}" aria-labelledby="heading-{{ key }}"
+             data-bs-parent="#accordion-{{ key }}">
+            <div class="accordion-body">
+
+                {% include '@dlteams/components/print_record_information.html.twig' %}
+
+                {% include '@dlteams/components/print_record_legalbasis.html.twig' %}
+
+                {% include '@dlteams/components/print_record_personalanddatacategories.html.twig' %}
+
+                {% include '@dlteams/components/print_record_conservationtime.html.twig' %}
+
+                {% include '@dlteams/components/print_record_rightexercise.html.twig' %}
+
+                {% include '@dlteams/components/print_record_external.html.twig' %}
+
+                {% include '@dlteams/components/print_protectivemeasures.html.twig' %}
+
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+    <div style="background-color: #767171;color: white;padding: 0.3rem;border-radius: 5px; font-size: 1.3rem;">
+        <h1 style="font-size: 1.3rem;">
+            {{ record.number }} - {{ record.name }}
+        </h1>
+
+{#        <button id="expandAllBtn" class="print-hidden-btn"#}
+{#                style="background-color: transparent; border: 0px solid; color: royalblue" type="button">Ouvrir/Fermer#}
+{#            Tout#}
+{#        </button>#}
+    </div>
+{% endif %}
+<br/>

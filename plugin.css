@@ -1,0 +1,37 @@
+#c_logo {
+    margin-left: 0.5rem;
+    height: 48px !important;
+    width: 200px !important;
+    background-image: url("images/fd_logo.png")!important;
+    background-size: 200px 48px !important;
+}
+@media (max-width: 1300px) {
+    #c_logo {
+        height: 36px !important;
+        width: 150px !important;
+        background-size: 150px 36px !important;
+    }
+}
+
+#c_menu, #footer, #c_recherche form #champRecherche input {
+    background-color: #4F4E4E !important;
+}
+
+#header_top, #firstboxlogin {
+    background: #2F2E2E !important;
+}
+
+a.copyright {
+    color: #50E3C2 !important;
+}
+
+input[type = radio] {
+    display: inline !important;
+}
+
+@media screen and (min-width: 1300px)  {
+    .layout_vsplit>#page>div.pdf_tabs>.ui-tabs>.ui-tabs-panel {
+        overflow-x: hidden;
+        position: initial;
+    }
+}

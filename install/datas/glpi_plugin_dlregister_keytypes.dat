@@ -1,0 +1,11 @@
+1	01 Comptes	Identifiant et mot de passe	0	1	2021-10-08 20:27:28	2021-10-06 15:02:36
+2	02 Code	lettres, chiffres	0	1	2021-10-06 15:03:11	2021-10-06 15:03:11
+3	03 Certificat		0	1	2021-10-06 15:03:32	2021-10-06 15:03:32
+4	04 Clé physique		0	1	2021-10-08 20:30:24	2021-10-06 15:03:42
+5	05 Badges (magnétique, RFID)		0	1	2021-10-06 15:03:56	2021-10-06 15:03:56
+6	06 Biométrie	Empreinte digitale, reconnaissance du visage	0	1	2023-01-23 23:37:05	2021-10-06 15:04:06
+7	07 Mot de passe image		0	1	2021-10-06 15:04:13	2021-10-06 15:04:13
+8	08 Code ou lien unique sur périphérique (MFA)		0	1	2021-10-06 15:04:22	2021-10-06 15:04:22
+9	09 Authentification multifacteur (MFA)	Plusieurs clés sont nécessaires, souvent quelque chose que l'on possède (un appareil , une clé) + quelque chose que l'on sait (un code, un mot de passe)	0	1	2024-01-10 18:42:02	2021-10-06 15:04:31
+10	10 Fournisseurs d'identité	Franceconnect, La Poste ...	0	1	2022-01-03 18:29:16	2022-01-03 18:29:16
+11	SSO		0	0	2023-10-16 06:49:00	2023-10-16 06:49:00

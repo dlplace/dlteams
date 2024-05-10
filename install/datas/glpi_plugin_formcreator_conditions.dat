@@ -1,0 +1,174 @@
+137	PluginFormcreatorQuestion	158	157	1	Collecte	1	1	bb25c530-7771e958-5e82fc4fbadae8.19811631
+138	PluginFormcreatorQuestion	158	157	1	Diffusion	2	2	bb25c530-7771e958-5e82fc4fbc36f2.27170676
+139	PluginFormcreatorQuestion	159	157	1	Collecte	1	1	bb25c530-7771e958-5e82fd0bd43b54.66244587
+140	PluginFormcreatorQuestion	159	157	1	Diffusion	2	2	bb25c530-7771e958-5e82fd0bd5e869.65586989
+145	PluginFormcreatorQuestion	165	157	1	Collecte	1	1	bb25c530-7771e958-5e82ffa6a08020.24986632
+146	PluginFormcreatorQuestion	166	157	1	Collecte	1	1	bb25c530-7771e958-5e82ffd1d046b6.20995976
+148	PluginFormcreatorQuestion	167	157	1	Collecte	1	1	bb25c530-7771e958-5e830004dcd249.15966598
+153	PluginFormcreatorQuestion	164	157	1	Stockage durant traitement	1	1	bb25c530-7771e958-5e830edbe8d0a6.70496760
+154	PluginFormcreatorQuestion	164	157	1	Stockage en archivage	2	2	bb25c530-7771e958-5e830edbea7a20.37026642
+155	PluginFormcreatorQuestion	168	157	1	Collecte	1	1	bb25c530-7771e958-5e830f72ba94f7.99659817
+156	PluginFormcreatorQuestion	168	157	1	Enregistrement	2	2	bb25c530-7771e958-5e830f72bc4fb6.77420998
+177	PluginFormcreatorQuestion	160	157	1	Collecte	1	1	c25583e7-c93a2a13-5ecf8e825744d1.95924022
+178	PluginFormcreatorQuestion	160	157	1	Diffusion	2	2	c25583e7-c93a2a13-5ecf8e825b2259.45303406
+403	PluginFormcreatorQuestion	1362	1357	1	oui	1	1	b49e2eaa-8ac668dd-6183a0ac256641.66961101
+404	PluginFormcreatorQuestion	1363	1355	1	oui	1	1	b49e2eaa-8ac668dd-6183a0ac265188.07608287
+405	PluginFormcreatorQuestion	1364	1356	1	oui	1	1	b49e2eaa-8ac668dd-6183a0ac26df31.12671781
+406	PluginFormcreatorQuestion	1375	1372	2		1	1	b49e2eaa-8ac668dd-6183a0ac326be4.39571952
+407	PluginFormcreatorQuestion	1412	237	1	je souhaite m’opposer aux traitements suivants, auxquels j’avais donné mon consentement :	1	1	b49e2eaa-8ac668dd-6183a0ac947066.40079692
+408	PluginFormcreatorQuestion	1418	1417	1	Je vous informe par la présente que je pense que certaines de mes données ont été diffusées ; je vous indique les circonstances et les données concernées	1	1	b49e2eaa-8ac668dd-6183a0ac98e543.36525115
+409	PluginFormcreatorQuestion	1419	1416	1	Je vous informe qu’en cas de décès, je désigne la personne ci-après qui subrogera les droits sur mes données	1	1	b49e2eaa-8ac668dd-6183a0ac9a5961.57647782
+410	PluginFormcreatorQuestion	1420	1411	1	Merci de modifier dans votre système les éléments suivants :	1	1	b49e2eaa-8ac668dd-6183a0ac9c1a11.29846111
+411	PluginFormcreatorQuestion	1489	1488	1	oui	1	1	b49e2eaa-8ac668dd-6183a0ad43de33.55797724
+412	PluginFormcreatorQuestion	1490	1488	1	oui	1	1	b49e2eaa-8ac668dd-6183a0ad448533.71422934
+413	PluginFormcreatorQuestion	1521	1520	1	je ne suis pas concerné	1	1	b49e2eaa-8ac668dd-6183a0ad530484.11009398
+414	PluginFormcreatorQuestion	1548	1540	1	2. Règlement général sur la protection des données	1	1	b49e2eaa-8ac668dd-6183a0ad97ea79.55851669
+415	PluginFormcreatorQuestion	1549	1540	1	1. Règlement général sur la préservation des données	1	1	b49e2eaa-8ac668dd-6183a0ad987217.49640994
+416	PluginFormcreatorQuestion	1549	1540	1	3. Règlement général sur le partage des données	2	2	b49e2eaa-8ac668dd-6183a0ad98b628.85909074
+417	PluginFormcreatorQuestion	1549	1540	1	4. Règlement général sur la promotion des données	2	3	b49e2eaa-8ac668dd-6183a0ad990115.08120539
+418	PluginFormcreatorQuestion	1550	1541	1	3. Sur le territoire de l’Union européenne	1	1	b49e2eaa-8ac668dd-6183a0ad9a5276.89831342
+419	PluginFormcreatorQuestion	1551	1541	1	1. Partout	1	1	b49e2eaa-8ac668dd-6183a0ad9afff6.46899365
+420	PluginFormcreatorQuestion	1551	1541	1	2. Seulement en dehors de l’Union européenne	2	2	b49e2eaa-8ac668dd-6183a0ad9b4635.17807194
+421	PluginFormcreatorQuestion	1552	1542	1	2. De contrer le piratage	1	1	b49e2eaa-8ac668dd-6183a0ad9be0d8.01261045
+422	PluginFormcreatorQuestion	1552	1542	1	3. D’uniformiser la réglementation dans l’Union européenne	2	2	b49e2eaa-8ac668dd-6183a0ad9c2602.87244976
+423	PluginFormcreatorQuestion	1553	1542	1	1. De vous rendre anonyme sur le web	1	1	b49e2eaa-8ac668dd-6183a0ad9cc029.12946847
+424	PluginFormcreatorQuestion	1553	1542	1	4. D’empêcher l’utilisation des données	2	2	b49e2eaa-8ac668dd-6183a0ad9d0819.28409983
+425	PluginFormcreatorQuestion	1554	1543	1	2. Non	1	1	b49e2eaa-8ac668dd-6183a0ad9d9380.24413119
+426	PluginFormcreatorQuestion	1555	1543	1	1. Oui	1	1	b49e2eaa-8ac668dd-6183a0ad9e32c0.04245343
+427	PluginFormcreatorQuestion	1556	1544	1	15 ans	1	1	b49e2eaa-8ac668dd-6183a0ad9eeaf2.46961758
+428	PluginFormcreatorQuestion	1557	1544	1	13 ans	1	1	b49e2eaa-8ac668dd-6183a0ad9f89a1.37326828
+429	PluginFormcreatorQuestion	1557	1544	1	16 ans	2	2	b49e2eaa-8ac668dd-6183a0ad9ffe18.58819490
+430	PluginFormcreatorQuestion	1557	1544	1	18 ans	2	3	b49e2eaa-8ac668dd-6183a0ada03768.46636410
+431	PluginFormcreatorQuestion	1558	1545	1	2. De les récupérer pour les transférer sur un autre service	1	1	b49e2eaa-8ac668dd-6183a0ada0d119.67497440
+432	PluginFormcreatorQuestion	1559	1545	1	1. De les déplacer à l’intérieur d’un service	1	1	b49e2eaa-8ac668dd-6183a0ada156d0.61532231
+433	PluginFormcreatorQuestion	1559	1545	1	3. De les alléger pour pouvoir les porter à bout de bras	2	2	b49e2eaa-8ac668dd-6183a0ada1ac44.15086652
+434	PluginFormcreatorQuestion	1559	1545	1	4. De les rendre compatible sur un téléphone portable	2	3	b49e2eaa-8ac668dd-6183a0ada1ea64.41580738
+437	PluginFormcreatorQuestion	1562	1546	1	Non	1	1	b49e2eaa-8ac668dd-6183a0ada3c122.83878789
+438	PluginFormcreatorQuestion	1563	1546	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0ada443a3.14295058
+439	PluginFormcreatorQuestion	1565	1547	1	2. C’est l’obligation de veiller, dès la conception de sa technologie, à la protection des données	1	1	b49e2eaa-8ac668dd-6183a0ada52bd2.22207039
+440	PluginFormcreatorQuestion	1566	1547	1	1. C'est l'obligation de protéger les données des designers	1	1	b49e2eaa-8ac668dd-6183a0ada60508.46535429
+441	PluginFormcreatorQuestion	1566	1547	1	3. C’est l’obligation pour les sites web de veiller à la protection des données personnelles de chaque nouvelle connexion	2	2	b49e2eaa-8ac668dd-6183a0ada64a25.34158524
+442	PluginFormcreatorQuestion	1566	1547	1	4. C'est l'obligation de faire de l'esthétique sur la vie privée	2	3	b49e2eaa-8ac668dd-6183a0ada6a375.35983389
+445	PluginFormcreatorQuestion	1576	1575	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0adb7a0a9.20461332
+446	PluginFormcreatorQuestion	1579	1578	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0adb95db3.02817427
+447	PluginFormcreatorQuestion	1582	1581	1	Oui, un système est en en place	1	1	b49e2eaa-8ac668dd-6183a0adbbbe53.87097949
+448	PluginFormcreatorQuestion	1583	1577	1	Oui, elle est en place	1	1	b49e2eaa-8ac668dd-6183a0adbd0993.46228736
+449	PluginFormcreatorQuestion	1599	1598	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0ade1e5a6.74107455
+450	PluginFormcreatorQuestion	1601	1600	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0ade31b14.29855072
+451	PluginFormcreatorQuestion	1602	1597	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0ade396a6.40166359
+452	PluginFormcreatorQuestion	1603	1596	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0ade42432.50128262
+453	PluginFormcreatorQuestion	1709	1708	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0ae4e2b23.52109894
+454	PluginFormcreatorQuestion	1711	1710	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0ae4f01a6.71259022
+455	PluginFormcreatorQuestion	1712	1707	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0ae4f90a8.22472057
+456	PluginFormcreatorQuestion	1713	1706	1	Oui	1	1	b49e2eaa-8ac668dd-6183a0ae5005b9.12764111
+465	PluginFormcreatorQuestion	1885	1883	2		1	1	b49e2eaa-8ac668dd-6192028d543685.71689902
+466	PluginFormcreatorQuestion	1886	1885	2		1	1	b49e2eaa-8ac668dd-6192028d561561.67273368
+467	PluginFormcreatorQuestion	1887	1886	2		1	1	b49e2eaa-8ac668dd-6192028d57b1b7.02204075
+468	PluginFormcreatorQuestion	1888	1887	2		1	1	b49e2eaa-8ac668dd-6192028d5922f2.40434114
+469	PluginFormcreatorQuestion	1899	1894	2		1	1	b49e2eaa-8ac668dd-6192028d64dec1.23687351
+470	PluginFormcreatorQuestion	1905	1901	2		1	1	b49e2eaa-8ac668dd-6192028d685808.67956873
+471	PluginFormcreatorQuestion	1906	1905	2		1	1	b49e2eaa-8ac668dd-6192028d68fee2.95390728
+472	PluginFormcreatorQuestion	1907	1906	2		1	1	b49e2eaa-8ac668dd-6192028d699b64.42088158
+473	PluginFormcreatorQuestion	1908	1902	2		1	1	b49e2eaa-8ac668dd-6192028d6a4642.85395717
+474	PluginFormcreatorQuestion	1909	1907	2		1	1	b49e2eaa-8ac668dd-6192028d6aef30.13878427
+475	PluginFormcreatorQuestion	1914	1911	2		1	1	b49e2eaa-8ac668dd-6192028d6e2452.49316545
+476	PluginFormcreatorQuestion	1915	1914	2		1	1	b49e2eaa-8ac668dd-6192028d6eb008.82508345
+477	PluginFormcreatorQuestion	1916	1912	2		1	1	b49e2eaa-8ac668dd-6192028d6f50e5.03859053
+478	PluginFormcreatorQuestion	1917	1916	2		1	1	b49e2eaa-8ac668dd-6192028d6ffcc1.00460916
+479	PluginFormcreatorQuestion	1918	1910	2		1	1	b49e2eaa-8ac668dd-6192028d7089d3.66774987
+480	PluginFormcreatorQuestion	1919	1918	2		1	1	b49e2eaa-8ac668dd-6192028d7138a9.26729648
+481	PluginFormcreatorQuestion	1922	1921	2		1	1	b49e2eaa-8ac668dd-6192028d74c799.85890502
+482	PluginFormcreatorQuestion	1923	1922	2		1	1	b49e2eaa-8ac668dd-6192028d7646e6.46627851
+483	PluginFormcreatorQuestion	1924	1922	2		1	1	b49e2eaa-8ac668dd-6192028d781c94.23756465
+484	PluginFormcreatorQuestion	1925	1924	2		1	1	b49e2eaa-8ac668dd-6192028d79c4a3.10798690
+485	PluginFormcreatorQuestion	1926	1925	2		1	1	b49e2eaa-8ac668dd-6192028d7b5480.45232316
+486	PluginFormcreatorQuestion	1927	1926	2		1	1	b49e2eaa-8ac668dd-6192028d7cd212.31703378
+487	PluginFormcreatorQuestion	1938	1937	1	Oui	1	1	b49e2eaa-8ac668dd-6192028d8961a4.80253853
+488	PluginFormcreatorQuestion	1940	1936	1	Oui	1	1	b49e2eaa-8ac668dd-6192028d8b5978.66554211
+1138	PluginFormcreatorQuestion	4943	4942	1	Je vous informe par la présente que je pense que certaines de mes données ont été diffusées ; je vous indique les circonstances et les données concernées	1	1	b49e2eaa-8ac668dd-6200d220da1317.31410117
+1139	PluginFormcreatorQuestion	4944	4941	1	Je vous informe qu’en cas de décès, je désigne la personne ci-après qui subrogera les droits sur mes données	1	1	b49e2eaa-8ac668dd-6200d220dc2327.34082368
+1140	PluginFormcreatorQuestion	4945	4936	1	Merci de modifier dans votre système les éléments suivants :	1	1	b49e2eaa-8ac668dd-6200d220dddf40.80638287
+2167	PluginFormcreatorQuestion	10228	10220	2		1	1	b49e2eaa-8ac668dd-6245e8de7b0fa5.48140817
+2168	PluginFormcreatorQuestion	10229	10228	2		1	1	b49e2eaa-8ac668dd-6245e8e5626399.87307534
+2169	PluginFormcreatorQuestion	10230	10229	2		1	1	b49e2eaa-8ac668dd-6245e8ec582892.75414508
+2172	PluginFormcreatorQuestion	10231	10230	2		1	1	b49e2eaa-8ac668dd-6245e904dfd2a5.18255952
+2173	PluginFormcreatorQuestion	10232	10231	2		1	1	b49e2eaa-8ac668dd-6245e9743ae284.37847283
+2192	PluginFormcreatorQuestion	10256	10255	2		1	1	b49e2eaa-8ac668dd-6246bb35684795.80703910
+2193	PluginFormcreatorQuestion	10257	10256	2		1	1	b49e2eaa-8ac668dd-6246bb4c124ab9.43430583
+2194	PluginFormcreatorQuestion	10258	10257	2		1	1	b49e2eaa-8ac668dd-6246bb67135268.77411802
+2196	PluginFormcreatorQuestion	10255	10245	1		1	1	b49e2eaa-8ac668dd-6246bc3e6962c9.75437616
+2932	PluginFormcreatorQuestion	1568	1567	1	Non	1	1	52cffd3e-8047bc27-6387862c7549b0.29800383
+2933	PluginFormcreatorQuestion	1569	1567	1	Oui	1	1	52cffd3e-8047bc27-63878639b83b41.15131612
+2935	PluginFormcreatorQuestion	14285	14277	1	2. Règlement général sur la protection des données	1	1	52cffd3e-8047bc27-638786abf18a56.21912768
+2936	PluginFormcreatorQuestion	14286	14277	1	1. Règlement général sur la préservation des données	1	1	52cffd3e-8047bc27-638786abf252e7.98580463
+2937	PluginFormcreatorQuestion	14286	14277	1	3. Règlement général sur le partage des données	2	2	52cffd3e-8047bc27-638786abf2ab21.67905681
+2938	PluginFormcreatorQuestion	14286	14277	1	4. Règlement général sur la promotion des données	2	3	52cffd3e-8047bc27-638786abf31e14.53738303
+2939	PluginFormcreatorQuestion	14287	14278	1	3. Sur le territoire de l’Union européenne	1	1	52cffd3e-8047bc27-638786abf42147.88562944
+2940	PluginFormcreatorQuestion	14288	14278	1	1. Partout	1	1	52cffd3e-8047bc27-638786ac011665.71902787
+2941	PluginFormcreatorQuestion	14288	14278	1	2. Seulement en dehors de l’Union européenne	2	2	52cffd3e-8047bc27-638786ac018217.82900935
+2942	PluginFormcreatorQuestion	14289	14279	1	2. De contrer le piratage	1	1	52cffd3e-8047bc27-638786ac025549.10831380
+2943	PluginFormcreatorQuestion	14289	14279	1	3. D’uniformiser la réglementation dans l’Union européenne	2	2	52cffd3e-8047bc27-638786ac02afa3.04658735
+2944	PluginFormcreatorQuestion	14290	14279	1	1. De vous rendre anonyme sur le web	1	1	52cffd3e-8047bc27-638786ac037401.81558207
+2945	PluginFormcreatorQuestion	14290	14279	1	4. D’empêcher l’utilisation des données	2	2	52cffd3e-8047bc27-638786ac03cde1.94223397
+2946	PluginFormcreatorQuestion	14291	14280	1	2. Non	1	1	52cffd3e-8047bc27-638786ac049505.62374664
+2947	PluginFormcreatorQuestion	14292	14280	1	1. Oui	1	1	52cffd3e-8047bc27-638786ac0535a3.61125225
+2948	PluginFormcreatorQuestion	14293	14281	1	15 ans	1	1	52cffd3e-8047bc27-638786ac05fe91.24062552
+2949	PluginFormcreatorQuestion	14294	14281	1	13 ans	1	1	52cffd3e-8047bc27-638786ac06d9f1.11735426
+2950	PluginFormcreatorQuestion	14294	14281	1	16 ans	2	2	52cffd3e-8047bc27-638786ac0725c1.03210501
+2951	PluginFormcreatorQuestion	14294	14281	1	18 ans	2	3	52cffd3e-8047bc27-638786ac0771c9.01799556
+2952	PluginFormcreatorQuestion	14295	14282	1	2. De les récupérer pour les transférer sur un autre service	1	1	52cffd3e-8047bc27-638786ac0829f7.55691129
+2953	PluginFormcreatorQuestion	14296	14282	1	1. De les déplacer à l’intérieur d’un service	1	1	52cffd3e-8047bc27-638786ac08d8a5.11903856
+2954	PluginFormcreatorQuestion	14296	14282	1	3. De les alléger pour pouvoir les porter à bout de bras	2	2	52cffd3e-8047bc27-638786ac092018.56855330
+2955	PluginFormcreatorQuestion	14296	14282	1	4. De les rendre compatible sur un téléphone portable	2	3	52cffd3e-8047bc27-638786ac096b48.02165967
+2956	PluginFormcreatorQuestion	14297	1564	1	Vrai	1	1	52cffd3e-8047bc27-638786ac0a2634.85342445
+2957	PluginFormcreatorQuestion	14298	1564	1	Faux	1	1	52cffd3e-8047bc27-638786ac0ad2a7.23685253
+2958	PluginFormcreatorQuestion	14299	14283	1	Non	1	1	52cffd3e-8047bc27-638786ac0b6e14.07736822
+2959	PluginFormcreatorQuestion	14300	14283	1	Oui	1	1	52cffd3e-8047bc27-638786ac0c09d8.79912880
+2960	PluginFormcreatorQuestion	14302	14284	1	2. C’est l’obligation de veiller, dès la conception de sa technologie, à la protection des données	1	1	52cffd3e-8047bc27-638786ac0cf4d4.54592482
+2961	PluginFormcreatorQuestion	14303	14284	1	1. C'est l'obligation de protéger les données des designers	1	1	52cffd3e-8047bc27-638786ac0d8bc9.68634824
+2962	PluginFormcreatorQuestion	14303	14284	1	3. C’est l’obligation pour les sites web de veiller à la protection des données personnelles de chaque nouvelle connexion	2	2	52cffd3e-8047bc27-638786ac0dce65.29864931
+2963	PluginFormcreatorQuestion	14303	14284	1	4. C'est l'obligation de faire de l'esthétique sur la vie privée	2	3	52cffd3e-8047bc27-638786ac0e0bd8.29955855
+2964	PluginFormcreatorQuestion	14305	14304	1	Non	1	1	52cffd3e-8047bc27-638786ac0ee6d2.10771344
+2965	PluginFormcreatorQuestion	14306	14304	1	Oui	1	1	52cffd3e-8047bc27-638786ac0f74a7.33746917
+3092	PluginFormcreatorQuestion	14954	14939	2		1	1	52cffd3e-8047bc27-63aed355201135.50361348
+3093	PluginFormcreatorQuestion	14957	14954	2		1	1	52cffd3e-8047bc27-63aed366c56b64.39688223
+3094	PluginFormcreatorQuestion	14955	14940	2		1	1	52cffd3e-8047bc27-63aed37c810e89.44459261
+3095	PluginFormcreatorQuestion	14956	14955	2		1	1	52cffd3e-8047bc27-63aed38bd17ac5.06910520
+3096	PluginFormcreatorQuestion	14958	14965	2		1	1	52cffd3e-8047bc27-63aed4de5a58e7.85297946
+3097	PluginFormcreatorQuestion	14964	14938	2		1	1	52cffd3e-8047bc27-63aed4eac780e2.99518688
+3243	PluginFormcreatorQuestion	15704	15696	1	2. Règlement général sur la protection des données	1	1	02895a9d-8047bc27-648993f240ec46.20883254
+3244	PluginFormcreatorQuestion	15705	15696	1	1. Règlement général sur la préservation des données	1	1	02895a9d-8047bc27-648993f2421c57.21269512
+3245	PluginFormcreatorQuestion	15705	15696	1	3. Règlement général sur le partage des données	2	2	02895a9d-8047bc27-648993f2427a90.90748526
+3246	PluginFormcreatorQuestion	15705	15696	1	4. Règlement général sur la promotion des données	2	3	02895a9d-8047bc27-648993f242c571.84338214
+3247	PluginFormcreatorQuestion	15706	15697	1	3. Sur le territoire de l’Union européenne	1	1	02895a9d-8047bc27-648993f2437214.86307140
+3248	PluginFormcreatorQuestion	15707	15697	1	1. Partout	1	1	02895a9d-8047bc27-648993f24431c6.44015592
+3249	PluginFormcreatorQuestion	15707	15697	1	2. Seulement en dehors de l’Union européenne	2	2	02895a9d-8047bc27-648993f24485b8.39753165
+3250	PluginFormcreatorQuestion	15708	15698	1	2. De contrer le piratage	1	1	02895a9d-8047bc27-648993f24538f1.17834433
+3251	PluginFormcreatorQuestion	15708	15698	1	3. D’uniformiser la réglementation dans l’Union européenne	2	2	02895a9d-8047bc27-648993f245a6c9.61329111
+3252	PluginFormcreatorQuestion	15709	15698	1	1. De vous rendre anonyme sur le web	1	1	02895a9d-8047bc27-648993f2468ce0.19502491
+3253	PluginFormcreatorQuestion	15709	15698	1	4. D’empêcher l’utilisation des données	2	2	02895a9d-8047bc27-648993f246db04.99763368
+3254	PluginFormcreatorQuestion	15710	15699	1	2. Non	1	1	02895a9d-8047bc27-648993f247a156.15529149
+3255	PluginFormcreatorQuestion	15711	15699	1	1. Oui	1	1	02895a9d-8047bc27-648993f2484458.72236540
+3256	PluginFormcreatorQuestion	15712	15700	1	15 ans	1	1	02895a9d-8047bc27-648993f2492a71.18338289
+3257	PluginFormcreatorQuestion	15713	15700	1	13 ans	1	1	02895a9d-8047bc27-648993f249ab85.00639801
+3258	PluginFormcreatorQuestion	15713	15700	1	16 ans	2	2	02895a9d-8047bc27-648993f249f004.94873657
+3259	PluginFormcreatorQuestion	15713	15700	1	18 ans	2	3	02895a9d-8047bc27-648993f24a39e6.19482127
+3260	PluginFormcreatorQuestion	15714	15701	1	2. De les récupérer pour les transférer sur un autre service	1	1	02895a9d-8047bc27-648993f24ac527.01353921
+3261	PluginFormcreatorQuestion	15715	15701	1	1. De les déplacer à l’intérieur d’un service	1	1	02895a9d-8047bc27-648993f24b5a94.57132932
+3262	PluginFormcreatorQuestion	15715	15701	1	3. De les alléger pour pouvoir les porter à bout de bras	2	2	02895a9d-8047bc27-648993f24ba187.06264133
+3263	PluginFormcreatorQuestion	15715	15701	1	4. De les rendre compatible sur un téléphone portable	2	3	02895a9d-8047bc27-648993f24be3d4.98845480
+3264	PluginFormcreatorQuestion	15716	7189	1	Vrai	1	1	02895a9d-8047bc27-648993f24c8269.96128746
+3265	PluginFormcreatorQuestion	15717	7189	1	Faux	1	1	02895a9d-8047bc27-648993f24d2523.49734621
+3266	PluginFormcreatorQuestion	15718	15702	1	Non	1	1	02895a9d-8047bc27-648993f24dabd9.29376607
+3267	PluginFormcreatorQuestion	15719	15702	1	Oui	1	1	02895a9d-8047bc27-648993f24e3268.46395280
+3268	PluginFormcreatorQuestion	15721	15703	1	2. C’est l’obligation de veiller, dès la conception de sa technologie, à la protection des données	1	1	02895a9d-8047bc27-648993f24f4d85.42592591
+3269	PluginFormcreatorQuestion	15722	15703	1	1. C'est l'obligation de protéger les données des designers	1	1	02895a9d-8047bc27-648993f24febe6.37859520
+3270	PluginFormcreatorQuestion	15722	15703	1	3. C’est l’obligation pour les sites web de veiller à la protection des données personnelles de chaque nouvelle connexion	2	2	02895a9d-8047bc27-648993f2502e72.32046862
+3271	PluginFormcreatorQuestion	15722	15703	1	4. C'est l'obligation de faire de l'esthétique sur la vie privée	2	3	02895a9d-8047bc27-648993f2506c98.64145397
+3272	PluginFormcreatorQuestion	15724	15723	1	Non	1	1	02895a9d-8047bc27-648993f2514237.25230612
+3273	PluginFormcreatorQuestion	15725	15723	1	Oui	1	1	02895a9d-8047bc27-648993f251d914.84296565
+3996	PluginFormcreatorQuestion	16960	16959	1	Je vous informe par la présente que je pense que certaines de mes données ont été diffusées ; je vous indique les circonstances et les données concernées	1	1	37c4a1e1-8047bc27-65682f47d96d72.44539024
+3997	PluginFormcreatorQuestion	16961	16958	1	Je vous informe qu’en cas de décès, je désigne la personne ci-après qui subrogera les droits sur mes données	1	1	37c4a1e1-8047bc27-65682f47dbfab2.16671400
+3998	PluginFormcreatorQuestion	16962	16953	1	Merci de modifier dans votre système les éléments suivants :	1	1	37c4a1e1-8047bc27-65682f47ddbbf5.67284924
+4128	PluginFormcreatorQuestion	1560	1564	1	Faux	1	1	674c5ee4-8047bc27-65defe59b77bc9.09582074
+4129	PluginFormcreatorQuestion	1561	1564	1	Vrai	1	1	674c5ee4-8047bc27-65defe61214360.45308514

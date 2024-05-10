@@ -1,0 +1,15 @@
+1	Sécurité des comptes et des clés		0	1	2022-06-20 15:08:49	2022-06-20 15:08:49
+2	Sécurité des données	Mesures prises au niveau des données indépendamment du support : chiffrement, anonymisation, pseudonymisation, sauvegarde, ...	0	1	2022-06-20 15:33:14	2022-06-20 15:09:27
+3	Sécurité logique des périphériques		0	1	2022-06-20 15:10:52	2022-06-20 15:10:52
+4	Sécurité du support de l'information	Le support d'information (papier, disque dur, ...) est sécurisé : mise à disposition, affectation, utilisation, démobilisation, mise au rebut	0	1	2022-06-20 15:38:11	2022-06-20 15:13:04
+5	Engagement des utilisateurs		0	1	2022-06-20 15:13:48	2022-06-20 15:13:48
+6	Assurance dommages numériques		0	1	2022-06-20 15:43:11	2022-06-20 15:16:12
+7	Sécurité physique des périphériques		0	1	2022-06-20 15:17:17	2022-06-20 15:17:17
+8	Engagement de l'organisme		0	1	2022-06-20 15:18:21	2022-06-20 15:18:21
+9	Contrôle des flux		0	1	2022-06-20 15:18:48	2022-06-20 15:18:48
+10	Sécurité physique des locaux		0	1	2022-06-20 15:19:29	2022-06-20 15:19:29
+11	Filtrage des accès aux données	Mise en relation de la classification des informations avec les habilitations utilisateur. Filtrage des accès en fonction du groupe de l'utilisateur, son niveau hiérarchique, ses formations, sa localisation, le moment, l'appareil utilisé, ...	0	1	2022-06-20 15:28:49	2022-06-20 15:22:34
+12	Supervision	Surveillance des anomalies par un service de maintenance habilité	0	1	2022-06-20 15:29:53	2022-06-20 15:29:53
+13	Journalisation		0	1	2022-06-20 15:42:23	2022-06-20 15:42:23
+14	Sauvegarde		0	1	2022-06-21 10:45:46	2022-06-21 10:45:46
+15	Test des systèmes		0	1	2022-11-28 16:04:57	2022-11-28 16:02:58

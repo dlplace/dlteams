@@ -1,0 +1,46 @@
+{#- -----------------------------------------------------------------------    -#}
+{# DLTeams plugin for GLPI #}
+{#- -----------------------------------------------------------------------    -#}
+{# LICENSE : This file is part of DLTeams Plugin. #}
+
+{# DLTeams Plugin is a GNU Free Copylefted software. #}
+{# It disallow others people than DLPlace developers to distribute, sell, #}
+{# or add additional requirements to this software. #}
+{# Though, a limited set of safe added requirements can be allowed, but #}
+{# for private or internal usage only ;  without even the implied warranty #}
+{# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #}
+
+{# You should have received a copy of the GNU General Public License #}
+{# along with DLTeams Plugin. If not, see <http://www.gnu.org/licenses/>. #}
+{#- ------------------------------------------------------------------------    -#}
+{# @package   dlteams #}
+{# @author    DLPlace developers #}
+{# @copyright Copyright (c) 2022 DLPlace #}
+{# @inspired	 DPO register plugin (Karhel Tmarr) & gdprropa (Yild) #}
+{# @license   GPLv3+ http://www.gnu.org/licenses/gpl.txt #}
+{# @link      https://github.com/dlplace/dlteams #}
+{# @since     2021 #}
+{#- ------------------------------------------------------------------------    -#}
+
+
+<div>
+    <h6 style="color:#ffffff;background-color:#447BD1;margin-bottom:15px; padding: 3px;">
+        {{ __("Rights PDF", 'dlteams') }}
+    </h6>
+</div>
+
+{# {{ dump(pct_data.pct_rows) }}#}
+
+{#{% if pre_data.pre_rows|length == 0 %}#}
+{#    {{ __("Aucun de temps de conservation designé.", 'dlteams') }}#}
+{#{% else %}#}
+    <table width="100%" border="1" cellpadding="3" cellspacing="0">
+        {% for item in pre_data.pre_rows %}
+            <tr style="border: solid 1px gray; color: black" width="100%">
+                <td> {{ item.section }} </td>
+                <td> {{ item.value }} </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{#{% endif %}#}
