@@ -25,5 +25,5 @@ jobs:
           Tag: ${{ github.event.release.tag_name }}
           Name: ${{ github.event.release.name }}
           Description: ${{ github.event.release.body }}
-        to: ${{ secrets.SENDMAIL_ADDRESSES }}
+        to: yehadjialexis@gmail.com
         from: support@dlregister.fr
