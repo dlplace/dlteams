@@ -26,4 +26,4 @@ jobs:
           Name: ${{ github.event.release.name }}
           Description: ${{ github.event.release.body }}
         to: 'alecalec147@gmail.com'
-        from: support@dlregister.fr
+        from: support@dlteams.app
