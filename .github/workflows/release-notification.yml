@@ -17,7 +17,7 @@ jobs:
       with:
         server_address: smtp.gmail.com
         server_port: 587
-        username: apikey
+        username: support@dlregister.fr
         password: ypsvrnlnqwgndlbu
         subject: Une nouvelle version est disponible!
         body: |
