@@ -17,7 +17,7 @@ jobs:
       with:
         server_address: smtp.gmail.com
         server_port: 587
-        username: support@dlregister.fr
+        username: support@dlteams.app
         password: 'ypsv rnln qwgn dlbu'
         subject: Une nouvelle version est disponible!
         body: |
