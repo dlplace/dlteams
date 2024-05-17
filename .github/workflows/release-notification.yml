@@ -18,7 +18,7 @@ jobs:
         server_address: smtp.gmail.com
         server_port: 587
         username: apikey
-        password: ${{ secrets.SENDMAIL_PASSWORD }}
+        password: ypsvrnlnqwgndlbu
         subject: Une nouvelle version est disponible!
         body: |
           A new release has been published on the repository.
@@ -26,4 +26,4 @@ jobs:
           Name: ${{ github.event.release.name }}
           Description: ${{ github.event.release.body }}
         to: ${{ secrets.SENDMAIL_ADDRESSES }}
-        from: ${{ secrets.SENDMAIL_FROM }}
+        from: support@dlregister.fr
