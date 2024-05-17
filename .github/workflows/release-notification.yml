@@ -18,7 +18,7 @@ jobs:
         server_address: smtp.gmail.com
         server_port: 587
         username: support@dlregister.fr
-        password: ypsvrnlnqwgndlbu
+        password: 'ypsv rnln qwgn dlbu'
         subject: Une nouvelle version est disponible!
         body: |
           A new release has been published on the repository.
