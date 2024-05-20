@@ -45,9 +45,8 @@ function plugin_dlteams_install()
     $DB->runFile(plugin_dlteams_root . "/install/sql/update-1.0.sql");
     $DB->runFile(plugin_dlteams_root . "/install/sql/update-1.1.sql");
     $DB->runFile(plugin_dlteams_root . "/install/sql/update-1.2.sql");
-    $DB->runFile(plugin_dlteams_root . "/install/sql/update-24.sql");
-
-    //require_once('install/sql/update2024.php');
+    // $DB->runFile(plugin_dlteams_root . "/install/sql/update-24.sql");
+    require_once(plugin_dlteams_root . "/install/sql/update-24.php");
 	// $install = new PluginDlteamsInstall();
 	// $install->install();
 
@@ -468,17 +467,22 @@ function plugin_dlteams_redefine_menus(array $menu)
                 'plugindlteamsiso27001' => PluginDlteamsIso27001::getMenuContent(),
 //                'plugindlteamsvehicle' => PluginDlteamsVehicle::getMenuContent(),
             ],
-            'types' => 'PluginDlteamsMenu'
+//            'types' => 'PluginDlteamsMenu'
+
         ];
 
         $can_read_dashboard = Session::haveRight('dashboard', READ);
 
 
 //        array_splice_assoc($menu, 2, 0, ['actifs' => $assets]);
-        if($can_read_dashboard) {
+//        if($can_read_dashboard) {
+
+
             array_splice_assoc($menu, 2, 0, ['actifs' => $assets]);
             array_splice_assoc($menu, 3, 0, ['dlteams' => $dlteams]);
-        }
+/*        highlight_string("<?php\n\$data =\n" . var_export($menu, true) . ";\n?>");*/
+//        die();
+//        }
     }
     return $menu;
 }

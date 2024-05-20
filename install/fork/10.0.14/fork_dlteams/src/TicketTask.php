@@ -290,6 +290,7 @@ class TicketTask extends CommonITILTask
             Html::entities_deep($parent->getTypeName(1)) . "\">&nbsp;&nbsp;";
         $html .= $parent->getStatusIcon($val['status']);
 //        todo dlteams, add tickettask id on planning
+//        if($tickettask->getType() == TicketTask::getType())
         $html .= sprintf("<b><a href='/marketplace/dlteams/front/tickettask.form.php?id=%s' target='_blank'>%s</a></b>", $val['id'], $val['id']);
         $tickettask = new TicketTask();
         if($tickettask->getFromDB($val['id']) && $tickettask->fields["tickettasks_id"]){

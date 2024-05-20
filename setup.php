@@ -25,12 +25,11 @@
  --------------------------------------------------------------------------
  */
 
-define('plugin_dlteams_version', '24.04.02');
+define('plugin_dlteams_version', '24.04.04');
 define('plugin_dlteams_root', __DIR__);
 // include_once __DIR__ . '/dlteams.php';
 function plugin_init_dlteams()
 {
-
     global $PLUGIN_HOOKS;
     global $CFG_GLPI;
     $GLOBALS["DLTEAMS_FILES_TO_RENAME"] = [

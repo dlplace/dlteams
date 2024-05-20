@@ -147,7 +147,12 @@ class PluginDlteamsConfig extends CommonDBTM
         }
         return parent::prepareFolderExport();
     }
-	
+
+    public static function canUpdate()
+    {
+        return true;
+    }
+
     public function showForm($ID, $options = [])
     {
         global $DB;
@@ -936,14 +941,16 @@ class PluginDlteamsConfig extends CommonDBTM
 			echo "<tr class='tab_bg_1'>";
 			echo "<td colspan='2'>" . __("Rejouer les updates sql", 'dlteams') . "</td>";
 				echo "<td colspan='2'> <div class='right'>";
-				echo "<form method='post' action='./config.form.php'><input type='submit' name='play_sql' value=\"" . __("Executer SQL", 'dlteams') . "\" class='submit'>";
+				echo "<form method='post' action='./config.form.php'><input type='submit' name='update_database' value=\"" . __("Executer SQL", 'dlteams') . "\" class='submit'>";
 				Html::closeForm();
 			echo "</div></td></tr>";
 
 			echo "<tr class='tab_bg_1'>";
 			echo "<td colspan='2'>" . __("Mettre à jour le Plug'in", 'dlteams') . "</td>";
 				echo "<td colspan='2'> <div class='right'>";
-				echo "<form method='post' action='./updatedlteamsfiles.php'><input type='submit' name='file_id' value=\"" . __("Mettre à jour", 'dlteams') . "\" class='submit'>";
+				echo "<form method='post' action='./updatedlteamsfiles.php'>";
+
+				echo "<input type='submit' name='file_id' value=\"" . __("Mettre à jour", 'dlteams') . "\" class='submit'>";
 				Html::closeForm();
 			echo "</div></td></tr>";
 
@@ -958,64 +965,58 @@ class PluginDlteamsConfig extends CommonDBTM
 
 }
 
-    public static function listFiles($accessToken) {
-        $url = 'https://www.googleapis.com/drive/v3/files';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $accessToken]);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        $files = json_decode($response, true);
+    static function listFiles($accessToken) {
+            $url = 'https://www.googleapis.com/drive/v3/files';
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $accessToken]);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
+            $files = json_decode($response, true);
 
-        return $files;
-    }
+            return $files;
+        }
 
     public static function refreshAccessToken($refreshToken) {
-        $url = 'https://oauth2.googleapis.com/token';
-        $params = [
-            'refresh_token' => $refreshToken,
-            'client_id' => '768127373707-5nmv2lg018jrjv6srhnel2hsl7p9h1dd.apps.googleusercontent.com',
-            'client_secret' => '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',
-            'grant_type' => 'refresh_token',
-        ];
+            $url = 'https://oauth2.googleapis.com/token';
+            $params = [
+                'refresh_token' => $refreshToken,
+                'client_id' => '768127373707-5nmv2lg018jrjv6srhnel2hsl7p9h1dd.apps.googleusercontent.com',
+                'client_secret' => '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',
+                'grant_type' => 'refresh_token',
+            ];
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        $data = json_decode($response, true);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
+            $data = json_decode($response, true);
 
-        return $data['access_token'];
-    }
+            return $data['access_token'];
+        }
+
 
     public function checkForUpdateFile($accessToken, $fileName) {
-        $url = "https://www.googleapis.com/drive/v3/files";
-        $folderId = "1Qr6IsId1LDByX3BsiivZjkgFkqnTCSE0";
-        $query = urlencode("'$folderId' in parents and name = '$fileName' and trashed = false");
-        $url .= "?q=$query";
+            $url = "https://www.googleapis.com/drive/v3/files";
+            $folderId = "1Qr6IsId1LDByX3BsiivZjkgFkqnTCSE0";
+            $query = urlencode("'$folderId' in parents and name = '$fileName' and trashed = false");
+            $url .= "?q=$query";
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $accessToken, 'Content-Type: application/json']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $accessToken, 'Content-Type: application/json']);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
 
-        $files = json_decode($response, true);
-        return !empty($files['files']);
-    }
-    
-    public static function gdriveKeys(){
-//        Todo: Put all keys in env file
-        return [
-            "refresh_token" => "1//03lXwud0ash9yCgYIARAAGAMSNwF-L9IraV_36O1IYMDNBkoH0hqOLS4_nIQ8EOH6urbxkRJOcy6skz5j2mC3BjPFeQQ8dNPFKfE"
-        ];
+            $files = json_decode($response, true);
+            return !empty($files['files']);
+        }
 
-    }
     /*// Recuperate Donnees Duree de Conservation
             echo "<form method='post' action='./config.form.php'>";
             echo "<table class='tab_cadre' cellpadding='5' width='50%'>";
@@ -1528,7 +1529,9 @@ class PluginDlteamsConfig extends CommonDBTM
 
              if (!empty($data['violation_impact_level'])) {
                 $checked = json_decode($data['violation_impact_level']);
- */       /*         if (!empty($checked->other)) {
+ */
+
+    /*         if (!empty($checked->other)) {
                   $exist = $DB->request('glpi_plugin_dlteams_impactorganisms', ['name' => $checked->other, 'entities_id'=> '0' ]);
                   if (empty(count($exist))) {
                      $impact_data = new PluginDlteamsImpactOrganism();
@@ -1542,6 +1545,7 @@ class PluginDlteamsConfig extends CommonDBTM
                   }
 
                } */
+
     /*               $exist = $DB->request('glpi_plugin_dlteams_records_impactorganisms', ['plugin_dlteams_records_id' => $data['linkid']]);
                    if (empty(count($exist)) && property_exists($checked, 'checked')) {
                       $impact_data = new PluginDlteamsRecord_ImpactOrganism();

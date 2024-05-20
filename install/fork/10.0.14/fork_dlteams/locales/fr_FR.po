@@ -32,7 +32,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-07 12:23+0000\n"
-"PO-Revision-Date: 2024-04-26 09:00+0200\n"
+"PO-Revision-Date: 2024-05-16 11:54+0200\n"
 "Last-Translator: Cédric Anne, 2024\n"
 "Language-Team: French (France) (https://app.transifex.com/glpi/teams/1637/fr_FR/)\n"
 "Language: fr_FR\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: src/Config.php:1833 src/Config.php:1855
 #, php-format
@@ -17870,9 +17870,9 @@ msgstr "Se souvenir de moi"
 #: src/Reminder.php:68
 msgid "Reminder"
 msgid_plural "Reminders"
-msgstr[0] "Actualité, rappel"
-msgstr[1] "Actualités et rappels"
-msgstr[2] "Actualités et rappels"
+msgstr[0] "Actualité, veille"
+msgstr[1] "Actualités - Veille"
+msgstr[2] "Actualités - Veille"
 
 #: src/Planning.php:1765 src/Reminder.php:781
 msgctxt "Planning"

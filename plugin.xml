@@ -1,53 +1,53 @@
 <root>
-            <name>DLTeams ESG</name>
-            <key>dlteams</key>
-            <state>stable</state> <!-- stable | unstable | beta | alpha -->
-            <logo>https://dlregister.app/marketplace/dlteams/images/logo-dlteams.png</logo>
-            <description>
-               <short>
-                  <en>Personal data protection and cybersecurity management software</en>
-                  <fr>Solution de pilotage de la protection des données personnelles et cybersécurité</fr>
-				  <de>Software zum Schutz personenbezogener Daten und zur Verwaltung der Cybersicherheit</de>
-				  <it>software per la protezione dei dati personali e la gestione della sicurezza informatica</it>
-				  <lang>...</lang>
-               </short>
-               <long>
-                  <en>Document and implement data rights and security measures; publish the resulting policies</en>
-				  <fr>Documenter et mettre en oeuvre des mesures de sécurité et pour les droits sur les données ; publier les politiques qui en résulte</fr>
-				  <de>Datenrechte und Sicherheitsmaßnahmen dokumentieren und umsetzen; die resultierenden Richtlinien veröffentlichen</de>
-				  <it>Documentare e attuare i diritti dei dati e le misure di sicurezza; pubblicare le politiche risultanti</it>
-                  <lang>...</lang>
-               </long>
-            </description>
-            <homepage>https://www.dlteams.fr/dataprotection-versions</homepage>
-            <download>https://www.dlteams.fr/product-page/logiciel-freemium</download>
-            <issues>https://www.dlteams.fr/forum</issues>
-            <readme>https://dlregister.app/marketplace/dlteams/front/faq.php</readme>
-            <authors>
-               <author>DLPlace developers</author>
-            </authors>
-            <versions>
-               <version>
-                  <num>1.1.0</num>
-                  <compatibility>~9.4.5</compatibility>
-                  <download_url>https://www.dlteams.fr/product-page/logiciel-freemium</download_url>
-               </version>
-            </versions>
-            <langs>
-               <lang>en_GB</lang>
-               <lang>fr_FR</lang>
-            </langs>
-            <license>AGPL v3+</license>
-            <tags>
-               <en>
-                  <tag>DLTeams</tag>
-               </en>
-			   <fr>
-                  <tag>DLTeams</tag>
-               </fr>
-            </tags>
-            <screenshots>
-			   <screenshot>https://drive.google.com/open?id=1HcNZN5QqE3lXJONferfNyv6JnB7DMtNt&authuser=gestion.dlplace%40gmail.com&usp=drive_fs</screenshot>
-               <screenshot>...</screenshot>
-            </screenshots>
-         </root>
+    <name>DLTeams ESG</name>
+    <key>dlteams</key>
+    <state>stable</state> <!-- stable | unstable | beta | alpha -->
+    <logo>https://dlregister.app/marketplace/dlteams/images/logo-dlteams.png</logo>
+    <description>
+       <short>
+          <en>Personal data protection and cybersecurity management software</en>
+          <fr>Solution de pilotage de la protection des données personnelles et cybersécurité</fr>
+          <de>Software zum Schutz personenbezogener Daten und zur Verwaltung der Cybersicherheit</de>
+          <it>software per la protezione dei dati personali e la gestione della sicurezza informatica</it>
+          <lang>...</lang>
+       </short>
+       <long>
+          <en>Document and implement data rights and security measures; publish the resulting policies</en>
+          <fr>Documenter et mettre en oeuvre des mesures de sécurité et pour les droits sur les données ; publier les politiques qui en résulte</fr>
+          <de>Datenrechte und Sicherheitsmaßnahmen dokumentieren und umsetzen; die resultierenden Richtlinien veröffentlichen</de>
+          <it>Documentare e attuare i diritti dei dati e le misure di sicurezza; pubblicare le politiche risultanti</it>
+          <lang>...</lang>
+       </long>
+    </description>
+    <homepage>https://www.dlplace.fr</homepage>
+    <download>https://github.com/dlplace/dlteams/releases</download>
+    <issues>https://github.com/dlplace/dlteams/issues</issues>
+    <readme>https://dlregister.app/marketplace/dlteams/front/faq.php</readme>
+    <authors>
+       <author>DLPlace developers</author>
+    </authors>
+    <versions>
+       <version>
+          <num>24.04.02</num>
+          <compatibility>~10.0</compatibility>
+          <download_url>https://github.com/dlplace/dlteams/releases/download/24.04.02/Source.code.zip</download_url>
+       </version>
+    </versions>
+    <langs>
+       <lang>en_GB</lang>
+       <lang>fr_FR</lang>
+    </langs>
+    <license>AGPL v3+</license>
+    <tags>
+       <en>
+          <tag>DLTeams</tag>
+       </en>
+       <fr>
+          <tag>DLTeams</tag>
+       </fr>
+    </tags>
+    <screenshots>
+       <screenshot>https://drive.google.com/open?id=1HcNZN5QqE3lXJONferfNyv6JnB7DMtNt&amp;authuser=gestion.dlplace%40gmail.com&amp;usp=drive_fs</screenshot>
+       <screenshot>...</screenshot>
+    </screenshots>
+ </root>

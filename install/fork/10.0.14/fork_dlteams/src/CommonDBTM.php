@@ -5948,7 +5948,8 @@ class CommonDBTM extends CommonGLPI
     protected function computeFriendlyName()
     {
         if (isset($this->fields[static::getNameField()])) {
-            return addslashes($this->fields[static::getNameField()]);
+//            return addslashes($this->fields[static::getNameField()]);
+            return $this->fields[static::getNameField()];
         }
         return '';
     }

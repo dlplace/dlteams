@@ -34,7 +34,6 @@ global $DB;
 
 // Liste des tables qui contiennent uniquement itemtype + itemtype1
 	$table2s = ['concernedpersons_items', 'datacatalogs_items', 'policieforms_items', 'procedures_items', 'processeddatas_items', 'protectivemeasures_items', 'records_items', 'suppliers_items', 'thirdpartycategories_items'];
-	$table2s = ['concernedpersons_items', 'datacatalogs_items', 'policieforms_items', 'procedures_items', 'processeddatas_items', 'protectivemeasures_items', 'records_items', 'suppliers_items', 'thirdpartycategories_items'];
 
 // Liste des objets à changer (PluginDlregister+object -> PluginDlteams+object)
 	$fields = ['ControllerInfo', 'CreatePDF', 'AccountKey', 'Record', 'ConcernedPerson', 'ProcessedData', 'Legalbasi', 'StoragePeriod', 'ThirdPartyCategory', 'RightMeasure', 'PolicieForm', 'DataCarrier', 'DataCatalog', 'TicketTask', 'Appliance', 'Account', 'NetworkPort', 'RiskAssessment', 'Audit', 'PhysicalStorage', 'ProtectiveMeasure', 'TrainingCertification', 'TrainingSession', 'Deliverable', 'KnowbaseItem', 'Procedure', 'Step', 'Vehicle', 'AuditCategory', 'CatalogClassification', 'DataCarrierCategory', 'DataCarrierHosting', 'DataCarrierManagement', 'DataCarrierType', 'Deliverable_Variable', 'Procedure_Variable', 'DataCategory', 'Impact', 'Keytype', 'LegalBasisType', 'MeansOfAcce', 'MediaSupport', 'ProtectiveCategory', 'ProtectiveType', 'ActivityCategory', 'RightMeasureCategory', 'SendingReason', 'ServerType', 'SIIntegration', 'StorageEndAction', 'Storagetype', 'TransmissionMethod', 'Userprofile', 'Process', 'VehicleType'];
@@ -43,23 +42,24 @@ global $DB;
     foreach ($table1s as $table) {
 		foreach ($fields as $field) {
 			$query = "UPDATE `glpi_plugin_dlregister_$table` SET itemtype = \"PluginDlteams$field\" WHERE itemtype = \"PluginDlregister$field\"";
-			$DB->queryOrDie($query, $DB->error());
+			// $DB->queryOrDie($query, $DB->error());
+			$DB->query($query);
 		}
 	}
 
     foreach ($table2s as $table) {
 		foreach ($fields as $field) {
 			$query = "UPDATE `glpi_plugin_dlregister_$table` SET itemtype = \"PluginDlteams$field\" WHERE itemtype = \"PluginDlregister$field\"";
-			$DB->queryOrDie($query, $DB->error());
+			$DB->query($query);
 			$query = "UPDATE `glpi_plugin_dlregister_$table` SET itemtype1 = \"PluginDlteams$field\" WHERE itemtype1 = \"PluginDlregister$field\"";
-			$DB->queryOrDie($query, $DB->error());
+			$DB->query($query);
 		}
 	}
 
 // prise en compte de displaypreferences
 	foreach ($fields as $field) {
 		$query = "UPDATE `glpi_displaypreferences` set itemtype = \"PluginDlteams$field\" WHERE itemtype = \"PluginDlregister$field\"";
-		$DB->queryOrDie($query, $DB->error());
+		$DB->query($query);
 	}
 
 /*// prise en compte de glpiprofiles
@@ -67,7 +67,7 @@ global $DB;
 	$query = "UPDATE `glpi_profiles` set `helpdesk_item_type` = $helpdesk_item_type WHERE `name` = 'Admin' or `name` = 'Super-Admin' or `name` = 'Hotliner' or `name` = 'Technician' or `name` = 'Supervisor'";
 	$DB->queryOrDie($query, $DB->error());	*/
 
-    $message = "contenu des champs renommés";
+    $message = "contenu des champs renommés<br>";
 
 // 2------ renommage des champs plugin_dlregister_ -> plugin_dlteams_
 $querys =  ['ALTER TABLE `glpi_plugin_dlregister_accountkeys`
@@ -111,9 +111,9 @@ $querys =  ['ALTER TABLE `glpi_plugin_dlregister_accountkeys`
 	];
 	// var_dump($query);die;
     foreach ($querys as $query) {
-		$DB->queryOrDie($query, $DB->error());
+		$DB->query($query);
 	}
-	$message .= "champs renommés";
+	$message .= "champs renommés<br>";
 	
 // 3------ renommage des tables plugin_dlregister_ -> plugin_dlteams_
 	global $DB;
@@ -122,10 +122,26 @@ $querys =  ['ALTER TABLE `glpi_plugin_dlregister_accountkeys`
 		$old_table = "glpi_plugin_dlregister_" . $object;
 		$new_table = "glpi_plugin_dlteams_" . $object;
 		$query = "RENAME TABLE IF EXISTS $old_table TO $new_table";
-		$DB->queryOrDie($query, $DB->error());
+		$DB->query($query);
 	}
-	$message .= "tables renommées"; 
+	$message .= "tables renommées<br>"; 
 	Session::addMessageAfterRedirect($message);
+
+//	renommer les profiles
+$query = 'DELETE FROM `glpi_profilerights` WHERE `name` like "plugin_dlplacedpo%"'; 
+$DB->query($query);
+$query = 'DELETE FROM `glpi_profilerights` WHERE `name` like "plugin_dlteams%"';
+$DB->query($query);
+// 'UPDATE `glpi_profilerights` SET `name` = CONCAT("plugin_dlteams_", RIGHT(`name`,LENGTH(`name`)-18)) WHERE LEFT(`name`,18) = "plugin_dlregister_"'];
+    $query = "UPDATE glpi_profilerights AS t1
+    SET t1.name = REPLACE(t1.name, 'dlregister', 'dlteams')
+    WHERE t1.name LIKE '%dlregister%'
+    AND NOT EXISTS (
+        SELECT 1
+        FROM glpi_profilerights t2
+        WHERE t2.name = REPLACE(t1.name, 'dlregister', 'dlteams')
+    )";
+    $DB->query($query);
 	Html::back();
 
 /*

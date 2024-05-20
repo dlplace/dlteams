@@ -34,6 +34,8 @@ if (Session::getCurrentInterface() == 'central') {
 } else {
     Html::helpHeader(PluginDlteamsRecord::getTypeName(2));
 }
+//var_dump($_SESSION['glpiactiveprofile']["id"]);
+//die();
 
 $record = new PluginDlteamsRecord();
 $record->checkGlobal(READ);

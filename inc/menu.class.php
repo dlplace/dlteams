@@ -32,7 +32,7 @@ class PluginDlteamsMenu extends CommonGLPI
         return __("GDPR Compliance", 'dlteams');
     }
 
-    static $rightname = 'plugin_dlteams_record';
+    static $rightname = 'plugin_dlteams_rgpdmenu';
 
     static function getMenuName()
     {
@@ -249,14 +249,23 @@ class PluginDlteamsMenu extends CommonGLPI
             }
         }
 
-        if (PluginDlteamsRecord::canView()) {
+//        var_dump(static::$rightname);
+//        die();
+
+        if (self::canView()) {
             $image = "<i class='fas fa-print fa-2x' title='" . __("Create PDF for all records within active entity and its sons", 'dlteams') . "'></i>";
             $menu['title'] = PluginDlteamsMenu::getMenuName();
             $menu['page'] = '/marketplace/dlteams/front/rgpd.php';
             $menu['icon'] = self::getIcon();
         }
+        
 
         return $menu;
+    }
+
+    public static function canView()
+    {
+        return true;
     }
 
     public static function getCurrentId()

@@ -28,7 +28,6 @@
 include("../../../inc/includes.php");
 $plugin = new Plugin();
 global $DB;
-
 if ($plugin->isActivated('dlteams')) {
    $config = new PluginDlteamsConfig();
 	if (isset($_POST['create_modelrgpd'])) {
@@ -45,18 +44,18 @@ if ($plugin->isActivated('dlteams')) {
 		Session::addMessageAfterRedirect('Entité "rgpd-model", profil "Referent-RGPD", données modèles : supprimés avec succès', true, 0);
 		Html::back();
 	}
-	elseif (isset($_POST['play_sql'])) {
+	elseif (isset($_POST['update_database'])) {
 		error_reporting(E_ALL & ~E_WARNING);
 		mysqli_report(MYSQLI_REPORT_OFF);
 		$DB->runFile(plugin_dlteams_root . "/install/sql/update-1.0.sql");
-		echo ("/install/sql/update-1.0.sql : ok<br>");
+		$message = "update-1.0 effectuée <br>";
 		$DB->runFile(plugin_dlteams_root . "/install/sql/update-1.1.sql");
-		echo ("/install/sql/update-1.1.sql : ok<br>");
+		$message .= "update-1.1 effectuée <br>";
 		$DB->runFile(plugin_dlteams_root . "/install/sql/update-1.2.sql");
-		echo ("/install/sql/update-1.2.sql : ok<br>");
-		$DB->runFile(plugin_dlteams_root . "/install/sql/update-24.sql");
-		echo ("/install/sql/update-24.sql : ok<br>");
-		Session::addMessageAfterRedirect('update effectué', true, 0);
+		$message .= "update-1.2 effectuée <br>";
+		require_once(plugin_dlteams_root . "/install/sql/update-24.php");
+		$message .= "update-24 effectuée<br>";
+		Session::addMessageAfterRedirect($message, true, 0);
 	}
 	elseif (isset($_POST['add'])) {
 		$config->check(-1, CREATE, $_POST);
