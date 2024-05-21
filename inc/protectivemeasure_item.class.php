@@ -94,6 +94,9 @@ class PluginDlteamsProtectiveMeasure_Item extends CommonDBRelation
     // affichage de l'onglet et de son nom
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
+
+//        var_dump(Session::haveRight($item::$rightname, READ));
+//        die();
         switch ($item->getType()) {
             case static::$itemtype_2:
                 if (!$withtemplate) {
@@ -108,12 +111,12 @@ class PluginDlteamsProtectiveMeasure_Item extends CommonDBRelation
 
             default:
                 if (!$withtemplate) {
-                    if (Session::haveRight($item::$rightname, READ)) {
+//                    if (Session::haveRight($item::$rightname, READ)) {
                         if ($_SESSION['glpishow_count_on_tabs']) {
                             return static::createTabEntry(static::getTypeName(2), static::countForItem($item));
                         }
                         return static::getTypeName(2);
-                    }
+//                    }
                 }
                 break;
         }

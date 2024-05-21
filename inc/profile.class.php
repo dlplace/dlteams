@@ -165,6 +165,7 @@ class PluginDlteamsProfile extends Profile {
 		 'plugin_dlteams_vehicletype' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
 		 'plugin_dlteams_menu' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
 		 'plugin_dlteams_iso27001menu' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
+		 'plugin_dlteams_accessopening' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
       ], true);
    }
 

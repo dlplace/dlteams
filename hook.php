@@ -452,6 +452,7 @@ function plugin_dlteams_redefine_menus(array $menu)
             'content' => [
                 'plugindlteamsphysicalstorage' => PluginDlteamsPhysicalStorage::getMenuContent(),
                 'plugindlteamsvehicle' => PluginDlteamsVehicle::getMenuContent(),
+                'plugindlteamsaccessopening' => PluginDlteamsAccessOpening::getMenuContent(),
             ],
 //            'types' => 'PluginDlteamsMenu'
         ];
@@ -475,14 +476,14 @@ function plugin_dlteams_redefine_menus(array $menu)
 
 
 //        array_splice_assoc($menu, 2, 0, ['actifs' => $assets]);
-//        if($can_read_dashboard) {
+        if($can_read_dashboard) {
 
 
             array_splice_assoc($menu, 2, 0, ['actifs' => $assets]);
             array_splice_assoc($menu, 3, 0, ['dlteams' => $dlteams]);
 /*        highlight_string("<?php\n\$data =\n" . var_export($menu, true) . ";\n?>");*/
 //        die();
-//        }
+        }
     }
     return $menu;
 }

@@ -347,9 +347,38 @@ $querys = [
   `date_creation` timestamp NULL DEFAULT NULL,
   `date_mod` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;"
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
+    "CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_accessopenings` (
+ `id` int unsigned NOT NULL AUTO_INCREMENT,
+ `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
+ `entities_id` INT unsigned NOT NULL DEFAULT 0,
+ `is_recursive` tinyint(1) NOT NULL DEFAULT 0,
+ `name` varchar(255) NOT NULL DEFAULT '',
+ `comment` mediumtext DEFAULT NULL,
+ `locations_id` int unsigned DEFAULT NULL,
+ `date_mod` timestamp NULL DEFAULT NULL,
+ `date_creation` timestamp NULL DEFAULT NULL,
+ `is_helpdesk_visible` TINYINT(1) NOT NULL DEFAULT 0,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='PluginDlteamsAccessOpening';",
+"ALTER TABLE IF EXISTS `glpi_plugin_dlteams_audits`
+	RENAME COLUMN IF EXISTS `plugin_dlregister_auditcategories_id` TO `plugin_dlteams_auditcategories_id`;",
+    "CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_accessopenings_items` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `accessopenings_id` int UNSIGNED NOT NULL DEFAULT 0,
+  `itemtype` varchar(255) NOT NULL,
+  `items_id` int UNSIGNED NOT NULL DEFAULT 0,
+  `itemtype1` varchar(255) DEFAULT NULL,
+  `items_id1` int unsigned NOT NULL DEFAULT 0,
+  `comment` varchar(255) DEFAULT NULL,
+  `foreign_id` int UNSIGNED NOT NULL DEFAULT 0,
+  `date_creation` timestamp NULL,
+  `date_mod` timestamp NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
 ];
 $i = 1;
+global $DB;
 foreach ($querys as $query) {
 		// echo $query . "<br>";
 		$result = $DB->query($query) or die("Erreur". $DB->error());
@@ -365,5 +394,6 @@ foreach ($querys as $query) {
 }
 
 header("Refresh:0; url=config.form.php");
+Html::back();
 
 

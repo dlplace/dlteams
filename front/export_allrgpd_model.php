@@ -185,13 +185,12 @@ global $DB;
 
 		// chmod("/var/www/test_dlteams_app/marketplace/dlteams/install/datas/", 0755);
 		print_r ($glpiRoot. "/marketplace/dlteams/install/datas/");
-		chmod($glpiRoot. "/marketplace/dlteams/install/datas/", 0755);
+		chmod($glpiRoot. "/marketplace/dlteams/install/datas/", 0777);
 
 		foreach ($fields_exports as list($table, $fields_export)) {
 		// si model-rgpd alors dossier install/datas, sinon dossier files/_plugins/dlteams/
-		//$file_pointer = $glpiRoot. "/marketplace/dlteams/install/datas/" . $table . ".dat";
-			// pour tests, on met dans test 
-			$file_pointer = "/var/www/test_dlteams_app/marketplace/dlteams/install/datas/" . $table . ".dat";
+		$file_pointer = $glpiRoot. "/marketplace/dlteams/install/datas/" . $table . ".dat";
+		// pour tests, on met dans test - $file_pointer = "/var/www/test_dlteams_app/marketplace/dlteams/install/datas/" . $table . ".dat";
 			unlink($file_pointer);
 			$endoftable = substr($table, -6);
 			//var_dump ($endoftable) ;
@@ -202,6 +201,7 @@ global $DB;
 			}
 		$DB->queryOrDie($query, $DB->error());
 		}
+		chmod($glpiRoot. "/marketplace/dlteams/install/datas/", 0755);
 	
 
 	// STEP 4 Delete oid

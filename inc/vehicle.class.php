@@ -74,7 +74,7 @@ class PluginDlteamsVehicle extends CommonDropdown implements
       $this->showFormHeader($options);
 
       // echo "<table class='tab_cadre_fixe'>";
-      echo "<tr class='tab_bg_2'><th>" . __("Information sur le véhicule", 'dlteams') . "</th>";
+      echo "<tr class='tab_bg_2'><th colspan='2'>" . __("Information sur le véhicule", 'dlteams') . "</th>";
       echo "</tr>";
 	  // echo "<th colspan='2'></th></tr></table>";
 
