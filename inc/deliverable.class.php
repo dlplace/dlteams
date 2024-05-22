@@ -51,6 +51,7 @@ class PluginDlteamsDeliverable extends CommonDropdown
         if (!is_array($values)) {
             $values = [$field => $values];
         }
+
         $options['display'] = false;
         switch ($field) {
             case 'items_id':
@@ -62,6 +63,30 @@ class PluginDlteamsDeliverable extends CommonDropdown
                 break;
         }
         return parent::getSpecificValueToSelect($field, $name, $values, $options);
+    }
+
+    public static function getSpecificValueToDisplay($field, $values, array $options = [])
+    {
+
+        if(isset($options["searchopt"]["editbutton"]) && $options["searchopt"]["editbutton"]){
+            $id = $options["raw_data"]["raw"]["id"];
+
+            $output = "";
+
+            $url = Toolbox::getItemTypeFormURL("PluginDlteamsDeliverable")
+                ."?deliverable_id=".$id."&report_type="
+                .PluginDlteamsCreatePDF::REPORT_SINGLE_RECORD
+                ."&print_comments=true"
+                ."&prevent_contextmenu=true"
+                ."&print_first_page=true"
+                ."&edit_pdf=true";
+
+            $output.= "<a href='$url' target='_blank'>".__("Edit / Print PDF", 'dlteams')."</a>";
+
+            $output.= Html::closeForm(false);
+        return $output;
+        }
+        parent::getSpecificValueToDisplay($field, $values, $options);
     }
 
     function showForm($id, $options = [])
@@ -429,6 +454,16 @@ class PluginDlteamsDeliverable extends CommonDropdown
             'name' => __("Last update"),
             'massiveaction' => false,
             'datatype' => 'text',
+        ];
+
+        $tab[] = [
+            'id' => '10',
+            'table' => $this->getTable(),
+            'field' => 'id',
+            'name' => __("Editer"),
+            'massiveaction' => false,
+            'datatype' => 'specific',
+            'editbutton' => true
         ];
 
 //        $tab[] = [

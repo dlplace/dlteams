@@ -665,10 +665,9 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             }
 
 
+
             foreach (static::$table_match_str as $key => $column) {
 
-                /*                highlight_string("<?php\n\$data =\n" . var_export($data, true) . ";\n?>");*/
-//                die();
                 if (isset($data[$column["column_name"]])) {
                     if ((in_array($item::getType(), $itemtype1_list_in_records) || in_array($item::getType(), $exceptions_itemtype_in_records)) && $key == 0) {
                         $object_name = new static::$itemtype_1();
@@ -682,7 +681,7 @@ class PluginDlteamsRecord_Item extends CommonDBTM
                     $name = "--";
 
                 if ($key === 0)
-                    $name = "<a target='_blank' href=\"" . static::$itemtype_2::getFormURLWithID($data[(in_array($item::getType(), $itemtype1_list_in_records) || in_array($item::getType(), $exceptions_itemtype_in_records)) ? "items_id" : static::$items_id_1]) . "\">" . sprintf("%s - %s", isset($data["number"])?$data["number"]:"", $name) . "</a>";
+                    $name = "<a target='_blank' href=\"" . static::$itemtype_2::getFormURLWithID($data[(in_array($item::getType(), $itemtype1_list_in_records) || in_array($item::getType(), $exceptions_itemtype_in_records)) ? "items_id" : static::$items_id_1]) . "\">" . sprintf("%s%s - %s", isset($data["number"])?$data["number"]:"", isset($data["parentnumber"])?".".$data["number"]:"", $name) . "</a>";
 
                 echo "<td class='left" . (isset($data['is_deleted']) && $data['is_deleted'] ? " tab_bg_2_2'" : "'");
                 echo ">" . $name . "</td>";
@@ -890,6 +889,21 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             $query["ORDERBY"][] = $table_name . '.number ASC';
         }
 
+//        if ($item::getType() == PluginDlteamsRecord::class){
+//            var_dump("zzz");
+//            die();
+            $query["SELECT"][] = PluginDlteamsRecord::getTable() . '.number AS number';
+            $query["SELECT"][] = PluginDlteamsRecord::getTable() . '.parentnumber AS parentnumber';
+            $query["ORDERBY"][] = PluginDlteamsRecord::getTable() . '.number ASC';
+            $query["LEFT JOIN"][PluginDlteamsRecord::getTable()] = [
+                'ON' => [
+                    $table_item_name => 'items_id',
+                    PluginDlteamsRecord::getTable() => 'id'
+                ]
+            ];
+//        }
+
+
 
         if (in_array($item::getType(), $itemtype1_list_in_records) || in_array($item::getType(), $exceptions_itemtype_in_records)) {
             $query["WHERE"] = [
@@ -911,6 +925,8 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             $query['SELECT'][] = $table_name . '.content AS content';
         }
 
+/*        highlight_string("<?php\n\$data =\n" . var_export($query, true) . ";\n?>");*/
+//        die();
         $iterator = $DB->request($query);
         $temp = [];
 

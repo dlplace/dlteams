@@ -286,7 +286,41 @@ class PluginDlteamsProcedure extends CommonDropdown
             'datatype' => 'text',
         ];
 
+        $tab[] = [
+            'id' => '10',
+            'table' => $this->getTable(),
+            'field' => 'id',
+            'name' => __("Editer"),
+            'massiveaction' => false,
+            'datatype' => 'specific',
+            'editbutton' => true
+        ];
+
         return $tab;
+    }
+
+    public static function getSpecificValueToDisplay($field, $values, array $options = [])
+    {
+
+        if(isset($options["searchopt"]["editbutton"]) && $options["searchopt"]["editbutton"]){
+            $id = $options["raw_data"]["raw"]["id"];
+
+            $output = "";
+
+            $url = Toolbox::getItemTypeFormURL("PluginDlteamsProcedure")
+                ."?procedure_id=".$id."&report_type="
+                .PluginDlteamsCreatePDF::REPORT_SINGLE_RECORD
+                ."&print_comments=true"
+                ."&prevent_contextmenu=true"
+                ."&print_first_page=true"
+                ."&edit_pdf=true";
+
+            $output.= "<a href='$url' target='_blank'>".__("Edit / Print PDF", 'dlteams')."</a>";
+
+            $output.= Html::closeForm(false);
+            return $output;
+        }
+        parent::getSpecificValueToDisplay($field, $values, $options);
     }
 
     public function defineTabs($options = [])

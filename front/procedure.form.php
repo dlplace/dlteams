@@ -33,22 +33,27 @@ if (!isset($_GET['id'])) {
 $procedure = new PluginDlteamsProcedure();
 /*highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
 //die();
+if (isset($_GET["procedure_id"]))
+    $data = $_GET;
+else
+    $data = $_POST;
 
-if(isset($_POST["edit_pdf"])){
+if(isset($data["edit_pdf"])){
 
     $pdfoutput = new PluginDlteamsCreatePDF();
     $print_options = PluginDlteamsCreatePDF::preparePrintOptionsFromForm($_GET);
 
+    if (!isset($_GET["procedure_id"]))
     updateEditProcedureSettings();
 
     $procedure = new PluginDlteamsProcedure();
-    $procedure->getFromDB($_POST['procedure_id']);
+    $procedure->getFromDB($data['procedure_id']);
 //    $pdfoutput->generateReport($_GET, $print_options);
 
     if($procedure){
         $print_options["ispdf"] = true;
-        $print_options["print_first_page"] = isset($_POST["print_first_page"])?$_POST["print_first_page"]:false;
-        $print_options["print_comments"] = isset($_POST["print_comments"])?$_POST["print_comments"]:false;
+        $print_options["print_first_page"] = isset($data["print_first_page"])?$data["print_first_page"]:false;
+        $print_options["print_comments"] = isset($data["print_comments"])?$data["print_comments"]:false;
         $pdfoutput->procedureGenerateReport($print_options, $procedure);
 //        $_GET["report_type"] = 7;
 //        $pdfoutput->showPDF($_GET);

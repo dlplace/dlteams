@@ -28,35 +28,38 @@
 include("../../../inc/includes.php");
 
 if (!isset($_GET['id'])) {
-   $_GET['id'] = "";
+    $_GET['id'] = "";
 }
 $delivrable = new PluginDlteamsDeliverable();
 /*highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
 //die();
-
-if(isset($_POST["edit_pdf"])){
+if (isset($_GET["deliverable_id"]))
+    $data = $_GET;
+else
+    $data = $_POST;
+if (isset($data["edit_pdf"])) {
 
     $pdfoutput = new PluginDlteamsCreatePDF();
     $print_options = PluginDlteamsCreatePDF::preparePrintOptionsFromForm($_GET);
 
-    updateEditDeliverableSettings();
+    if (!isset($_GET["deliverable_id"]))
+        updateEditDeliverableSettings();
 
     $deliverable = new PluginDlteamsDeliverable();
-    $delivrable->getFromDB($_POST['deliverable_id']);
+    $delivrable->getFromDB($data['deliverable_id']);
 //    $pdfoutput->generateReport($_GET, $print_options);
 
-    if($delivrable){
+    if ($delivrable) {
         $print_options["ispdf"] = true;
-        $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"])?$_POST["prevent_contextmenu"]:false;
-        $print_options["print_first_page"] = isset($_POST["print_first_page"])?$_POST["print_first_page"]:false;
-        $print_options["print_comments"] = isset($_POST["print_comments"])?$_POST["print_comments"]:false;
+        $print_options["prevent_contextmenu"] = isset($data["prevent_contextmenu"]) ? $data["prevent_contextmenu"] : false;
+        $print_options["print_first_page"] = isset($data["print_first_page"]) ? $data["print_first_page"] : false;
+        $print_options["print_comments"] = isset($data["print_comments"]) ? $data["print_comments"] : false;
         $pdfoutput->deliverableGenerateReport($print_options, $delivrable);
 //        $_GET["report_type"] = 7;
 //        $pdfoutput->showPDF($_GET);
     }
 
-}
-elseif (isset($_POST["edit_html"])){
+} elseif (isset($_POST["edit_html"])) {
     $pdfoutput = new PluginDlteamsCreatePDF();
     $print_options = PluginDlteamsCreatePDF::preparePrintOptionsFromForm($_GET);
 
@@ -66,16 +69,15 @@ elseif (isset($_POST["edit_html"])){
     $delivrable->getFromDB($_POST['deliverable_id']);
 //    $print_options['print_first_page'] = $_POST['print_first_page'];
     $print_options["ispdf"] = false;
-    $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"])?$_POST["prevent_contextmenu"]:false;
-    $print_options["print_first_page"] = isset($_POST["print_first_page"])?$_POST["print_first_page"]:false;
-    $print_options["print_comments"] = isset($_POST["print_comments"])?$_POST["print_comments"]:false;
+    $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"]) ? $_POST["prevent_contextmenu"] : false;
+    $print_options["print_first_page"] = isset($_POST["print_first_page"]) ? $_POST["print_first_page"] : false;
+    $print_options["print_comments"] = isset($_POST["print_comments"]) ? $_POST["print_comments"] : false;
     $pdfoutput->deliverableGenerateHtml($print_options, $delivrable);
-}
-elseif (isset($_POST["publish_dlteams"])){
+} elseif (isset($_POST["publish_dlteams"])) {
 
     $print_options["ispdf"] = false;
-    $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"])?$_POST["prevent_contextmenu"]:false;
-    if(!isset($_POST["choosen_publication_folder"]) || !$_POST["choosen_publication_folder"] || $_POST["choosen_publication_folder"] == "0"){
+    $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"]) ? $_POST["prevent_contextmenu"] : false;
+    if (!isset($_POST["choosen_publication_folder"]) || !$_POST["choosen_publication_folder"] || $_POST["choosen_publication_folder"] == "0") {
         Session::addMessageAfterRedirect("Veuillez choisir un dossier de publication", false, ERROR);
         Html::back();
     }
@@ -85,11 +87,11 @@ elseif (isset($_POST["publish_dlteams"])){
     $deliverable = new PluginDlteamsDeliverable();
     $delivrable->getFromDB($_POST['deliverable_id']);
     $print_options['print_first_page'] = $_POST['print_first_page'];
-    $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"])?$_POST["prevent_contextmenu"]:false;
+    $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"]) ? $_POST["prevent_contextmenu"] : false;
     $print_options['print_comments'] = $_POST['print_comments'];
     $pdfoutput = new PluginDlteamsCreatePDF();
     $print_options = PluginDlteamsCreatePDF::preparePrintOptionsFromForm($_GET);
-    $glpiRoot=str_replace('\\', '/', GLPI_ROOT);
+    $glpiRoot = str_replace('\\', '/', GLPI_ROOT);
 //    $valeurp= $pdfoutput->getGuidValue($_GET, $print_options);
 
     $link_folder = new Link();
@@ -98,11 +100,11 @@ elseif (isset($_POST["publish_dlteams"])){
 
     $server_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 
-    $str_link = str_replace($server_url. "/" . "pub" . "/", "", $str_link);
+    $str_link = str_replace($server_url . "/" . "pub" . "/", "", $str_link);
     $str_guid = str_replace("/", "", $str_link);
 
-    if(isset($str_guid) && $str_guid !=0 && $str_guid !=NULL){
-        if (!file_exists($glpiRoot. "/" . "pub"."/" .$str_guid."/")) {
+    if (isset($str_guid) && $str_guid != 0 && $str_guid != NULL) {
+        if (!file_exists($glpiRoot . "/" . "pub" . "/" . $str_guid . "/")) {
             $parent_directory = $glpiRoot . "/pub";
             if (!is_dir($parent_directory)) {
                 $cre = mkdir($parent_directory, 0755, true);
@@ -123,9 +125,9 @@ elseif (isset($_POST["publish_dlteams"])){
             "deliverables_id" => $_POST["deliverable_id"]
         ]);
 
-        if(count($exist)>0){
+        if (count($exist) > 0) {
             $id = 0;
-            foreach ($exist as $di){
+            foreach ($exist as $di) {
                 $id = $di["id"];
             }
 
@@ -157,8 +159,7 @@ elseif (isset($_POST["publish_dlteams"])){
                 "deliverables_id" => $_POST["deliverable_id"]
             ]);
 
-        }
-        else{
+        } else {
 
             $deliverable_items->add([
                 "itemtype" => "Link",
@@ -175,60 +176,54 @@ elseif (isset($_POST["publish_dlteams"])){
         }
 
 
-        $print_options["print_first_page"] = isset($_POST["print_first_page"])?$_POST["print_first_page"]:false;
+        $print_options["print_first_page"] = isset($_POST["print_first_page"]) ? $_POST["print_first_page"] : false;
         $print_options["print_comments"] = $_POST["print_comments"];
-        $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"])?$_POST["prevent_contextmenu"]:false;
+        $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"]) ? $_POST["prevent_contextmenu"] : false;
 
         $pdfoutput->deliverablePublishDlRegister($print_options, $delivrable);
-        Session::addMessageAfterRedirect(sprintf( __('Fichier crée avec Succès')));
+        Session::addMessageAfterRedirect(sprintf(__('Fichier crée avec Succès')));
         Html::back();
-    }
-    else {
+    } else {
         $pdfoutput->generateGuid($_GET, $print_options);
         $pdfoutput->deliverablePublishDlRegister($print_options, $_GET);
         Session::addMessageAfterRedirect(sprintf(__('Fichier crée avec Succès')));
         Html::back();
     }
-}
-elseif (isset($_POST['add'])) {
+} elseif (isset($_POST['add'])) {
 
-   $delivrable->check(-1, CREATE, $_POST);
-   $id = $delivrable->add($_POST);
-   Html::redirect($delivrable->getFormURLWithID($id));
+    $delivrable->check(-1, CREATE, $_POST);
+    $id = $delivrable->add($_POST);
+    Html::redirect($delivrable->getFormURLWithID($id));
 
-}
-else if (isset($_POST['update'])) {
+} else if (isset($_POST['update'])) {
 
-   $delivrable->check($_POST['id'], UPDATE);
-   $delivrable->update($_POST);
-   Html::back();
+    $delivrable->check($_POST['id'], UPDATE);
+    $delivrable->update($_POST);
+    Html::back();
 
-}
-else if (isset($_POST['delete'])) {
+} else if (isset($_POST['delete'])) {
 
-   $delivrable->check($_POST['id'], DELETE);
-   $delivrable->delete($_POST);
-   $delivrable->redirectToList();
-}
-else if(isset($_POST['save'])){
+    $delivrable->check($_POST['id'], DELETE);
+    $delivrable->delete($_POST);
+    $delivrable->redirectToList();
+} else if (isset($_POST['save'])) {
 
 //    if(!isset($_POST["choosen_publication_folder"]) || !$_POST["choosen_publication_folder"] || $_POST["choosen_publication_folder"] == '0' ){
 //        Session::addMessageAfterRedirect("Veuillez choisir un dossier de publication", false, ERROR);
 //        Html::back();
 //    }
 
-    if(updateEditDeliverableSettings())
-    Session::addMessageAfterRedirect("Mise à jour avec succès");
+    if (updateEditDeliverableSettings())
+        Session::addMessageAfterRedirect("Mise à jour avec succès");
     else
         Session::addMessageAfterRedirect("Une erreur s'est produite", false, ERROR);
     Html::back();
-}
-else {
+} else {
 
     $delivrable->checkGlobal(READ);
 
     if (Session::getCurrentInterface() == 'central') {
-		Html::header(PluginDlteamsDeliverable::getTypeName(2), '', 'dlteams', 'plugindlteamsmenu', 'deliverable');
+        Html::header(PluginDlteamsDeliverable::getTypeName(2), '', 'dlteams', 'plugindlteamsmenu', 'deliverable');
     } else {
         Html::helpHeader(PluginDlteamsDeliverable::getTypeName(0));
     }
@@ -242,18 +237,19 @@ else {
     }
 }
 
-function updateEditDeliverableSettings(){
+function updateEditDeliverableSettings()
+{
     $deliverable = new PluginDlteamsDeliverable();
 
     $deliverable->update([
-        "is_firstpage" => isset($_POST["print_first_page"]) && $_POST["print_first_page"] === "on"?true:false,
-        "is_comment" => isset($_POST["print_comments"]) && $_POST["print_comments"] === "on"?true:false,
-        "print_logo" => isset($_POST["print_logo"]) && $_POST["print_logo"] === "on"?true:false,
+        "is_firstpage" => isset($_POST["print_first_page"]) && $_POST["print_first_page"] === "on" ? true : false,
+        "is_comment" => isset($_POST["print_comments"]) && $_POST["print_comments"] === "on" ? true : false,
+        "print_logo" => isset($_POST["print_logo"]) && $_POST["print_logo"] === "on" ? true : false,
         "document_name" => $_POST["document_url"],
         "document_title" => $_POST["document_title"],
         "document_content" => $_POST["document_content"],
         "document_comment" => $_POST["document_comment"],
-        "links_id" => isset($_POST["choosen_publication_folder"])?$_POST["choosen_publication_folder"]:null,
+        "links_id" => isset($_POST["choosen_publication_folder"]) ? $_POST["choosen_publication_folder"] : null,
         "id" => $_POST['deliverable_id']
     ]);
 
