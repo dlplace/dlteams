@@ -376,6 +376,16 @@ $querys = [
   `date_mod` timestamp NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
+    "CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_locations_items` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `locations_id` int UNSIGNED NOT NULL DEFAULT 0,
+  `itemtype` varchar(255) NOT NULL,
+  `items_id` int UNSIGNED NOT NULL DEFAULT 0,
+  `comment` varchar(255) DEFAULT NULL,
+  `date_creation` timestamp NULL,
+  `date_mod` timestamp NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
 ];
 $i = 1;
 global $DB;

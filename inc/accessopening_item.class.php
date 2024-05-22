@@ -30,22 +30,64 @@ use GlpiPlugin\dlteams\Exception\ImportFailureException;
 
 class PluginDlteamsAccessOpening_Item extends CommonDBRelation
 {
-    public static $itemtype_1 = 'PluginDlteamsAccessOpening';
-    public static $items_id_1 = 'accesopenings_id';
-    public static $take_entity_1 = false;
+//    public static $itemtype_1 = 'PluginDlteamsAccessOpening';
+//    public static $items_id_1 = 'accessopenings_id';
+//    public static $take_entity_1 = false;
+//
+//    public static $itemtype_2 = 'itemtype';
+//    public static $items_id_2 = 'items_id';
+//    public static $take_entity_2 = true;
+//
+//    public static $column1_id = "31";
+//    public static $column2_id = "32";
 
-    public static $itemtype_2 = 'itemtype';
-    public static $items_id_2 = 'items_id';
-    public static $take_entity_2 = true;
+    static public $itemtype_2 = PluginDlteamsAccessOpening::class;
+    static public $itemtype_1;
+    public static $items_id_1;
+    public static $title;
+    public static $sub_title;
+    public static $table_match_str = [];
 
-    public static $column1_id = "31";
-    public static $column2_id = "32";
+    public function __construct()
+    {
+        static::$itemtype_1 = str_replace("_Item", "", __CLASS__); // $itemtype_1 ---> PluginDlteamsProtectiveMeasure
+        static::$items_id_1 = strtolower(str_replace("PluginDlteams", "", str_replace("_Item", "", __CLASS__))) . "s_id";
+        static::$title = __("Lieux ou se trouvent se élément", 'dlteams');
+        static::$sub_title = __("Choisir un lieu", 'dlteams');
+        static::$table_match_str = [
+            [
+                'head_text' => __("Name"),
+                'column_name' => 'name',
+                'show_as_link' => true
+            ],
+            [
+                'head_text' => __("Type"),
+                'column_name' => 'typename',
+            ],
+            [
+                'head_text' => __("Categorie"),
+                'column_name' => 'namecat',
+            ],
+//            [
+//                'head_text' => __("Content"),
+//                'column_name' => 'content',
+//            ],
+            [
+                'head_text' => __("Comment"),
+                'column_name' => 'comment',
+            ]
+        ];
+//        self::forceTable('glpi_plugin_dlteams_locations_items');
+        parent::__construct();
+    }
 
 
     public function post_purgeItem()
     {
 //        purge relations
         $relation_item_str = $this->fields["itemtype"] . "_Item";
+        if($relation_item_str == "Location_Item")
+            $relation_item_str = PluginDlteamsLocation_Item::class;
         $relation_item = new $relation_item_str();
         $relation_column_id = strtolower(str_replace("PluginDlteams", "", str_replace("_Item", "", $this->fields["itemtype"]))) . "s_id";
 

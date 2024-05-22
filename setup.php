@@ -78,6 +78,7 @@ function plugin_init_dlteams()
     $PLUGIN_HOOKS['assign_to_ticket']['dlteams'] = true;
 
     Plugin::registerClass(ManualLink::class, ['addtabon' => [Ticket::class, 'KnowbaseItem']]);
+    Plugin::registerClass(PluginDlteamsLocation_Item::class, ['addtabon' => [Location::class, 'KnowbaseItem']]);
 //    Plugin::registerClass(PluginDlteamsTicketTask::class, ['addtabon' => [Ticket::class]]);
     Plugin::registerClass(PluginDlteamsObject_document::class, ['addtabon' => [Ticket::class]]);
 

@@ -106,16 +106,16 @@ class PluginDlteamsAccessOpening extends CommonDropdown implements
 
 
 
-        echo "<tr>";
-        echo "<td style='text-align:right'>".__('Lieu')."</td>";
-        echo "<td>";
-        Location::dropdown(['value'  => $this->fields["locations_id"],
-            'entity' => $this->fields["entities_id"],
-            'width' => '250px'
-        ]);
-        echo "</td>";
-        echo "<td width='15%'>". " " . "</td>";
-        echo "</tr>" ;
+//        echo "<tr>";
+//        echo "<td style='text-align:right'>".__('Lieu')."</td>";
+//        echo "<td>";
+//        Location::dropdown(['value'  => $this->fields["locations_id"],
+//            'entity' => $this->fields["entities_id"],
+//            'width' => '250px'
+//        ]);
+//        echo "</td>";
+//        echo "<td width='15%'>". " " . "</td>";
+//        echo "</tr>" ;
 
         $this->showFormButtons($options);
         return true;
@@ -412,6 +412,7 @@ class PluginDlteamsAccessOpening extends CommonDropdown implements
         $this->addDefaultFormTab($ong)
             // ->addStandardTab('PluginDlteamsDataCatalog_Item', $ong, $options)
             // ->addStandardTab('PluginDlteamsVehicle_Item', $ong, $options)
+            ->addStandardTab(PluginDlteamsLocation_Item::class, $ong, $options)
             ->addStandardTab(PluginDlteamsProtectiveMeasure_Item::class, $ong, $options)
             ->addStandardTab('PluginDlteamsObject_document', $ong, $options)
             ->addStandardTab('ManualLink', $ong, $options)

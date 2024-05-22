@@ -2581,20 +2581,20 @@ class Ticket extends CommonITILObject
     public static function getDefaultSearchRequest()
     {
         $search = ['criteria' => [
-		0 => [
-			'field'      => 12,
-            'searchtype' => 'equals',
-            'value'      => 'notclosed'
-			],
-        1 => [
-			'field' => 0,
-            'searchtype' => 'contains',
-            'value' => ''
-			],
-		],
-			'sort'     => 19,
-			'order'    => 'DESC'
-		];
+            0 => [
+                'field'      => 12,
+                'searchtype' => 'equals',
+                'value'      => 'notclosed'
+            ],
+            1 => [
+                'field' => 0,
+                'searchtype' => 'contains',
+                'value' => ''
+            ],
+        ],
+            'sort'     => 19,
+            'order'    => 'DESC'
+        ];
 
         if (Session::haveRight(self::$rightname, self::READALL)) {
             $search['criteria'][0]['value'] = 'notold';
@@ -3071,7 +3071,7 @@ JAVASCRIPT;
 
         $tab = array_merge($tab, $this->getSearchOptionsMain());
 
-		$tab[] = [
+        $tab[] = [
             'id'                 => '155',
             'table'              => $this->getTable(),
             'field'              => 'time_to_own',
@@ -4432,6 +4432,7 @@ JAVASCRIPT;
             $item_ticket = new Item_Ticket();
         }
 
+
         TemplateRenderer::getInstance()->display('components/itilobject/layout.html.twig', [
             'item'               => $this,
             'timeline_itemtypes' => $this->getTimelineItemtypes(),
@@ -4616,6 +4617,23 @@ JAVASCRIPT;
                 $task->fields = $task_row;
                 $task->post_getFromDB();
 
+                //        planifications
+                global $DB;
+                $planifications_query = [
+                    "FROM" => TicketTask::getTable(),
+                    "WHERE" => [
+                        "tickettasks_id" => $task->fields["id"]
+                    ]
+                ];
+
+                $planifications_todo_query = [
+                    "FROM" => TicketTask::getTable(),
+                    "WHERE" => [
+                        "tickettasks_id" => $task->fields["id"],
+                        "state" => Planning::TODO
+                    ]
+                ];
+
                 if (!$params['check_view_rights'] || $task->canViewItem()) {
                     $task_row['can_edit'] = $task->canUpdateItem();
                     $task_row['can_promote'] =
@@ -4625,9 +4643,10 @@ JAVASCRIPT;
                     ;
                     $timeline[$task::getType() . "_" . $tasks_id] = [
                         'type'     => $taskClass,
-                        'item'     => $task_row,
+                        'item'     => [...$task_row, 'nb_planification' => count($DB->request($planifications_query)),
+                            'nb_planification_todo' => count($DB->request($planifications_todo_query)),],
                         'object'   => $task,
-                        'itiltype' => 'Task'
+                        'itiltype' => 'Task',
                     ];
                 }
             }
@@ -7478,8 +7497,8 @@ JAVASCRIPT;
                 'SUM' => [
                     'actiontime AS actiontime',
                     'estimate_duration as estimate_duration'
-                    ],
                 ],
+            ],
             'FROM'   => $task_table,
             'WHERE'  => [$foreign_key => $this->fields['id']]
         ];

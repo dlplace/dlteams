@@ -68,15 +68,14 @@
                     N/A
                 {% endif %}
 				</span>
-                {# {% if entry_i['timeline_position'] > 0 %}
-                    <span><b>Ordre: </b>{{ entry_i['timeline_position'] | formatted_datetime('d/m/Y H:i')}}</span>
-                {% endif %} #}
+{#                { {% if entry_i['timeline_position'] > 0 %}#}
+{#                    <span><b>Ordre: </b>{{ entry_i['timeline_position'] | formatted_datetime }}</span>#}
+{#                {% endif %}#}
 
 {#                zzz#}
                 {# on pourrait rajouter la présence ou le nombre de planifications #}
-                {% if subitem.fields['tickettasks_id'] is not null %}
-                    - <span><b>Planifications:</b> </span> Oui
-
+                {% if entry_i['nb_planification'] > 0 %}
+                    - <span><b>Planifications:</b> </span> {{ entry_i['nb_planification'] }} dont {{ entry_i['nb_planification_todo'] }} "A faire"
                 {% endif %}
             </div>
 
@@ -784,8 +783,10 @@
                                             parent_itemtype: "{{ item.getType() }}",
                                             parent_items_id: {{ item.fields['id'] }},
                                             parent_fk_field: "{{ item.getForeignKeyField() }}",
-                                            begin: "{{ subitem.fields['begin'] }}",
+                                            begin: $('input[name=date]').val(),
                                             end: "{{ subitem.fields['end'] }}",
+                                            _display_dates: false,
+                                            actiontime: $('select[name=estimate_duration]').val(),
                                         });
                                     }
                                 </script>

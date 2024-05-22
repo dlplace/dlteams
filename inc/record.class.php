@@ -817,17 +817,17 @@ class PluginDlteamsRecord extends CommonDropdown implements
             'searchtype' => ['equals', 'notequals'],
         ];
 
-
-        $tab[] = [
-            'id' => '9',
-            'table' => PluginDlteamsActivityCategory::getTable(),
-            'field' => 'number',
-            'name' => __("Numéro Activité", 'dlteams'),
-            'forcegroupby' => true,
-            'massiveaction' => true,
-            'datatype' => 'dropdown',
-            'searchtype' => ['equals', 'notequals'],
-        ];
+//TODO: changer field ou table
+//        $tab[] = [
+//            'id' => '9',
+//            'table' => PluginDlteamsActivityCategory::getTable(),
+//            'field' => 'number',
+//            'name' => __("Numéro Activité", 'dlteams'),
+//            'forcegroupby' => true,
+//            'massiveaction' => true,
+//            'datatype' => 'dropdown',
+//            'searchtype' => ['equals', 'notequals'],
+//        ];
 
 
 

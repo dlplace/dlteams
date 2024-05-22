@@ -414,4 +414,5 @@ class TicketTask extends CommonITILTask
     {
         return "(0 = 1 " . Ticket::buildCanViewCondition("tickets_id") . ") ";
     }
+
 }
