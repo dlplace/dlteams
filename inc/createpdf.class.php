@@ -2436,7 +2436,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
             "pct_data" => $pct_data,
             "pre_data" => $pre_data,
             "first_page" => false,
-            "deplier_traitements" => $generator_options["report_type"] == self::REPORT_SINGLE_RECORD || $generator_options["report_type"] == self::REPORT_ALL,
+            "deplier_traitements" => $generator_options["report_type"] == self::REPORT_SINGLE_RECORD,
             "prexternal_data" => $prexternal_data,
             "psm_data" => $psm_data,
             "key" => $key,
