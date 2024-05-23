@@ -1,0 +1,10 @@
+# Activer les options nécessaires
+Options Indexes FollowSymLinks
+
+# Autoriser l'accès à partir de toutes les adresses IP
+Require all granted
+
+# Permettre l'écriture (utile principalement pour les scripts)
+<FilesMatch "\.(dat|log|json|xml)$">
+    Require all granted
+</FilesMatch>

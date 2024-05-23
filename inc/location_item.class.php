@@ -41,7 +41,7 @@ class PluginDlteamsLocation_Item extends CommonDBTM
     {
         static::$itemtype_1 = str_replace("_Item", "", __CLASS__); // $itemtype_1 ---> PluginDlteamsProtectiveMeasure
         static::$items_id_1 = strtolower(str_replace("PluginDlteams", "", str_replace("_Item", "", __CLASS__))) . "s_id";
-        static::$title = __("Lieux ou se trouvent se élément", 'dlteams');
+        static::$title = __("Lieux ou se trouvent cet élément", 'dlteams');
         static::$sub_title = __("Choisir un lieu", 'dlteams');
         static::$table_match_str = [
             [

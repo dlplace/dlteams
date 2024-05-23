@@ -1,15 +1,0 @@
-5	0	05 Montant monétaire	1	Rapporté à un objet, un document commercial, un service, ... 	0	\N	\N	\N	\N	\N	\N
-7	0	08 Action effectuée sur des données	1	opération ou ensemble d'opérations portant sur des données : consultation, ajout, collecte, enregistrement, extraction, impression, communication 	0	\N	\N	\N	\N	\N	\N
-8	0	06 Multimédia (photos, vidéos, sons)	1	Base de données d'images, de photos, sons, vidéos	0	\N	\N	\N	\N	\N	\N
-10	0	Papier (documents, dossiers, classeurs)	0	Documents papiers, classeur, livres	0	\N	\N	\N	\N	\N	\N
-11	0	04 Message	1	Message écrit ou électronique. \
-Un émetteur transmet un message via un canal de communication à un récepteur qui le reçoit et peut répondre	0	\N	\N	\N	\N	\N	\N
-13	0	Sauvegarde	0	Fichiers ou base de données contenant une ou plusieurs copie ou duplication de données utilisées en production. 	0	\N	\N	\N	\N	\N	\N
-14	0	09 Donnée de capteur	1	compteur de passage, relevé d'un paramètre 	0	\N	\N	\N	\N	\N	\N
-16	0	01 Date	1		0	\N	\N	\N	\N	\N	\N
-18	0	03 Adresse, lieu	1		0	\N	\N	\N	\N	\N	\N
-19	0	02 Date, heure	1		0	\N	\N	\N	\N	\N	\N
-20	0	Coordonnée GPS	1	Couramment utilisé sur les cartes pour afficher la position d’objets, soit sous forme instantanée, soit au fil du temps.	0	\N	\N	\N	\N	\N	\N
-22	0	07 Plans, schémas, organigrammes	1		0	\N	\N	\N	\N	\N	\N
-23	0	SMS, MMS	1	Un SMS, ou Short Message Service est un message court, de 160 caractères maximum et contenant uniquement du texte.\
-Un MMS, ou Multimedia Messaging Service, est une évolution du SMS, qui permet d’envoyer également des photos, vidéos et sons.	0	\N	\N	\N	\N	\N	\N

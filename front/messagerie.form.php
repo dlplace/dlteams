@@ -40,7 +40,8 @@ include("../../../inc/includes.php");
 //die();
 Session::checkLoginUser();
 
-
+/*highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
+//die();
 //$comment = new KnowbaseItem_Comment();
 $comment = new ITILFollowup();
 if (!isset($_POST['items_id'])) {
@@ -66,6 +67,7 @@ if (isset($_POST["add"])) {
     $data["itemtype"] = $_POST["itemtype"];
     $data["items_id"] = $_POST["items_id"];
     $data["content"] = $_POST["content"];
+    $data["parent_comment_id"] = isset($_POST["parent_comment_id"])?$_POST["parent_comment_id"]:null;
 
     global $DB;
     $who = Session::getLoginUserID();
@@ -98,7 +100,7 @@ if (isset($_POST["add"])) {
 }
 
 if (isset($_POST["edit"])) {
-    if (!isset($_POST['knowbaseitems_id']) || !isset($_POST['id']) || !isset($_POST['comment'])) {
+    if (!isset($_POST['items_id']) || !isset($_POST['id']) || !isset($_POST['content'])) {
         $message = __('Mandatory fields are not filled!');
         Session::addMessageAfterRedirect($message, false, ERROR);
         Html::back();
@@ -106,13 +108,16 @@ if (isset($_POST["edit"])) {
 
     $comment->getFromDB($_POST['id']);
     $data = array_merge($comment->fields, $_POST);
-    if ($comment->update($data)) {
+    unset($data['_glpi_csrf_token']);
+    unset($data['edit']);
+
+    if ($DB->update($comment->getTable(), $data, ['id' => $_POST['id']])) {
         Event::log(
-            $_POST["knowbaseitems_id"],
-            "knowbaseitem_comment",
+            $_POST["items_id"],
+            strtolower($_POST["itemtype"]),
             4,
             "tracking",
-            sprintf(__('%s edit a comment on knowledge base'), $_SESSION["glpiname"])
+            sprintf(__('%s modifié'), $_SESSION["glpiname"])
         );
         Session::addMessageAfterRedirect(
             "<a href='#kbcomment{$comment->getID()}'>" . __('Your comment has been edited') . "</a>",

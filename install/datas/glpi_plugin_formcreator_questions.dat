@@ -472,8 +472,7 @@ de votre smartphone personnel	221	select	0	1			["Jamais","Rarement","Parfois","F
 Je gére des appels entrants que je diffuse	221	select	0	1			["Oui","Non"]		7	0	4	1	b49e2eaa-8ac668dd-6183a0ae887088.68125313	1810	221
 Autres :	221	text	0	0					16	0	4	1	b49e2eaa-8ac668dd-6183a0ae88b5a6.49529724	1811	221
 Intitulé de l'activité	233	text	0	0					0	0	4	1	b49e2eaa-8ac668dd-6192028d4f7367.77155984	1882	233
-Finalité 1	233	text	0	0			Informer sur les activités de l'organisme
-\
+Finalité 1	233	text	0	0			Informer sur les activités de l'organisme\
 Mesurer l'audience		1	0	4	1	b49e2eaa-8ac668dd-6192028d514b86.90238673	1883	233
 Responsable(s) du traitement et rédacteur(s) de la fiche	233	actor	0	0	[]				6	0	4	1	b49e2eaa-8ac668dd-6192028d536151.90319926	1884	233
 Finalité 2	233	text	0	0					2	0	4	2	b49e2eaa-8ac668dd-6192028d53e672.11496861	1885	233
@@ -576,10 +575,8 @@ Fichier(s) à joindre motivant la demande	1079	file	0	0	[]				2	0	4	2	b49e2eaa-8
 Votre adresse mail	1079	email	1	0				&lt;p&gt;Pour prendre en compte cotre demande et garantir la confidentialité des données, nous vous enverrons un code unique afin de vérifier votre identité&lt;/p&gt;	1	0	4	1	b49e2eaa-8ac668dd-6229c903e54191.41376685	7878	1079
 Engagement de sincérité et de confidentialité	1079	checkboxes	1	0	[]		["Je certifie la sincérité des informations fournies"]		3	0	4	1	b49e2eaa-8ac668dd-6229c903e5b652.08909979	7879	1079
 Délai réponse	1079	description	0	0				&lt;p&gt;Vous voudrez bien me faire parvenir votre réponse dans les meilleurs délais et au plus tard dans un délai de 72 heures à compter de la réception de ma demande (article 12.3 de la loi RGPD).&lt;/p&gt;&lt;p&gt;Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.&lt;/p&gt;	4	0	4	1	b49e2eaa-8ac668dd-6229c903e69263.42000319	7880	1079
-Indiquez ci-dessous les données sont concernées, les circonstances et le type de violation	1080	textarea	0	0	&#60;p&#62;Type de violation  : &#60;/p&#62;
-\
-&#60;p&#62;Quelles données ? &#60;/p&#62;
-\
+Indiquez ci-dessous les données sont concernées, les circonstances et le type de violation	1080	textarea	0	0	&#60;p&#62;Type de violation  : &#60;/p&#62;\
+&#60;p&#62;Quelles données ? &#60;/p&#62;\
 &#60;p&#62;Circonstances ? &#60;/p&#62;			&#60;p&#62;Les types de violation de données peuvent être : l'usage de vos données pour une autre finalité que celle prévue, le vol, l'usurpation d'identité, la diffusion non autorisée, l'effacement non voulu, les données rendues illisibles (chiffrage), le refus ou l'impossibilité par le responsable de traitement de vous permettre d'exercer vos droits, ...&#60;/p&#62;	0	0	4	1	b49e2eaa-8ac668dd-6229c903e955c0.94838705	7883	1080
 Autres sources de données incluses	1414	text	0	0			\N		4	0	4	1	b49e2eaa-8ac668dd-6245e0ed77b7c6.94775509	10219	1414
 Base de donnée concernée	1414	glpiselect	0	0	0	PluginDatabasesDatabase	{"entity_restrict":"2"}		1	0	2	1	b49e2eaa-8ac668dd-6245e220504986.66505756	10220	1414
@@ -714,7 +711,7 @@ En validant ce formulaire, vous acceptez nos conditions générales d'utilisatio
 Votre courriel	1912	email	1	0					1	2	2	1	52cffd3e-8047bc27-63791a927a6603.90382514	13698	1912
 Votre organisme : désignation, coordonées, N° SIREN	1912	textarea	1	0			\N		0	0	4	1	52cffd3e-8047bc27-637a0b0cc8bea3.03176780	13712	1912
 Merci d'indiquer votre email	191	email	0	0					1	0	4	1	52cffd3e-8047bc27-63878384680cf6.41413679	14275	191
-Préférences de communication	191	checkboxes	1	0	[]		["Aucune communication, mon email sert seulement à enregistrer mes réponses à ce questionnaire","Recevoir plus d'informations sur le logiciel DLTeams","Etre contacté afin d'être assisté dans la mise en oeuvre de la protection de la vie privée et des Données dans mon entreprise"]		2	0	4	1	52cffd3e-8047bc27-63878439f0e993.55548384	14276	191
+Préférences de communication	191	checkboxes	1	0	[]		["Aucune communication, mon email sert seulement à enregistrer mes réponses à ce questionnaire","Recevoir plus d'informations sur le logiciel DLRegister","Etre contacté afin d'être assisté dans la mise en oeuvre de la protection de la vie privée et des Données dans mon entreprise"]		2	0	4	1	52cffd3e-8047bc27-63878439f0e993.55548384	14276	191
 Que signifie l’acronyme RGPD ?	1997	radios	1	0	réponse		["1. Règlement général sur la préservation des données","2. Règlement général sur la protection des données","3. Règlement général sur le partage des données","4. Règlement général sur la promotion des données"]		0	0	4	1	52cffd3e-8047bc27-638786abedfa83.32695103	14277	1997
 Où s’applique le RGPD ?	1997	radios	1	0	numerama.com		["1. Partout","2. Seulement en dehors de l’Union européenne","3. Sur le territoire de l’Union européenne"]		3	0	4	1	52cffd3e-8047bc27-638786abee7cd0.48424131	14278	1997
 Quel est l’objectif du RGPD ?	1997	checkboxes	1	0	["numerama.com"]		["1. De vous rendre anonyme sur le web","2. De contrer le piratage","3. D’uniformiser la réglementation dans l’Union européenne","4. D’empêcher l’utilisation des données"]		6	0	4	1	52cffd3e-8047bc27-638786abeecfb1.77281146	14279	1997
@@ -747,7 +744,7 @@ Correct	1997	description	0	0				&#60;p&#62;Correct ! Rares sont les entreprises 
 Faux	1997	description	0	0				&#60;p&#62;Faux ! Rares sont les entreprises et les organismes publics qui ne sont pas concernés par le règlement européen 2016/679 du 27 avril 2016 entrant en vigueur le 25 mai 2018 (le « RGPD »). En effet, dès que l’activité de l’organisme touche à la collecte, au stockage et/ou à l’utilisation de données à caractère personnel de citoyens de l’Union européenne, le règlement s’applique, et ce, que l’entreprise se situe dans l’Union Européenne ou hors Union Européenne.&#60;/p&#62;	29	0	4	2	52cffd3e-8047bc27-638786ac0f2868.65831060	14306	1997
 Copyright	1998	description	0	0				&lt;p&gt;Merci à numérama.com&lt;/p&gt;	0	0	4	1	52cffd3e-8047bc27-638786ac1049a9.42072749	14307	1998
 Merci d'indiquer votre email	1998	email	0	0					1	0	4	1	52cffd3e-8047bc27-638786ac10b189.95279953	14308	1998
-Préférences de communication	1998	checkboxes	1	0	[]		["Aucune communication, mon email sert seulement à enregistrer mes réponses à ce questionnaire","Recevoir plus d'informations sur le logiciel DLTeams","Etre contacté afin d'être assisté dans la mise en oeuvre de la protection de la vie privée et des Données dans mon entreprise"]		2	0	4	1	52cffd3e-8047bc27-638786ac10fb73.01528977	14309	1998
+Préférences de communication	1998	checkboxes	1	0	[]		["Aucune communication, mon email sert seulement à enregistrer mes réponses à ce questionnaire","Recevoir plus d'informations sur le logiciel DLRegister","Etre contacté afin d'être assisté dans la mise en oeuvre de la protection de la vie privée et des Données dans mon entreprise"]		2	0	4	1	52cffd3e-8047bc27-638786ac10fb73.01528977	14309	1998
 Décrire les circonstances ayant entrainées la violation 	187	textarea	1	0			\N		2	0	4	1	52cffd3e-8047bc27-63971d4fb77274.35248164	14329	187
 Enjeux et objectifs en rapport avec la sensibilité des informations contenues sur ce support	1564	textarea	0	0			\N		4	0	4	1	52cffd3e-8047bc27-63aec089c7bf73.60287389	14926	1564
 Décrire l'usage	1564	textarea	0	0			\N		2	0	4	1	52cffd3e-8047bc27-63aec0dc66d042.95454247	14927	1564
@@ -763,7 +760,7 @@ Groupes ayant un accès utilisateurs	2087	glpiselect	0	0	0	Group	{"entity_restri
 Sous-traitants utilisateur du support	2087	glpiselect	0	0	0	Supplier	{"entity_restrict":"2"}		3	2	2	1	52cffd3e-8047bc27-63aec7984b86c3.36534704	14940	2087
 Protection logique des données	2087	textarea	0	0	&#60;p&#62;Les documents-fichiers-bases de données sont chiffrés &#60;/p&#62;		\N		1	0	4	1	52cffd3e-8047bc27-63aec910b5fff2.15773176	14942	2087
 Protection physique de l'accès au stockage	2087	textarea	0	0	&#60;p&#62;Le support est dans un local protégé / les données se trouvent dans un datacenter / les données sont stockées par un tiers extérieur&#60;/p&#62;		\N	&#60;p&#62;Voir &#60;a href="https://dlregister.app/plugins/dlplacedpo/front/protectivemeasure.php"&#62;Protection et Surveillance (mesures, suivi)&#60;/a&#62;&#60;/p&#62;	0	0	4	1	52cffd3e-8047bc27-63aec9964b1d07.03631974	14943	2087
-Un contrat conforme à l'article  du RGPD a-t-il été conclu ? 	2088	text	0	0			\N	&#60;p&#62;&#60;a href="https://www.dlteams.fr/gdpr-regulation-fr-ch4" target="_blank" rel="noopener"&#62;Voir l'article 28 &#60;/a&#62;&#60;/p&#62;	1	0	4	1	52cffd3e-8047bc27-63aecc1f0d6120.77462478	14944	2088
+Un contrat conforme à l'article  du RGPD a-t-il été conclu ? 	2088	text	0	0			\N	&#60;p&#62;&#60;a href="https://www.dlregister.fr/gdpr-regulation-fr-ch4" target="_blank" rel="noopener"&#62;Voir l'article 28 &#60;/a&#62;&#60;/p&#62;	1	0	4	1	52cffd3e-8047bc27-63aecc1f0d6120.77462478	14944	2088
 Joindre le(s) document(s)	2088	file	0	0	\N		\N		2	0	4	1	52cffd3e-8047bc27-63aecc3a071c20.49592299	14945	2088
 Les utilisateurs ont-ils suivi une formation adéquate ? 	2088	textarea	0	0			\N		4	0	4	1	52cffd3e-8047bc27-63aecc51986644.35626797	14946	2088
 Les administrateurs ont-ils certifiés leurs compétences ? 	2088	text	0	0			\N		5	0	4	1	52cffd3e-8047bc27-63aecc69628253.44794654	14947	2088
@@ -819,16 +816,11 @@ Faux	2197	description	0	0				&lt;p&gt;Faux ! La notion de « privacy by design �
 Le Règlement concerne-t-il uniquement les grandes entreprises ?	2197	radios	0	0			["Oui","Non"]		27	0	4	1	02895a9d-8047bc27-648993f250ae10.57970791	15723	2197
 Correct	2197	description	0	0				&#60;p&#62;Correct ! Rares sont les entreprises et les organismes publics qui ne sont pas concernés par le règlement européen 2016/679 du 27 avril 2016 entré en vigueur le 25 mai 2018 (le « RGPD »). En effet, dès que l’activité de l’organisme touche à la collecte, au stockage et/ou à l’utilisation de données à caractère personnel de citoyens de l’Union européenne, le règlement s’applique, et ce, que l’entreprise se situe dans l’Union Européenne ou hors Union Européenne.&#60;/p&#62;	28	0	4	2	02895a9d-8047bc27-648993f250f540.27489554	15724	2197
 Faux	2197	description	0	0				&lt;p&gt;Faux ! Rares sont les entreprises et les organismes publics qui ne sont pas concernés par le règlement européen 2016/679 du 27 avril 2016 entrant en vigueur le 25 mai 2018 (le « RGPD »). En effet, dès que l’activité de l’organisme touche à la collecte, au stockage et/ou à l’utilisation de données à caractère personnel de citoyens de l’Union européenne, le règlement s’applique, et ce, que l’entreprise se situe dans l’Union Européenne ou hors Union Européenne.&lt;/p&gt;	29	0	4	2	02895a9d-8047bc27-648993f25185d7.62974698	15725	2197
-En Savoir plus	2198	description	0	0				&#60;h3 style="text-align: center;"&#62;La protection des données à caractère personnel &#60;/h3&#62;
-\
-&#60;p style="text-align: center;"&#62;&#60;a href="https://www.cnil.fr/fr/comprendre-le-rgpd" target="_blank" rel="noopener"&#62;Mieux comprendre le RGPD&#60;/a&#62; | CNIL&#60;/p&#62;
-\
-&#60;h3 style="text-align: center;"&#62;Cyber sécurité, bonnes pratiques, guide d’hygiène&#60;/h3&#62;
-\
-&#60;p style="text-align: center;"&#62;&#60;a href="https://www.gouvernement.fr/actualite/contre-la-cybermalveillance-les-bons-reflexes-sont-indispensables"&#62;S'initier à la Cyber sécurité&#60;/a&#62; | gouv.fr&#60;/p&#62;
-\
-&#60;p style="text-align: center;"&#62;&#60;span style="font-size: 10.5pt; font-family: 'Calibri',sans-serif; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 'Times New Roman'; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin; mso-bidi-theme-font: minor-latin; mso-ansi-language: FR; mso-fareast-language: FR; mso-bidi-language: AR-SA;"&#62;&#60;a href="https://www.ssi.gouv.fr/entreprise/guide/guide-des-bonnes-pratiques-de-linformatique/" target="_blank" rel="noopener"&#62;Le guide pour les TPE/PME&#60;/a&#62; | gouv.fr &#60;br&#62;&#60;/span&#62;&#60;/p&#62;
-\
+En Savoir plus	2198	description	0	0				&#60;h3 style="text-align: center;"&#62;La protection des données à caractère personnel &#60;/h3&#62;\
+&#60;p style="text-align: center;"&#62;&#60;a href="https://www.cnil.fr/fr/comprendre-le-rgpd" target="_blank" rel="noopener"&#62;Mieux comprendre le RGPD&#60;/a&#62; | CNIL&#60;/p&#62;\
+&#60;h3 style="text-align: center;"&#62;Cyber sécurité, bonnes pratiques, guide d’hygiène&#60;/h3&#62;\
+&#60;p style="text-align: center;"&#62;&#60;a href="https://www.gouvernement.fr/actualite/contre-la-cybermalveillance-les-bons-reflexes-sont-indispensables"&#62;S'initier à la Cyber sécurité&#60;/a&#62; | gouv.fr&#60;/p&#62;\
+&#60;p style="text-align: center;"&#62;&#60;span style="font-size: 10.5pt; font-family: 'Calibri',sans-serif; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 'Times New Roman'; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin; mso-bidi-theme-font: minor-latin; mso-ansi-language: FR; mso-fareast-language: FR; mso-bidi-language: AR-SA;"&#62;&#60;a href="https://www.ssi.gouv.fr/entreprise/guide/guide-des-bonnes-pratiques-de-linformatique/" target="_blank" rel="noopener"&#62;Le guide pour les TPE/PME&#60;/a&#62; | gouv.fr &#60;br&#62;&#60;/span&#62;&#60;/p&#62;\
 &#60;p style="text-align: center;"&#62;&#60;span style="font-size: 10.5pt; font-family: 'Calibri',sans-serif; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: 'Times New Roman'; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin; mso-bidi-theme-font: minor-latin; mso-ansi-language: FR; mso-fareast-language: FR; mso-bidi-language: AR-SA;"&#62;&#60;a href="https://www.ssi.gouv.fr/entreprise/guide/guide-dhygiene-informatique/" target="_blank" rel="noopener"&#62;42 mesures d'hygiène du numérique&#60;/a&#62; | Agence nationale de la sécurité des systèmes d'information&#60;/span&#62;&#60;/p&#62;	0	0	4	1	02895a9d-8047bc27-648993f2527c72.03311487	15726	2198
 Votre email	2198	email	1	0				&#60;p&#62;Merci d'avoir répondu à ce questionnaire. A bientôt&#60;/p&#62;	1	0	4	1	02895a9d-8047bc27-648993f252d6a0.29320308	15727	2198
 Votre prénom, nom et numéro de téléphone	2212	text	1	0				&lt;p&gt;Conformément au règlement, nous nous réservons le droit de procéder à des vérifications plus approfondies, par exemple en effectuant un appel vocal ou en vous demandant une preuve d'identité &lt;/p&gt;	0	0	4	1	02895a9d-8047bc27-6495a36365d404.19116158	15876	2212
@@ -836,25 +828,19 @@ Fichier(s) à joindre motivant la demande	2212	file	0	0	[]				2	0	4	2	02895a9d-8
 Votre adresse mail	2212	email	1	0				&lt;p&gt;Pour prendre en compte cotre demande et garantir la confidentialité des données, nous vous enverrons un code unique afin de vérifier votre identité&lt;/p&gt;	1	0	4	1	02895a9d-8047bc27-6495a363691ec4.81953071	15878	2212
 Engagement de sincérité et de confidentialité	2212	checkboxes	1	0	[]		["Je certifie la sincérité des informations fournies"]		3	0	4	1	02895a9d-8047bc27-6495a363697592.00170468	15879	2212
 Délai réponse	2212	description	0	0				&lt;p&gt;Vous voudrez bien me faire parvenir votre réponse dans les meilleurs délais et au plus tard dans un délai de 72 heures à compter de la réception de ma demande (article 12.3 de la loi RGPD).&lt;/p&gt;&lt;p&gt;Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.&lt;/p&gt;	4	0	4	1	02895a9d-8047bc27-6495a3636a66a0.63065695	15880	2212
-Indiquez ci-dessous les données sont concernées, les circonstances et le type de violation	2213	textarea	0	0	&#60;p&#62;Type de violation  : &#60;/p&#62;
-\
-&#60;p&#62;Quelles données ? &#60;/p&#62;
-\
+Indiquez ci-dessous les données sont concernées, les circonstances et le type de violation	2213	textarea	0	0	&#60;p&#62;Type de violation  : &#60;/p&#62;\
+&#60;p&#62;Quelles données ? &#60;/p&#62;\
 &#60;p&#62;Circonstances ? &#60;/p&#62;			&#60;p&#62;Les types de violation de données peuvent être : l'usage de vos données pour une autre finalité que celle prévue, le vol, l'usurpation d'identité, la diffusion non autorisée, l'effacement non voulu, les données rendues illisibles (chiffrage), le refus ou l'impossibilité par le responsable de traitement de vous permettre d'exercer vos droits, ...&#60;/p&#62;	0	0	4	1	02895a9d-8047bc27-6495a3636b5659.17713945	15881	2213
 Votre prénom, nom et numéro de téléphone	2214	text	1	0					0	0	4	1	02895a9d-8047bc27-6495a3e18774e3.72061624	15882	2214
 Fichier(s) à joindre motivant la demande	2214	file	0	0	[]				2	0	4	2	02895a9d-8047bc27-6495a3e18a7df4.53792298	15883	2214
 Votre adresse mail	2214	email	1	0					1	0	2	1	02895a9d-8047bc27-6495a3e18ae042.83681604	15884	2214
 Estimation de l'urgence de votre demande	2214	urgency	1	0	3		["Je certifie la sincérité des informations fournies"]		1	2	2	1	02895a9d-8047bc27-6495a3e18b3ca0.13292313	15885	2214
-Décrire votre demande	2215	textarea	0	0	&#60;p&#62;Décrire votre demande : &#60;/p&#62;
-\
-&#60;p&#62;Pour quel matériel, logiciel ? &#60;/p&#62;
-\
-&#60;p&#62;Quels destinataire ? &#60;/p&#62;
-\
+Décrire votre demande	2215	textarea	0	0	&#60;p&#62;Décrire votre demande : &#60;/p&#62;\
+&#60;p&#62;Pour quel matériel, logiciel ? &#60;/p&#62;\
+&#60;p&#62;Quels destinataire ? &#60;/p&#62;\
 &#60;p&#62; &#60;/p&#62;				0	0	4	1	02895a9d-8047bc27-6495a4875dabb4.97291456	15888	2215
 La collecte des données est minimisée au regard des finalités du traitement	1725	select	0	1			["A préciser","Conforme","Manquant"]		4	0	4	1	02895a9d-8047bc27-6496a6c2c05cd2.06482043	15889	1725
-Vous êtes employé ou partie prenante dans le système d’information de %organisme.	2216	description	0	0	\N		\N	&#60;p class="MsoNormalCxSpMiddle"&#62;Dans le but de satisfaire à nos obligations de protection et de confidentialité des informations traitées en notre au nom de  (CF Registre des traitements), nous vous proposons de vous fournir tous les moyens techniques qui vous sont nécessaires pour la bonne réalisation de votre mission.&#60;/p&#62;
-\
+Vous êtes employé ou partie prenante dans le système d’information de %organisme.	2216	description	0	0	\N		\N	&#60;p class="MsoNormalCxSpMiddle"&#62;Dans le but de satisfaire à nos obligations de protection et de confidentialité des informations traitées en notre au nom de  (CF Registre des traitements), nous vous proposons de vous fournir tous les moyens techniques qui vous sont nécessaires pour la bonne réalisation de votre mission.&#60;/p&#62;\
 &#60;p class="MsoNormalCxSpMiddle"&#62;Vous allez disposer d’identifiants, clés ou secrets qui vous permettront d’accéder au système d’information, à des logiciels, applications et supports de données ; des matériels, documents, fichiers ou divers ressources peuvent vous être confiées.&#60;/p&#62;	0	0	4	1	cb8b1183-8047bc27-649e8ca1e09098.39720691	15890	2216
 Nom, prénom	2217	glpiselect	0	0	0	User	{"entity_restrict":"2"}		0	0	4	1	cb8b1183-8047bc27-649e8cf4b0d856.13771374	15891	2217
 Nom de votre organisme	2354	text	0	0			\N		0	0	4	1	37c4a1e1-8047bc27-65376061453564.20103155	16875	2354

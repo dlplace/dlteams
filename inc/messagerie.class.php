@@ -151,91 +151,99 @@ class PluginDlteamsMessagerie extends CommonDBTM
         echo "<div class='forcomments timeline_history'>";
         echo "<ul class='comments left'>";
         $comments = self::getCommentsForKbItem($where['items_id'], $where['itemtype']);
-        $html = self::displayComments($comments, $cancomment);
+//        var_dump($comments);
+//        die();
+        $html = self::displayComments($comments, $cancomment, 0, $item::getType());
         echo $html;
 
         echo "</ul>";
-//        echo "<script type='text/javascript'>
-//              $(function() {
-//                 var _bindForm = function(form) {
-//                     form.find('input[type=reset]').on('click', function(e) {
-//                        e.preventDefault();
-//                        form.remove();
-//                        $('.displayed_content').show();
-//                     });
-//                 };
-//
-//                 $('.add_answer').on('click', function() {
-//                    var _this = $(this);
-//                    var _data = {
-//                       'kbitem_id': _this.data('kbitem_id'),
-//                       'answer'   : _this.data('id')
-//                    };
-//
-//                    if (_this.data('language') != undefined) {
-//                       _data.language = _this.data('language');
-//                    }
-//
-//                    if (_this.parents('.comment').find('#newcomment' + _this.data('id')).length > 0) {
-//                       return;
-//                    }
-//
-//                    $.ajax({
-//                       url: '{$CFG_GLPI["root_doc"]}/ajax/getKbComment.php',
-//                       method: 'post',
-//                       cache: false,
-//                       data: _data,
-//                       success: function(data) {
-//                          var _form = $('<div class=\"newcomment ms-3\" id=\"newcomment'+_this.data('id')+'\">' + data + '</div>');
-//                          _bindForm(_form);
-//                          _this.parents('.h_item').after(_form);
-//                       },
-//                       error: function() { " .
-//            Html::jsAlertCallback(__('Contact your GLPI admin!'), __('Unable to load revision!')) . "
-//                       }
-//                    });
-//                 });
-//
-//                 $('.edit_item').on('click', function() {
-//                    var _this = $(this);
-//                    var _data = {
-//                       'kbitem_id': _this.data('kbitem_id'),
-//                       'edit'     : _this.data('id')
-//                    };
-//
-//                    if (_this.data('language') != undefined) {
-//                       _data.language = _this.data('language');
-//                    }
-//
-//                    if (_this.parents('.comment').find('#editcomment' + _this.data('id')).length > 0) {
-//                       return;
-//                    }
-//
-//                    $.ajax({
-//                       url: '{$CFG_GLPI["root_doc"]}/ajax/getKbComment.php',
-//                       method: 'post',
-//                       cache: false,
-//                       data: _data,
-//                       success: function(data) {
-//                          var _form = $('<div class=\"editcomment\" id=\"editcomment'+_this.data('id')+'\">' + data + '</div>');
-//                          _bindForm(_form);
-//                          _this
-//                           .parents('.displayed_content').hide()
-//                           .parent()
-//                           .append(_form);
-//                       },
-//                       error: function() { " .
-//            Html::jsAlertCallback(__('Contact your GLPI admin!'), __('Unable to load revision!')) . "
-//                       }
-//                    });
-//                 });
-//
-//
-//              });
-//            </script>";
+        echo "<script type='text/javascript'>
+              $(function() {
+                 var _bindForm = function(form) {
+                     form.find('input[type=reset]').on('click', function(e) {
+                        e.preventDefault();
+                        form.remove();
+                        $('.displayed_content').show();
+                     });
+                 };
+
+                 
+                 $('.add_answer').on('click', function() {
+                     
+                    var _this = $(this);
+                     console.log(_this.data(), 'data');
+                    var _data = {
+                       'kbitem_id': _this.data('kbitem_id'),
+                       'answer'   : _this.data('id'),
+                       'itemtype': _this.data('itemtype'),
+                    };
+
+                    if (_this.data('language') != undefined) {
+                       _data.language = _this.data('language');
+                    }
+
+                    if (_this.parents('.comment').find('#newcomment' + _this.data('id')).length > 0) {
+                       return;
+                    }
+
+                    $.ajax({
+                       url: '/marketplace/dlteams/ajax/getMessagerieContent.php',
+                       method: 'post',
+                       cache: false,
+                       data: _data,
+                       success: function(data) {
+                          var _form = $('<div class=\"newcomment ms-3\" id=\"newcomment'+_this.data('id')+'\">' + data + '</div>');
+                          _bindForm(_form);
+                          _this.parents('.h_item').after(_form);
+                       },
+                       error: function() { " .
+            Html::jsAlertCallback(__('Contact your GLPI admin!'), __('Unable to load revision!')) . "
+                       }
+                    });
+                 });
+
+                 $('.edit_item').on('click', function() {
+                    var _this = $(this);
+                    var _data = {
+                       'kbitem_id': _this.data('kbitem_id'),
+                       'edit'     : _this.data('id'),
+                       'itemtype': _this.data('itemtype'),
+                    };
+
+                    if (_this.data('language') != undefined) {
+                       _data.language = _this.data('language');
+                    }
+
+                    if (_this.parents('.comment').find('#editcomment' + _this.data('id')).length > 0) {
+                       return;
+                    }
+
+                    $.ajax({
+                       url: '/marketplace/dlteams/ajax/getMessagerieContent.php',
+                       method: 'post',
+                       cache: false,
+                       data: _data,
+                       success: function(data) {
+                          var _form = $('<div class=\"editcomment\" id=\"editcomment'+_this.data('id')+'\">' + data + '</div>');
+                          _bindForm(_form);
+                          _this
+                           .parents('.displayed_content').hide()
+                           .parent()
+                           .append(_form);
+                       },
+                       error: function() { " .
+            Html::jsAlertCallback(__('Contact your GLPI admin!'), __('Unable to load revision!')) . "
+                       }
+                    });
+                 });
+
+
+              });
+            </script>";
 
         echo "</div>";
     }
+
 
     /**
      * Gat all comments for specified KB entry
@@ -251,10 +259,11 @@ class PluginDlteamsMessagerie extends CommonDBTM
         /** @var \DBmysql $DB */
         global $DB;
 
+
         $where = [
             'items_id'  => $kbitem_id,
             'itemtype'          => $itemtype,
-//            'parent_comment_id' => $parent
+            'parent_comment_id' => $parent
         ];
 
         $db_comments = $DB->request(
@@ -267,7 +276,8 @@ class PluginDlteamsMessagerie extends CommonDBTM
         foreach ($db_comments as $db_comment) {
 /*            highlight_string("<?php\n\$data =\n" . var_export($db_comment, true) . ";\n?>");*/
 //            die();
-//            $db_comment['answers'] = self::getCommentsForKbItem($kbitem_id, $itemtype, $db_comment['id']);
+            $db_comment['answers'] = self::getCommentsForKbItem($kbitem_id, $itemtype, $db_comment['id']);
+/*            highlight_string("<?php\n\$data =\n" . var_export($db_comment['id'], true) . ";\n?>");*/
             $comments[] = $db_comment;
         }
 
@@ -285,7 +295,7 @@ class PluginDlteamsMessagerie extends CommonDBTM
      *
      * @return string
      */
-    public static function displayComments($comments, $cancomment, $level = 0)
+    public static function displayComments($comments, $cancomment, $level = 0, $itemtype)
     {
         $html = '';
         foreach ($comments as $comment) {
@@ -318,7 +328,7 @@ class PluginDlteamsMessagerie extends CommonDBTM
                 if (Session::getLoginUserID() == $comment['users_id']) {
                     $html .= "<span class='ti ti-edit edit_item pointer'
                   data-kbitem_id='{$comment['items_id']}'
-                  
+                  data-itemtype='$itemtype'
                   data-id='{$comment['id']}'></span>";
                 }
             }
@@ -331,7 +341,7 @@ class PluginDlteamsMessagerie extends CommonDBTM
             if ($cancomment) {
                 $html .= "<span class='add_answer' title='" . __('Add an answer') . "'
                data-kbitem_id='{$comment['items_id']}'
-              
+                data-itemtype='$itemtype'
                data-id='{$comment['id']}'></span>";
             }
 
@@ -339,11 +349,13 @@ class PluginDlteamsMessagerie extends CommonDBTM
             $html .= "</div>";
 
             if (isset($comment['answers']) && count($comment['answers']) > 0) {
+//                var_dump("zzz");
+//                die();
                 $html .= "<input type='checkbox' id='toggle_{$comment['id']}'
                              class='toggle_comments' checked='checked'>";
                 $html .= "<label for='toggle_{$comment['id']}' class='toggle_label'>&nbsp;</label>";
                 $html .= "<ul>";
-                $html .= self::displayComments($comment['answers'], $cancomment, $level + 1);
+                $html .= self::displayComments($comment['answers'], $cancomment, $level + 1, $itemtype);
                 $html .= "</ul>";
             }
 
@@ -410,6 +422,7 @@ class PluginDlteamsMessagerie extends CommonDBTM
         if ($edit !== false) {
             $html .= "<input type='hidden' name='id' value='{$edit}'/>";
         }
+
         $html .= "</td></tr>";
         $html .= "</table>";
         $html .= Html::closeForm(false);

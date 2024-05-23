@@ -1,0 +1,89 @@
+1	Réunion	&#60;ol&#62;\
+&#60;li&#62;\
+&#60;p&#62;&#60;strong&#62;Objectifs de la réunion, ce qui motive sa tenue : &#60;/strong&#62;&#60;/p&#62;\
+&#60;ul&#62;\
+&#60;li&#62; &#60;br&#62;&#60;strong&#62;&#60;br&#62;&#60;/strong&#62;&#60;/li&#62;\
+&#60;/ul&#62;\
+&#60;/li&#62;\
+&#60;li&#62;\
+&#60;p&#62;&#60;strong&#62;Informations de base&#60;/strong&#62;&#60;/p&#62;\
+&#60;ul&#62;\
+&#60;li&#62;&#60;strong&#62;Date, heure, lieu et durée de la réunion&#60;/strong&#62; -&#38;gt; éléments de planification de la tâche&#60;/li&#62;\
+&#60;li&#62;&#60;strong&#62;Liste des participants présents&#60;/strong&#62; -&#38;gt; intervenants saisis &#60;/li&#62;\
+&#60;li&#62;&#60;strong&#62;Préciser les rôles si besoin&#60;/strong&#62; : &#60;/li&#62;\
+&#60;li&#62;&#60;strong&#62;Documents préparatoires&#60;/strong&#62; -&#38;gt; pièces jointes de la tâche&#60;/li&#62;\
+&#60;li&#62;&#60;strong&#62;Actions préparatoires&#60;/strong&#62; : &#60;br&#62;&#60;br&#62;&#60;/li&#62;\
+&#60;/ul&#62;\
+&#60;/li&#62;\
+&#60;li&#62;\
+&#60;p&#62;&#60;strong&#62;Points abordés&#60;/strong&#62;&#60;/p&#62;\
+&#60;ul&#62;\
+&#60;li&#62;&#60;strong&#62;sujets discutés&#60;/strong&#62; : &#60;/li&#62;\
+&#60;li&#62;&#60;strong&#62;points importants&#60;/strong&#62; : &#60;br&#62;&#60;br&#62;&#60;/li&#62;\
+&#60;/ul&#62;\
+&#60;/li&#62;\
+&#60;li&#62;\
+&#60;p&#62;&#60;strong&#62;Décisions prises&#60;/strong&#62;&#60;/p&#62;\
+&#60;ul&#62;\
+&#60;li&#62;&#60;strong&#62;Décisions ou conclusions importantes prises&#60;/strong&#62; : &#60;/li&#62;\
+&#60;li&#62;&#60;strong&#62;Responsabilités attribuées à la suite des décisions prises&#60;/strong&#62; : &#60;br&#62;&#60;br&#62;&#60;/li&#62;\
+&#60;/ul&#62;\
+&#60;/li&#62;\
+&#60;li&#62;\
+&#60;p&#62;&#60;strong&#62;Actions à entreprendre&#60;/strong&#62;&#60;/p&#62;\
+&#60;ul&#62;\
+&#60;li&#62;&#60;strong&#62;Tâches ou actions à accomplir, personnes responsables, échéances éventuelles&#60;/strong&#62; -&#38;gt; créer des tâches&#60;/li&#62;\
+&#60;li&#62;&#60;strong&#62;Personnes à contacter pour résoudre ces questions : &#60;br&#62;&#60;br&#62;&#60;/strong&#62;&#60;/li&#62;\
+&#60;/ul&#62;\
+&#60;/li&#62;\
+&#60;li&#62;&#60;strong&#62;Questions soulevées et reportées :&#60;/strong&#62; &#60;br&#62;&#60;strong&#62;&#60;br&#62;&#60;/strong&#62;&#60;/li&#62;\
+&#60;li&#62;&#60;strong&#62;Prochaine réunion&#60;/strong&#62;\
+&#60;ul&#62;\
+&#60;li&#62;&#60;strong&#62;Date, heure, lieu de la prochaine réunion si décidée&#60;/strong&#62; :  &#60;/li&#62;\
+&#60;/ul&#62;\
+&#60;/li&#62;\
+&#60;/ol&#62;\
+&#60;p&#62; &#60;/p&#62;	3600		1	2
+1	Bug / modification	&#60;p&#62;&#60;strong&#62;Type&#60;/strong&#62; : bug / modification / ajout&#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Lieu / moment&#60;/strong&#62; : &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Scénario&#60;/strong&#62; : &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Actions à mener&#60;/strong&#62; : &#60;br&#62;&#60;br&#62;&#60;strong&#62;Formulaire&#60;/strong&#62; : &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Données / DB &#60;/strong&#62;: &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Ressources &#60;/strong&#62;: &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Compte rendu &#60;/strong&#62;: &#60;/p&#62;	1200		1	3
+1	Action à mener	&#60;p&#62;&#60;strong&#62;Actions&#60;/strong&#62; : &#60;/p&#62;\
+&#60;ol&#62;\
+&#60;li&#62; &#60;/li&#62;\
+&#60;li&#62; &#60;/li&#62;\
+&#60;/ol&#62;\
+&#60;p&#62;&#60;strong&#62;Compte rendu&#60;/strong&#62; : &#60;/p&#62;\
+&#60;p&#62; &#60;/p&#62;	1200		1	4
+1	Default	&#60;p&#62;&#60;strong&#62;Actions à mener&#60;/strong&#62; : &#60;/p&#62;	900		0	5
+1	Question critères, tests, évaluation	&#60;p&#62;&#60;strong&#62;Référence :&#60;/strong&#62; &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;Question :&#60;/strong&#62; &#60;br&#62;&#60;br&#62;&#60;strong&#62;Réponse(s)&#60;/strong&#62; : oui / non / en partie&#60;br&#62;&#60;br&#62;&#60;strong&#62;Actions à mener / méthodologie&#60;/strong&#62;&#60;/p&#62;\
+&#60;ol&#62;\
+&#60;li&#62;si oui, ...&#60;/li&#62;\
+&#60;li&#62;si non, ...&#60;/li&#62;\
+&#60;/ol&#62;\
+&#60;p&#62;&#60;strong&#62;Documentation, ressources et liens à consulter&#60;/strong&#62;&#60;/p&#62;\
+&#60;ul&#62;\
+&#60;li&#62; &#60;/li&#62;\
+&#60;/ul&#62;	600		1	6
+1	Résoudre un problème	&#60;p&#62;&#60;strong&#62;- Identification correct du problème : poser des questions supplémentaires ; simuler le problème&#60;/strong&#62;&#60;/p&#62;\
+&#60;ol class="X5LH0c"&#62;\
+&#60;li class="TrT0Xe"&#62;&#60;br&#62;&#60;br&#62;&#60;/li&#62;\
+&#60;li class="TrT0Xe"&#62; &#60;/li&#62;\
+&#60;/ol&#62;\
+&#60;p&#62; &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;- Solutions possibles&#60;/strong&#62; :&#60;/p&#62;\
+&#60;ol&#62;\
+&#60;li&#62; &#60;/li&#62;\
+&#60;/ol&#62;\
+&#60;p&#62; &#60;/p&#62;\
+&#60;p&#62;&#60;strong&#62;- Solution choisie ; comment la mettre en œuvre&#60;/strong&#62; : &#60;/p&#62;\
+&#60;ol&#62;\
+&#60;li&#62; &#60;/li&#62;\
+&#60;/ol&#62;	900		1	7
+1	Demande d'informations	&#60;p&#62;Dans le cadre de nos activités, je souhaiterai obtenir certaines informations : &#60;br&#62;&#60;br&#62;Pourriez vous nous indiquer les éléments suivants : &#60;br&#62;- &#60;br&#62;&#60;br&#62;Vous pouvez si besoin nous envoyer des fichiers via le lien suivant :  &#60;/p&#62;\
+&#60;p&#62; &#60;/p&#62;	600		0	8
+1	Relance ou suivi (téléphone, mail)	&#60;p&#62;&#60;strong&#62;Date du suivi&#60;/strong&#62; : &#60;br&#62;&#60;strong&#62;Correspondant&#60;/strong&#62; : &#60;br&#62;&#60;strong&#62;Eléments de relance / résultats&#60;/strong&#62; : &#60;br&#62;&#60;strong&#62;Commentaires&#60;/strong&#62; : &#60;br&#62;&#60;br&#62;&#60;strong&#62;Prochaine relance&#60;/strong&#62; : CF "date d'échéance" &#60;/p&#62;	600		1	9
