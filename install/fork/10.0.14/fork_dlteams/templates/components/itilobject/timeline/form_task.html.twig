@@ -68,11 +68,11 @@
                     N/A
                 {% endif %}
 				</span>
-{#                { {% if entry_i['timeline_position'] > 0 %}#}
-{#                    <span><b>Ordre: </b>{{ entry_i['timeline_position'] | formatted_datetime }}</span>#}
-{#                {% endif %}#}
+                {#                { {% if entry_i['timeline_position'] > 0 %}#}
+                {#                    <span><b>Ordre: </b>{{ entry_i['timeline_position'] | formatted_datetime }}</span>#}
+                {#                {% endif %}#}
 
-{#                zzz#}
+                {#                zzz#}
                 {# on pourrait rajouter la présence ou le nombre de planifications #}
                 {% if entry_i['nb_planification'] > 0 %}
                     - <span><b>Planifications:</b> </span> {{ entry_i['nb_planification'] }} dont {{ entry_i['nb_planification_todo'] }} "A faire"
@@ -225,7 +225,7 @@
         </script>
     {% else %}
         <div class="itiltask">
-            <form name="asset_form" style="width: 100%;" class="d-flex flex-column" method="post"
+            <form onsubmit="submitHandler()" name="asset_form" style="width: 100%;" class="d-flex flex-column" method="post"
                   action="{{ subitem.getFormURL() }}" enctype="multipart/form-data" data-track-changes="true"
                   data-submit-once {{ formoptions|raw }}>
                 <input type="hidden" name="itemtype" value="{{ item.getType() }}"/>
@@ -454,7 +454,7 @@
                                         'rand': rand,
                                     }
                                 ) }}
-                                
+
 
                                 {# Duration #}
                                 {% set task_actiontime_lbl %}
@@ -511,8 +511,9 @@
                                 ) }}
 
                                 <script type="text/javascript">
+
                                     function showPlanUpdate{{ rand }}(e) {
-                                        $('#plan{{ rand }}').hide();
+
                                         $('#viewplan{{ rand }}').load('{{ path('/ajax/planning.php') }}', {
                                             action: "add_event_classic_form",
                                             form: "followups", // Was followups for tasks before. Can't find where this is used.
@@ -528,6 +529,7 @@
                                             end: "{{ subitem.fields['end'] }}",
                                         });
                                     }
+
                                 </script>
                                 <div class="col-12">
                                     {% if subitem.can(subitem.fields['id'], constant('UPDATE')) and subitem.fields['begin'] %}
@@ -731,7 +733,6 @@
                                 }) }}
 
 
-
                                 {# User #}
                                 {% set task_user_lbl %}
                                     <i class="fas fa-user fa-fw me-1" title="Personne devant réaliser cette tâche"></i>
@@ -744,6 +745,7 @@
                                     {
                                         'full_width': true,
                                         'icon_label': true,
+                                        'on_change': 'usergroup_errorfield' ~ rand ~ '(this.value)',
                                         'entity': item.fields['entities_id'],
                                         'right': 'own_ticket',
                                         'rand': rand,
@@ -764,11 +766,20 @@
                                         'full_width': true,
                                         'icon_label': true,
                                         'entity': item.fields['entities_id'],
+                                        'on_change': 'usergroup_errorfield' ~ rand ~ '(this.value)',
                                         'condition': {'is_task': 1},
                                         'rand': rand,
                                     }
                                 ) }}
 
+                                <div id="usergroup_errorfield{{ rand }}">
+                                    {% if subitem.fields['groups_id_tech'] == 0 and subitem.fields['users_id_tech'] == 0  %}
+                                        <div class="alert alert-danger d-flex align-items-center" style="padding: 0.2rem;font-size: 0.8rem;" role="alert">
+                                            Attention, pas d'acteurs ou utilisateur: la tâche n'apparaitra dans aucun planning
+                                            <button type="button" class="btn-xs btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    {% endif %}
+                                </div>
                                 <script type="text/javascript">
                                     function showPlanUpdate{{ rand }}(e) {
                                         $('#plan{{ rand }}').hide();
@@ -938,6 +949,16 @@
                         $("#dropdown_groups_id_tech{{ rand }}").trigger('setValue', data.groups_id_tech);
                     }
                 });
+            }
+            function usergroup_errorfield{{ rand }}(value) {
+                if($('#dropdown_users_id_tech{{ rand }}').val() == 0 && $('#dropdown_groups_id_tech{{ rand }}').val() == 0){
+                    var html = '<div class="alert alert-danger d-flex align-items-center" style="padding: 0.2rem;font-size: 0.8rem;" role="alert"> Attention, pas d\'acteurs ou utilisateur: la tâche n\'apparaitra dans aucun planning ' +
+                        '<button type="button" class="btn-xs btn-close" data-bs-dismiss="alert" aria-label="Close"></button> ' +
+                        '</div>'
+                    $("#usergroup_errorfield{{ rand }}").html(html);
+                }
+                else
+                    $("#usergroup_errorfield{{ rand }}").html('');
             }
         </script>
 
