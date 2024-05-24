@@ -1,4 +1,4 @@
-{% if record.parentnumber > 0 %}
+{% if record.parentnumber > 0 and record.is_grouping == false %}
 <div class="accordion" id="accordion-{{ key }}">
     <div class="accordion-item">
         <h2 class="accordion-header" id="heading-{{ key }}">
@@ -37,7 +37,12 @@
 {% else %}
     <div style="background-color: #767171;color: white;padding: 0.3rem;border-radius: 5px; font-size: 1.3rem;">
         <h1 style="font-size: 1.3rem;">
-            {{ record.number }} - {{ record.name }}
+            {% if record.parentnumber > 0 %}
+                {{ record.number~'.'~record.parentnumber }}
+            {% else %}
+                {{ record.number }}
+            {% endif %}
+            - {{ record.name }}
         </h1>
 
 {#        <button id="expandAllBtn" class="print-hidden-btn"#}

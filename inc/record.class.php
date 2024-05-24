@@ -248,6 +248,12 @@ class PluginDlteamsRecord extends CommonDropdown implements
         echo "</td></tr>";
 
         echo "<tr class='tab_bg_1'>";
+        echo "<td class='form-table-text'><label for='is_grouping'>" . __("Ce traitement est un regroupement", 'dlteams') . "</label></td>";
+        echo "<td colspan='2'>";
+        Html::showCheckbox(['name' => 'is_grouping', 'title' =>'Ce traitement est un regroupement', 'id' => 'is_grouping', 'checked' => $this->fields['is_grouping']]);
+        echo "</td></tr>";
+
+        echo "<tr class='tab_bg_1'>";
         echo "<td class='form-table-text'>" . __("Additional information", 'dlteams') . "</td>";
         echo "<td colspan='2'>";
         $additional_info = Html::cleanInputText($this->fields['additional_info']);

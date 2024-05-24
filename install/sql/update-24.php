@@ -386,7 +386,8 @@ $querys = [
   `date_mod` timestamp NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
-    "ALTER TABLE `glpi_itilfollowups` ADD IF NOT EXISTS `parent_comment_id` INT NULL AFTER `content`;"
+    "ALTER TABLE `glpi_itilfollowups` ADD IF NOT EXISTS `parent_comment_id` INT NULL AFTER `content`;",
+    "ALTER TABLE `glpi_plugin_dlteams_records` ADD IF NOT EXISTS `is_grouping` TINYINT NOT NULL DEFAULT '0' AFTER `content`; ;",
 ];
 $i = 1;
 global $DB;

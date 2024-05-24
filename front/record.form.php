@@ -42,6 +42,7 @@ if (isset($_POST['add'])) {
         $data["completenumber"] = $data["number"] + $data["parentnumber"] / 100;
     else
         $data["completenumber"] = $data["number"];
+    $data["is_grouping"] === "on"?$data["is_grouping"] = true:$data["is_grouping"] = false;
     $id = $record->add($data);
     Html::redirect($record->getFormURLWithID($id));
 
@@ -50,11 +51,16 @@ if (isset($_POST['add'])) {
     $record->check($_POST['id'], UPDATE);
 
     $data = $_POST;
+/*    highlight_string("<?php\n\$data =\n" . var_export($data, true) . ";\n?>");*/
+//    die();
+//    $data["is_grouping"] === "on"?$data["is_grouping"] = true:$data["is_grouping"] = false;
 
     if ($data["parentnumber"] != 0)
         $data["completenumber"] = $data["number"] + $data["parentnumber"] / 100;
     else
         $data["completenumber"] = $data["number"];
+/*    highlight_string("<?php\n\$data =\n" . var_export($data, true) . ";\n?>");*/
+//    die();
     $record->update($data);
     Html::back();
 

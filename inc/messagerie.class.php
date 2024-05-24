@@ -45,7 +45,7 @@ class PluginDlteamsMessagerie extends CommonDBTM
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Message', 'Messages', $nb);
+        return _n('Messages', 'Messages', $nb);
     }
 
     public static function getTable($classname = null)
@@ -153,7 +153,7 @@ class PluginDlteamsMessagerie extends CommonDBTM
         $comments = self::getCommentsForKbItem($where['items_id'], $where['itemtype']);
 //        var_dump($comments);
 //        die();
-        $html = self::displayComments($comments, $cancomment, 0, $item::getType());
+        $html = self::displayComments($comments, $cancomment, $item::getType());
         echo $html;
 
         echo "</ul>";
@@ -295,7 +295,7 @@ class PluginDlteamsMessagerie extends CommonDBTM
      *
      * @return string
      */
-    public static function displayComments($comments, $cancomment, $level = 0, $itemtype)
+    public static function displayComments($comments, $cancomment, $itemtype, $level = 0)
     {
         $html = '';
         foreach ($comments as $comment) {
@@ -355,7 +355,7 @@ class PluginDlteamsMessagerie extends CommonDBTM
                              class='toggle_comments' checked='checked'>";
                 $html .= "<label for='toggle_{$comment['id']}' class='toggle_label'>&nbsp;</label>";
                 $html .= "<ul>";
-                $html .= self::displayComments($comment['answers'], $cancomment, $level + 1, $itemtype);
+                $html .= self::displayComments($comment['answers'], $cancomment, $itemtype, $level + 1);
                 $html .= "</ul>";
             }
 

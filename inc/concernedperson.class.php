@@ -187,6 +187,7 @@ class PluginDlteamsConcernedPerson extends CommonDropdown implements
 		->addStandardTab('PluginDlteamsObject_document', $ong, $options)
         ->addStandardTab('ManualLink', $ong, $options)
 		->addStandardTab(PluginDlteamsTicket_Item::class, $ong, $options)
+        ->addStandardTab(PluginDlteamsMessagerie::class, $ong, $options)
 		->addStandardTab('KnowbaseItem_Item', $ong, $options)
 		->addStandardTab('Notepad', $ong, $options)
 		->addStandardTab('Log', $ong, $options);
