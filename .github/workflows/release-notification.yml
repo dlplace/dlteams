@@ -76,6 +76,6 @@ jobs:
               </div>
             </body>
           </html>
-        to: ${{ secrets.SENDMAIL_ADDRESSES }}
+        to: ${{ vars.SENDMAIL_ADDRESSES }}
         from: ${{ secrets.SENDMAIL_FROM }}
         content_type: text/html
