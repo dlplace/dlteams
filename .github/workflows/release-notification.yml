@@ -21,61 +21,11 @@ jobs:
         password: ${{ secrets.SENDMAIL_PASSWORD }}
         subject: Une nouvelle version est disponible!
         body: |
-          <html>
-            <head>
-              <style>
-                body {
-                  font-family: Arial, sans-serif;
-                  background-color: #f4f4f9;
-                  color: #333;
-                }
-                .container {
-                  padding: 20px;
-                  background-color: #fff;
-                  border-radius: 10px;
-                  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                }
-                .header {
-                  background-color: #007bff;
-                  color: #fff;
-                  padding: 10px;
-                  border-radius: 10px 10px 0 0;
-                }
-                .content {
-                  padding: 20px;
-                }
-                .footer {
-                  margin-top: 20px;
-                  font-size: 0.8em;
-                  color: #777;
-                }
-                a {
-                  color: #007bff;
-                  text-decoration: none;
-                }
-                a:hover {
-                  text-decoration: underline;
-                }
-              </style>
-            </head>
-            <body>
-              <div class="container">
-                <div class="header">
-                  <h2>Nouvelle Version Disponible!</h2>
-                </div>
-                <div class="content">
-                  <p>Une nouvelle release a été publiée dans le repository.</p>
-                  <p><strong>Tag:</strong> ${{ github.event.release.tag_name }}</p>
-                  <p><strong>Nom:</strong> ${{ github.event.release.name }}</p>
-                  <p><strong>Description:</strong> ${{ github.event.release.body }}</p>
-                  <p><strong>Lien:</strong> <a href="${{ github.event.release.html_url }}">Voir la release</a></p>
-                </div>
-                <div class="footer">
-                  <p>dlteams.</p>
-                </div>
-              </div>
-            </body>
-          </html>
+          A new release has been published on the repository.
+          Tag: ${{ github.event.release.tag_name }}
+          Name: ${{ github.event.release.name }}
+          Description: ${{ github.event.release.body }}
+          Link: ${{ github.event.release.html_url }}
         to: ${{ vars.SENDMAIL_ADDRESSES }}
         from: ${{ secrets.SENDMAIL_FROM }}
         content_type: text/html
