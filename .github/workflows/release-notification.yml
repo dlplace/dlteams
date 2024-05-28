@@ -17,8 +17,8 @@ jobs:
       with:
         server_address: smtp.office365.com
         server_port: 587
-        username: support@dlplace.eu
-        password: ${{ secrets.EMAIL_PASSWORD }}
+        username: ${{ secrets.SENDMAIL_FROM }}
+        password: ${{ secrets.SENDMAIL_PASSWORD }}
         subject: Une nouvelle version est disponible!
         body: |
           A new release has been published on the repository.
@@ -26,5 +26,5 @@ jobs:
           Name: ${{ github.event.release.name }}
           Description: ${{ github.event.release.body }}
           Link: ${{ github.event.release.html_url }}
-        to: ${{ secrets.EMAIL_TO }}
-        from: ${{ secrets.EMAIL_FROM }}
+        to: ${{ secrets.SENDMAIL_ADDRESSES }}
+        from: ${{ secrets.SENDMAIL_FROM }}
