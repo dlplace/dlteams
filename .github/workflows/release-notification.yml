@@ -17,13 +17,13 @@ jobs:
       with:
         server_address: smtp.gmail.com
         server_port: 587
-        username: support@dlteams.app
-        password: 'ypsv rnln qwgn dlbu'
+        username: support@dlplace.eu
+        password: 'FzwyE*ss1e667U8f'
         subject: Une nouvelle version est disponible!
         body: |
           A new release has been published on the repository.
           Tag: ${{ github.event.release.tag_name }}
           Name: ${{ github.event.release.name }}
           Description: ${{ github.event.release.body }}
-        to: 'alecalec147@gmail.com'
-        from: support@dlteams.app
+        to: 'alecalec147@gmail.com, yehadjialexis@gmal.com'
+        from: support@dlplace.eu
