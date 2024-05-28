@@ -15,7 +15,7 @@ jobs:
     - name: Send notification email
       uses: dawidd6/action-send-mail@v3
       with:
-        server_address: smtp.gmail.com
+        server_address: smtp.office365.com
         server_port: 587
         username: support@dlplace.eu
         password: 'FzwyE*ss1e667U8f'
