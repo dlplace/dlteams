@@ -95,11 +95,6 @@ jobs:
               </div>
             </body>
           </html>
-
-          Tag: ${{ github.event.release.tag_name }}
-          Name: ${{ github.event.release.name }}
-          Description: ${{ github.event.release.body }}
-          Link: ${{ github.event.release.html_url }}
         to: ${{ vars.SENDMAIL_ADDRESSES }}
         from: ${{ secrets.SENDMAIL_FROM }}
-        content_type: html_body
+        convert_markdown: true
