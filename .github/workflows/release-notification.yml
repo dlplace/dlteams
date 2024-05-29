@@ -20,7 +20,7 @@ jobs:
         username:  ${{ secrets.SENDMAIL_FROM }}
         password: ${{ secrets.SENDMAIL_PASSWORD }}
         subject: Une nouvelle version est disponible!
-        body: |
+        html_body: |
           <html>
             <head>
               <style>
