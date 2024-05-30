@@ -98,7 +98,7 @@ class PluginDlteamsAcces_PolicieForm extends CommonDBTM
 
     static function getTypeNameForClass($nb = 0)
     {
-        return __("Stockage effectifs", 'dlteams');
+        return __("Stockages effectifs", 'dlteams');
     }
 
     static function getActeursTypeNameForClass($nb = 0)

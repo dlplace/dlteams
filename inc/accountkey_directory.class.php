@@ -192,7 +192,7 @@ class PluginDlteamsAccountKey_Directory extends CommonDBTM
                     ],
                 ],
                 "WHERE" => [
-                    PluginDlteamsAccountKey::getTable() . ".entities_id" => $_SESSION['glpiactive_entity'],
+                    PluginDlteamsAccountKey::getTable() . ".entities_id" => $_SESSION['glpiactiveentities'],
                     PluginDlteamsAccountKey::getTable() . ".plugin_dlteams_datacatalogs_id" => [$item->fields["id"], $item->fields["plugin_dlteams_datacatalogs_id"], ...$annuaires_tiers_idx] // ajouter aussi ceux du parent
                 ],
                 "ORDER" => ["name ASC"]
@@ -200,6 +200,7 @@ class PluginDlteamsAccountKey_Directory extends CommonDBTM
         }
 /*        highlight_string("<?php\n\$data =\n" . var_export($query, true) . ";\n?>");*/
 //        die();
+
         $iterator = $DB->request($query);
         $result = [];
         foreach ($iterator as $data) {

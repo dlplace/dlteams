@@ -27,22 +27,59 @@
 
 include("../../../inc/includes.php");
 
-$fileid = $_POST['file_id'];
- $refreshToken = PluginDlteamsConfig::gdriveKeys()["refresh_token"];
- $accessToken = PluginDlteamsConfig::refreshAccessToken($refreshToken);
-$savePath = GLPI_ROOT . "/files/_dlteams/updates/dlregisterlatest.zip";
+$glpiRoot=str_replace('\\', '/', GLPI_ROOT);
+$savePath = GLPI_ROOT . "/files/_dlteams/updates/";
 $extractFolder = GLPI_ROOT . "/files/_dlteams/updates/dlregisterlatest/";
-$download_response = PluginDlteamsConfig::downloadFileFromGoogleDrive($accessToken, $fileid, $savePath);
+
+if (isset($_FILES['file'])) {
+    $fileTmpPath = $_FILES['file']['tmp_name'];
+    $fileName = $_FILES['file']['name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileType = $_FILES['file']['type'];
+    $fileNameCmps = explode(".", $fileName);
+    $fileExtension = strtolower(end($fileNameCmps));
+
+    $allowedExtensions = array('zip', 'rar', 'tar', 'gz');
+
+    if (in_array($fileExtension, $allowedExtensions)) {
+
+        $dest_path = $savePath . $fileName;
+
+        // Créer le répertoire s'il n'existe pas
+        if (!is_dir($savePath)) {
+            mkdir($savePath, 0755, true);
+        }
+
+        // Déplacer le fichier de l'emplacement temporaire à l'emplacement désiré
+        if (move_uploaded_file($fileTmpPath, $dest_path)) {
+            echo "Le fichier a été téléchargé avec succès.";
+        } else {
+            echo "Erreur lors du déplacement du fichier téléchargé.";
+        }
+    } else {
+        echo "Le type de fichier n'est pas autorisé. Seuls les fichiers compressés sont acceptés.";
+    }
+}
+else {
+    echo "Il y a eu une erreur lors du téléchargement du fichier.";
+}
+
+
+//$fileid = $_POST['file_id'];
+// $refreshToken = PluginDlteamsConfig::gdriveKeys()["refresh_token"];
+// $accessToken = PluginDlteamsConfig::refreshAccessToken($refreshToken);
+
+//$download_response = PluginDlteamsConfig::downloadFileFromGoogleDrive($accessToken, $fileid, $savePath);
 
 //extract
-/*$zip = new ZipArchive;
-if ($zip->open($savePath) === TRUE) {
+$zip = new ZipArchive;
+if ($zip->open($dest_path) === TRUE) {
     $zip->extractTo($extractFolder);
     $zip->close();
     echo  "extrait avec succès";
 } else {
     echo  "Impossible d'ouvrir le fichier ZIP.";
-}*/
+}
 
 //copy files
 $directory_destination = GLPI_ROOT . "/marketplace/dlteams/";
@@ -55,29 +92,19 @@ foreach ($rii as $file) {
 $files[] = $file->getPathname();
 $message = "..." . substr($file, -40). nl2br("\n");
 }
-//chmod(GLPI_ROOT . "/marketplace/dlteams/", "")
-clearstatcache(); // Efface le cache des résultats de stat() pour assurer des informations à jour
-$perms = fileperms(GLPI_ROOT . "/marketplace/dlteams/");
+clearstatcache();
+$perms = fileperms($directory_destination);
 
 // On récupère seulement les permissions, masquage des autres bits avec 0777
 chmod(plugin_dlteams_root, 0777); // ouverture des droits d'écriture
-// $permissionOctale = substr(sprintf('%o', $perms), -4);
-// chmod(GLPI_ROOT . "/marketplace/dlteams/", 0755);
 foreach ($files as $path) {
-    var_dump ($file->isDir());
-	// chmod($file->isDir(), 0777);
-	// chmod("/var/www/dev_dlregister_app/marketplace/dlteams/dlregister/templates/layout", 0777);
-	var_dump ($path ." --> ".GLPI_ROOT . "/marketplace/dlteams/".str_replace($extractFolder, "", $path));
-	$resp = copy($path, GLPI_ROOT . "/marketplace/dlteams/".str_replace($extractFolder, "", $path));
-    /* highlight_string("<?php\n\$data =\n" . var_export($resp, true) . ";\n?>");
-    highlight_string("<?php\n\$data =\n" . var_export($path, true) . ";\n?>");
-    highlight_string("<?php\n\$data =\n" . var_export(GLPI_ROOT . "/marketplace/dlteams/".str_replace($extractFolder, "", $path), true) . ";\n?>");*/
-	// echo ($path . "->" . GLPI_ROOT . "/marketplace/dlteams/".str_replace($extractFolder, "", $path).<br>); 
+//    var_dump ($file->isDir());
+//	var_dump ($path ." --> ".$directory_destination.str_replace($extractFolder, "", $path));
+	$resp = copy($path, $directory_destination.str_replace($extractFolder, "", $path));
 }
-// chmod(GLPI_ROOT . "/marketplace/dlteams/", octdec($permissionOctale));
 chmod(plugin_dlteams_root, 0755); // fermeture des droits
 
 $message .= "Mise à jour éfféctué avec succès";
 Session::addMessageAfterRedirect($message);
-
-Html::back();
+global $CFG_GLPI;
+Html::redirect($CFG_GLPI['url_base'] . "/front/central.php");

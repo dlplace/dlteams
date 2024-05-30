@@ -84,7 +84,8 @@ class PluginDlteamsItemType extends CommonDBTM
                 PluginDlteamsStep::class,
                 TicketTask::class,
                 PluginDlteamsTicketTask::class,
-                KnowbaseItem::class
+                KnowbaseItem::class,
+                PluginDlteamsITILFollowup::class
 
             ];
 
@@ -129,7 +130,8 @@ class PluginDlteamsItemType extends CommonDBTM
             PluginDlteamsRightMeasure_Item::class,
             PluginDlteamsProtectiveMeasure_Item::class,
 			PluginDlteamsProjectTask2_Item::class,
-            PluginDlteamsStep::class
+            PluginDlteamsStep::class,
+            PluginDlteamsITILFollowup::class,
             // 'PluginDlteamsStorageUnitType'
         ];
         return $types;
@@ -151,6 +153,7 @@ class PluginDlteamsItemType extends CommonDBTM
             PluginDlteamsSupplier_Item::class,
             PluginDlteamsStoragePeriod_Item::class,
             PluginDlteamsThirdPartyCategory_Item::class,
+            PluginDlteamsITILFollowup::class,
             // PluginDlteamsDataCarrier_Item::class,
         ];
 

@@ -113,12 +113,20 @@
                 {% endif %}
 
                 {% if entry_i['begin'] %}
+                    {% set begin_date = entry_i['begin']|date('Y-m-d') %}
+                    {% set end_date = entry_i['end']|date('Y-m-d') %}
+                    {% set end_time = entry_i['end']|date('H:i') %}
+
                     <span class="planification badge bg-orange-lt">
-                  <i class="fas fa-calendar me-1"></i>
-                  {{ entry_i['begin']|formatted_datetime }}
-                  &rArr;
-                  {{ entry_i['end']|formatted_datetime }}
-               </span>
+                        <i class="fas fa-calendar me-1"></i>
+                        {{ entry_i['begin']|formatted_datetime }}
+                        &rArr;
+                        {% if begin_date == end_date %}
+                            {{ end_time }}
+                        {% else %}
+                            {{ entry_i['end']|formatted_datetime }}
+                        {% endif %}
+                    </span>
                 {% endif %}
 
                 {% if entry_i['sourceitems_id'] %}

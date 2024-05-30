@@ -45,7 +45,6 @@ function plugin_dlteams_install()
     $DB->runFile(plugin_dlteams_root . "/install/sql/update-1.0.sql");
     $DB->runFile(plugin_dlteams_root . "/install/sql/update-1.1.sql");
     $DB->runFile(plugin_dlteams_root . "/install/sql/update-1.2.sql");
-    // $DB->runFile(plugin_dlteams_root . "/install/sql/update-24.sql");
     require_once(plugin_dlteams_root . "/install/sql/update-24.php");
 	// $install = new PluginDlteamsInstall();
 	// $install->install();

@@ -981,6 +981,7 @@ class PluginDlteamsAccountKey extends CommonDropdown implements
             ->addStandardTab(PluginDlteamsDataCatalog_Item::class, $ong, $options)
             //->addStandardTab(PluginDlteamsAccountKey_Item::class, $ong, $options)
             ->addStandardTab('PluginDlteamsObject_document', $ong, $options)
+            ->addStandardTab(PluginDlteamsProtectiveMeasure_Item::class, $ong, $options)
             ->addStandardTab('PluginDlteamsAccountKey_Attribution', $ong, $options)
             ->addStandardTab('ManualLink', $ong, $options)
             ->addStandardTab(PluginDlteamsTicket_Item::class, $ong, $options)

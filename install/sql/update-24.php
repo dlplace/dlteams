@@ -376,7 +376,7 @@ $querys = [
   `date_mod` timestamp NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
-    "CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_locations_items` (
+"CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_locations_items` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `locations_id` int UNSIGNED NOT NULL DEFAULT 0,
   `itemtype` varchar(255) NOT NULL,
@@ -386,8 +386,9 @@ $querys = [
   `date_mod` timestamp NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
-    "ALTER TABLE `glpi_itilfollowups` ADD IF NOT EXISTS `parent_comment_id` INT NULL AFTER `content`;",
-    "ALTER TABLE `glpi_plugin_dlteams_records` ADD IF NOT EXISTS `is_grouping` TINYINT NOT NULL DEFAULT '0' AFTER `content`; ;",
+"ALTER TABLE `glpi_itilfollowups` ADD IF NOT EXISTS `parent_comment_id` INT NULL AFTER `content`;",
+"ALTER TABLE `glpi_plugin_dlteams_records` ADD IF NOT EXISTS `is_grouping` TINYINT NOT NULL DEFAULT '0' AFTER `content`;",
+"ALTER TABLE `glpi_itilfollowups` ADD IF NOT EXISTS `date_creation` TIMESTAMP NULL AFTER `content`, ADD IF NOT EXISTS `date_mod` TIMESTAMP NULL AFTER `date_creation`;",
 ];
 $i = 1;
 global $DB;
@@ -406,6 +407,6 @@ foreach ($querys as $query) {
 }
 
 header("Refresh:0; url=config.form.php");
-Html::back();
+// Html::back();
 
 

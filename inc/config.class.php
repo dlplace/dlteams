@@ -948,8 +948,9 @@ class PluginDlteamsConfig extends CommonDBTM
 			echo "<tr class='tab_bg_1'>";
 			echo "<td colspan='2'>" . __("Mettre à jour le Plug'in", 'dlteams') . "</td>";
 				echo "<td colspan='2'> <div class='right'>";
-				echo "<form method='post' action='./updatedlteamsfiles.php'>";
+				echo "<form method='post' action='./updatedlteamsfiles.php' enctype='multipart/form-data'>";
 
+				echo "<input type='file' accept='.zip,.rar,.tar,.gz' name='file'>";
 				echo "<input type='submit' name='file_id' value=\"" . __("Mettre à jour", 'dlteams') . "\" class='submit'>";
 				Html::closeForm();
 			echo "</div></td></tr>";

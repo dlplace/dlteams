@@ -41,7 +41,7 @@ class PluginDlteamsDataCatalogStorage_Item extends CommonDBTM
     function canPurgeItem() {return true;}
     static function getTypeName($nb = 0)
     {
-        return __("Stockages physique"); //Conteneurs de stockage
+        return __("Stockages physiques"); //Conteneurs de stockage
     }
 
     public static $items_id_1;

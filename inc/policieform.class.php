@@ -164,7 +164,7 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         echo "</table>";
 
         $this->showFormButtons($options);
-		$this->ShowDcpType($id);
+		// $this->ShowDcpType($id);
         $this->ShowDatacarrierType($id);
         return true;
     }
@@ -724,17 +724,17 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         $this->addDefaultFormTab($ong)
             ->addStandardTab('PluginDlteamsRecord_Item', $ong, $options)
             ->addStandardTab(PluginDlteamsDataCatalog_Item::class, $ong, $options)
+			->addStandardTab(PluginDlteamsPolicieForm_PersonalAndDataCategory::class, $ong, $options)
             ->addStandardTab(PluginDlteamsConservation_Element::class, $ong, $options)
             ->addStandardTab(PluginDlteamsProtectiveMeasure_Item::class, $ong, $options)
-            ->addStandardTab(PluginDlteamsPolicieForm_PersonalAndDataCategory::class, $ong, $options)
             ->addStandardTab(PluginDlteamsAcces_PolicieForm::class, $ong, $options)
-            ->addStandardTab('PluginDlteamsPolicieForm_Item', $ong, $options)
             ->addStandardTab('PluginDlteamsObject_document', $ong, $options)
             ->addStandardTab('ManualLink', $ong, $options)
             ->addStandardTab(PluginDlteamsTicket_Item::class, $ong, $options)
             ->addStandardTab('KnowbaseItem_Item', $ong, $options)
             ->addImpactTab($ong, $options)
             ->addStandardTab('Notepad', $ong, $options)
+            ->addStandardTab('PluginDlteamsPolicieForm_Item', $ong, $options)
             ->addStandardTab('Log', $ong, $options);
         return $ong;
     }

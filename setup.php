@@ -25,7 +25,7 @@
  --------------------------------------------------------------------------
  */
 
-define('plugin_dlteams_version', '24.04.04');
+define('plugin_dlteams_version', '24.05.05');
 define('plugin_dlteams_root', __DIR__);
 // include_once __DIR__ . '/dlteams.php';
 function plugin_init_dlteams()

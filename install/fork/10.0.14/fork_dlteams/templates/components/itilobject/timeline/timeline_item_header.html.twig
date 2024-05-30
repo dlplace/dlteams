@@ -102,6 +102,15 @@
                     </li>
                 {% endset %}
 
+                {% set answer_btn %}
+                    <li>
+                        <a class="dropdown-item move-timeline-item{{ entry_rand }}" href="#">
+                            <i class="fa-fw ti ti-arrow-right"></i>
+                            <span>{{ __('Transférer vers un autre événement') }}</span>
+                        </a>
+                    </li>
+                {% endset %}
+
                 {% if entry['type'] == 'TicketTask' %}
                 {% set add_planification_btn %}
                     <li>

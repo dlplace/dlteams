@@ -192,6 +192,7 @@ class PluginDlteamsRecord extends CommonDropdown implements
         ]);
         echo "</td></tr>";*/
 //
+        
         echo "<tr class='tab_bg_1'>";
         echo "<td class='form-table-text'>" . __("Process responsible", 'dlteams') . "</td>";
         $randDropdown = mt_rand();

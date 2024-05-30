@@ -47,9 +47,9 @@ if (isset($_POST['add'])) {
     Html::redirect($record->getFormURLWithID($id));
 
 } else if (isset($_POST['update'])) {
-
     $record->check($_POST['id'], UPDATE);
 
+    
     $data = $_POST;
 /*    highlight_string("<?php\n\$data =\n" . var_export($data, true) . ";\n?>");*/
 //    die();

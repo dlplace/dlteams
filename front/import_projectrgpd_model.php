@@ -78,7 +78,7 @@ $message = "Import du projet conformité RGPD" . nl2br("\n") ;
 	} else {
 	var_dump ("Il n'existe pas d'entité modèle");
 	}	
-
+/*
 // STEP 2 : on supprime le projet existant si il existe
 	$result = $DB->query('SELECT `id` FROM `glpi_projects` WHERE `name` = "Référentiel RGPD" and `entities_id` = ' . $modelrgpd_id);
 	$project_id = 0;
@@ -140,7 +140,8 @@ $message = "Import du projet conformité RGPD" . nl2br("\n") ;
 		$DB->queryOrDie($query, $DB->error());
    }
   // Session::addMessageAfterRedirect("fields ok");
-  
+  	var_dump ("import ok");die;
+*/
   // STEP 4 : update relation id  
 	// `glpi_projects` (id, name, enetities_id)
 	$query = "UPDATE `glpi_projects` SET entities_id = $modelrgpd_id where `oid` <> 0";
@@ -186,7 +187,7 @@ $message = "Import du projet conformité RGPD" . nl2br("\n") ;
 
 				// (glpi_tickets_users) (tickets_id - users_id - type)
 		
-
+/*
 // STEP 4 Delete oid
    foreach ($tables as $table) {
 		$query = "ALTER TABLE $table DROP IF EXISTS `oid`";
@@ -202,6 +203,6 @@ $message = "Import du projet conformité RGPD" . nl2br("\n") ;
 	$DB->queryOrDie($query, $DB->error());
 	$query = "ALTER TABLE `glpi_tickettasks` DROP IF EXISTS `tickets_oid`";
 	$DB->queryOrDie($query, $DB->error());
-	
+*/	
 Session::addMessageAfterRedirect($message);
 echo "<script>window.location.href='config.form.php';</script>";// revient sur la page

@@ -1714,6 +1714,8 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
         $parent = new PluginDlteamsDataCatalog();
         $parentaccounts_idx = [];
         $parentannuaires_accounts_idx = [];
+//        var_dump($item->fields["plugin_dlteams_datacatalogs_id"]);
+//        die();
         if($parent->getFromDB($item->fields["plugin_dlteams_datacatalogs_id"])){
 //
             foreach (PluginDlteamsAccountKey_Directory::showForItemgetRequest($parent, false) as $parentaccount)
@@ -1746,11 +1748,10 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
         $condition = [];
         $authorized_key_idx = [...$parentaccounts_idx,...$parentannuaires_accounts_idx];
         if(count($authorized_key_idx) > 0)
-
         $condition[PluginDlteamsAccountKey::getTable().'.id'] = $authorized_key_idx;
 
-/*        highlight_string("<?php\n\$data =\n" . var_export($condition, true) . ";\n?>");*/
-//        die();
+        if (empty($condition))
+            $condition["glpi_plugin_dlteams_accountkeys.id"] = null;
         
         PluginDlteamsAccountKey::dropdown([
             "name" => "accountkeys_id",

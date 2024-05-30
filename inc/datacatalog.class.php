@@ -1477,8 +1477,9 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
     {
         $ong = [];
         $this->addDefaultFormTab($ong);
-        if (!$this->fields["plugin_dlteams_databasetypes_id"])
-            $this->addStandardTab('PluginDlteamsDataCatalog', $ong, $options);
+        // l'onglet Sous-catalogues n'apparait que si il existe des sous catalogues -> pas cohérent
+		// if (!$this->fields["plugin_dlteams_datacarriercategories_id"]) 
+        $this->addStandardTab('PluginDlteamsDataCatalog', $ong, $options);
 
         $this->addStandardTab(PluginDlteamsPolicieForm_Item::class, $ong, $options);
 //        l'onglet est annuaire de n'apparait que si il s'agit d'un annuaire + il a été sélectionné comme service d'annuaire tiers
