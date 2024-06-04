@@ -844,32 +844,59 @@ class PluginDlteamsRecord_Element extends CommonDBTM
     public static function showTransmissionMethods(CommonGLPI $record)
     {
         $rand = mt_rand();
+        echo "<style>
+    .form-element {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+    .input-field select {
+        width: 100%; /* Full width on small screens */
+    }
+    @media (max-width: 768px) {
+        .form-element {
+            font-size: 16px; /* Larger text on small screens */
+        }
+        .input-field select {
+            height: 40px; /* Easier to interact with on mobile */
+        }
+    }
+    </style>";
+
         echo "<div class='firstbloc'>";
         echo "<form name='ticketitem_form$rand' id='ticketitem_form$rand' method='post' action='" . Toolbox::getItemTypeFormURL(__class__) . "'>";
-
-        // echo "<input type='hidden' name='update' value='1' />";
         $iden = $record->fields['id'];
+        echo "<style>
+        .responsive_inline_element {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Vous pouvez ajuster l'espacement entre les éléments selon vos besoins */
+        }
+        
+      
+        @media (min-width: 768px) { /* Cela cible les écrans d'au moins 768 pixels de large */
+            .responsive_inline_element {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+        </style>";
+       echo "<div class='responsive_inline_element'>";
         echo "<table class='tab_cadre_fixe'>";
         echo "<tr>";
-        echo "<th colspan='1'>" . __("Transmission method", 'dlteams') . "</th>";
-        echo "<th colspan='1'>" . __("Support and collection media", 'dlteams') . "</th>";
-        echo "<th colspan='1'>" . __("SI Integration", 'dlteams') . "</th>";
+        echo "<th colspan='3'>" . __("Transmission method", 'dlteams') . "</th>";
         echo "</tr>";
 
-        //echo "<tr class='tab_bg_1'>";
-        echo "<td class='left' width='33%'>";
-		echo "<div style='display: flex; flex-direction: column; gap: 1em'>";
+        echo "<tr>";
+        echo "<td class='form-element'>";
         echo __('Quel canal ou méthode de collecte?', 'dlteams');
-        echo "<div style='display: flex; align-items: center'>";
-
-        echo "<input type='hidden' name='record_id' value='" . $record->fields["id"] . "'>";
         global $DB;
         $iterator = $DB->request(["FROM" => PluginDlteamsTransmissionMethod::getTable(), "SELECT" => ["name", "id"]]);
         $list = [];
-
         foreach ($iterator as $data) {
             $list[$data["id"]] = $data["name"];
         }
+        echo "<div class='input-field'>";
         Dropdown::showFromArray(
             "transmission_methods",
             $list,
@@ -880,22 +907,24 @@ class PluginDlteamsRecord_Element extends CommonDBTM
             ]
         );
         echo "</div>";
-        echo "</div>";
         echo "</td>";
+        echo "</table>";
 
-        echo "<td class='left' width='33%'>";
-        echo "<div style='display: flex; flex-direction: column; gap: 1em'>";
+
+
+        echo "<table class='tab_cadre_fixe'>";
+        echo "<tr>";
+        echo "<th colspan='3'>" . __("Support and collection media", 'dlteams') . "</th>";
+        echo "</tr>";
+
+        echo "<td class='form-element'>";
         echo __('Y a t-il un média ou support transmis ?', 'dlteams');
-        echo "<div>";
-        global $DB;
         $iterator = $DB->request(["FROM" => PluginDlteamsMediaSupport::getTable(), "SELECT" => ["name", "id"]]);
-
         $list = [];
-
         foreach ($iterator as $data) {
             $list[$data["id"]] = $data["name"];
         }
-
+        echo "<div class='input-field'>";
         Dropdown::showFromArray(
             "support_methods",
             $list,
@@ -907,21 +936,21 @@ class PluginDlteamsRecord_Element extends CommonDBTM
             ]
         );
         echo "</div>";
-        echo "</div>";
         echo "</td>";
+        echo "</table>";
 
-        echo "<td class='left' width='33%'>";
-		echo "<div style='display: flex; flex-direction: column; gap: 1em'>";
+        echo "<table class='tab_cadre_fixe'>";
+        echo "<tr>";
+        echo "<th colspan='3'>" . __("SI Integration", 'dlteams') . "</th>";
+        echo "</tr>";
+        echo "<td class='form-element'>";
         echo __('Mode d\'enregistrement dans les catalogues de données', 'dlteams');
-        echo "<div>";
-        global $DB;
         $iterator = $DB->request(["FROM" => PluginDlteamsSIIntegration::getTable(), "SELECT" => ["name", "id"]]);
-
         $list = [];
         foreach ($iterator as $data) {
             $list[$data["id"]] = $data["name"];
         }
-
+        echo "<div class='input-field'>";
         Dropdown::showFromArray(
             "si_integration",
             $list,
@@ -932,16 +961,24 @@ class PluginDlteamsRecord_Element extends CommonDBTM
             ]
         );
         echo "</div>";
-        echo "</div>";
         echo "</td>";
         echo "</tr>";
 
+//        echo "<tr><td colspan='3'>";
+//        echo "<input type='submit' name='save' value=\"" . _sx('button', 'Save') . "\" class='submit' style='margin-top:5px;'>";
+//        echo "</td></tr>";
+
+        echo "</table>";
+       echo "</div>";
+
+        echo "<table class='tab_cadre_fixe'>";
         echo "<tr><td colspan='3'>";
         echo "<input type='submit' name='save' value=\"" . _sx('button', 'Save') . "\" class='submit' style='margin-top:5px;'>";
         echo "</td></tr>";
 
         echo "</table>";
         Html::closeForm();
+        echo "</div>";
     }
 
     static function getRequest($record)
@@ -1059,6 +1096,7 @@ class PluginDlteamsRecord_Element extends CommonDBTM
             'value' => $record->fields["collect_comment"],
             'enable_fileupload' => false,
             'enable_richtext' => true,
+            'width' => '100%',
             'rows' => 4
         ]);
         echo "</td>";

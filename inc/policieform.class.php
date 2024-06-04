@@ -47,11 +47,28 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         $this->initForm($id, $options);
         $this->showFormHeader($options);
 
+        echo "<style>";
+        echo "
+            .form-table-text {
+                text-align: right;
+                width: 25%;
+            }
+            
+            
+            @media (max-width: 800px) {
+                .form-table-text {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        ";
+
+        echo "</style>";
         echo "<table, th, td width='100%'>";
 
         echo "<tr>";
-        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
-        echo "<td width='15%' style='text-align:right' >" . __("Name", 'dlteams') . "</td>";
+//        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
+        echo "<td class='form-table-text' >" . __("Name", 'dlteams') . "</td>";
         echo "<td>";
         $name = Html::cleanInputText($this->fields['name']);
         echo "<input type='text' style='width:98%' name='name' required value='" . $name . "'>" . "</td>";
@@ -59,8 +76,8 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         echo "</tr>";
 
         echo "<tr>";
-        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
-        echo "<td width='15%' style='text-align:right'>" . __("Content", 'dlteams') . "</td>";
+//        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
+        echo "<td class='form-table-text'>" . __("Content", 'dlteams') . "</td>";
         echo "<td>";
         $content = Html::cleanInputText($this->fields['content']);
         echo "<textarea style='width: 98%;' name='content' rows='3'>" . $content . "</textarea>";
@@ -68,8 +85,8 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
 
         
         echo "<tr>";
-        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
-        echo "<td width='15%' div style='text-align:right'>" . __("Catégorie de document", 'dlteams') . "</td>";
+//        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
+        echo "<td class='form-table-text'>" . __("Catégorie de document", 'dlteams') . "</td>";
         echo "<td>";
         DocumentCategory::dropdown([
             'addicon' => DocumentCategory::canCreate(),
@@ -82,8 +99,8 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         echo "</td></tr>";
 
         echo "<tr>";
-        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
-        echo "<td width='15%' style='text-align:right'>" . __("Document modèle", 'dlteams') . "</td>";
+//        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
+        echo "<td class='form-table-text'>" . __("Document modèle", 'dlteams') . "</td>";
         echo "<td style='display: flex;' class='left'>";
 //        Document::dropdown([
 //            'entity' => Session::getActiveEntity(),
@@ -111,22 +128,23 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         echo "</tr>";
 
         echo "<tr>";
-        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
-        echo "<td width='15%' style='text-align:right'>" . "Fichier " . "</td>";
+//        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
+        echo "<td class='form-table-text'>" . "Fichier " . "</td>";
         echo "<td>";
         // echo "<span>";
         echo "<div id='document_additional_fields'>";
         // echo "<div style='display: flex; flex-direction: column; gap: 4px;'>";
-        $output = "";
+        $output = "N/A";
         /*        highlight_string("<?php\n\$data =\n" . var_export($dc->fields, true) . ";\n?>");*/
 //        die();
         $dc = new Document();
         // echo "<span>";
 
         $dc->getFromDB($this->fields["documents_id"]);
-        $output .= "<a href='/front/document.send.php?docid=" . $this->fields["documents_id"] . "' target='_blank'>" . $dc->getDownloadLink(null, 45) . "</a> <NOBR>";
-        // $output.="<a href='/front/document.send.php?docid=".$this->fields["documents_id"]."' target='_blank'>".$dc->getField("filename")."</a> <NOBR>";
-        $output .= "Lien : " . "<a href='/front/document.send.php?docid=" . $this->fields["documents_id"] . "' target='_blank'>" . $dc->getField("link") . "</a>";
+        if(isset($dc->fields["filename"])){
+            $output .= "<a href='/front/document.send.php?docid=" . $this->fields["documents_id"] . "' target='_blank'>" . $dc->getDownloadLink(null, 45) . "</a> <NOBR>";
+            $output .= "Lien : " . "<a href='/front/document.send.php?docid=" . $this->fields["documents_id"] . "' target='_blank'>" . $dc->getField("link") . "</a>";
+        }
         echo $output;
         // echo "</span>";
         echo "</div>";
@@ -155,8 +173,8 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         echo $script;
 
         echo "<tr>";
-        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
-        echo "<td width='15%' style='text-align:right'>" . __("Commentaire", 'dlteams') . "</td>";
+//        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
+        echo "<td class='form-table-text'>" . __("Commentaire", 'dlteams') . "</td>";
         echo "<td>";
         $comment = Html::cleanInputText($this->fields['comment']);
         echo "<textarea style='width: 98%;' name='comment' rows='3'>" . $comment . "</textarea>";
@@ -392,7 +410,7 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
                 echo "</table>";
 
                 echo "<table class='tab_cadre_fixe'>";
-                echo "<td style='text-align:right'>" . __("Type de données", 'dlteams') . "</td>";
+                echo "<td class='form-table-text'>" . __("Type de données", 'dlteams') . "</td>";
                 echo "<td>";
                 PluginDlteamsDataCarrierType::dropdown([
                     'addicon' => PluginDlteamsDataCarrierType::canCreate(),
@@ -403,7 +421,7 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
                 echo "</td>";
 
                 echo "<tr>";
-                echo "<td style='text-align:right'>" . __("Comment") . " " . "</td>";
+                echo "<td class='form-table-text'>" . __("Comment") . " " . "</td>";
 //                $comment = Html::cleanInputText($this->fields['comment']);
                 echo "<td>" . "<textarea style='width:100%' rows='1' name='comment' ></textarea>" . "</td>";
                 echo "<td class='left'><input type='submit' name='add' value=\"" . _sx('button', 'Add') . "\" class='submit' style='margin:0px auto!important'>" . "</td>";

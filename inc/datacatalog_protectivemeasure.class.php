@@ -100,7 +100,8 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
                 if (!$withtemplate) {
                     if (Session::haveRight($item::$rightname, READ)) {
                         if ($_SESSION['glpishow_count_on_tabs']) {
-                            return static::createTabEntry(static::getTypeNameForClass(), static::countForItem($item));
+                            $count = static::countForItem($item);
+                            return static::createTabEntry(static::getTypeNameForClass(), $count);
                         }
                         return static::getTypeNameForClass();
                     }
@@ -111,7 +112,10 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
                 if (!$withtemplate) {
                     if (Session::haveRight($item::$rightname, READ)) {
                         if ($_SESSION['glpishow_count_on_tabs']) {
-                            return static::createTabEntry(static::getTypeName(2), static::countForItem($item));
+                            $count = static::countForItem($item);
+                            if($item::getType() == PluginDlteamsDataCatalog::class && $item->fields["plugin_dlteams_datacatalogs_id"])
+                                $count+= static::countForItem($item, true);
+                            return static::createTabEntry(static::getTypeName(2), $count);
                         }
                         return static::getTypeName(2);
                     }
@@ -123,10 +127,10 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
     }
 
     // comptage du nombre de liaison entre les 2 objets dans la table de l'objet courant
-    static function countForItem(CommonDBTM $item)
+    static function countForItem(CommonDBTM $item, $showcatalogparent_pm = false)
     {
         $dbu = new DbUtils();
-        return $dbu->countElementsInTable(static::getTable(), ['items_id' => $item->getID(), 'itemtype' => $item->getType()]);
+        return $dbu->countElementsInTable(static::getTable(), ['items_id' => $showcatalogparent_pm?$item->fields['plugin_dlteams_datacatalogs_id']:$item->getID(), 'itemtype' => $item->getType()]);
     }
 
 
@@ -192,6 +196,8 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
                 self::showItems($item);
                 break;
             default:
+                if($item::getType() == PluginDlteamsDataCatalog::class && $item->fields["plugin_dlteams_datacatalogs_id"])
+                    self::showForItem($item, 0, true);
                 self::showForItem($item);
                 break;
         }
@@ -337,14 +343,14 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
         }
     }
 
-    static function showForItem(CommonDBTM $item, $withtemplate = 0)
+    static function showForItem(CommonDBTM $item, $withtemplate = 0, $showcatalogparent_pm = false)
     {
         $id = $item->fields['id'];
         $canedit = $item->can($id, UPDATE); // canedit booleen = true
         $rand = mt_rand(1, mt_getrandmax());
         global $DB;
 
-        $iterator = static::getRequest($item);
+        $iterator = static::getRequest($item, $showcatalogparent_pm);
         $number = count($iterator);
         $items_list = [];
 
@@ -357,20 +363,25 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
         }
 
 
-        if ($canedit) {
+        if ($canedit && !$showcatalogparent_pm) {
             echo "<form name='ticketitem_form$rand' id='ticketitem_form$rand' method='post'
              action='" . Toolbox::getItemTypeFormURL(__CLASS__) . "'>";
             echo "<input type='hidden' name='itemtype1' value='" . $item->getType() . "' />";
             echo "<input type='hidden' name='itemtype' value='" . static::$itemtype_2 . "' />";
             echo "<input type='hidden' name='datacatalogs_idx[]' value='" . $item->getID() . "' />";
             echo "<input type='hidden' name='entities_id' value='" . $item->fields['entities_id'] . "' />";
+        }
 //
+        $title = static::$title;
+        if($showcatalogparent_pm === true)
+            $title = "Mesures effectives (appliquées au catalogue parent)";
             echo "<table class='tab_cadre_fixe'>";
 
-            echo "<tr class='tab_bg_2'><th colspan='3'>" . static::$title .
+            echo "<tr class='tab_bg_2'><th colspan='3'>" . $title .
                 "</i></th>";
             echo "</tr>";
 
+        if ($canedit && !$showcatalogparent_pm) {
             echo "<tr class='tab_bg_1'>";
             echo "<td class='left'>";
             echo "<div style='display: flex; flex-direction: column; gap: 10px;'>";
@@ -378,7 +389,7 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
             echo static::$sub_title;
             echo "</span>";
 
-            $used = [];
+            global $CFG_GLPI;
             static::$itemtype_2::dropdown([
                 'addicon' => true,
                 'name' => 'protectivemeasures_id',
@@ -386,6 +397,7 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
                 //'entity' => $this->fields["entities_id"],
                 'right' => 'all',
                 'width' => "250px",
+                'url' => $CFG_GLPI['root_doc'] . "/marketplace/dlteams/ajax/getDropdownValue.php",
                 'used' => $used
             ]);
             echo "</div>";
@@ -470,8 +482,10 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
             echo "</td>";
             echo "</tr>";
 
+        }
 
             echo "</table>";
+        if ($canedit && !$showcatalogparent_pm) {
             Html::closeForm();
         }
 
@@ -514,7 +528,7 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
 
 
         echo "<div class='spaced'>";
-        if ($canedit && $number) {
+        if ($canedit && $number && !$showcatalogparent_pm) {
             Html::openMassiveActionsForm('mass' . __CLASS__ . $rand);
             $massive_action_params = [
                 'container' => 'mass' . __CLASS__ . $rand,
@@ -530,7 +544,7 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
         $header_end = '';
 
 
-        if ($canedit && $number) {
+        if ($canedit && $number && !$showcatalogparent_pm) {
 
             $header_begin .= "<th width='10'>";
             $header_top .= Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
@@ -556,7 +570,7 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
 
             echo "<tr class='tab_bg_1'>";
 
-            if ($canedit && $number) {
+            if ($canedit && $number && !$showcatalogparent_pm) {
                 echo "<td width='10'>";
 
                 $item_str = $item::class . "_Item";
@@ -730,7 +744,7 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
         return $forbidden;
     }
 
-    public static function getRequest(CommonDBTM $item)
+    public static function getRequest(CommonDBTM $item, $showcatalogparent_pm = false)
     {
         $table_name = static::$itemtype_2::getTable(); // si $item = DataCatalog, $table_name contiendra data_catalogs
         $columnid_name = strtolower(str_replace("PluginDlteams", "", static::$itemtype_2::getType())) . "s_id"; // $columnid_name contiendra users_id si $item = User
@@ -776,7 +790,7 @@ class PluginDlteamsDatacatalog_Protectivemeasure extends CommonDBTM
             ],
             'WHERE' => [
                 $table_item_name . '.itemtype' => ['LIKE', $item::getType()],
-                $table_item_name . '.' . 'items_id' => $item->fields['id'],
+                $table_item_name . '.' . 'items_id' => $showcatalogparent_pm?$item->fields['plugin_dlteams_datacatalogs_id']:$item->fields['id'],
             ],
             'ORDERBY' => ['name ASC']
         ];

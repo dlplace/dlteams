@@ -68,6 +68,23 @@ class PluginDlteamsRecord_Rights extends CommonDBTM {
       $options['canedit'] = $canedit;
       $options['formtitle'] = __("Right exercice", 'dlteams');
 
+       echo "<style>";
+       echo "
+            .form-table-text {
+                text-align: right;
+                width: 25%;
+            }
+            
+            
+            @media (max-width: 800px) {
+                .form-table-text {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        ";
+
+       echo "</style>";
       //if ($canedit) {
       echo "<div class='firstbloc'>";
       echo "<form name='ticketitem_form$rand' id='ticketitem_form$rand' method='post'
@@ -78,7 +95,7 @@ class PluginDlteamsRecord_Rights extends CommonDBTM {
       echo "<tr class='tab_bg_2%'><th colspan='2'>";
       echo __("Add right exercice", 'dlteams') . "</th></tr>";
 
-      echo "<tr><td width='50%'>" . __("Is the consent implicit or explicit?", 'dlteams') . "</td><td>";
+      echo "<tr><td  class='form-table-text'>" . __("Is the consent implicit or explicit?", 'dlteams') . "</td><td>";
       //choix
       $rand = Dropdown::showFromArray("consent_type", [
          __("Implicit", 'dlteams'),
@@ -101,7 +118,7 @@ class PluginDlteamsRecord_Rights extends CommonDBTM {
       self::showConsent($record, $record->fields);
       echo "</tr>";
 
-      echo "<tr><td>" . __("Information right", 'dlteams') .
+      echo "<tr><td class='form-table-text'>" . __("Information right", 'dlteams') .
          "<br><i>" . __("Indicate different phases of information following the moment", 'dlteams') . "</i>" .
          "</td><td class='left'>";
 //echo "<textarea type='text' style='width:98%' maxlength=1000 rows='3' name='right_information'>" .
@@ -117,7 +134,7 @@ class PluginDlteamsRecord_Rights extends CommonDBTM {
        ]);
 echo "</td></tr>";
 
-      echo "<tr><td>" . __("Opposition right", 'dlteams') .
+      echo "<tr><td class='form-table-text'>" . __("Opposition right", 'dlteams') .
          "</td><td class='left'>";
 
 //      echo "<textarea type='text' style='width:98%' maxlength=1000 rows='3' name='right_oposition'>" .
@@ -133,7 +150,7 @@ echo "</td></tr>";
        ]);
       echo "</td></tr>";
 
-      echo "<tr><td>" . __("Portability right", 'dlteams') .
+      echo "<tr><td class='form-table-text'>" . __("Portability right", 'dlteams') .
          "<br><i>" . __("Explain modalities, or justify the absence of portability", 'dlteams') . "</i>" .
          "</td><td class='left'><textarea type='text' style='width:98%' maxlength=1000 rows='3' name='right_portabiliy'>" .
          $record->fields['right_portability'] . "</textarea></td></tr>";

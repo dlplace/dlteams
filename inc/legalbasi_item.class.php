@@ -341,6 +341,23 @@ class PluginDlteamsLegalBasi_Item extends CommonDBTM
         $items_list = [];
         $used = [];
 
+        echo "<style>";
+        echo "
+            .form-table-text {
+                text-align: right;
+                width: 25%;
+            }
+            
+            
+            @media (max-width: 800px) {
+                .form-table-text {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        ";
+
+        echo "</style>";
         foreach ($iterator as $data) {
             $items_list[$data['linkid']] = $data;
             $used[$data['id']] = $data['id'];
@@ -365,7 +382,7 @@ class PluginDlteamsLegalBasi_Item extends CommonDBTM
                 "</i></th>";
             echo "</tr>";
             echo "<th colspan='2'></th></tr>";
-            echo "<tr class='tab_bg_1'><td class='left' width='30%'>" . __($entitled, 'dlteams');
+            echo "<tr class='tab_bg_1'><td class='form-table-text'>" . __($entitled, 'dlteams');
             echo "</td><td width='20%' class='left'>";
             global $CFG_GLPI;
             Dropdown::show(static::$itemtype_1, [
@@ -375,11 +392,9 @@ class PluginDlteamsLegalBasi_Item extends CommonDBTM
                 'url' => $CFG_GLPI['root_doc'] . "/marketplace/dlteams/ajax/getDropdownValue.php"
             ]);
             echo "</td>";
-            echo "<td width='' colspan='1'>";
+            echo "<td>";
             echo "<span>";
-
-            echo "<br/><br/>";
-            echo "<textarea type='text' style='width:100%;float:right;margin-right:5%; display:none' maxlength=1000 rows='3' id='update_comment_textarea' name='comment' class='storage_comment1' placeholder='commentaire'></textarea>";
+            echo "<textarea type='text' style='width:100%;display:none' maxlength=1000 rows='3' id='update_comment_textarea' name='comment' class='storage_comment1' placeholder='commentaire'></textarea>";
             echo "</span>";
             echo "</td>";
 

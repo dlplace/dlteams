@@ -52,74 +52,114 @@ class PluginDlteamsProtectiveMeasure extends CommonDropdown implements
       $this->initForm($id, $options);
       $this->showFormHeader($options);
 
+        echo "<style>";
+        echo "
+            .form-table-text {
+                text-align: right;
+                width: 25%;
+            }
+            
+            
+            @media (max-width: 800px) {
+                .form-table-text {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        ";
+
+        echo "</style>";
 	echo "<tr class='tab_bg_1'>";
-	echo "<td width='25%' style='text-align: right'>". __("Name", 'dlteams') . "</i></td>";
+	echo "<td class='form-table-text'>". __("Name", 'dlteams') . "</i></td>";
 	echo "<td colspan='2'>";
     $name = Html::cleanInputText($this->fields['name']);
     echo "<input type='text' style='width:70%' maxlength=250 name='name' required value='" . $name . "'>";
     echo "</td></tr>";
 
 	echo "<tr class='tab_bg_1'>";
-    echo "<td style='text-align: right'>" . __("Content", 'dlteams') . "</td>";
+    echo "<td class='form-table-text'>" . __("Content", 'dlteams') . "</td>";
     echo "<td colspan='2'>";
     $content = Html::cleanInputText($this->fields['content']);
     echo "<textarea style='width: 70%;' name='content' maxlength='1000' rows='3'>" . $content . "</textarea>";
     echo "</td></tr>";
 
 	// echo "<table>";
-		echo "<tr class='tab_bg_1'>";
-		echo "<td width='25%' style='text-align: right'>". __("Type", 'dlteams') . "</i></td>";
-		echo "<td colspan='2'>";
+	echo "<tr class='tab_bg_1'>";
+	echo "<td class='form-table-text'>". __("Type", 'dlteams') . "</i></td>";
+	echo "<td colspan='2'>";
 		PluginDlteamsProtectiveType::dropdown([
-            'addicon'  => PluginDlteamsProtectiveType::canCreate(),
-            'name' => 'plugin_dlteams_protectivetypes_id',
-			// 'width' => '72.5%',
-			'value' => $this->fields['plugin_dlteams_protectivetypes_id']
+        'addicon'  => PluginDlteamsProtectiveType::canCreate(),
+        'name' => 'plugin_dlteams_protectivetypes_id',
+		'width' => '300px',
+		'value' => $this->fields['plugin_dlteams_protectivetypes_id']
 		]);
-		echo "</td>";
-		/* echo "<tr class='tab_bg_1'>";
-		 echo "<td width='25%' style='text-align: right'>". __("Catégories", 'dlteams') . "</i></td>";
-		 echo "<td colspan='2'>";
-			PluginDlteamsProtectiveCategory::dropdown([
-            'addicon'  => PluginDlteamsProtectiveCategory::canCreate(),
-            'name' => 'plugin_dlteams_protectivecategories_id',
-			// 'width' => '100%',
-			'value' => $this->fields['plugin_dlteams_protectivecategories_id']
-			]);
-		echo "</td></tr>";*/
-		echo "<td>" . __("Catégories", 'dlteams')."</td>";
-		 echo "<td>";
-			PluginDlteamsProtectiveCategory::dropdown([
-            'addicon'  => PluginDlteamsProtectiveCategory::canCreate(),
-            'name' => 'plugin_dlteams_protectivecategories_id',
-			// 'width' => '100%',
-			'value' => $this->fields['plugin_dlteams_protectivecategories_id']
-			]);
-		echo "</td></tr>";
-	 
-		// choix multiple "S'applique à Materiel : Ordinateur, Moniteur, Matériel réseau, Périphérique, Imprimantes, Téléphone, Baie, PDU, Equipement passif, Câble, Datacenter, Cluster | Catalogue : Application-base de données, Boite mail, Centre d'administration, Iot, Documents papier, Dossiers et fichiers - Drive, Journbaux & logs, Sauvegarde) | Compte ou Clé, Logiciel, Certificat, Jeu de données | Mobilier, Local, Véhicule
-		/* echo "<tr class='tab_bg_1'>";
-		echo "<td width='25%' style='text-align: right'>". __("S'applique à : ", 'dlteams') . "</i></td>";
-		echo "<td colspan='2'>";
-		PluginDlteamsProtectiveType::dropdown([
-            'addicon'  => PluginDlteamsProtectiveType::canCreate(),
-            'name' => 'plugin_dlteams_protectivetypes_id',
-			// 'width' => '72.5%',
-			'value' => $this->fields['plugin_dlteams_protectivetypes_id']
+	echo "</td></tr>";
+	
+	echo "<tr class='tab_bg_1'>";
+	echo "<td class='form-table-text'>" . __("Catégories", 'dlteams')."</td>";
+	echo "<td>";
+		PluginDlteamsProtectiveCategory::dropdown([
+        'addicon'  => PluginDlteamsProtectiveCategory::canCreate(),
+        'name' => 'plugin_dlteams_protectivecategories_id',
+		'width' => '300px', // 'width' => '100%',
+		'value' => $this->fields['plugin_dlteams_protectivecategories_id']
 		]);
-		echo "</td></tr>"; */
-		// echo"</table>";
-		
-      echo "<tr class='tab_bg_1'>";
-      echo "<td style='text-align: right'>" . __("Comment", 'dlteams') . "</td>";
-      echo "<td colspan='2'>";
-      $comment = Html::cleanInputText($this->fields['comment']);
-      echo "<textarea style='width: 70%;' name='comment' maxlength='1000' rows='3'>" . $comment . "</textarea>";
-      echo "</td></tr>";
+	echo "</td></tr>";
 
-      $this->showFormButtons($options);
+        echo "<tr class='tab_bg_1'>";
+        echo "<td class='form-table-text'>" . __("S'applique à", 'dlteams')."</td>";
+        echo "<td>";
+//        PluginDlteamsProtectiveCategory::dropdown([
+//            'addicon'  => PluginDlteamsProtectiveCategory::canCreate(),
+//            'name' => 'plugin_dlteams_protectivecategories_id',
+//            'width' => '300px', // 'width' => '100%',
+//            'value' => $this->fields['plugin_dlteams_protectivecategories_id']
+//        ]);
+        $types = PluginDlteamsItemType::getTypes();
+//        Dropdown::showSelectItemFromItemtypes(['itemtypes' => $types,
+//            'entity_restrict' => ($this->fields['is_recursive'] ? getSonsOf('glpi_entities', $this->fields['entities_id'])
+//                : $this->fields['entities_id']),
+//            'checkright' => true,
+//            'multiple' => true
+////            'used' => $used
+//        ]);
 
-      return true;
+
+
+        Dropdown::showFromArray(
+            "applicables",
+            PluginDlteamsToolbox::getGlpiItemtypes(),
+            [
+                'values' => json_decode($this->fields["applicables"] ?? '{}'),
+                'multiple' => true,
+//                'rand' => $rand,
+                'width' => '300px',
+            ]
+        );
+        echo "</td></tr>";
+
+    /* echo "<tr class='tab_bg_1'>";
+    echo "<td class='form-table-text'>" . __("S'appliquent à", 'dlteams') . "</td>";
+	echo "<td>";
+		// dropdown liste de tous les objets éligibles sur lesquels peuvent s'appliquer une mesure de protection
+		PluginDlteamsProtectiveCategory::dropdown([
+        'addicon'  => PluginDlteamsProtectiveCategory::canCreate(),
+        'name' => 'plugin_dlteams_protectivecategories_id',
+		// 'width' => '100%',
+		'value' => $this->fields['plugin_dlteams_protectivecategories_id']
+		]);
+	echo "</td></tr>";*/
+
+    echo "<tr class='tab_bg_1'>";
+    echo "<td class='form-table-text'>" . __("Comment", 'dlteams') . "</td>";
+    echo "<td colspan='2'>";
+    $comment = Html::cleanInputText($this->fields['comment']);
+    echo "<textarea style='width: 70%;' name='comment' maxlength='1000' rows='3'>" . $comment . "</textarea>";
+    echo "</td></tr>";
+
+    $this->showFormButtons($options);
+
+    return true;
    }
 
 
@@ -314,11 +354,59 @@ class PluginDlteamsProtectiveMeasure extends CommonDropdown implements
             ]);
             echo '<br /><br />' . Html::submit(_x('button', 'Post'), ['name' => 'massiveaction']);
             return true;
+            break;
+            case 'add_protectivemeasure_to_computer':
+
+                $mesures_applicables_query = [
+                    "FROM" => PluginDlteamsProtectiveMeasure::getTable(),
+                    "WHERE" => [
+                        "applicables" => [
+                            'LIKE', "%Computer%"
+                        ]
+                    ]
+                ];
+
+                global $DB;
+
+                $mesures_applicables_iterator = $DB->request($mesures_applicables_query);
+
+                $applicables = [];
+                foreach ($mesures_applicables_iterator as $applicable){
+                    $applicables[] = $applicable["id"];
+                }
+
+
+                $params = [
+                    'addicon' => false,
+                    'name' => 'protectivemeasures_id',
+                    'value' => "", //$responsible,
+                    //'entity' => $this->fields["entities_id"],
+                    'right' => 'all',
+                    'width' => "250px",
+//                    'used' => $used,
+                ];
+
+                if(count($applicables) > 0) {
+                    $params['condition'] = [
+                        'id' => $applicables
+                    ];
+                }
+                PluginDlteamsProtectiveMeasure::dropdown($params);
+                echo '<br /><br />';
+                Html::textarea(['name' => 'comment',
+                    'cols' => 125,
+                    'rows' => 3,
+                    'enable_richtext' => false]);
+
+            echo '<br /><br />' . Html::submit(_x('button', 'Post'), ['name' => 'massiveaction']);
+            return true;
+
       }
       return parent::showMassiveActionsSubForm($ma);
    }
 
-   static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item, array $ids)
+
+    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item, array $ids)
    {
       switch ($ma->getAction()) {
          case 'copyTo':
@@ -337,6 +425,34 @@ class PluginDlteamsProtectiveMeasure extends CommonDropdown implements
                }
             }
             return;
+            break;
+          case 'add_protectivemeasure_to_computer':
+              foreach ($ids as $id) {
+                  $pmi = new PluginDlteamsProtectiveMeasure_Item();
+                  $ci = new Computer_Item();
+                  global $DB;
+                  $DB->beginTransaction();
+                  if($pmi->add([
+                      "itemtype" => Computer::class,
+                      "items_id" => $id,
+                      "comment" => $ma->POST['comment'],
+                      "protectivemeasures_id" => $ma->POST['protectivemeasures_id'],
+                  ]) && $ci->add([
+                          "itemtype" => PluginDlteamsProtectiveMeasure::class,
+                          "items_id" => $ma->POST['protectivemeasures_id'],
+                          "comment" => $ma->POST['comment'],
+                          "computers_id" => $id
+                      ])){
+                      $DB->commit();
+                      Session::addMessageAfterRedirect("Mesure de protection ajouté avec succès");
+                      $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_OK);
+                  }
+                  else{
+                      $DB->rollback();
+                      $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
+                  }
+              }
+              break;
       }
       parent::processMassiveActionsForOneItemtype($ma, $item, $ids);
    }

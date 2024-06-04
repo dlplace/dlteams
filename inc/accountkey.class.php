@@ -77,17 +77,35 @@ class PluginDlteamsAccountKey extends CommonDropdown implements
         $this->initForm($id, $options);
         $this->showFormHeader($options);
 
+        echo "<style>";
+        echo "
+            .form-table-text {
+                text-align: right;
+                width: 25%;
+            }
+            
+            
+            @media (max-width: 800px) {
+                .form-table-text {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        ";
+
+        echo "</style>";
+
         if(isset($datacatalog)){
             echo "<input type='hidden' name='plugin_dlteams_datacatalogs_id' value='".$datacatalog->fields['id']."'>";
         }
         echo "<tr>";
-        echo "<td style='text-align:right'>" . __("Name", 'dlteams') . "</td>";
+        echo "<td class='form-table-text'>" . __("Name", 'dlteams') . "</td>";
         echo "<td>" . "<input type='text' style='width:70%' style='text-align:left' name='name' required value='" . Html::cleanInputText($this->fields['name']) . "'>" . "</td>";
         echo "<td width='15%'>" . " " . "</td>";
         echo "</tr>";
 
         echo "<tr>";
-        echo "<td width='30%' style='text-align:right'>" . __("Type de clé", 'dlteams') . "</td>";
+        echo "<td class='form-table-text'>" . __("Type de clé", 'dlteams') . "</td>";
         echo "<td>";
         PluginDlteamsKeyType::dropdown([
             'addicon' => PluginDlteamsKeyType::canCreate(),
@@ -115,7 +133,7 @@ class PluginDlteamsAccountKey extends CommonDropdown implements
 
         echo "<tr>";
         //echo "<td width='30%' style='text-align:right'>" . __("Account Management (Directory Service)", 'dlteams') . "</td>";
-        echo "<td width='30%' style='text-align:right'>" . __("Service d'annuaire (comptes) ou lieu de stockage (clés)", 'dlteams') . "</td>";
+        echo "<td class='form-table-text'>" . __("Service d'annuaire (comptes) ou lieu de stockage (clés)", 'dlteams') . "</td>";
         echo "<td>";
         PluginDlteamsDatacatalog::dropdown([
             'addicon' => PluginDlteamsDatacatalog::canCreate(),
@@ -138,7 +156,7 @@ class PluginDlteamsAccountKey extends CommonDropdown implements
 
         if(isset($datacatalog)){
             echo "<tr>";
-            echo "<td width='30%' style='text-align:right'>" . __("Accès en tant que", "dlteams") . "</td>";
+            echo "<td class='form-table-text'>" . __("Accès en tant que", "dlteams") . "</td>";
             echo "<td>";
             echo "<span style='float:right;width:100%' id='td1'>";
 
@@ -160,7 +178,7 @@ class PluginDlteamsAccountKey extends CommonDropdown implements
 
 
             echo "<tr>";
-            echo "<td width='30%' style='text-align:right'>" . __("Affecté à", "dlteams") . "</td>";
+            echo "<td class='form-table-text'>" . __("Affecté à", "dlteams") . "</td>";
             echo "<td>";
 
             User::dropdown([
@@ -177,497 +195,14 @@ class PluginDlteamsAccountKey extends CommonDropdown implements
         }
 
 
-        echo "<td style='text-align:right'>" . __("Comment") . "</td>";
+        echo "<td class='form-table-text'>" . __("Comment") . "</td>";
         echo "<td>" . "<textarea style='width:70%' rows='2' style='text-align:left' name='comment' >" . Html::cleanInputText($this->fields['comment']) . "</textarea>" . "</td>";
         echo "<td width='15%'>" . " " . "</td>";
         echo "</tr>";
 
         $this->showFormButtons($options);
 
-// Section Catalog Content - BEGIN
-        /*	  $id = $this->fields['id'];
-              if (!$this->can($id, READ)) {
-                 return false;
-              }
-              $canedit = $this->can($id, UPDATE);
-              $rand = mt_rand(1, mt_getrandmax());
-              global $CFG_GLPI;
-              global $DB;
 
-              $iterator = $DB->request([
-                 'SELECT' => [
-                    'glpi_plugin_dlteams_allitems.id AS linkid',
-                    'glpi_plugin_dlteams_datacatalogs.id as id',
-                    'glpi_plugin_dlteams_datacatalogs.name as name',
-                    'glpi_plugin_dlteams_allitems.comment as comment',
-                    'glpi_plugin_dlteams_datacatalogs.entities_id as entities_id',
-
-                 ],
-                 'FROM' => 'glpi_plugin_dlteams_allitems',
-                 'JOIN' => [
-                    'glpi_plugin_dlteams_datacatalogs' => [
-                       'FKEY' => [
-                          'glpi_plugin_dlteams_allitems' => 'items_id2',
-                          'glpi_plugin_dlteams_datacatalogs' => 'id'
-                       ]
-                    ]
-                 ],
-
-                 'WHERE' => [
-                    'glpi_plugin_dlteams_allitems.items_id1' => $this->fields['id'],
-                    'glpi_plugin_dlteams_allitems.itemtype2' => "PluginDlteamsDatacatalog",
-                    'glpi_plugin_dlteams_allitems.itemtype1' => "PluginDlteamsAccountKey"
-                 ],
-                'ORDER' => ['name ASC'],
-              ], "", true);
-
-              $number = count($iterator);
-
-              $items_list = [];
-              $used = [];
-              //var_dump(count($iterator));
-             // while ($data = $iterator->next()) {
-              foreach ($iterator as $id => $data){
-                 $items_list[$data['linkid']] = $data;
-                 $used[$data['id']] = $data['id'];
-              }
-
-              if ($canedit) {
-                 echo "<form name='allitemitem_form$rand' id='allitemitem_form$rand' method='post'
-                 action='" . Toolbox::getItemTypeFormURL(PluginDlteamsAllItem::class) . "'>";
-                 echo "<input type='hidden' name='itemtype1' value='".$this->getType()."' />";
-                 echo "<input type='hidden' name='items_id1' value='".$this->getID()."' />";
-                 echo "<input type='hidden' name='itemtype' value='".PluginDlteamsDatacatalog::getType()."' />";
-                 // echo "<input type='hidden' name='comment' value='".$this->fields['comment']."' />";
-
-            echo "<table class='tab_cadre_fixe'>";
-            echo "<tr class='tab_bg_2'><th style='text-align:center!important'>" . __("Catalogues accessibles", 'dlteams') . "</th></tr>";
-            echo "</table>";
-
-            echo "<table class='tab_cadre_fixe'>";
-                    echo "<td width='30%' style='text-align:right'>" . __("Data catalog", 'dlteams') . "</td>";
-                    echo "<td>";
-                        PluginDlteamsDatacatalog::dropdown([
-                        'addicon'  => PluginDlteamsDatacatalog::canCreate(),
-                        'name' => 'items_id',
-                        'width' => '250px',
-                        //'value' => $this->fields['plugin_dlteams_datacatalogs_id']
-                    ]);
-                    echo "</td>";
-
-              echo "<tr>";
-                    echo "<td style='text-align:right'>". __("Access rules", 'dlteams') . " " . "</td>";
-                    $comment = Html::cleanInputText($this->fields['comment']);
-                    echo "<td>" . "<textarea style='width:70%' rows='1' name='comment' >" . $comment . "</textarea>" . "</td>";
-                    echo "<td class='left'><input type='submit' name='add' value=\"" . _sx('button', 'Add') . "\" class='submit' style='margin:0px auto!important'>" . "</td>";
-                echo "</tr>";
-            echo "</table>";
-
-        Html::closeForm();
-              }
-
-
-              if ($iterator) {
-                 echo "<div class='spaced'>";
-                 if ($canedit && $number) {
-                    Html::openMassiveActionsForm('mass' . PluginDlteamsAllItem::class . $rand);
-                    $massive_action_params = ['container' => 'mass' . PluginDlteamsAllItem::class . $rand,
-                       'num_displayed' => min($_SESSION['glpilist_limit'], $number)];
-                    Html::showMassiveActions($massive_action_params);
-                 }
-                 echo "<table class='tab_cadre_fixehov'>";
-
-                 $header_begin = "<tr>";
-                 $header_top = '';
-                 $header_bottom = '';
-                 $header_end = '';
-
-                 if ($canedit && $number) {
-                    $header_begin   .= "<th width='10'>";
-                    $header_top     .= Html::getCheckAllAsCheckbox('mass' . PluginDlteamsAllItem::class . $rand);
-                    $header_bottom  .= Html::getCheckAllAsCheckbox('mass' . PluginDlteamsAllItem::class . $rand);
-                    $header_end     .= "</th>";
-                 }
-
-                 $header_end .= "<th width='20%' style='text-align:left'>" . __("Catalog", 'dlteams') . "</th>";
-                 // $header_end .= "<th width='20%'>" . __("Type", 'dlteams') . "</th>";
-                 $header_end .= "<th width='80%' style='text-align:left'>" . __("Comment")  . "</th>";
-                 $header_end .= "</tr>";
-
-                 echo $header_begin . $header_top . $header_end;
-                 foreach ($items_list as $data) {
-                    if($data['name']){
-                       echo "<tr class='tab_bg_1'>";
-
-                       if ($canedit && $number) {
-                          echo "<td width='10'>";
-                          Html::showMassiveActionCheckBox(PluginDlteamsAllItem::class, $data['linkid']);
-                          echo "</td>";
-                       }
-
-                       $link = $data['name'];
-                       if ($_SESSION['glpiis_ids_visible'] || empty($data['name'])) {
-                          $link = sprintf(__("%1\$s (%2\$s)"), $link, $data['id']);
-                       }
-                       $name = "<a target='_blank' href=\"" . PluginDlteamsDatacatalog::getFormURLWithID($data['id']) . "\">" . $link . "</a>";
-
-                       echo "<td class='left" . (isset($data['is_deleted']) && $data['is_deleted'] ? " tab_bg_2_2'" : "'");
-                       echo ">" . $name . "</td>";
-
-                       // echo "<td class='left'>" . $data['type'] . " </td>";
-
-                      echo "<td class='left'>" . $data['comment'] . "</td>";
-                       echo "</tr>";
-                    }
-                 }
-
-                 if ($iterator->count() > 10) {
-                    echo $header_begin . $header_bottom . $header_end;
-                 }
-                 echo "</table>";
-
-                 if ($canedit && $number) {
-                    //$massive_action_params['ontop'] = false;
-                    //Html::showMassiveActions($massive_action_params);
-                    Html::closeForm();
-                 }
-
-                 echo "</div>";
-              }
-        */
-// Section Catalog Content - END
-        /*      // if empty, take legal representative of the entity
-              // Redacteurs
-              if ($responsible = $this->fields["users_id_responsible"]) {}
-              else {
-                 global $DB;
-                 $iterator = $DB->request([
-                    'SELECT' => 'users_id_representative',
-                    'FROM' => 'glpi_plugin_dlteams_controllerinfos',
-                    'WHERE' => ['entities_id' => $this->getEntityID()]
-                 ]);
-                 $responsible = $iterator->next()['users_id_representative'];
-              }
-
-              echo "<tr class='tab_bg_1'>";
-              echo "<td>" . __("Process responsible", 'dlteams') . "</td>";
-              $randDropdown = mt_rand();
-              echo "<td colspan='2'>";
-              User::dropdown([
-                 'name'   => 'users_id_responsible',
-                 'value'  => $responsible,
-                 'entity' => $this->fields["entities_id"],
-                 'right'  => 'all',
-                 'width'  => "60%",
-                 'rand'   => $randDropdown
-              ]);
-              echo "</td></tr>";
-
-            // Section User attribution - BEGIN
-              $randDropdown = mt_rand();
-              $id = $this->fields['id'];
-              if (!$this->can($id, READ)) {
-                 return false;
-              }
-              $canedit = $this->can($id, UPDATE);
-              $rand = mt_rand(1, mt_getrandmax());
-              global $CFG_GLPI;
-              global $DB;
-
-              $iterator = $DB->request([
-                 'SELECT' => [
-                    'glpi_plugin_dlteams_allitems.id AS linkid',
-                    'glpi_users.id as id',
-                    'glpi_users.name as name',
-                    'glpi_users.realname as realname',
-                    'glpi_plugin_dlteams_allitems.comment as comment',
-                    'glpi_users.entities_id as entities_id',
-
-                 ],
-                 'FROM' => 'glpi_plugin_dlteams_allitems',
-                 'JOIN' => [
-                    'glpi_users' => [
-                       'FKEY' => [
-                          'glpi_plugin_dlteams_allitems' => 'items_id2',
-                          'glpi_users' => 'id'
-                       ]
-                    ]
-                 ],
-
-                 'WHERE' => [
-                    'glpi_plugin_dlteams_allitems.items_id1' => $this->fields['id'],
-                    'glpi_plugin_dlteams_allitems.itemtype2' => "User",
-                    'glpi_plugin_dlteams_allitems.itemtype1' => "PluginDlteamsAccountKey"
-                 ],
-                'ORDER' => ['name ASC'],
-              ], "", true);
-
-              $number = count($iterator);
-
-              $items_list = [];
-              $used = [];
-              //var_dump(count($iterator));
-             // while ($data = $iterator->next()) {
-              foreach ($iterator as $id => $data){
-                 $items_list[$data['linkid']] = $data;
-                 $used[$data['id']] = $data['id'];
-              }
-
-              if ($canedit) {
-                 echo "<form name='allitemitem_form$rand' id='allitemitem_form$rand' method='post'
-                 action='" . Toolbox::getItemTypeFormURL(PluginDlteamsAllItem::class) . "'>";
-                 echo "<input type='hidden' name='itemtype1' value='".$this->getType()."' />";
-                 echo "<input type='hidden' name='items_id1' value='".$this->getID()."' />";
-                 echo "<input type='hidden' name='itemtype' value='".User::getType()."' />";
-                 // echo "<input type='hidden' name='comment' value='".$this->fields['comment']."' />";
-
-            echo "<table class='tab_cadre_fixe'>";
-            echo "<tr class='tab_bg_2'><th style='text-align:center!important'>" . __("Attribution du compte (Utilisateurs)", 'dlteams') . "</th></tr>";
-            echo "</table>";
-
-            echo "<table class='tab_cadre_fixe'>";
-                    echo "<td width='30%' style='text-align:right'>". __("User") . "</td>";
-                    echo "<td>";
-                        User::dropdown([
-                        'name'   => 'items_id',
-                        'value'  => $this->fields["users_id_responsible"] ?? "", //$responsible,
-                        'entity' => $this->fields["entities_id"],
-                        'right'  => 'all',
-                        'addicon'  => User::canCreate(),
-                        'width'  => "250px",
-                        'rand'   => $randDropdown
-                    ]);
-                    echo "</td>";
-
-                echo "<tr>";
-                    echo "<td style='text-align:right'>". __("Comment") . " " . "</td>";
-                    $comment = Html::cleanInputText($this->fields['comment']);
-                    echo "<td>" . "<textarea style='width:70%' rows='1' name='comment' >" . $comment . "</textarea>" . "</td>";
-                    echo "<td class='left'><input type='submit' name='add' value=\"" . _sx('button', 'Add') . "\" class='submit' style='margin:0px auto!important'>" . "</td>";
-                echo "</tr>";
-
-            echo "</table>";
-
-        Html::closeForm();
-              }
-
-              if ($iterator) {
-                 echo "<div class='spaced'>";
-                 if ($canedit && $number) {
-                    Html::openMassiveActionsForm('mass' . PluginDlteamsAllItem::class . $rand);
-                    $massive_action_params = ['container' => 'mass' . PluginDlteamsAllItem::class . $rand,
-                       'num_displayed' => min($_SESSION['glpilist_limit'], $number)];
-                    Html::showMassiveActions($massive_action_params);
-                 }
-                 echo "<table class='tab_cadre_fixehov'>";
-
-                 $header_begin = "<tr>";
-                 $header_top = '';
-                 $header_bottom = '';
-                 $header_end = '';
-
-                 if ($canedit && $number) {
-                    $header_begin   .= "<th width='10'>";
-                    $header_top     .= Html::getCheckAllAsCheckbox('mass' . PluginDlteamsAllItem::class . $rand);
-                    $header_bottom  .= Html::getCheckAllAsCheckbox('mass' . PluginDlteamsAllItem::class . $rand);
-                    $header_end     .= "</th>";
-                 }
-
-                 $header_end .= "<th width='20%' style='text-align:left'>" . __("User") . "</th>";
-                 // $header_end .= "<th width='20%'>" . __("Type", 'dlteams') . "</th>";
-                 $header_end .= "<th width='80%' style='text-align:left'>" . __("Comment")  . "</th>";
-                 $header_end .= "</tr>";
-
-                 echo $header_begin . $header_top . $header_end;
-                 foreach ($items_list as $data) {
-                    if($data['name']){
-                       echo "<tr class='tab_bg_1'>";
-
-                       if ($canedit && $number) {
-                          echo "<td width='10'>";
-                          Html::showMassiveActionCheckBox(PluginDlteamsAllItem::class, $data['linkid']);
-                          echo "</td>";
-                       }
-
-                       $link = $data['name'];
-                       if ($_SESSION['glpiis_ids_visible'] || empty($data['name'])) {
-                          $link = sprintf(__("%1\$s (%2\$s)"), $link, $data['id']);
-                       }
-                       $name = "<a target='_blank' href=\"" . User::getFormURLWithID($data['id']) . "\">" . $link . "</a>";
-                       $realname = "<a target='_blank' href=\"" . User::getFormURLWithID($data['id']) . "\">" . $data['realname'] . "</a>";
-
-                       echo "<td class='left" . (isset($data['is_deleted']) && $data['is_deleted'] ? " tab_bg_2_2'" : "'") . ">" . $name . "</td>";
-                       echo "<td class='left" . (isset($data['is_deleted']) && $data['is_deleted'] ? " tab_bg_2_2'" : "'") . ">" . $realname . "</td>";
-                       echo "<td class='left'>" . $data['comment'] . "</td>";
-                       echo "</tr>";
-                    }
-                 }
-
-                 if ($iterator->count() > 10) {
-                    echo $header_begin . $header_bottom . $header_end;
-                 }
-                 echo "</table>";
-
-                 if ($canedit && $number) {
-                    //$massive_action_params['ontop'] = false;
-                    //Html::showMassiveActions($massive_action_params);
-                    Html::closeForm();
-                 }
-
-                 echo "</div>";
-              }*
-        */
-
-        /*	// Section Group attribution - BEGIN
-              $id = $this->fields['id'];
-              if (!$this->can($id, READ)) {
-                 return false;
-              }
-              $canedit = $this->can($id, UPDATE);
-              $rand = mt_rand(1, mt_getrandmax());
-              global $CFG_GLPI;
-              global $DB;
-
-              $iterator = $DB->request([
-                 'SELECT' => [
-                    'glpi_plugin_dlteams_allitems.id AS linkid',
-                    'glpi_groups.id as id',
-                    'glpi_groups.name as name',
-                    'glpi_plugin_dlteams_allitems.comment as comment',
-                    'glpi_groups.entities_id as entities_id',
-
-                 ],
-                 'FROM' => 'glpi_plugin_dlteams_allitems',
-                 'JOIN' => [
-                    'glpi_groups' => [
-                       'FKEY' => [
-                          'glpi_plugin_dlteams_allitems' => 'items_id2',
-                          'glpi_groups' => 'id'
-                       ]
-                    ]
-                 ],
-
-                 'WHERE' => [
-                    'glpi_plugin_dlteams_allitems.items_id1' => $this->fields['id'],
-                    'glpi_plugin_dlteams_allitems.itemtype2' => "Group",
-                    'glpi_plugin_dlteams_allitems.itemtype1' => "PluginDlteamsAccountKey"
-                 ],
-                'ORDER' => ['name ASC'],
-              ], "", true);
-
-              $number = count($iterator);
-
-              $items_list = [];
-              $used = [];
-              //var_dump(count($iterator));
-             // while ($data = $iterator->next()) {
-              foreach ($iterator as $id => $data){
-                 $items_list[$data['linkid']] = $data;
-                 $used[$data['id']] = $data['id'];
-              }
-
-              if ($canedit) {
-                 echo "<form name='allitemitem_form$rand' id='allitemitem_form$rand' method='post'
-                 action='" . Toolbox::getItemTypeFormURL(PluginDlteamsAllItem::class) . "'>";
-                 echo "<input type='hidden' name='itemtype1' value='".$this->getType()."' />";
-                 echo "<input type='hidden' name='items_id1' value='".$this->getID()."' />";
-                 echo "<input type='hidden' name='itemtype' value='".Group::getType()."' />";
-                 // echo "<input type='hidden' name='comment' value='".$this->fields['comment']."' />";
-
-            echo "<table class='tab_cadre_fixe'>";
-            echo "<tr class='tab_bg_2'><th style='text-align:center!important'>" . __("Attribution du compte (groupes)", 'dlteams') . "</th></tr>";
-            echo "</table>";
-
-            echo "<table class='tab_cadre_fixe'>";
-                    echo "<td style='text-align:right'>". __("Group") . "</td>";
-                    echo "<td>";
-                        Group::dropdown([
-                        'addicon'  => Group::canCreate(),
-                        'name' => 'items_id',
-                        'width' => '300px'
-                    ]);
-                    echo "</td>";
-
-                echo "<tr>";
-                    echo "<td width='30%' style='text-align:right'>". __("Comment") . " " . "</td>";
-                    $comment = Html::cleanInputText($this->fields['comment']);
-                    echo "<td>" . "<textarea style='width:70%' rows='1' name='comment' >" . $comment . "</textarea>" . "</td>";
-                    echo "<td class='left'><input type='submit' name='add' value=\"" . _sx('button', 'Add') . "\" class='submit' style='margin:0px auto!important'>" . "</td>";
-                echo "</tr>";
-
-            echo "</table>";
-
-        Html::closeForm();
-              }
-
-              if ($iterator) {
-                 echo "<div class='spaced'>";
-                 if ($canedit && $number) {
-                    Html::openMassiveActionsForm('mass' . PluginDlteamsAllItem::class . $rand);
-                    $massive_action_params = ['container' => 'mass' . PluginDlteamsAllItem::class . $rand,
-                       'num_displayed' => min($_SESSION['glpilist_limit'], $number)];
-                    Html::showMassiveActions($massive_action_params);
-                 }
-                 echo "<table class='tab_cadre_fixehov'>";
-
-                 $header_begin = "<tr>";
-                 $header_top = '';
-                 $header_bottom = '';
-                 $header_end = '';
-
-                 if ($canedit && $number) {
-                    $header_begin   .= "<th width='10'>";
-                    $header_top     .= Html::getCheckAllAsCheckbox('mass' . PluginDlteamsAllItem::class . $rand);
-                    $header_bottom  .= Html::getCheckAllAsCheckbox('mass' . PluginDlteamsAllItem::class . $rand);
-                    $header_end     .= "</th>";
-                 }
-
-                 $header_end .= "<th width='20%' style='text-align:left'>" . __("Group") . "</th>";
-                 // $header_end .= "<th width='20%'>" . __("Type", 'dlteams') . "</th>";
-                 $header_end .= "<th width='80%' style='text-align:left'>" . __("Comment")  . "</th>";
-                 $header_end .= "</tr>";
-
-                 echo $header_begin . $header_top . $header_end;
-                 foreach ($items_list as $data) {
-                    if($data['name']){
-                       echo "<tr class='tab_bg_1'>";
-
-                       if ($canedit && $number) {
-                          echo "<td width='10'>";
-                          Html::showMassiveActionCheckBox(PluginDlteamsAllItem::class, $data['linkid']);
-                          echo "</td>";
-                       }
-
-                       $link = $data['name'];
-                       if ($_SESSION['glpiis_ids_visible'] || empty($data['name'])) {
-                          $link = sprintf(__("%1\$s (%2\$s)"), $link, $data['id']);
-                       }
-                       $name = "<a target='_blank' href=\"" . Group::getFormURLWithID($data['id']) . "\">" . $link . "</a>";
-
-                       echo "<td class='left" . (isset($data['is_deleted']) && $data['is_deleted'] ? " tab_bg_2_2'" : "'");
-                       echo ">" . $name . "</td>";
-
-                       // echo "<td class='left'>" . $data['type'] . " </td>";
-
-                      echo "<td class='left'>" . $data['comment'] . "</td>";
-                       echo "</tr>";
-                    }
-                 }
-
-                 if ($iterator->count() > 10) {
-                    echo $header_begin . $header_bottom . $header_end;
-                 }
-                 echo "</table>";
-
-                 if ($canedit && $number) {
-                    //$massive_action_params['ontop'] = false;
-                    //Html::showMassiveActions($massive_action_params);
-                    Html::closeForm();
-                 }
-
-                 echo "</div>";
-              }
-        */
         return true;
     }
 
@@ -678,9 +213,6 @@ class PluginDlteamsAccountKey extends CommonDropdown implements
     {
         switch ($ma->getAction()) {
             case 'add_directory':
-                /*                highlight_string("<?php\n\$data =\n" . var_export($ma->POST, true) . ";\n?>");*/
-//                die();
-
                 foreach ($ids as $id) {
                     if ($item->getFromDB($id)) {
                         $havedirectory = false;
@@ -706,7 +238,6 @@ class PluginDlteamsAccountKey extends CommonDropdown implements
                     }
                 }
 
-//                plugin_dlteams_datacatalogs_id
                 return true;
                 break;
         }

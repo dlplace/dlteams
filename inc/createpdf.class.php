@@ -852,7 +852,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         echo "&nbsp;";
         echo "<input type='submit' class='submit' name='createhtml' value='" . __("Generate HTML", 'dlteams') . "' />";
         echo "&nbsp;";
-        echo "<input type='submit' class='submit' name='createhtmlppd' value='" . __("Publier DLregister", 'dlteams') . "' />";
+        echo "<input type='submit' class='submit' name='createhtmlppd' value='" . __("Publier DLteams", 'dlteams') . "' />";
         Html::closeForm();
     }
 
@@ -891,7 +891,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         echo "<input type='submit' class='submit' name='edit_html' value='" . __("Generate HTML", 'dlteams') . "' />";
         echo "&nbsp;";
 
-        echo "<input type='submit' class='submit' name='publish_dlteams' value='" . __("Publier DLregister", 'dlteams') . "' />";
+        echo "<input type='submit' class='submit' name='publish_dlteams' value='" . __("Publier DLteams", 'dlteams') . "' />";
         Html::closeForm();
 
 
@@ -1090,7 +1090,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         echo "<input type='submit' class='submit' name='edit_html' value='" . __("Generate HTML", 'dlteams') . "' />";
         echo "&nbsp;";
 
-        echo "<input type='submit' class='submit' name='publish_dlteams' value='" . __("Publier DLregister", 'dlteams') . "' />";
+        echo "<input type='submit' class='submit' name='publish_dlteams' value='" . __("Publier DLteams", 'dlteams') . "' />";
         Html::closeForm();
 
 
@@ -1761,7 +1761,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         return strtolower($string);
     }
 
-    function publishDlRegister($generator_options, $print_options)
+    function publishDlteams($generator_options, $print_options)
     {
 
         $temp_record = new PluginDlteamsRecord();
@@ -1820,7 +1820,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
 
     }
 
-    function deliverablePublishDlRegister($print_options, PluginDlteamsDeliverable $deliverable)
+    function deliverablepublishDlteams($print_options, PluginDlteamsDeliverable $deliverable)
     {
         $glpiRoot = str_replace('\\', '/', GLPI_ROOT);
         ob_start();
@@ -1866,7 +1866,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         file_put_contents($file_path, ob_get_contents());
     }
 
-    function procedurePublishDlRegister($print_options, PluginDlteamsProcedure $procedure)
+    function procedurepublishDlteams($print_options, PluginDlteamsProcedure $procedure)
     {
         $glpiRoot = str_replace('\\', '/', GLPI_ROOT);
         ob_start();

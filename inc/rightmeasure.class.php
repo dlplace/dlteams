@@ -39,10 +39,28 @@ class PluginDlteamsRightMeasure extends CommonDBTM {
       $this->initForm($id, $options);
       $this->showFormHeader($options);
 
+       echo "<style>";
+       echo "
+            .form-table-text {
+                text-align: right;
+                width: 25%;
+            }
+            
+            
+            @media (max-width: 800px) {
+                .form-table-text {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        ";
+
+       echo "</style>";
+
 	echo "<table, th, td width='100%'>";
 	  echo "<tr>";
-		echo "<td width='15%' style='text-align:right'>". " " . "</td>";
-		echo "<td width='15%' style='text-align:right' >". __("Name", 'dlteams') . "</td>";
+//		echo "<td width='15%' style='text-align:right'>". " " . "</td>";
+		echo "<td class='form-table-text' >". __("Name", 'dlteams') . "</td>";
 		echo "<td>";
 		$name = Html::cleanInputText($this->fields['name']);
 		echo "<input type='text' style='width:98%' name='name' required value='" . $name. "'>" . "</td>";
@@ -50,16 +68,16 @@ class PluginDlteamsRightMeasure extends CommonDBTM {
 	  echo "</tr>" ;
 
 	  echo "<tr>";
-      echo "<td width='15%' style='text-align:right'>". " " . "</td>";
-	  echo "<td width='15%' style='text-align:right'>" . __("Content", 'dlteams') . "</td>";
+//      echo "<td width='15%' style='text-align:right'>". " " . "</td>";
+	  echo "<td class='form-table-text''>" . __("Content", 'dlteams') . "</td>";
 	  echo "<td>";
       $content = Html::cleanInputText($this->fields['content']);
       echo "<textarea style='width: 98%;' name='content' rows='3'>" . $content . "</textarea>";
       echo "</td></tr>";
 
 	  echo "<tr>";
-	  echo "<td width='15%' style='text-align:right'>". " " . "</td>";
-	  echo "<td width='15%' div style='text-align:right'>". __("Catégorie de mesure", 'dlteams') . "</td>";
+//	  echo "<td width='15%' style='text-align:right'>". " " . "</td>";
+	  echo "<td class='form-table-text'>". __("Catégorie de mesure", 'dlteams') . "</td>";
 	  echo "<td>";
 		PluginDlteamsRightMeasureCategory::dropdown([
          'addicon'  => PluginDlteamsRightMeasureCategory::canCreate(),
@@ -72,8 +90,8 @@ class PluginDlteamsRightMeasure extends CommonDBTM {
 	  echo "</td></tr>" ;
 
       echo "<tr>";
-      echo "<td width='15%' style='text-align:right'>". " " . "</td>";
-	  echo "<td width='15%' style='text-align:right'>" . __("Comment", 'dlteams') . "</td>";
+//      echo "<td width='15%' style='text-align:right'>". " " . "</td>";
+	  echo "<td class='form-table-text'>" . __("Comment", 'dlteams') . "</td>";
       echo "<td>";
 	  $comment = Html::cleanInputText($this->fields['comment']);
       echo "<textarea style='width: 98%;' name='comment' rows='3'>" . $comment . "</textarea>";

@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 # Class datacatalog
 #: inc/datacatalog_item.class.php:41 inc/accountkey.class.php:141
@@ -1448,7 +1448,7 @@ msgstr "DPO non indiqué."
 #: inc/createpdf.class.php:1139 inc/controllerinfo.class.php:111
 #: inc/controllerinfo.class.php:383
 msgid "Data Protection Officer"
-msgstr "Contrôleur / Délégué à la Protection des Données"
+msgstr "Délégué à la Protection des Données"
 
 #: inc/createpdf.class.php:1271 inc/createpdf.class.php:1274
 msgid "Processing Activity information PDF"

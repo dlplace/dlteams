@@ -39,33 +39,50 @@ class PluginDlteamsAudit extends CommonDropdown
     function showForm($id, $options = [])
     {
         global $CFG_GLPI;
+        echo "<style>";
+        echo "
+            .form-table-text {
+                text-align: right;
+                width: 25%;
+            }
+            
+            
+            @media (max-width: 800px) {
+                .form-table-text {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        ";
+
+        echo "</style>";
         $this->initForm($id, $options);
         $this->showFormHeader($options);
 
-        echo "<tr class='tab_bg_1'><td width='50%'>" . __('Name') . "</td>";
+        echo "<tr class='tab_bg_1'><td class='form-table-text'>" . __('Name') . "</td>";
         echo "<td colspan='2'>";
         Html::autocompletionTextField($this, "name");
         echo "</td></tr>";
 
         echo "<tr class='tab_bg_1'>";
-        echo "<td width='50%'>" . __('Content') . "</td>";
+        echo "<td class='form-table-text'>" . __('Content') . "</td>";
         echo "<td colspan='2'>
                <textarea cols='50' rows='4' name='content' >" . $this->fields["content"];
         echo "</textarea></td>";
         echo "</tr>";
 
         echo "<tr class='tab_bg_1'>";
-        echo "<td width='50%'>" . __("Audit catégorie", 'dlteams') . "</i></td>";
+        echo "<td class='form-table-text'>" . __("Audit catégorie", 'dlteams') . "</i></td>";
         echo "<td colspan='2'>";
         PluginDlteamsAuditCategory::dropdown([
             'addicon' => PluginDlteamsAuditCategory::canCreate(),
             'name' => 'plugin_dlteams_auditcategories_id',
-            'width' => '76%',
+            'width' => '250px',
             'value' => $this->fields['plugin_dlteams_auditcategories_id']
         ]);
         echo "</td></tr>";
 
-        echo "<tr class='tab_bg_1'><td width='50%'>" . __('Comments') . "</td>";
+        echo "<tr class='tab_bg_1'><td class='form-table-text'>" . __('Comments') . "</td>";
         echo "<td colspan='2'>
                <textarea cols='50' rows='4' name='comment' >" . $this->fields["comment"];
         echo "</textarea></td>";

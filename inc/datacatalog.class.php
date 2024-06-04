@@ -180,7 +180,7 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
                 'checked' => $currentcatalog->fields["is_directoryservice"],
             ]);
 
-            echo " clés ou comptes spécifique à ce catalogue </label>";
+            echo " par des clés ou comptes gérés par ce catalogue</label>";
 //            echo "</div>";
             echo "</td>";
             echo "<script>
@@ -214,7 +214,7 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
                 'name' => 'use_other_directory',
                 'checked' => $currentcatalog->fields["use_other_directory"] == 1 ? true : false,
             ]);
-            echo "<label for='use_other_directory'>&nbsp; utilise les clés ou comptes d'autres catalogues (services d'annuaire tiers)</label></td></tr>";
+            echo "<label for='use_other_directory'>&nbsp;par des clés ou comptes d'autres catalogues (services d'annuaire tiers)</label></td></tr>";
             echo "</div>";
 
             echo "<tr id='directory_name_field'>";

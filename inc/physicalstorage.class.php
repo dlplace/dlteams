@@ -740,6 +740,7 @@ Html::closeForm();
       $this->addDefaultFormTab($ong)
 	  ->addStandardTab('PluginDlteamsDataCatalog_Item', $ong, $options)
 	  ->addStandardTab('PluginDlteamsPhysicalStorage_Item', $ong, $options)
+	  ->addStandardTab('PluginDlteamsProtectiveMeasure_Item', $ong, $options)
 	  ->addStandardTab('PluginDlteamsObject_document', $ong, $options)
       ->addStandardTab('ManualLink', $ong, $options)
       ->addStandardTab(Location::class, $ong, $options)

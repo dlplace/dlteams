@@ -32,17 +32,24 @@ if (!isset($_GET['id'])) {
 }
 
 $record = new PluginDlteamsProtectiveMeasure();
-
+/*highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
+//die();
 if (isset($_POST['add'])) {
 
    $record->check(-1, CREATE, $_POST);
-   $id = $record->add($_POST);
+   $id = $record->add([
+       ...$_POST,
+       "applicables" => json_encode($_POST["applicables"]),
+   ]);
    Html::redirect($record->getFormURLWithID($id));
 
 } else if (isset($_POST['update'])) {
 
    $record->check($_POST['id'], UPDATE);
-   $record->update($_POST);
+   $record->update([
+       ...$_POST,
+       "applicables" => json_encode($_POST["applicables"]),
+   ]);
    Html::back();
 
 } else if (isset($_POST['delete'])) {

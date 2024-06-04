@@ -100,10 +100,10 @@ $querys = [
     ADD IF NOT EXISTS `date_majmodel` timestamp NULL DEFAULT NULL AFTER `id_model`,
     ADD IF NOT EXISTS `type_majmodel` tinyint(1) unsigned DEFAULT NULL AFTER `date_majmodel`;",
 "ALTER TABLE `glpi_plugin_dlteams_legalbasis`
-	CHANGE COLUMN IF EXISTS `copy_id` `id_model` int unsigned NULL,
-	CHANGE COLUMN IF EXISTS `copy_entityid` `entity_model` int unsigned NULL,
-	CHANGE COLUMN IF EXISTS `copy_date` `date_majmodel` TIMESTAMP NULL,
-	CHANGE COLUMN IF EXISTS `copy_update` `type_majmodel` TIMESTAMP NULL;",
+	RENAME COLUMN IF EXISTS `copy_id` TO `id_model`,
+	RENAME COLUMN IF EXISTS `copy_entityid` TO `entity_model`,
+	RENAME COLUMN IF EXISTS `copy_date` TO `date_majmodel`,
+	RENAME COLUMN IF EXISTS `copy_update` TO `type_majmodel`;",
 "ALTER TABLE `glpi_plugin_dlteams_legalbasis`
     ADD IF NOT EXISTS `entity_model` int(11) unsigned DEFAULT NULL AFTER `users_id`,
     ADD IF NOT EXISTS `id_model` int(11) unsigned DEFAULT NULL AFTER `entity_model`,
@@ -389,6 +389,7 @@ $querys = [
 "ALTER TABLE `glpi_itilfollowups` ADD IF NOT EXISTS `parent_comment_id` INT NULL AFTER `content`;",
 "ALTER TABLE `glpi_plugin_dlteams_records` ADD IF NOT EXISTS `is_grouping` TINYINT NOT NULL DEFAULT '0' AFTER `content`;",
 "ALTER TABLE `glpi_itilfollowups` ADD IF NOT EXISTS `date_creation` TIMESTAMP NULL AFTER `content`, ADD IF NOT EXISTS `date_mod` TIMESTAMP NULL AFTER `date_creation`;",
+"ALTER TABLE `glpi_plugin_dlteams_protectivemeasures` ADD IF NOT EXISTS `applicables` TEXT NULL AFTER `comment`;"
 ];
 $i = 1;
 global $DB;

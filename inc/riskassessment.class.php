@@ -47,49 +47,39 @@ class PluginDlteamsRiskAssessment extends CommonDBTM implements
         $this->initForm($id, $options);
         $this->showFormHeader($options);
 
+        echo "<style>";
+        echo "
+            .form-table-text {
+                text-align: right;
+                width: 25%;
+            }
+            
+            
+            @media (max-width: 800px) {
+                .form-table-text {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        ";
+
+        echo "</style>";
         echo "<tr class='tab_bg_1'>";
-        echo "<td width='50%'>" . __("Name", 'dlteams') . "</i></td>";
+        echo "<td class='form-table-text'>" . __("Name", 'dlteams') . "</i></td>";
         echo "<td colspan='2'>";
         $name = Html::cleanInputText($this->fields['name']);
-        echo "<input type='text' style='width:98%' maxlength=250 name='name' required value='" . $name . "'>";
+        echo "<input type='text' style='width:50%' maxlength=250 name='name' required value='" . $name . "'>";
         echo "</td></tr>";
 
-        // Redacteurs
-        /*if ($responsible = $this->fields["users_id_responsible"]);
-        // if empty, take legal representative of the entity
-        else {
-           global $DB;
-           $iterator = $DB->request([
-              'SELECT' => 'users_id_representative',
-              'FROM' => 'glpi_plugin_dlteams_controllerinfos',
-              'WHERE' => ['entities_id' => $this->getEntityID()]
-           ]);
-           $responsible = $iterator->next()['users_id_representative'];
-        }
-
         echo "<tr class='tab_bg_1'>";
-        echo "<td>" . __("Process responsible", 'dlteams') . "</td>";
-        $randDropdown = mt_rand();
-        echo "<td colspan='2'>";
-        User::dropdown([
-           'name'   => 'users_id_responsible',
-           'value'  => $responsible,
-           'entity' => $this->fields["entities_id"],
-           'right'  => 'all',
-           'width'  => "60%",
-           'rand'   => $randDropdown
-        ]);
-        echo "</td></tr>";*/
-
-        echo "<tr class='tab_bg_1'>";
-        echo "<td>" . __("Content", 'dlteams') . "</td>";
+        echo "<td class='form-table-text'>" . __("Content", 'dlteams') . "</td>";
         echo "<td colspan='2'>";
         $content = Html::cleanInputText($this->fields['content']);
         echo "<textarea style='width: 70%;' name='content' maxlength='1000' rows='3'>" . $content . "</textarea>";
         echo "</td></tr>";
 
         echo "<tr class='tab_bg_1'>";
-        echo "<td>" . __("Comment", 'dlteams') . "</td>";
+        echo "<td class='form-table-text'>" . __("Comment", 'dlteams') . "</td>";
         echo "<td colspan='2'>";
         $comment = Html::cleanInputText($this->fields['comment']);
         echo "<textarea style='width: 70%;' name='comment' maxlength='1000' rows='3'>" . $comment . "</textarea>";

@@ -356,6 +356,13 @@ function plugin_dlteams_MassiveActions($itemtype)
             $action[$prefix . "create_account_and_assign_to_each_user_of_group"] = __(' Créer des comptes pour chaque utilisateur et les attribuer', 'dlteams');
 
             return $action;
+        case Computer::class:
+            $action = [];
+
+            $prefix = PluginDlteamsProtectiveMeasure::class . MassiveAction::CLASS_ACTION_SEPARATOR;
+            $action[$prefix . "add_protectivemeasure_to_computer"] = __('Ajouter une mesure de protection', 'dlteams');
+
+            return $action;
     }
 }
 
