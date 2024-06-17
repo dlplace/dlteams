@@ -219,7 +219,6 @@ class PluginDlteamsActeur_Item extends CommonDBRelation
             return false;
         }
 
-
         $canedit = $object_item->can($id, UPDATE);
         $rand = mt_rand(1, mt_getrandmax());
 

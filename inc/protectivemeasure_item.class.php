@@ -57,10 +57,6 @@ class PluginDlteamsProtectiveMeasure_Item extends CommonDBRelation
                 'head_text' => __("Categorie"),
                 'column_name' => 'namecat',
             ],
-//            [
-//                'head_text' => __("Content"),
-//                'column_name' => 'content',
-//            ],
             [
                 'head_text' => __("Comment"),
                 'column_name' => 'comment',
@@ -376,15 +372,43 @@ class PluginDlteamsProtectiveMeasure_Item extends CommonDBRelation
                 $used[$data['linkid']] = $data['linkid'];
             }
 
-            static::$itemtype_2::dropdown([
+            $mesures_applicables_query = [
+                "FROM" => PluginDlteamsProtectiveMeasure::getTable(),
+                "WHERE" => [
+                    "applicables" => [
+                        'LIKE', "%".$item::getType()."%"
+                    ]
+                ]
+            ];
+
+            global $DB;
+
+            $mesures_applicables_iterator = $DB->request($mesures_applicables_query);
+
+            $applicables = [];
+            foreach ($mesures_applicables_iterator as $applicable){
+                $applicables[] = $applicable["id"];
+            }
+
+
+            global $CFG_GLPI;
+            $params = [
                 'addicon' => false,
                 'name' => 'items_id',
                 'value' => "", //$responsible,
                 //'entity' => $this->fields["entities_id"],
                 'right' => 'all',
                 'width' => "250px",
-                'used' => $used
-            ]);
+                'url' => $CFG_GLPI['root_doc'] . "/marketplace/dlteams/ajax/getDropdownValue.php",
+                'used' => $used,
+            ];
+
+            if(count($applicables) > 0) {
+                $params['condition'] = [
+                    'id' => $applicables
+                ];
+            }
+            static::$itemtype_2::dropdown($params);
             echo "&nbsp;";
 
 

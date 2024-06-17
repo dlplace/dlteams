@@ -166,6 +166,7 @@ class PluginDlteamsProfile extends Profile {
 		 'plugin_dlteams_menu' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
 		 'plugin_dlteams_iso27001menu' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
 		 'plugin_dlteams_accessopening' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
+		 'plugin_dlteams_itilfollowup' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
       ], true);
    }
 
@@ -334,6 +335,12 @@ class PluginDlteamsProfile extends Profile {
             'field' => PluginDlteamsProcedure::$rightname,
             'rights' => [CREATE => __("Create"), READ => __("Read"), UPDATE => __("Update"), DELETE => __("Delete"), PURGE => __("Delete permanently"), READNOTE => __("Read notes"), UPDATENOTE => __("Update notes"),]
          ],
+          [
+              'itemtype' => PluginDlteamsITILFollowup::class,
+              'label' => PluginDlteamsITILFollowup::getTypeName(2),
+              'field' => PluginDlteamsITILFollowup::$rightname,
+              'rights' => [CREATE => __("Create"), READ => __("Read"), UPDATE => __("Update"), DELETE => __("Delete"), PURGE => __("Delete permanently"), READNOTE => __("Read notes"), UPDATENOTE => __("Update notes"),]
+          ],
   		 [
             'itemtype' => PluginDlteamsStep::class,
             'label' => PluginDlteamsStep::getTypeName(2),
@@ -511,6 +518,7 @@ class PluginDlteamsProfile extends Profile {
             'rights' => [CREATE => __("Create"), READ => __("Read"), UPDATE => __("Update"), DELETE => __("Delete"), PURGE => __("Delete permanently"), READNOTE => __("Read notes"), UPDATENOTE => __("Update notes"),]
          ],
       ];
+      
 
       return $rights;
    }

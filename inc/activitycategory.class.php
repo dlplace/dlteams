@@ -134,14 +134,14 @@ class PluginDlteamsActivityCategory extends CommonDropdown {
          'name'               => __("Characteristics")
       ];
 
-      $tab[] = [
-         'id'                 => '1',
-         'table'              => $this->getTable(),
-         'field'              => 'number',
-         'name'               => __("Num"),
-         'datatype'           => 'number',
-         'massiveaction'      => false,
-      ];
+//      $tab[] = [
+//         'id'                 => '1',
+//         'table'              => $this->getTable(),
+//         'field'              => 'number',
+//         'name'               => __("Num"),
+//         'datatype'           => 'number',
+//         'massiveaction'      => false,
+//      ];
 
       $tab[] = [
          'id'                 => '2',

@@ -397,8 +397,8 @@ class PluginDlteamsStoragePeriod_Item extends CommonDBTM
             ],
             'ORDER' => [
                 'glpi_plugin_dlteams_storagetypes.name ASC',
-                'glpi_plugin_dlteams_storageendactions.name ASC',
                 'glpi_plugin_dlteams_storageperiods.name ASC',
+                'glpi_plugin_dlteams_storageendactions.name ASC',
             ],
             'WHERE' => [
                 'glpi_plugin_dlteams_storageperiods_items.items_id' => $object_item->fields['id'],

@@ -148,6 +148,21 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
         }
         //var_dump($used);die();
 
+        echo "<style>";
+        echo "
+            .form-table-text {
+                text-align: right;
+                width: 40%;
+            }
+            @media (max-width: 800px) {
+                .form-table-text {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        ";
+
+        echo "</style>";
 
         //record personal datacategory begin
         echo "<div class='firstbloc'>";
@@ -163,7 +178,7 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
         echo "<input type='hidden' name='id' value='$iden' />";
         echo "<table class='tab_cadre_fixe'>";
         echo "<tr><th colspan='3'>" . __("General questions", 'dlteams') . "</th></tr>";
-        echo "<tr class='tab_bg_1'><td width='50%' class='right'>";
+        echo "<tr class='tab_bg_1'><td class='form-table-text'>";
         echo __("Personally sensitive", 'dlteams') .
             "<br><i>" . __("Could this processing be seen sensitive by persons", 'dlteams') . "</i>";
         echo "</td><td width='50%' class='left'>";
@@ -172,7 +187,7 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
         echo "<input type='radio' name='sensitive' value='0' " .
             (!$record->fields['sensitive'] ? "checked" : "") . "> " . __("No") . "<br>";
         echo "</td></tr>";
-        echo "<tr class='tab_bg_1'><td width='50%' class='right'>";
+        echo "<tr class='tab_bg_1'><td class='form-table-text'>";
         echo __("Permit profiling", 'dlteams') .
             "<br><i>" . __("Using personal data to analyse/predict behaviour in order to plan automated actions", 'dlteams') . "</i>";
         echo "</td><td width='50%' class='left'>";
@@ -201,7 +216,7 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
 
         echo "<tr class='tab_bg_2'><th colspan='3'>" . self::getTypeName() . "</th></tr>";
 
-        echo "<tr class='tab_bg_1'><td width='50%' class='right'>";
+        echo "<tr class='tab_bg_1'><td class='form-table-text'>";
         echo __("In case of a data leak, what would be the impact on people ?", 'dlteams') .
             "<br><i>" . __("Avoiding data leaks is an important objective of GDPR", 'dlteams') . "</i>";
         echo "</td>";
@@ -211,7 +226,7 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
         PluginDlteamsImpact::dropdown([
             'addicon' => PluginDlteamsImpact::canCreate(),
             'name' => 'impact_person',
-            'width' => '40%',
+            'width' => '250px',
             'value' => empty($used_result) ? '0' : reset($used_result),
         ]);
 
@@ -220,7 +235,7 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
 
         echo "</td></tr>";
 
-        echo "<tr class='tab_bg_1'><td width='50%' class='right'>";
+        echo "<tr class='tab_bg_1'><td class='form-table-text'>";
         echo __("Which impact level could lead to a data violation", 'dlteams') .
             "<br><i>" . __("Protect data permit to reduce risks", 'dlteams') . "</i>";
         echo "</td>";
@@ -228,7 +243,7 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
         PluginDlteamsImpact::dropdown([
             'addicon' => PluginDlteamsImpact::canCreate(),
             'name' => 'impact_organism',
-            'width' => '40%',
+            'width' => '250px',
             'value' => empty($used_result_impactorganism) ? '0' : reset($used_result_impactorganism),
         ]);
         /*       $checked = json_decode($record->fields['violation_impact_level'] ?? "{}", true);
@@ -237,12 +252,12 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
               echo PluginDlteamsUtils::displayCheckboxes($checked, $choices, "violation_impact_level", 'radio'); */
         echo "</td></tr>";
 
-        echo "<tr class='tab_bg_1'><td width='50%' class='right'>";
+        echo "<tr class='tab_bg_1'><td class='form-table-text'>";
         echo __("Specific security measures", 'dlteams') .
             "<br><i>" . __("Detail the potential impacts retained concerning people and the organization", 'dlteams') . "</i>";
         echo "</td>";
-        echo "<td width='50%' class='left'>";
-        echo "<textarea name='specific_security_measures' cols='60' rows='4w' maxlength='1000' >" .
+        echo "<td width='100%' class='left'>";
+        echo "<textarea name='specific_security_measures' style='width: 50%' cols='60' rows='4w' maxlength='1000' >" .
             ($record->fields['specific_security_measures'] ?? "") . "</textarea>";
         echo "</td></tr>";
         if ($canedit) {
@@ -377,7 +392,7 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
 			// In addition to the general measures, what specifics measures have been taken ?
             echo "<tr class='tab_bg_2'><th colspan='4'>" . __("In addition to the general measures, specifics measures taken", 'dlteams') . "</th></tr>";
             echo "<tr class='tab_bg_1'>";
-            echo "<td width='15%;'>";
+            echo "<td class='form-table-text'>";
             echo "<label>" . __("Add security measures", 'dlteams') . "</label>";
             echo "</td>";
             echo "<td width='25px;' class='right'>";

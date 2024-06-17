@@ -117,6 +117,7 @@ class PluginDlteamsPolicieForm_PersonalAndDataCategory extends CommonDBTM implem
                     $nb = self::countForPolicieForm($item);
                 }
 
+                $nb+= count($item->ShowDatacarrierTypeGetRequest($item->fields['id']));
                 return self::createTabEntry(static::getTypeName($nb), $nb);
         }
 
@@ -129,6 +130,7 @@ class PluginDlteamsPolicieForm_PersonalAndDataCategory extends CommonDBTM implem
         switch ($item->getType()) {
             case PluginDlteamsPolicieForm::class :
                 self::showForPolicieForm($item, $withtemplate);
+                $item->ShowDatacarrierType($item->fields["id"]);
                 break;
         }
 
@@ -303,11 +305,11 @@ class PluginDlteamsPolicieForm_PersonalAndDataCategory extends CommonDBTM implem
             }
             echo "</table>";
 
-            if ($canedit && $number > 10) {
+//            if ($canedit && $number > 10) {
                 $massive_action_params['ontop'] = false;
                 Html::showMassiveActions($massive_action_params);
                 Html::closeForm();
-            }
+//            }
 
             echo "</div>";
         }

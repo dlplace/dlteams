@@ -580,7 +580,7 @@ class PluginDlteamsTicketTask extends CommonITILTask
                             dialogclass: 'modal-lg',
                             bs_focus: false,
                             url: '/marketplace/dlteams/ajax/tickettask_plannif.php?" . $queryString . "',
-                            title: i18n.textdomain('dlteams').__('Plannifier', 'dlteams'),
+                            title: i18n.textdomain('dlteams').__('Ajouter une planification', 'dlteams'),
                             close: function () {
             
                             },
@@ -699,8 +699,11 @@ class PluginDlteamsTicketTask extends CommonITILTask
         if ($count > 0)
             $this->addStandardTab(PluginDlteamsTicketTask_Planning::class, $ong, $options);*/
         // var_dump ($this->fields["tickettasks_id"]); // die;
-        if ($this->fields["tickettasks_id"] === NULL)
+        if ($this->fields["tickettasks_id"] === NULL) {
             $this->addStandardTab(PluginDlteamsTicketTask_Planning::class, $ong, $options);
+        }
+        else
+            $this->addStandardTab(PluginDlteamsMessagerie::class, $ong, $options);
 //        $this->addStandardTab('PluginDlteamsTicketTask_Item', $ong, $options);
         $this->addStandardTab('Notepad', $ong, $options);
         $this->addStandardTab('Log', $ong, $options);

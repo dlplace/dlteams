@@ -377,6 +377,11 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
 //
             echo "<table class='tab_cadre_fixe'>";
 
+            switch ($item::getType()){
+                case PluginDlteamsDataCatalog::class:
+                    static::$title = "Ce jeu de données se trouve classé dans les catalogues suivants";
+                    break;
+            }
             echo "<tr class='tab_bg_2'><th colspan='3'>" . static::$title .
                 "</th>";
             echo "</tr>";
@@ -675,6 +680,31 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
         $relation_item->deleteByCriteria($criteria);
     }
 
+
+    public function post_updateItem($history = 1)
+    {
+/*        highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
+//        die();
+        $relation_item_str = $this->fields["itemtype"] . "_Item";
+        if(!class_exists($relation_item_str))
+            $relation_item_str = "PluginDlteams".$relation_item_str;
+        $relation_item = new $relation_item_str();
+        $relation_column_id = strtolower(str_replace("PluginDlteams", "", str_replace("_Item", "", $this->fields["itemtype"]))) . "s_id";
+
+        $criteria = [
+            "itemtype" => static::$itemtype_2,
+            "items_id" => $this->fields[static::$items_id_1],
+            $relation_column_id => $this->fields["items_id"],
+            "comment" => $this->oldvalues["comment"]
+        ];
+
+        $relation_item->deleteByCriteria($criteria);
+        $relation_item->add([
+            ...$criteria,
+            "comment" => $this->fields["comment"]
+        ]);
+    }
+
     public function update(array $input, $history = 1, $options = [])
     {
         global $DB;
@@ -727,30 +757,6 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
 
     }
 
-    public function post_updateItem($history = 1)
-    {
-/*        highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
-//        die();
-        $relation_item_str = $this->fields["itemtype"] . "_Item";
-        if(!class_exists($relation_item_str))
-            $relation_item_str = "PluginDlteams".$relation_item_str;
-        $relation_item = new $relation_item_str();
-        $relation_column_id = strtolower(str_replace("PluginDlteams", "", str_replace("_Item", "", $this->fields["itemtype"]))) . "s_id";
-
-        $criteria = [
-            "itemtype" => static::$itemtype_2,
-            "items_id" => $this->fields[static::$items_id_1],
-            $relation_column_id => $this->fields["items_id"],
-            "comment" => $this->oldvalues["comment"]
-        ];
-
-        $relation_item->deleteByCriteria($criteria);
-        $relation_item->add([
-            ...$criteria,
-            "comment" => $this->fields["comment"]
-        ]);
-    }
-
     function rawSearchOptions()
     {
         $tab[] = [
@@ -782,6 +788,8 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
         $forbidden[] = 'clone';
         $forbidden[] = 'MassiveAction:add_transfer_list';
         $forbidden[] = 'MassiveAction:amend_comment';
+        $forbidden[] = 'MassiveAction:purge_but_item_linked';
+        $forbidden[] = 'MassiveAction:add_note';
         return $forbidden;
     }
 

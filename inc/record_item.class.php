@@ -665,6 +665,8 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             }
 
 
+/*            highlight_string("<?php\n\$data =\n" . var_export($data, true) . ";\n?>");*/
+//            die();
 
             foreach (static::$table_match_str as $key => $column) {
 
@@ -862,6 +864,8 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             $columnid_name = strtolower(str_replace("PluginDlteams", "", static::$itemtype_2::getType())) . "s_id"; // $columnid_name contiendra users_id si $item = User
         }
 
+//        var_dump($columnid_name);
+//        die();
 
         $query = [
             'SELECT' => [
@@ -888,16 +892,21 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             $query["SELECT"][] = $table_name . '.number AS number';
             $query["ORDERBY"][] = $table_name . '.number ASC';
         }
+        
 
 //        if ($item::getType() == PluginDlteamsRecord::class){
 //            var_dump("zzz");
 //            die();
+        if($table_item_name == PluginDlteamsRecord_Item::getTable())
+            $joincolumn_id = "records_id";
+        else
+            $joincolumn_id = "items_id";
             $query["SELECT"][] = PluginDlteamsRecord::getTable() . '.number AS number';
             $query["SELECT"][] = PluginDlteamsRecord::getTable() . '.parentnumber AS parentnumber';
             $query["ORDERBY"][] = PluginDlteamsRecord::getTable() . '.number ASC';
             $query["LEFT JOIN"][PluginDlteamsRecord::getTable()] = [
                 'ON' => [
-                    $table_item_name => 'items_id',
+                    $table_item_name => $joincolumn_id,
                     PluginDlteamsRecord::getTable() => 'id'
                 ]
             ];

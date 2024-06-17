@@ -41,37 +41,7 @@ class PluginDlteamsMenu extends CommonGLPI
 
     static function getMenuContent()
     {
-//        static::checkNewVersion();
-//            echo "<a href='#' style='display: flex; justify-content: center; background-color: #F7CB9F;'>";
-//            echo "Une nouvelle version de dlteams est disponible";
-//            echo "</a>";
 
-        /*if (PluginDlteamsRecord::canView()) {
-             $image = "<i class='fas fa-print fa-2x' title='" . __("Create PDF for all records within active entity and its sons", 'dlteams') . "'></i>";
-
-             $menu = [];
-             $menu['title'] = PluginDlteamsMenu::getMenuName();
-             $menu['page'] = '/plugins/dlteams/front/sousmenu.php';
-             $menu['links']['search'] = PluginDlteamsRecord::getSearchURL(false);
-             $menu['links'][$image] = PluginDlteamsCreatepdf::getSearchURL(false) . '?createpdf&action=prepare&type=' . PluginDlteamsCreatePDF::REPORT_ALL;
-             if (PluginDlteamsRecord::canCreate()) {
-                $menu['links']['add'] = PluginDlteamsRecord::getFormURL(false);
-             }
-
-             $menu['options']['dlteams']['title'] = PluginDlteamsMenu::getMenuName();
-             $menu['options']['dlteams']['page'] = PluginDlteamsRecord::getSearchURL(false);
-             $menu['options']['dlteams']['links']['search'] = PluginDlteamsRecord::getSearchURL(false);
-             $menu['options']['dlteams']['links'][$image] = PluginDlteamsCreatepdf::getSearchURL(false) . '?report_type=3&action=print&createpdf';//'?createpdf&action=prepare&type=' . PluginDlteamsCreatePDF::REPORT_ALL;
-             if (PluginDlteamsRecord::canCreate()) {
-                $menu['options']['dlteams']['links']['add'] = PluginDlteamsRecord::getFormURL(false);
-             }
-          }*/
-
-
-        //global $CFG_GLPI;
-//        print_r($files);
-/*        highlight_string("<?php\n\$data =\n" . var_export($files, true) . ";\n?>");*/
-//        die();
         $menu = [];
 
         $types = PluginDlteamsItemType::getTypes();
@@ -150,7 +120,9 @@ class PluginDlteamsMenu extends CommonGLPI
 
 //                    }
 
-                    if ($type::canCreate()) {
+                    $can_read_dashboard = Session::haveRight('dashboard', READ);
+
+                    if ($type::canCreate() && $can_read_dashboard) {
                         switch ($type) {
                             case PluginDlteamsStep::class:
                                 if (isset($_GET["projects_id"]))
@@ -221,11 +193,10 @@ class PluginDlteamsMenu extends CommonGLPI
                                             parent.classList.remove('btn-outline-secondary');
                                         </script>
                             ";
+                               
 
                                 $menu['options'][$shorttype]['links'][$text_temp] = "/front/central.php?newprofile=$val";
-                                //if (self::getCurrentId()) {
 
-                                //}
 
                             }
                         }
@@ -248,9 +219,6 @@ class PluginDlteamsMenu extends CommonGLPI
                 }
             }
         }
-
-//        var_dump(static::$rightname);
-//        die();
 
         if (self::canView()) {
             $image = "<i class='fas fa-print fa-2x' title='" . __("Create PDF for all records within active entity and its sons", 'dlteams') . "'></i>";

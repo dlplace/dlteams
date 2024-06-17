@@ -202,7 +202,8 @@ class PluginDlteamsRecord_PersonalAndDataCategory extends CommonDBTM implements
             PluginDlteamsProcessedData::dropdown([
                 //'addicon' => PluginDlteamsProcessedData::canCreate(),
                 'name' => 'items_id1',
-                'width' => '300px'
+                'width' => '300px',
+                'value' => $_SESSION["dlteams_recent_processeddata"]??""
             ]);
 
             echo "</td>";
