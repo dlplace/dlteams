@@ -45,7 +45,6 @@ function plugin_dlteams_install()
     $DB->runFile(plugin_dlteams_root . "/install/sql/update-1.0.sql");
     $DB->runFile(plugin_dlteams_root . "/install/sql/update-1.1.sql");
     $DB->runFile(plugin_dlteams_root . "/install/sql/update-1.2.sql");
-    // $DB->runFile(plugin_dlteams_root . "/install/sql/update-24.sql");
     require_once(plugin_dlteams_root . "/install/sql/update-24.php");
 	// $install = new PluginDlteamsInstall();
 	// $install->install();
@@ -357,6 +356,13 @@ function plugin_dlteams_MassiveActions($itemtype)
             $action[$prefix . "create_account_and_assign_to_each_user_of_group"] = __(' Créer des comptes pour chaque utilisateur et les attribuer', 'dlteams');
 
             return $action;
+        case Computer::class:
+            $action = [];
+
+            $prefix = PluginDlteamsProtectiveMeasure::class . MassiveAction::CLASS_ACTION_SEPARATOR;
+            $action[$prefix . "add_protectivemeasure_to_computer"] = __('Ajouter une mesure de protection', 'dlteams');
+
+            return $action;
     }
 }
 
@@ -476,15 +482,14 @@ function plugin_dlteams_redefine_menus(array $menu)
 
 
 //        array_splice_assoc($menu, 2, 0, ['actifs' => $assets]);
-        if($can_read_dashboard) {
 
 
             array_splice_assoc($menu, 2, 0, ['actifs' => $assets]);
             array_splice_assoc($menu, 3, 0, ['dlteams' => $dlteams]);
-/*        highlight_string("<?php\n\$data =\n" . var_export($menu, true) . ";\n?>");*/
-//        die();
-        }
+
     }
+/*    highlight_string("<?php\n\$data =\n" . var_export($menu, true) . ";\n?>");*/
+//    die();
     return $menu;
 }
 

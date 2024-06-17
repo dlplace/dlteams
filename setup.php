@@ -25,7 +25,7 @@
  --------------------------------------------------------------------------
  */
 
-define('plugin_dlteams_version', '24.04.04');
+define('plugin_dlteams_version', '24.06.02');
 define('plugin_dlteams_root', __DIR__);
 // include_once __DIR__ . '/dlteams.php';
 function plugin_init_dlteams()
@@ -81,6 +81,7 @@ function plugin_init_dlteams()
     Plugin::registerClass(PluginDlteamsLocation_Item::class, ['addtabon' => [Location::class, 'KnowbaseItem']]);
 //    Plugin::registerClass(PluginDlteamsTicketTask::class, ['addtabon' => [Ticket::class]]);
     Plugin::registerClass(PluginDlteamsObject_document::class, ['addtabon' => [Ticket::class]]);
+    Plugin::registerClass(PluginDlteamsActivitycategory_Item::class, ['addtabon' => [KnowbaseItem::class]]);
 
     Plugin::registerClass(PluginDlteamsDataCatalog::class,
         ['linkgroup_types' => true,
@@ -185,6 +186,7 @@ function plugin_init_dlteams()
 //    $PLUGIN_HOOKS['menu_toadd']['dlteams']['assets'][] = PluginDlteamsPhysicalStorage::class;
     $PLUGIN_HOOKS['menu_toadd']['dlteams']['helpdesk'][] = PluginDlteamsTicketTask::class;
     $PLUGIN_HOOKS['menu_toadd']['dlteams']['helpdesk'][] = PluginDlteamsProjectTask::class;
+    $PLUGIN_HOOKS['menu_toadd']['dlteams']['helpdesk'][] = PluginDlteamsMessagerie::class;
 //	$PLUGIN_HOOKS['menu_toadd']['dlteams']['assets'][] = PluginDlteamsVehicle::class;
 //	$PLUGIN_HOOKS['menu_toadd']['dlteams']['assets'][] = PluginDlteamsVehicle::class;
 
