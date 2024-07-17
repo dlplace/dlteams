@@ -1,11 +1,7 @@
-# dlplacedpo
+# dlteams
 
 ## Plugin [GLPI](https://github.com/glpi-project/glpi/) implémente le produit "DLTeams"
-
-Réalisé par et pour DL Place.
-
-Basé sur le plugin [GDRPRoPA](https://github.com/yild/gdprropa) par Yild 
-(et d'autres contributeurs).
+Réalisé par et pour DLPLACE.
 
 ## Où trouver la documentation ?
 
@@ -36,3 +32,5 @@ Basé sur le plugin [GDRPRoPA](https://github.com/yild/gdprropa) par Yild
   représentant légal, DPO et nom qui apparaissent sur les rapports générés
 * Configuration supplémentaire
 
+# Inspiration
+Plug'in de Yild et d'autres contributeurs [GDRPRoPA](https://github.com/yild/gdprropa) 
