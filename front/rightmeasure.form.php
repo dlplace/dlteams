@@ -30,9 +30,12 @@ include("../../../inc/includes.php");
 if (!isset($_GET['id'])) {
    $_GET['id'] = "";
 }
-
+/*highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
+//die();
 $rightmeasure = new PluginDlteamsRightMeasure();
 
+if(isset($_POST["rightmeasurecategories"]) && count($_POST["rightmeasurecategories"])>0)
+    $_POST["rightmeasurecategories"] = json_encode($_POST["rightmeasurecategories"]);
 if (isset($_POST['add'])) {
 
    $rightmeasure->check(-1, CREATE, $_POST);

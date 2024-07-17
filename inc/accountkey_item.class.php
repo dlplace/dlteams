@@ -53,10 +53,11 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
         $catalog->getFromDB($POST["datacatalogs_id"]);
         $keyid = $accountkey->add([
             "name" => strtolower($name),
-            "plugin_dlteams_keytypes_id" => $catalog->fields["default_keytype"],
+            "plugin_dlteams_keytypes_id" => $catalog->fields["default_keytype"]??0,
             "entities_id" => $_SESSION['glpiactive_entity'],
             "plugin_dlteams_datacatalogs_id" => $POST["datacatalogs_id"]
         ]);
+
 
         if ($keyid) {
             $accountkey_item = new PluginDlteamsAccountKey_Item();
@@ -67,6 +68,7 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
             } else {
                 $array2["users_id"] = $id;
             }
+
             if ($accountkey_item->add([
                     "itemtype" => User::class,
                     "items_id" => $id,
@@ -86,15 +88,16 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
                 $DB->rollback();
                 //$ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
             }
+            return true;
         }
-        //}
-        //else {
-        //  $DB->commit();
-        //Session::addMessageAfterRedirect(sprintf("Le compte %s existe déjà", $name), 0, WARNING);
-        //}
+        else {
+            Session::addMessageAfterRedirect(sprintf("Une erreur s'est produite, le compte n'a été créé"), 0, ERROR);
+            return false;
+        }
 
-        return true;
+
     }
+
 
     private static function processNameAndTransform(mixed &$name, $id = null)
     {
@@ -109,6 +112,8 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
                 $name = str_replace($matches[0][$key], UserEmail::getDefaultForUser($id), $name);
             } elseif (str_contains($var, '.premiercaractere')) {
                 $attribute = str_replace(".premiercaractere", "", $var);
+                if($attribute == "name") // on utilise realname au lieu de name
+                    $attribute = "realname";
                 if (isset($user->fields[$attribute])) {
                     $name = str_replace($matches[0][$key], $user->fields[$attribute][0], $name);
                 } else {
@@ -1124,17 +1129,10 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
                 echo "<table style='display: inline;' class='tab_cadre_fixe'>";
 
                 echo "<tr class='tab_bg_1'>";
-                echo "<td class='right'>Format des comptes à créer</td>";
-                echo "<td>";
-                echo "<input type='text' style='width:200%' maxlength=250 name='name' required value='" . "" . "'>";
-                echo "</td>";
-                echo "</tr>";
-
-                echo "<tr class='tab_bg_1'>";
-                echo "<td class='right'>Annuaire gérant ce compte</td>";
+                echo "<td class='right'>Dans quel annuaire ?</td>";
 
                 echo "<td>";
-                PluginDlteamsDataCatalog::dropdown([
+                $field_rand = PluginDlteamsDataCatalog::dropdown([
                     "name" => "datacatalogs_id",
                     "addicon" => PluginDlteamsDataCatalog::canCreate(),
                     "width" => "250px",
@@ -1142,6 +1140,19 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
                 ]);
                 echo "</td>";
                 echo "</tr>";
+
+                $next_step_rand = mt_rand();
+                echo "<tr id='update_next_step$next_step_rand' class='tab_bg_1'>";
+                echo "</tr>";
+                    $params = $ma->POST;
+                    $params['id_field'] = '__VALUE__';
+                    global $CFG_GLPI;
+                    Ajax::updateItemOnSelectEvent(
+                        "dropdown_datacatalogs_id$field_rand",
+                        "update_next_step$next_step_rand",
+                        $CFG_GLPI['root_doc'] . '/marketplace/dlteams/ajax/get_catalogue_format_field.php',
+                        $params
+                    );
 
                 /*
                 echo "<tr class='tab_bg_1'>";
@@ -1574,7 +1585,9 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
                 $errormessage = "";
                 try {
                     foreach ($ids as $id) {
-                        static::assignAccountToUser($id, $ma->POST, $errormessage);
+                        if(!static::assignAccountToUser($id, $ma->POST, $errormessage)){
+                            throw new Exception("Le compte n'a pas été créé");
+                        }
                     }
                     if (strlen($errormessage) > 0)
                         Session::addMessageAfterRedirect($errormessage, 0, 2);
@@ -1746,13 +1759,22 @@ class PluginDlteamsAccountKey_Item extends CommonDBTM
             }
         }
         $condition = [];
+
         $authorized_key_idx = [...$parentaccounts_idx,...$parentannuaires_accounts_idx];
+        foreach (PluginDlteamsAccountKey_Directory::showForItemgetRequest($item, true) as $annuaire_account)
+            $authorized_key_idx[] = $annuaire_account["id"];
+
         if(count($authorized_key_idx) > 0)
         $condition[PluginDlteamsAccountKey::getTable().'.id'] = $authorized_key_idx;
 
+//        if (empty($condition))
+//            $condition["glpi_plugin_dlteams_accountkeys.id"] = null;
+
         if (empty($condition))
             $condition["glpi_plugin_dlteams_accountkeys.id"] = null;
-        
+
+/*        highlight_string("<?php\n\$data =\n" . var_export($condition, true) . ";\n?>");*/
+//        die();
         PluginDlteamsAccountKey::dropdown([
             "name" => "accountkeys_id",
             "addicon" => PluginDlteamsAccountKey::canCreate(),

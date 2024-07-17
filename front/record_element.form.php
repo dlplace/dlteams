@@ -30,9 +30,11 @@ include("../../../inc/includes.php");
 Session::checkLoginUser();
 global $DB;
 $record = new PluginDlteamsRecord();
+/*highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
+//die();
 $record->getFromDB($_POST["record_id"]);
 if (isset($_POST['save'])) {
-    $DB->update(
+    $resp = $DB->update(
         $record->getTable(),
         [
             "transmissionmethod" => json_encode($_POST["transmission_methods"]),
@@ -44,6 +46,8 @@ if (isset($_POST['save'])) {
         ]
     );
 
+//    var_dump($resp);
+//    die();
     Session::addMessageAfterRedirect("Enrégistré avec succès");
 }
 elseif(isset($_POST["save_comment"])){

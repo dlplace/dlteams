@@ -1479,6 +1479,8 @@ class CommonDBTM extends CommonGLPI
     }
 
 
+
+
     /**
      * Add a message on add action
      *

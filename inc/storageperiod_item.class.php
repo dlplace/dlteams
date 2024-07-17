@@ -373,6 +373,7 @@ class PluginDlteamsStoragePeriod_Item extends CommonDBTM
                 'glpi_plugin_dlteams_storageperiods_items.comment AS comment',
                 'glpi_plugin_dlteams_storageperiods_items.plugin_dlteams_storageendactions_id AS storageendactions_id',
                 'glpi_plugin_dlteams_storageperiods_items.plugin_dlteams_storagetypes_id AS storagetypes_id',
+                'glpi_plugin_dlteams_storagetypes.name as storagetypename'
             ],
             'FROM' => 'glpi_plugin_dlteams_storageperiods_items',
             'LEFT JOIN' => [
@@ -384,7 +385,7 @@ class PluginDlteamsStoragePeriod_Item extends CommonDBTM
                 ],
                 'glpi_plugin_dlteams_storagetypes' => [
                     'FKEY' => [
-                        'glpi_plugin_dlteams_storageperiods' => "plugin_dlteams_storagetypes_id",
+                        'glpi_plugin_dlteams_storageperiods_items' => "plugin_dlteams_storagetypes_id",
                         'glpi_plugin_dlteams_storagetypes' => "id",
                     ]
                 ],
@@ -396,9 +397,8 @@ class PluginDlteamsStoragePeriod_Item extends CommonDBTM
                 ],
             ],
             'ORDER' => [
-                'glpi_plugin_dlteams_storagetypes.name ASC',
-                'glpi_plugin_dlteams_storageendactions.name ASC',
-                'glpi_plugin_dlteams_storageperiods.name ASC',
+                'storagetypename asc',
+                'duree',
             ],
             'WHERE' => [
                 'glpi_plugin_dlteams_storageperiods_items.items_id' => $object_item->fields['id'],

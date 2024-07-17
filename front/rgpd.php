@@ -169,7 +169,7 @@ if (!isset($_GET['id']) ) {
 	echo "</a></td></tr>";
 
     echo "<tr class='tab_bg_1'><td align='center' style='text-align:center'>";
-        echo "<a href='". PluginDlteamsDeliverable::getSearchURL()."'>";
+        echo "<a href='". PluginDlteamsDocumentRGPD::getSearchURL()."'>";
         echo "Documentation (livrables, rapports)";
     echo "</a></td></tr>";
 

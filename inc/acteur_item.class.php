@@ -219,7 +219,6 @@ class PluginDlteamsActeur_Item extends CommonDBRelation
             return false;
         }
 
-
         $canedit = $object_item->can($id, UPDATE);
         $rand = mt_rand(1, mt_getrandmax());
 
@@ -325,6 +324,7 @@ class PluginDlteamsActeur_Item extends CommonDBRelation
 
         $header_end .= "<th>" . __("Acteur") . "</th>";
         $header_end .= "<th>" . __("Type", 'dlteams') . "</th>";
+        $header_end .= "<th>" . __("Adéquation", 'dlteams') . "</th>";
         $header_end .= "<th>" . __("Comment") . "</th>";
         $header_end .= "</tr>";
 
@@ -350,8 +350,17 @@ class PluginDlteamsActeur_Item extends CommonDBRelation
             echo "<td class='left" . (isset($data['is_deleted']) && $data['is_deleted'] ? " tab_bg_2_2'" : "'");
             echo ">" . $name . "</td>";
 
-            echo "<td class='left' width='30%'>" . $data['itemtype']::getTypeName() . "</td>";
-            echo "<td class='left' width='40%'>" . ($data['comment']?? "") . "</td>";
+            echo "<td class='left' width='20%'>" . $data['itemtype']::getTypeName() . "</td>";
+            if($data['itemtype1'] && $data['items_id1']){
+                $itemtype1 = $data['itemtype1'];
+/*                highlight_string("<?php\n\$data =\n" . var_export($data, true) . ";\n?>");*/
+                $itemtype1 = new $itemtype1();
+                $itemtype1->getFromDB($data['items_id1']);
+                echo "<td class='left' width='20%'>" . $itemtype1->fields["name"] . "</td>";
+            }
+            else
+                echo "<td class='left' width='10%'>" . "--" . "</td>";
+            echo "<td class='left' width='30%'>" . ($data['comment']?? "") . "</td>";
             echo "</tr>";
         }
 
@@ -376,6 +385,8 @@ class PluginDlteamsActeur_Item extends CommonDBRelation
                 'glpi_plugin_dlteams_records_items.id AS linkid',
                 'glpi_plugin_dlteams_records_items.itemtype AS itemtype',
                 'glpi_plugin_dlteams_records_items.items_id AS items_id',
+                'glpi_plugin_dlteams_records_items.itemtype1 AS itemtype1',
+                'glpi_plugin_dlteams_records_items.items_id1 AS items_id1',
                 'glpi_plugin_dlteams_records_items.comment AS comment',
             ],
             'FROM' => 'glpi_plugin_dlteams_records_items',
@@ -398,8 +409,18 @@ class PluginDlteamsActeur_Item extends CommonDBRelation
                 ],
                 [
                     'glpi_plugin_dlteams_records_items.records_id' => $object_item->fields['id'],
+                    'glpi_plugin_dlteams_records_items.itemtype' => 'PluginDlteamsThirdPartyCategory',
+                    'glpi_plugin_dlteams_records_items.itemtype1' => PluginDlteamsRgpdAdequacy::class,
+                ],
+                [
+                    'glpi_plugin_dlteams_records_items.records_id' => $object_item->fields['id'],
                     'glpi_plugin_dlteams_records_items.itemtype' => 'Supplier',
                     'glpi_plugin_dlteams_records_items.itemtype1' => null,
+                ],
+                [
+                    'glpi_plugin_dlteams_records_items.records_id' => $object_item->fields['id'],
+                    'glpi_plugin_dlteams_records_items.itemtype' => 'Supplier',
+                    'glpi_plugin_dlteams_records_items.itemtype1' => PluginDlteamsRgpdAdequacy::class,
                 ],
             ]
         ];
@@ -444,20 +465,23 @@ class PluginDlteamsActeur_Item extends CommonDBRelation
 
         }
         else if ($data['consent_type1'] == 3) {
-            // Display explicit consentecho "<td><br>" . "</td><td>";
-
-            //echo __("Tiers Categories <i class='fas fa-dolly'></i>&nbsp;", 'dlteams');
-
+            echo "<div style='display: flex; gap: 10px;'>";
+            echo "<span>";
             PluginDlteamsThirdPartyCategory::dropdown([
                 'addicon'  => PluginDlteamsThirdPartyCategory::canCreate(),
                 'name' => "plugin_dlteams_thirdpartycategories_id1",
-                'width' => "200px"
+                'max-width' => "250px"
             ]);
-            echo "<textarea type='text' maxlength=600 rows='1' name='comment' placeholder='Commentaire' style='margin-bottom:-15px;margin-left:90px;width:45%'></textarea>";
+            echo "</span>";
+            echo "<span>";
+            echo "<textarea type='text' maxlength=600 rows='1' name='comment' placeholder='Commentaire' style='margin-bottom:-15px;margin-left:90px;width:35%'></textarea>";
+            echo "</span>";
+            echo "<span>";
             echo "<input type='submit' name='add1' value=\"" . _sx('button', 'Add') . "\" class='submit' style='float:right;margin-right:7.5%'>";
+            echo "</span>";
+            echo "</div>";
 
         }
-
         else if ($data['consent_type1'] == 4) {
             // Display explicit consentecho "<td><br>" . "</td><td>";
 

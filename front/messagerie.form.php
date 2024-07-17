@@ -69,6 +69,8 @@ if (isset($_POST["add"])) {
     $data["content"] = $_POST["content"];
     $data["parent_comment_id"] = isset($_POST["parent_comment_id"])?$_POST["parent_comment_id"]:null;
 
+//    var_dump($_SESSION['glpiactive_entity']);
+//    die();
     global $DB;
     $who = Session::getLoginUserID();
     $data["users_id"] = $who;
@@ -77,6 +79,8 @@ if (isset($_POST["add"])) {
     $data["timeline_position"] = 0;
     $data["sourceof_items_id"] = 0;
     $data["sourceitems_id"] = 0;
+    $data["entities_id"] = $_SESSION['glpiactive_entity'];
+    $data["date_creation"] = $_SESSION["glpi_currenttime"];
 
 //    var_dump($DB->insert($comment->getTable(), $data));
 //    var_dump($comment->add($_POST));

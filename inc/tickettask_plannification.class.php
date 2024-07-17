@@ -28,7 +28,7 @@
 
 use GlpiPlugin\dlteams\Exception\ImportFailureException;
 
-class PluginDlteamsTicketTask_Item extends CommonDBTM
+class PluginDlteamsTicketTask_Plannification extends CommonDBTM
 {
     static public $itemtype_2 = 'TicketTask';
     static public $itemtype_1;
@@ -126,7 +126,7 @@ class PluginDlteamsTicketTask_Item extends CommonDBTM
     public static function getFormURLWithID($id = 0, $full = true)
     {
         $itemtype = TicketTask::class;
-        $itemtype_item = new PluginDlteamsTicketTask_Item();
+        $itemtype_item = new PluginDlteamsTicketTask_Plannification();
         $itemtype_item->getFromDB($id);
         $link = $itemtype::getFormURL($full);
         $link .= (strpos($link, '?') ? '&' : '?') . 'id=' . $itemtype_item->fields["records_id"];
@@ -136,7 +136,6 @@ class PluginDlteamsTicketTask_Item extends CommonDBTM
     // affichage de l'onglet et de son nom
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
-
         switch ($item->getType()) {
             case 'TicketTask':
                 if (!$withtemplate) {
@@ -428,7 +427,7 @@ class PluginDlteamsTicketTask_Item extends CommonDBTM
                     ];
                     $user_item->add($array1);
 
-                    $record_item = new PluginDlteamsTicketTask_Item();
+                    $record_item = new PluginDlteamsTicketTask_Plannification();
                     $array_2 = [
                         "records_id" => $ma->POST["records_id"],
                         "itemtype" => User::class,

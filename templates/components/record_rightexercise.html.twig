@@ -38,7 +38,7 @@
         {% for item in pre_data.pre_rows %}
             <tr style="border: solid 1px gray; color: black" width="100%">
                 <td> {{ item.section }} </td>
-                <td> {{ item.value }} </td>
+                <td> {{ item.value | raw }} </td>
             </tr>
         {% endfor %}
 

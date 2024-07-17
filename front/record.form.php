@@ -76,7 +76,17 @@ if (isset($_POST['add'])) {
     $record->delete($_POST, true);
     $record->redirectToList();
 
-} else {
+}
+else if (isset($_POST["restore"])) {
+    $record->check($_POST["id"], DELETE);
+
+    $record->restore($_POST);
+    \Glpi\Event::log($_POST["id"], "dlteams", 4, "record",
+        //TRANS: %s is the user login
+        sprintf(__('%s restores an item'), $_SESSION["glpiname"]));
+    $record->redirectToList();
+}
+else {
 
     $record->checkGlobal(READ);
 

@@ -4642,6 +4642,46 @@ JAVASCRIPT;
                 if ($plug = isPluginItemType($itemtype)) {
                     $condition = Plugin::doOneHook($plug['plugin'], 'addDefaultWhere', $itemtype);
                 }
+
+
+                $entity_model_id = 32;
+//                var_dump($_SESSION['glpiactiveentities']);
+//                die();
+                if(in_array($entity_model_id, $_SESSION['glpiactiveentities'])){
+                    $active_entities_temp = $_SESSION['glpiactiveentities'];
+                    unset($active_entities_temp[$entity_model_id]);
+
+                    $table = $itemtype::getTable();
+
+                    if(count($active_entities_temp)>0){
+
+//                        var_dump("zz");
+//                        die();
+                        $query1 = [
+                            "FROM" => $table,
+                            "WHERE" => [
+                                "entities_id" => $active_entities_temp
+                            ]
+                        ];
+
+                        global $DB;
+                        $iterator = $DB->request($query1);
+                        $idxmodel = [];
+                        foreach ($iterator as $it){
+                            if($it["id_model"])
+                                array_push($idxmodel, $it["id_model"]);
+                        }
+
+
+                        $sqlExceptArray = implode(", ", $active_entities_temp);
+
+                        if (!empty($idxmodel)) {
+                            $sqlArray = implode(", ", $idxmodel);
+
+                            $condition .= " (`$table`.`entity_model` NOT IN ($sqlArray) OR `$table`.`entity_model` IS NULL) AND `$table`.`entities_id` NOT IN ($sqlExceptArray) ";
+                        }
+                    }
+                }
                 break;
         }
 

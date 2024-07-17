@@ -28,8 +28,10 @@
 include("../../../inc/includes.php");
 
 $glpiRoot=str_replace('\\', '/', GLPI_ROOT);
-$savePath = GLPI_ROOT . "/files/_dlteams/updates/";
-$extractFolder = GLPI_ROOT . "/files/_dlteams/updates/dlregisterlatest/";
+// $savePath = GLPI_ROOT . "/files/_dlteams/updates/";
+$savePath = GLPI_ROOT . "/files/_tmp/";
+//$extractFolder = GLPI_ROOT . "/files/_dlteams/updates/dlteamslatest/";
+$extractFolder = $savePath . "/dlteamslatest/";
 
 if (isset($_FILES['file'])) {
     $fileTmpPath = $_FILES['file']['tmp_name'];
@@ -45,14 +47,31 @@ if (isset($_FILES['file'])) {
 
         $dest_path = $savePath . $fileName;
 
-        // Créer le répertoire s'il n'existe pas
+        // Définir les permissions correctes
+        $correctPermissions = 0755;
+
+        if(is_dir($savePath)){
+            echo "Répertoire temporaire trouvé...<br/>";
+        }
+// Créer le répertoire s'il n'existe pas
         if (!is_dir($savePath)) {
-            mkdir($savePath, 0755, true);
+            mkdir($savePath, $correctPermissions, true);
+        } else {
+            // Vérifier les permissions actuelles du répertoire
+            $currentPermissions = substr(sprintf('%o', fileperms($savePath)), -4);
+
+            // Mettre à jour les permissions si elles ne sont pas correctes
+            if ($currentPermissions != decoct($correctPermissions)) {
+                if(chmod($savePath, $correctPermissions))
+                    echo "Ok.. updaté pour les bonnes permissions<br/>";
+                else
+                    echo "Erreur de mise a jour des bonnes permissions <br>";
+            }
         }
 
-        // Déplacer le fichier de l'emplacement temporaire à l'emplacement désiré
+// Déplacer le fichier de l'emplacement temporaire à l'emplacement désiré
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
-            echo "Le fichier a été téléchargé avec succès.";
+            echo "Le fichier a été téléchargé avec succès dans le dossier " . $savePath;
         } else {
             echo "Erreur lors du déplacement du fichier téléchargé.";
         }
@@ -104,7 +123,7 @@ foreach ($files as $path) {
 }
 chmod(plugin_dlteams_root, 0755); // fermeture des droits
 
-$message .= "Mise à jour éfféctué avec succès";
+$message .= "Mise à jour efféctuée avec succès";
 Session::addMessageAfterRedirect($message);
 global $CFG_GLPI;
-Html::redirect($CFG_GLPI['url_base'] . "/front/central.php");
+// Html::redirect($CFG_GLPI['url_base'] . "/front/central.php");

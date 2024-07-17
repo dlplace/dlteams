@@ -77,6 +77,11 @@
                 {% if entry_i['nb_planification'] > 0 %}
                     - <span><b>Planifications:</b> </span> {{ entry_i['nb_planification'] }} dont {{ entry_i['nb_planification_todo'] }} "A faire"
                 {% endif %}
+
+                {% if entry_i['nb_messages'] > 0 %}
+                    - <span><b>Messages:</b> </span> {{ entry_i['nb_messages'] }}
+                {% endif %}
+
             </div>
 
             <div class="timeline-badges">
@@ -241,16 +246,16 @@
                 {{ call_plugin_hook('pre_item_form', {"item": subitem, 'options': params}) }}
 
                 {# Todo add to pre_item_form hook #}
-                <div style="width: 100%; display: flex; justify-content: left; margin-left: 10px; margin-bottom: 5px;">
+                <div style="width: 100%; display: flex; justify-content: left; margin-left: 10px; margin-bottom: 5px; flex-direction: column; gap: 2px; align-items: center">
                     {% if is_subtask and subitem.fields['tickettasks_id'] is not null %}
 
                         {{ "<strong>Tâche #%s</strong>" | format(subitem.fields['id']) |raw }}
 
-                        <button id="plan{{ rand }}" class="btn btn-outline-secondary text-truncate"
-                                onclick="showPlanUpdate{{ rand }}()" type="button">
-                            <i class="fas fa-calendar"></i>
-                            <span>{{ __('Plan this task') }}</span>
-                        </button>
+{#                        <button id="plan{{ rand }}" style="width: fit-content" class="btn btn-outline-secondary text-truncate"#}
+{#                                onclick="showPlanUpdate{{ rand }}()" type="button">#}
+{#                            <i class="fas fa-calendar"></i>#}
+{#                            <span>{{ __('Plan this task') }}</span>#}
+{#                        </button>#}
                     {% endif %}
                 </div>
 
@@ -789,6 +794,26 @@
                                     {% endif %}
                                 </div>
                                 <script type="text/javascript">
+                                    {#function showPlanUpdate{{ rand }}(e) {#}
+                                    {#    $('#plan{{ rand }}').hide();#}
+                                    {#    $('#viewplan{{ rand }}').load('{{ path('/ajax/planning.php') }}', {#}
+                                    {#        action: "add_event_classic_form",#}
+                                    {#        form: "followups", // Was followups for tasks before. Can't find where this is used.#}
+                                    {#        entity: {{ item.fields['entities_id'] }},#}
+                                    {#        rand_user: {{ random() }},#}
+                                    {#        rand_group: {{ random() }},#}
+                                    {#        itemtype: "{{ subitem.type }}",#}
+                                    {#        items_id: {{ subitem.fields['id']|default(-1) }},#}
+                                    {#        parent_itemtype: "{{ item.getType() }}",#}
+                                    {#        parent_items_id: {{ item.fields['id'] }},#}
+                                    {#        parent_fk_field: "{{ item.getForeignKeyField() }}",#}
+                                    {#        begin: $('input[name=date]').val(),#}
+                                    {#        end: "{{ subitem.fields['end'] }}",#}
+                                    {#        _display_dates: false,#}
+                                    {#        actiontime: $('select[name=estimate_duration]').val(),#}
+                                    {#    });#}
+                                    {#}#}
+
                                     function showPlanUpdate{{ rand }}(e) {
                                         $('#plan{{ rand }}').hide();
                                         $('#viewplan{{ rand }}').load('{{ path('/ajax/planning.php') }}', {
@@ -802,10 +827,8 @@
                                             parent_itemtype: "{{ item.getType() }}",
                                             parent_items_id: {{ item.fields['id'] }},
                                             parent_fk_field: "{{ item.getForeignKeyField() }}",
-                                            begin: $('input[name=date]').val(),
+                                            begin: "{{ subitem.fields['begin'] }}",
                                             end: "{{ subitem.fields['end'] }}",
-                                            _display_dates: false,
-                                            actiontime: $('select[name=estimate_duration]').val(),
                                         });
                                     }
                                 </script>

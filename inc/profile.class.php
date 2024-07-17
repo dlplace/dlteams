@@ -167,6 +167,9 @@ class PluginDlteamsProfile extends Profile {
 		 'plugin_dlteams_iso27001menu' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
 		 'plugin_dlteams_accessopening' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
 		 'plugin_dlteams_itilfollowup' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
+		 'plugin_dlteams_rgpdadequacy' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
+		 'plugin_dlteams_documentrgpd' => CREATE | READ | UPDATE | DELETE | PURGE | READNOTE | UPDATENOTE,
+		 'plugin_dlteams_form' =>  READ,
       ], true);
    }
 
@@ -517,7 +520,27 @@ class PluginDlteamsProfile extends Profile {
             'field' => PluginDlteamsVehicleType::$rightname,
             'rights' => [CREATE => __("Create"), READ => __("Read"), UPDATE => __("Update"), DELETE => __("Delete"), PURGE => __("Delete permanently"), READNOTE => __("Read notes"), UPDATENOTE => __("Update notes"),]
          ],
+          [
+              'itemtype' => PluginDlteamsRgpdAdequacy::class,
+              'label' => PluginDlteamsRgpdAdequacy::getTypeName(2),
+              'field' => PluginDlteamsRgpdAdequacy::$rightname,
+              'rights' => [CREATE => __("Create"), READ => __("Read"), UPDATE => __("Update"), DELETE => __("Delete"), PURGE => __("Delete permanently"), READNOTE => __("Read notes"), UPDATENOTE => __("Update notes"),]
+          ],
+          [
+              'itemtype' => PluginDlteamsForm::class,
+              'label' => PluginDlteamsForm::getTypeName(2),
+              'field' => PluginDlteamsForm::$rightname,
+              'rights' => [READ => __("Read")]
+          ],
+          [
+              'itemtype' => PluginDlteamsDocumentRGPD::class,
+              'label' => PluginDlteamsDocumentRGPD::getTypeName(2),
+              'field' => PluginDlteamsDocumentRGPD::$rightname,
+              'rights' => [CREATE => __("Create"), READ => __("Read"), UPDATE => __("Update"), DELETE => __("Delete"), PURGE => __("Delete permanently"), READNOTE => __("Read notes"), UPDATENOTE => __("Update notes"),]
+          ],
+
       ];
+      
 
       return $rights;
    }

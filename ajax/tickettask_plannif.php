@@ -82,7 +82,7 @@ echo "<td>";
 User::dropdown([
     'addicon' => true,
     'name' => 'users_id_tech',
-    'value' => "",
+    'value' => $tickettask->fields["users_id_tech"],
     'entity' => Session::getActiveEntity(),
     'right' => 'all',
     'width' => '200px',
@@ -103,7 +103,7 @@ echo "</tr>";
 
 
 echo "<tr>";
-echo "<td>" . __("Date prévue", 'dlteams') . "</td>";
+echo "<td>" . __("Echéance", 'dlteams') . "</td>";
 echo "<td>";
 
 Html::showDateTimeField('date', [
@@ -114,7 +114,7 @@ Html::showDateTimeField('date', [
 
 echo "</td>";
 echo "<td style='width: 15px'></td>";
-echo "<td>" . __("Durée", 'dlteams') . "</td>";
+echo "<td>" . __("Durée prévue", 'dlteams') . "</td>";
 echo "<td>";
 Dropdown::showTimeStamp('estimate_duration', [
     'full_width' => true,

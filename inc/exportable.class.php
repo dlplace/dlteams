@@ -211,10 +211,10 @@ trait PluginDlteamsExportable
             //foreach ($req as $id => $row) {
 		        $DB->query("INSERT INTO glpi_plugin_dlteams_records (entities_id, is_recursive, is_deleted, date_mod, date_creation, id_model, entity_model, date_majmodel, type_majmodel, number, parentnumber, completenumber, name, content, additional_info, 
 					states_id, first_entry_date, consent_json, consent_type, consent_explicit, users_id_creator, users_id_lastupdater, users_id_responsible, 
-					users_id_auditor, users_id_actor, diffusion, right_information, right_opposition, right_portability, profiling, profiling_auto, external_process, impact_person, impact_organism, specific_security_measures) 
+					users_id_auditor, users_id_actor, diffusion, right_information, right_opposition, right_portability, profiling, profiling_auto, external_process, impact_person, impact_organism, specific_security_measures, transmissionmethod, mediasupport, siintegration, collect_comment) 
 							SELECT $entity, is_recursive, is_deleted, NOW(), NOW(), id_model, entity_model, date_majmodel, type_majmodel, number, parentnumber, completenumber,  name, content, additional_info, 
 					states_id, first_entry_date, consent_json, consent_type, consent_explicit, $userC_id, $userC_id, 0, 
-					0, 0, diffusion, right_information, right_opposition, right_portability, profiling, profiling_auto, external_process, impact_person, impact_organism, specific_security_measures
+					0, 0, diffusion, right_information, right_opposition, right_portability, profiling, profiling_auto, external_process, impact_person, impact_organism, specific_security_measures, transmissionmethod, mediasupport, siintegration, collect_comment
 						FROM `glpi_plugin_dlteams_records` WHERE `id` = $recordsA_id");
 			$result = $DB->query('SELECT LAST_INSERT_ID() FROM `glpi_plugin_dlteams_records`'); // or die("Echec recuperation lastinsertid dans la table ");
 			$data = $DB->fetchAssoc($result); $recordsB_id = $data['LAST_INSERT_ID()'];
@@ -300,7 +300,7 @@ trait PluginDlteamsExportable
 		}
 
 		// LEGALBASIS selection des lignes de records_items pour le record source et itemtype =  PluginDlteamsLegalBasi
-		global $legalbasisB_id, $legalbasis_items_idB ;
+		global $legalbasisB_id, $legalbasis_items_idB;
 		$req = $DB->request("SELECT * FROM `glpi_plugin_dlteams_records_items` WHERE `records_id` = $recordsA_id AND `itemtype` = 'PluginDlteamsLegalBasi'");
         foreach ($req as $items_id => $row) { //pour chaque ligne
 			$records_items_idA = $row['id']; $itemsA_id = $row['items_id']; $itemtype1A = $row['itemtype1'] ; $itemsA_id1 = $row['items_id1'];  // on recupere les datas pour la copie
@@ -448,6 +448,44 @@ trait PluginDlteamsExportable
 			$data = $DB->fetchAssoc($result); $protectivemeasures_items_idB = $data['LAST_INSERT_ID()'];
 			//  var_dump ("protectivemeasures_items créé, ligne : ", $protectivemeasures_items_idB, ", protectivemeasures_id = ", $protectivemeasuresB_id, " modèle = ", $records_items_idA); echo "<br>" ;
 		}
+
+
+
+//        Type de documents (policiform)
+        global $policieformB_id, $policieform_items_idB;
+        $req = $DB->request("SELECT * FROM `glpi_plugin_dlteams_records_items` WHERE `records_id` = $recordsA_id AND `itemtype` = 'PluginDlteamsPolicieForm'");
+        foreach ($req as $items_id => $row) { //pour chaque ligne
+            $records_items_idA = $row['id']; $itemsA_id = $row['items_id']; $itemtype1A = $row['itemtype1'] ; $itemsA_id1 = $row['items_id1'];  // on recupere les datas pour la copie
+
+            //  var_dump ("Pour records_item id = ", $records_items_idA ," et l'itemsA_id = ", $itemsA_id) ; //on prend l'items_id et on vérifie si le name existe dans l'entité cible
+            $reqexist = $DB->request("SELECT * FROM `glpi_plugin_dlteams_policieforms` WHERE 
+                                                    `entities_id` = $entitiesB_id AND `name` = (SELECT `name` FROM `glpi_plugin_dlteams_policieforms` WHERE `id` = $itemsA_id)");
+            if (count($reqexist)) {
+                //  var_dump (count($reqexist), $entitiesB_id, "legalbasis existe, il faut prendre l'id : ") ;
+                foreach ($reqexist as $id => $row2) {$legalbasisB_id = $row2['id'];}
+                //  var_dump ("l'idB est ", $legalbasisB_id) ;
+            } else { // si il existe pas on le créée
+                //  var_dump (count($reqexist), $entitiesB_id, "legalbasis n'existe pas, il faut créer -> ") ;
+                $reqinsert = $DB->query("INSERT INTO `glpi_plugin_dlteams_policieforms` (`entities_id`, `id_model`, `entity_model`, `date_majmodel`, `name`, `content`, `comment`, `date_creation`)
+					SELECT $entitiesB_id, $itemsA_id, $entitiesA_id, `date_mod`, `name`, `content`, `comment`, NOW()
+					FROM `glpi_plugin_dlteams_legalbasis` WHERE `id` = $itemsA_id");
+                // et on récupère l'id
+                $result = $DB->query('SELECT LAST_INSERT_ID() FROM `glpi_plugin_dlteams_policieforms`');
+                $data = $DB->fetchAssoc($result); $policieformB_id = $data['LAST_INSERT_ID()'];
+
+            }
+            // on insert l'enregistrement dans records_items, puis legalbasis_items
+            $reqinsert = $DB->query("INSERT INTO `glpi_plugin_dlteams_records_items` (`records_id`, `itemtype`, `items_id`, `comment`, `date_creation`, `mandatory`)
+			SELECT $recordsB_id, `itemtype`, $policieformB_id, `comment`, NOW(), `mandatory` FROM `glpi_plugin_dlteams_records_items` WHERE `id` = $records_items_idA");
+            $result = $DB->query('SELECT LAST_INSERT_ID() FROM `glpi_plugin_dlteams_records_items`');
+            $data = $DB->fetchAssoc($result); $policieform_items_idB = $data['LAST_INSERT_ID()'];
+            //  var_dump ("records_items créé, id = ", $records_items_idB, "items_id = ", $legalbasisB_id); echo "<br>" ;
+            $reqinsert = $DB->query("INSERT INTO `glpi_plugin_dlteams_policieforms_items` (`policieforms_id`, `items_id`, `itemtype`, `comment`, `date_creation`)
+			SELECT $policieformB_id, $recordsB_id, 'PluginDlteamsRecord', `comment`, NOW() FROM `glpi_plugin_dlteams_policieforms_items` AS T1 WHERE T1.`id` = $policieform_items_idB");
+            $result = $DB->query('SELECT LAST_INSERT_ID() FROM `glpi_plugin_dlteams_policieforms_items`');
+            $data = $DB->fetchAssoc($result); $policieform_items_idB = $data['LAST_INSERT_ID()'];
+            //  var_dump ("legalbasis_items créé, ligne : ", $legalbasis_items_idB, ", legalbasis_id = ", $legalbasisB_id, " modèle = ", $records_items_idA); echo "<br>" ;
+        }
 		// die ;
 		return true;
     }
@@ -548,7 +586,8 @@ trait PluginDlteamsExportable
         global $DB;
         $message = "Copie de type de documents". nl2br("\n");
 
-
+        $ent = new Entity();
+        $ent->getFromDB($entity);
         $policieform = new PluginDlteamsPolicieForm();
         $policieform_temp = new PluginDlteamsPolicieForm();
         $policieform->getFromDB($id);
@@ -563,7 +602,8 @@ trait PluginDlteamsExportable
 //        ];
 
         $criteria = [
-            "name" => htmlspecialchars($from_fields["name"]),
+//            "name" => htmlspecialchars($from_fields["name"]), // id_model
+            "id_model" => $old_id,
             "entities_id" => $entity,
             "is_deleted" => false
         ];
@@ -574,17 +614,128 @@ trait PluginDlteamsExportable
         ]);
 
         $count = 0;
+        $idexist = null;
         foreach ($iterator as $pf){
+            $idexist = $pf["id"];
             $count++;
+            break;
         }
 
 
 //        var_dump($entity);
 //        die();
         if($count > 0){
-            Session::addMessageAfterRedirect($message."Un type de document existe déjà avec le meme nom", 0, WARNING);
-            return false;
+//            ok ca existe deja, on fait le update en fonction du model
+            if(!$policieform_temp->update([
+                ...$from_fields,
+                "content" => htmlspecialchars($from_fields["content"]),
+                "name" => htmlspecialchars($from_fields["name"]),
+                "entities_id" => $entity,
+                "date_creation" => $_SESSION['glpi_currenttime'],
+                "date_mod" => $_SESSION['glpi_currenttime'],
+                "id_model" => $old_id,
+                "id" => $idexist
+            ])){
+                $DB->rollback();
+                Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+                return false;
+            }
+
+
+            Session::addMessageAfterRedirect(sprintf("Type de document %s mis a jour", $from_fields["name"]));
+
+            $req = $DB->request("SELECT * FROM `glpi_plugin_dlteams_policieforms_items` WHERE `policieforms_id` = $old_id");
+
+            foreach ($req as $items_id => $row) {
+
+                $dt_itemtype = $row["itemtype"];
+                switch ($row["itemtype"]) {
+
+                    case PluginDlteamsConcernedPerson::class:
+//                        $a = new PluginDlteamsConcernedPerson_Item();
+//                    create new concerned person
+                        $concernedperson = new PluginDlteamsConcernedPerson();
+                        $concernedperson->getFromDB($row["items_id"]);
+                        $cparray = [
+                            ...$concernedperson->fields,
+                            "entities_id" => $entity
+                        ];
+                        unset($cparray["id"]);
+                        unset($cparray["date_creation"]);
+                        unset($cparray["date_mod"]);
+                        $cparray["name"] = addslashes($cparray["name"]??"");
+                        if(!$concernedperson->getFromDBByCrit($cparray) && $cpid = $concernedperson->add($cparray)){
+                            Session::addMessageAfterRedirect(sprintf("(%s) %s copié vers %s", $concernedperson::getTypeName(), $cparray["name"], $ent->fields["name"]));
+
+//                            $concernedperson_item = new PluginDlteamsConcernedPerson_Item();
+                            $a = new PluginDlteamsConcernedPerson_Item();
+                            if($row["itemtype1"]){
+                                $processeddata = new PluginDlteamsProcessedData();
+                                $processeddata->getFromDB($row["items_id1"]);
+                                $pdarray = [
+                                    ...$processeddata->fields,
+                                    "name" => addslashes($processeddata->fields["name"]??""),
+                                    "entities_id" => $entity
+                                ];
+                                unset($pdarray["id"]);
+                                unset($pdarray["date_creation"]);
+                                unset($pdarray["date_mod"]);
+
+                                if(!$processeddata->getFromDBByCrit($pdarray))
+                                    $pdid = $processeddata->add($pdarray);
+                                else
+                                    $pdid = $processeddata->fields["id"];
+                            }
+                            $c = new PluginDlteamsProcessedData_Item();
+                            if($a->add([
+                                    "concernedpersons_id" => $cpid,
+                                    "itemtype" => PluginDlteamsPolicieForm::class,
+                                    "items_id" => $idexist,
+                                    "itemtype1" => $row["itemtype1"],
+                                    "items_id1" => $pdid??0,
+                                    "comment" => addslashes($row["comment"]??"")
+                                ]) && ( // et itemtype a été defini
+                                    ($row["itemtype1"] &&
+                                        $c->add([
+                                            "processeddatas_id" => $pdid,
+                                            "itemtype" => PluginDlteamsPolicieForm::class,
+                                            "items_id" => $idexist,
+                                            "itemtype1" => "PluginDlteamsConcernedPerson",
+                                            "items_id1" => $cpid??0,
+                                            "comment" => addslashes($row["comment"]??"")
+                                        ])
+                                    )
+                                    ||
+                                    !$row["itemtype1"]
+                                )
+                            ){
+//                        ok ajouté processeddata_item et concrnedperson_item. on peut ajouter policieform_item
+                                $b = new PluginDlteamsPolicieForm_Item();
+                                $b->add([
+                                    "policieforms_id" => $idexist,
+                                    "itemtype" => $row["itemtype"],
+                                    "itemtype1" => $row["itemtype1"],
+                                    "items_id" => $cpid,
+                                    "items_id1" => $pdid??0,
+                                    "mandatory" => $row["mandatory"],
+                                    "comment" => addslashes($row["comment"]??"")
+                                ]);
+                            }
+                            else{
+                                if(Session::DEBUG_MODE)
+                                    Session::addMessageAfterRedirect($DB->error(), false, ERROR);
+
+                                Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+                                return false;
+                            }
+                        }
+                        break;
+                }
+            }
+
+            return true;
         }
+
 
         unset($from_fields["id"]);
         global $DB;
@@ -595,7 +746,8 @@ trait PluginDlteamsExportable
             "name" => htmlspecialchars($from_fields["name"]),
             "entities_id" => $entity,
             "date_creation" => $_SESSION['glpi_currenttime'],
-            "date_mod" => $_SESSION['glpi_currenttime']
+            "date_mod" => $_SESSION['glpi_currenttime'],
+            "id_model" => $old_id
         ])){
             $DB->rollback();
             Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
@@ -618,39 +770,213 @@ trait PluginDlteamsExportable
         foreach ($req as $items_id => $row) {
 
             $dt_itemtype = $row["itemtype"];
-/*            highlight_string("<?php\n\$data =\n" . var_export($dt_itemtype, true) . ";\n?>");*/
-
             switch ($row["itemtype"]){
-                //        copie traitements
-//                case PluginDlteamsRecord::class:
-//                    $record_item = new PluginDlteamsRecord_Item();
-//                    if(!$record_item->add([
-//                        "records_id" => $row["items_id"],
-//                        "itemtype" => PluginDlteamsPolicieForm::class,
-//                        "items_id" => $newid,
-//                        "comment" => $row["comment"]
-//                    ])){
-//                        if(Session::DEBUG_MODE)
-//                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
-//
-//                        $DB->rollback();
-//                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
-//                        return false;
-//                    }
-//
-//                    $pf_item = new PluginDlteamsPolicieForm_Item();
-//                    $pf_item->add([
-//                        "policieforms_id" => $newid,
-//                        "itemtype" => PluginDlteamsRecord::class,
-//                        "items_id" => $row["items_id"],
-//                        "comment" => $row["comment"]
-//                    ]);
-//                    break;
 
-//                case PluginDlteamsDataCatalog::class:
-//                    $a = new PluginDlteamsDataCatalog_Item();
+                case PluginDlteamsConcernedPerson::class:
+                    $a = new PluginDlteamsConcernedPerson_Item();
+//                    create new concerned person
+                $concernedperson = new PluginDlteamsConcernedPerson();
+                $concernedperson->getFromDB($row["items_id"]);
+                $cparray = [
+                    ...$concernedperson->fields,
+                    "entities_id" => $entity
+                ];
+                unset($cparray["id"]);
+                unset($cparray["date_creation"]);
+                unset($cparray["date_mod"]);
+                    $cparray["name"] = addslashes($cparray["name"]??"");
+                if(!$concernedperson->getFromDBByCrit($cparray))
+                    $cpid = $concernedperson->add($cparray);
+                else
+                    $cpid = $concernedperson->fields["id"];
+
+                    if($row["itemtype1"]){
+                        $processeddata = new PluginDlteamsProcessedData();
+                        $processeddata->getFromDB($row["items_id1"]);
+                        $pdarray = [
+                            ...$processeddata->fields,
+                            "name" => addslashes($processeddata->fields["name"]??""),
+                            "entities_id" => $entity
+                        ];
+                        unset($pdarray["id"]);
+                        unset($pdarray["date_creation"]);
+                        unset($pdarray["date_mod"]);
+
+                        if(!$processeddata->getFromDBByCrit($pdarray))
+                            $pdid = $processeddata->add($pdarray);
+                        else
+                            $pdid = $processeddata->fields["id"];
+                    }
+                    $c = new PluginDlteamsProcessedData_Item();
+                    if($a->add([
+                        "concernedpersons_id" => $cpid,
+                        "itemtype" => PluginDlteamsPolicieForm::class,
+                        "items_id" => $newid,
+                        "itemtype1" => $row["itemtype1"],
+                        "items_id1" => $pdid??0,
+                            "comment" => addslashes($row["comment"]??"")
+                    ]) && ( // et itemtype a été defini
+                            ($row["itemtype1"] &&
+                            $c->add([
+                                "processeddatas_id" => $pdid,
+                                "itemtype" => PluginDlteamsPolicieForm::class,
+                                "items_id" => $newid,
+                                "itemtype1" => "PluginDlteamsConcernedPerson",
+                                "items_id1" => $cpid??0,
+                                "comment" => addslashes($row["comment"]??"")
+                            ])
+                            )
+                                ||
+                                !$row["itemtype1"]
+                        )
+                    ){
+//                        ok ajouté processeddata_item et concrnedperson_item. on peut ajouter policieform_item
+                        $b = new PluginDlteamsPolicieForm_Item();
+                        $b->add([
+                            "policieforms_id" => $newid,
+                            "itemtype" => $row["itemtype"],
+                            "itemtype1" => $row["itemtype1"],
+                            "items_id" => $cpid,
+                            "items_id1" => $pdid??0,
+                            "mandatory" => $row["mandatory"],
+                            "comment" => addslashes($row["comment"]??"")
+                        ]);
+                    }
+                    else{
+                        if(Session::DEBUG_MODE)
+                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
+
+                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+                        return false;
+                    }
+                    break;
+                case PluginDlteamsDataCarrierType::class:
+                    $dct = new PluginDlteamsDataCarrierType();
+
+                    $dct->getFromDB($row["items_id"]);
+                    $dctarray = [
+                        ...$dct->fields,
+                        "entities_id" => $entity
+                    ];
+                    unset($dctarray["id"]);
+                    unset($dctarray["date_creation"]);
+                    unset($dctarray["date_mod"]);
+                    if(!$dct->getFromDBByCrit($dctarray))
+                        $dctid = $dct->add($dctarray);
+                    else
+                        $dctid = $dct->fields["id"];
+
+                    $dct_item = new PluginDlteamsDataCarrierType_Item();
+                    $b = new PluginDlteamsPolicieForm_Item();
+                    $dct = new PluginDlteamsDataCarrierType();
+                    $dct->getFromDB($dctid);
+
+                    if($dct_item->add([
+                        "datacarriertypes_id" => $dctid,
+                        "itemtype" => PluginDlteamsPolicieForm::class,
+                        "items_id" => $newid,
+                        "comment" => $row["comment"]??$dct->fields["comment"]
+                    ]) && $b->add([
+                            "policieforms_id" => $newid,
+                            "itemtype" => $row["itemtype"],
+                            "items_id" => $dctid,
+                            "comment" => $row["comment"]??$dct->fields["comment"]
+                        ])){
+//                        ok ajouté
+                    }
+                    else{
+                        if(Session::DEBUG_MODE)
+                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
+
+                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+                        return false;
+                    }
+
+                    break;
+                case PluginDlteamsLegalbasi::class:
+                    $lb = new PluginDlteamsLegalbasi();
+
+                    $lb->getFromDB($row["items_id"]);
+                    $lbtarray = [
+                        ...$lb->fields,
+                        "entities_id" => $entity
+                    ];
+                    unset($dctarray["id"]);
+                    unset($dctarray["date_creation"]);
+                    unset($dctarray["date_mod"]);
+                    if(!$lb->getFromDBByCrit($lbtarray))
+                        $lbtid = $lb->add($dctarray);
+                    else
+                        $lbtid = $lb->fields["id"];
+
+                    $lb_item = new PluginDlteamsLegalbasi_Item();
+                    $b = new PluginDlteamsPolicieForm_Item();
+                    if($lb_item->add([
+                            "legalbasis_id" => $lbtid,
+                            "itemtype" => PluginDlteamsPolicieForm::class,
+                            "items_id" => $newid,
+                            "comment" => $row["comment"]
+                        ]) && $b->add([
+                            "policieforms_id" => $newid,
+                            "itemtype" => $row["itemtype"],
+                            "items_id" => $lbtid,
+                            "comment" => $row["comment"]
+                        ])){
+//                        ok ajouté
+                    }
+                    else{
+                        if(Session::DEBUG_MODE)
+                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
+
+                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+                        return false;
+                    }
+
+                    break;
+                case PluginDlteamsStoragePeriod::class:
+                    $sp = new PluginDlteamsStoragePeriod();
+
+                    $sp->getFromDB($row["items_id"]);
+                    $sptarray = [
+                        ...$sp->fields,
+                        "entities_id" => $entity
+                    ];
+                    unset($sptarray["id"]);
+                    unset($sptarray["date_creation"]);
+                    unset($sptarray["date_mod"]);
+                    if(!$sp->getFromDBByCrit($sptarray))
+                        $spid = $sp->add($sptarray);
+                    else
+                        $spid = $sp->fields["id"];
+
+                    $sp_item = new PluginDlteamsStoragePeriod_Item();
+                    $b = new PluginDlteamsPolicieForm_Item();
+                    if($sp_item->add([
+                            "storageperiods_id" => $spid,
+                            "itemtype" => PluginDlteamsPolicieForm::class,
+                            "items_id" => $newid,
+                            "comment" => $row["comment"]
+                        ]) && $b->add([
+                            "policieforms_id" => $newid,
+                            "itemtype" => $row["itemtype"],
+                            "items_id" => $spid,
+                            "comment" => $row["comment"]
+                        ])){
+//                        ok ajouté
+                    }
+                    else{
+                        if(Session::DEBUG_MODE)
+                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
+
+                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+                        return false;
+                    }
+
+                    break;
+//                case PluginDlteamsProcessedData::class:
+//                    $a = new PluginDlteamsProcessedData_Item();
 //                    if(!$a->add([
-//                        "datacatalogs_id" => $row["items_id"],
+//                        "processeddatas_id" => $row["items_id"],
 //                        "itemtype" => PluginDlteamsPolicieForm::class,
 //                        "items_id" => $newid,
 //                        "comment" => $row["comment"]
@@ -665,134 +991,86 @@ trait PluginDlteamsExportable
 //                    $b = new PluginDlteamsPolicieForm_Item();
 //                    $b->add([
 //                        "policieforms_id" => $newid,
-//                        "itemtype" => PluginDlteamsDataCatalog::class,
+//                        "itemtype" => PluginDlteamsProcessedData::class,
 //                        "items_id" => $row["items_id"],
 //                        "comment" => $row["comment"]
 //                    ]);
 //                    break;
-                case PluginDlteamsProcessedData::class:
-                    $a = new PluginDlteamsProcessedData_Item();
-                    if(!$a->add([
-                        "processeddatas_id" => $row["items_id"],
-                        "itemtype" => PluginDlteamsPolicieForm::class,
-                        "items_id" => $newid,
-                        "comment" => $row["comment"]
-                    ])){
-                        if(Session::DEBUG_MODE)
-                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
-
-                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
-                        return false;
-                    }
-
-                    $b = new PluginDlteamsPolicieForm_Item();
-                    $b->add([
-                        "policieforms_id" => $newid,
-                        "itemtype" => PluginDlteamsProcessedData::class,
-                        "items_id" => $row["items_id"],
-                        "comment" => $row["comment"]
-                    ]);
-                    break;
-                case PluginDlteamsStoragePeriod::class:
-                    $a = new PluginDlteamsStoragePeriod_Item();
-                    if(!$a->add([
-                        "storageperiods_id" => $row["items_id"],
-                        "itemtype" => PluginDlteamsPolicieForm::class,
-                        "items_id" => $newid,
-                        "plugin_dlteams_storagetypes_id" => $row["plugin_dlteams_storagetypes_id"],
-                        "plugin_dlteams_storageendactions_id" => $row["plugin_dlteams_storageendactions_id"],
-                        "comment" => $row["comment"]
-                    ])){
-                        if(Session::DEBUG_MODE)
-                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
-
-                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
-                        return false;
-                    }
-
-                    $b = new PluginDlteamsPolicieForm_Item();
-                    $b->add([
-                        "policieforms_id" => $newid,
-                        "itemtype" => PluginDlteamsStoragePeriod::class,
-                        "items_id" => $row["items_id"],
-                        "comment" => $row["comment"]
-                    ]);
-                    break;
-                case PluginDlteamsProtectiveMeasure::class:
-                    $a = new PluginDlteamsProtectiveMeasure_Item();
-                    if(!$a->add([
-                        "protectivemeasures_id" => $row["items_id"],
-                        "itemtype" => PluginDlteamsPolicieForm::class,
-                        "items_id" => $newid,
-                        "comment" => $row["comment"]
-                    ])){
-                        if(Session::DEBUG_MODE)
-                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
-
-                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
-                        return false;
-                    }
-
-                    $b = new PluginDlteamsPolicieForm_Item();
-                    $b->add([
-                        "policieforms_id" => $newid,
-                        "itemtype" => PluginDlteamsProtectiveMeasure::class,
-                        "items_id" => $row["items_id"],
-                        "comment" => $row["comment"]
-                    ]);
-                    break;
-                case Document::class:
-                    $a = new PluginDlteamsDocument_Item();
-                    if(!$a->add([
-                        "documents_id" => $row["items_id"],
-                        "itemtype" => PluginDlteamsPolicieForm::class,
-                        "items_id" => $newid,
-                        "comment" => $row["comment"]
-                    ])){
-                        if(Session::DEBUG_MODE)
-                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
-
-                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
-                        return false;
-                    }
-
-                    $b = new PluginDlteamsPolicieForm_Item();
-                    $b->add([
-                        "policieforms_id" => $newid,
-                        "itemtype" => Document::class,
-                        "items_id" => $row["items_id"],
-                        "comment" => $row["comment"]
-                    ]);
-                    break;
-                case PluginDlteamsLegalBasi::class:
-                    $a = new PluginDlteamsLegalbasi_Item();
-                    if(!$a->add([
-                        "legalbasis_id" => $row["items_id"],
-                        "itemtype" => PluginDlteamsPolicieForm::class,
-                        "items_id" => $newid,
-                        "comment" => $row["comment"]
-                    ])){
-                        if(Session::DEBUG_MODE)
-                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
-
-                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
-                        return false;
-                    }
-
-                    $b = new PluginDlteamsPolicieForm_Item();
-                    if(!$b->add([
-                        "policieforms_id" => $newid,
-                        "itemtype" => PluginDlteamsLegalbasi::class,
-                        "items_id" => $row["items_id"],
-                        "comment" => $row["comment"]
-                    ])){
-                        if(Session::DEBUG_MODE)
-                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
-
-                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
-                        return false;
-                    }
-                    break;
+//                case PluginDlteamsProtectiveMeasure::class:
+//                    $a = new PluginDlteamsProtectiveMeasure_Item();
+//                    if(!$a->add([
+//                        "protectivemeasures_id" => $row["items_id"],
+//                        "itemtype" => PluginDlteamsPolicieForm::class,
+//                        "items_id" => $newid,
+//                        "comment" => $row["comment"]
+//                    ])){
+//                        if(Session::DEBUG_MODE)
+//                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
+//
+//                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+//                        return false;
+//                    }
+//
+//                    $b = new PluginDlteamsPolicieForm_Item();
+//                    $b->add([
+//                        "policieforms_id" => $newid,
+//                        "itemtype" => PluginDlteamsProtectiveMeasure::class,
+//                        "items_id" => $row["items_id"],
+//                        "comment" => $row["comment"]
+//                    ]);
+//                    break;
+//                case Document::class:
+//                    $a = new PluginDlteamsDocument_Item();
+//                    if(!$a->add([
+//                        "documents_id" => $row["items_id"],
+//                        "itemtype" => PluginDlteamsPolicieForm::class,
+//                        "items_id" => $newid,
+//                        "comment" => $row["comment"]
+//                    ])){
+//                        if(Session::DEBUG_MODE)
+//                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
+//
+//                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+//                        return false;
+//                    }
+//
+//                    $b = new PluginDlteamsPolicieForm_Item();
+//                    $b->add([
+//                        "policieforms_id" => $newid,
+//                        "itemtype" => Document::class,
+//                        "items_id" => $row["items_id"],
+//                        "comment" => $row["comment"]
+//                    ]);
+//                    break;
+//                case PluginDlteamsLegalBasi::class:
+//                    $a = new PluginDlteamsLegalbasi_Item();
+//                    if(!$a->add([
+//                        "legalbasis_id" => $row["items_id"],
+//                        "itemtype" => PluginDlteamsPolicieForm::class,
+//                        "items_id" => $newid,
+//                        "comment" => $row["comment"]
+//                    ])){
+//                        if(Session::DEBUG_MODE)
+//                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
+//
+//                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+//                        return false;
+//                    }
+//
+//                    $b = new PluginDlteamsPolicieForm_Item();
+//                    if(!$b->add([
+//                        "policieforms_id" => $newid,
+//                        "itemtype" => PluginDlteamsLegalbasi::class,
+//                        "items_id" => $row["items_id"],
+//                        "comment" => $row["comment"]
+//                    ])){
+//                        if(Session::DEBUG_MODE)
+//                            Session::addMessageAfterRedirect($DB->error(), false, ERROR);
+//
+//                        Session::addMessageAfterRedirect("Une erreur s'est produite.", 0, ERROR);
+//                        return false;
+//                    }
+//                    break;
             }
         }
 

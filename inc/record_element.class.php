@@ -286,6 +286,7 @@ class PluginDlteamsRecord_Element extends CommonDBTM
         global $DB;
 
         $iterator = self::getRequest($item);
+
         $number = count($iterator); // $number est le nombre de ligne à afficher (=nombre de documents reliés)
         $items_list = [];
         $used = [];
@@ -424,7 +425,7 @@ class PluginDlteamsRecord_Element extends CommonDBTM
 
             echo $header_begin . $header_top . $header_end;
             //foreach ($items_list as $data) {
-            // var_dump ($iterator);
+
             foreach ($iterator as $data) {
 //                    get record_item fields
                     $record_item = new PluginDlteamsRecord_Item();
@@ -691,7 +692,7 @@ class PluginDlteamsRecord_Element extends CommonDBTM
                         "itemtype" => PluginDlteamsPolicieForm::class,
                         "items_id" => $data["policieforms_id"],
                         "records_id" => $data["items_id"],
-                        "comment" => $data["comment"],
+                        "comment" => addslashes($data["comment"]),
                     ]);
 
                     echo "<tr class='tab_bg_1'>";
@@ -897,6 +898,10 @@ class PluginDlteamsRecord_Element extends CommonDBTM
             $list[$data["id"]] = $data["name"];
         }
         echo "<div class='input-field'>";
+//        var_dump($record->fields["transmissionmethod"]);
+//        die();
+        $instID = $record->fields["id"];
+        echo "<input type='hidden' name='record_id' value='$instID'>";
         Dropdown::showFromArray(
             "transmission_methods",
             $list,
@@ -944,7 +949,7 @@ class PluginDlteamsRecord_Element extends CommonDBTM
         echo "<th colspan='3'>" . __("SI Integration", 'dlteams') . "</th>";
         echo "</tr>";
         echo "<td class='form-element'>";
-        echo __('Mode d\'enregistrement dans les catalogues de données', 'dlteams');
+        echo __('Mode d\'enregistrement des données collectées', 'dlteams');
         $iterator = $DB->request(["FROM" => PluginDlteamsSIIntegration::getTable(), "SELECT" => ["name", "id"]]);
         $list = [];
         foreach ($iterator as $data) {
@@ -985,28 +990,22 @@ class PluginDlteamsRecord_Element extends CommonDBTM
     {
         $query = [
             'SELECT' => [
-                'glpi_plugin_dlteams_documents_items.id AS linkid',
-                'glpi_plugin_dlteams_documents_items.documents_id AS documents_id',
-                'glpi_plugin_dlteams_documents_items.items_id AS items_id',
+                'glpi_documents_items.id AS linkid',
+                'glpi_documents_items.documents_id AS documents_id',
+                'glpi_documents_items.items_id AS items_id',
 //                'glpi_plugin_dlteams_records_items.document_mandatory AS document_mandatory',
                 'glpi_documents.id AS id',
                 'glpi_documents.name AS name',
                 'glpi_documents.filename AS filename',
                 'glpi_documents.link AS link',
-                'glpi_plugin_dlteams_documents_items.comment AS comment',
+                'glpi_documents_items.comment AS comment',
 
             ],
-            'FROM' => 'glpi_plugin_dlteams_documents_items',
+            'FROM' => 'glpi_documents_items',
             'LEFT JOIN' => [
-//                'glpi_plugin_dlteams_records_items' => [
-//                    'FKEY' => [
-//                        'glpi_plugin_dlteams_documents_items' => "items_id",
-//                        'glpi_plugin_dlteams_records_items' => "records_id",
-//                    ]
-//                ],
                 'glpi_documents' => [
                     'FKEY' => [
-                        'glpi_plugin_dlteams_documents_items' => "documents_id",
+                        'glpi_documents_items' => "documents_id",
                         'glpi_documents' => "id",
                     ]
                 ],
@@ -1017,15 +1016,18 @@ class PluginDlteamsRecord_Element extends CommonDBTM
                 //'contenu ASC'
             ],
             'WHERE' => [
-                'glpi_plugin_dlteams_documents_items.items_id' => $record->fields['id'],
-                'glpi_plugin_dlteams_documents_items.itemtype' => PluginDlteamsRecord::class,
+                'glpi_documents_items.items_id' => $record->fields['id'],
+                'glpi_documents_items.itemtype' => PluginDlteamsRecord::class,
 //                'glpi_plugin_dlteams_records_items.itemtype' => Document::class,
 //                'glpi_plugin_dlteams_records_items.records_id' => $record->fields['id'],
             ]
         ];
 
         global $DB;
-        return $DB->request($query);
+        $iterator = $DB->request($query);
+//        var_dump($iterator->getSql());
+//        die();
+        return $iterator;
     }
 
     static function getPolicyFormRequest($record)

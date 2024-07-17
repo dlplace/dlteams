@@ -59,7 +59,8 @@ if (isset($data["edit_pdf"])) {
 //        $pdfoutput->showPDF($_GET);
     }
 
-} elseif (isset($_POST["edit_html"])) {
+}
+elseif (isset($_POST["edit_html"])) {
     $pdfoutput = new PluginDlteamsCreatePDF();
     $print_options = PluginDlteamsCreatePDF::preparePrintOptionsFromForm($_GET);
 
@@ -73,7 +74,8 @@ if (isset($data["edit_pdf"])) {
     $print_options["print_first_page"] = isset($_POST["print_first_page"]) ? $_POST["print_first_page"] : false;
     $print_options["print_comments"] = isset($_POST["print_comments"]) ? $_POST["print_comments"] : false;
     $pdfoutput->deliverableGenerateHtml($print_options, $delivrable);
-} elseif (isset($_POST["publish_dlteams"])) {
+}
+elseif (isset($_POST["publish_dlteams"])) {
 
     $print_options["ispdf"] = false;
     $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"]) ? $_POST["prevent_contextmenu"] : false;
@@ -180,19 +182,47 @@ if (isset($data["edit_pdf"])) {
         $print_options["print_comments"] = $_POST["print_comments"];
         $print_options["prevent_contextmenu"] = isset($_POST["prevent_contextmenu"]) ? $_POST["prevent_contextmenu"] : false;
 
-        $pdfoutput->deliverablePublishDlRegister($print_options, $delivrable);
+        $pdfoutput->deliverablePublishDlteams($print_options, $delivrable);
         Session::addMessageAfterRedirect(sprintf(__('Fichier crée avec Succès')));
         Html::back();
     } else {
         $pdfoutput->generateGuid($_GET, $print_options);
-        $pdfoutput->deliverablePublishDlRegister($print_options, $_GET);
+        $pdfoutput->deliverablePublishDlteams($print_options, $_GET);
         Session::addMessageAfterRedirect(sprintf(__('Fichier crée avec Succès')));
         Html::back();
     }
-} elseif (isset($_POST['add'])) {
+}
+elseif (isset($_POST['add'])) {
 
     $delivrable->check(-1, CREATE, $_POST);
     $id = $delivrable->add($_POST);
+
+
+    global $DB;
+    $position = 0;
+    $chapter = new PluginDlteamsDeliverable_Section();
+    $condition = [
+        'FROM' => 'glpi_plugin_dlteams_deliverables_sections',
+        'ORDER' => 'id DESC',
+        'LIMIT' => 1,
+        'deliverables_id' => $id
+    ];
+
+    $chapters = $DB->request($condition);
+
+    foreach ($chapters as $key => $c) {
+        $lastRecord = $c["timeline_position"];
+
+        $position = $lastRecord + 1;
+    }
+    if ($position == 0)
+        $position++;
+
+    $result = $chapter->add([
+        "tab_name" => "Contenu",
+        "timeline_position" => $position,
+        "deliverables_id" => $id
+    ]);
     Html::redirect($delivrable->getFormURLWithID($id));
 
 } else if (isset($_POST['update'])) {

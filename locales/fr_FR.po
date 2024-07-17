@@ -1257,6 +1257,12 @@ msgstr "Indiquer les catalogues utilisateurs (accès aux données) et administra
 msgid "Add catalogs et comment the relationship"
 msgstr "Indiquez un catalogue et commenter la relation"
 
+#: inc/accessopening.class.php
+msgid "Access Opening"
+msgid_plural "Access Openings"
+msgstr[0] "Contrôle d'accès physique"
+msgstr[1] "Contrôles d'accès physique"
+
 #: inc/createpdfbase.class.php:45
 msgid "Create document"
 msgstr "Éditer"
@@ -1944,6 +1950,12 @@ msgid "Project task"
 msgid_plural "Projects tasks"
 msgstr[0] "Sous-projet, étape"
 msgstr[1] "Sous-projets, étapes"
+
+#: class activitycategory.class.php
+msgid "Activitie or profession"
+msgid_plural "Activities, professions"
+msgstr[0] "Activité ou métier"
+msgstr[1] "Activités et métiers"
 
 #: class knowbaseitem.php
 msgid "Know Base"

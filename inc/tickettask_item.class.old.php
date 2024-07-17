@@ -29,7 +29,7 @@
 
 use Glpi\Toolbox\Sanitizer;
 
-class PluginDlteamsTicketTask_Item extends CommonDBTM
+class PluginDlteamsTicketTask_Plannification extends CommonDBTM
 {
 
     static $rightname = 'plugin_dlteams_tickettask_items';

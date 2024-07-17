@@ -169,21 +169,23 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
             }
             echo "</div>";
             echo "</td>";
-            echo "</tr>";
+
+            if(!$currentcatalog->fields["is_helpdesk_visible"]){
+                echo "</tr>";
 
                 echo "<tr><td class='form-table-text'>" . "Protection de l'accès à ce catalogue" . "</td>";
 
                 echo "<td>";
 
-            Html::showCheckbox([
-                'name' => 'is_directoryservice',
-                'checked' => $currentcatalog->fields["is_directoryservice"],
-            ]);
+                Html::showCheckbox([
+                    'name' => 'is_directoryservice',
+                    'checked' => $currentcatalog->fields["is_directoryservice"],
+                ]);
 
-            echo " par des clés ou comptes gérés par ce catalogue</label>";
+                echo " par des clés ou comptes gérés par ce catalogue</label>";
 //            echo "</div>";
-            echo "</td>";
-            echo "<script>
+                echo "</td>";
+                echo "<script>
 				$(document).ready(function(e){
 				    
 				let is_directory = true;
@@ -208,34 +210,41 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
                     });
 				});
 				</script>";
-            echo "</tr><tr><td></td><td>";
-            echo "<div style='display: flex; flex-direction: row; gap: 0.1rem'>";
-            Html::showCheckbox([
-                'name' => 'use_other_directory',
-                'checked' => $currentcatalog->fields["use_other_directory"] == 1 ? true : false,
-            ]);
-            echo "<label for='use_other_directory'>&nbsp;par des clés ou comptes d'autres catalogues (services d'annuaire tiers)</label></td></tr>";
-            echo "</div>";
+                echo "</tr><tr><td></td><td>";
+                echo "<div style='display: flex; flex-direction: row; gap: 0.1rem'>";
+                Html::showCheckbox([
+                    'name' => 'use_other_directory',
+                    'checked' => $currentcatalog->fields["use_other_directory"] == 1 ? true : false,
+                ]);
+                echo "<label for='use_other_directory'>&nbsp;par des clés ou comptes d'autres catalogues (services d'annuaire tiers)</label></td></tr>";
+                echo "</div>";
 
-            echo "<tr id='directory_name_field'>";
-            echo "<td class='form-table-text'>";
-            echo "<label style='white-space: nowrap'>Nom du service d'annuaire </label>";
-            echo "</td>";
+                echo "<tr id='directory_name_field'>";
+                echo "<td class='form-table-text'>";
+                echo "<label style='white-space: nowrap'>Nom du service d'annuaire </label>";
+                echo "</td>";
 
-            echo "<td>" . "<input type='text' style='width:90%' style='text-align:left; display:none;' name='directory_name' value='" . Html::cleanInputText($currentcatalog->fields['directory_name']) . "'>" . "</td>";
+                echo "<td>" . "<input type='text' style='width:90%' style='text-align:left; display:none;' name='directory_name' value='" . Html::cleanInputText($currentcatalog->fields['directory_name']) . "'>" . "</td>";
+                echo "</tr>";
+
+                echo "<tr id='directory_name_field2'> <td class='form-table-text'>" . __("Type de clé par défaut", 'dlteams') . "</td>";
+                echo "<td>";
+
+                PluginDlteamsKeyType::dropdown([
+                    'addicon' => PluginDlteamsKeyType::canCreate(),
+                    'name' => 'default_keytype',
+                    'width' => '300px',
+                    'value' => $currentcatalog->fields['default_keytype'],
+                ]);
+                echo "</td></tr>";
+
+                echo "<tr id='directory_name_field2'> <td class='form-table-text'>" . __("Format par défaut", 'dlteams') . "</td>";
+                echo "<td>";
+                echo "<input type='text' style='width:90%' style='text-align:left;' name='default_format' value='" . Html::cleanInputText($currentcatalog->fields['default_format']) . "'>";
+                echo "</td></tr>";
+            }
             echo "</tr>";
-
-            echo "<tr id='directory_name_field2'> <td class='form-table-text'>" . __("Type de clé par défaut", 'dlteams') . "</td>";
-            echo "<td>";
-            PluginDlteamsKeyType::dropdown([
-                'addicon' => PluginDlteamsKeyType::canCreate(),
-                'name' => 'default_keytype',
-                'width' => '300px',
-                'value' => $currentcatalog->fields['default_keytype'],
-            ]);
-            echo "</td></tr>";
-        }
-        echo "</tr>";
+            }
 
         echo "<tr class='tab_bg_2'><th colspan='4'> <i class='fa fa-information' style='font-weight: normal'></i>" . __("Informations de contact / référent de la ressource", 'dlteams')  . "</th>" . "</tr>";
 
@@ -257,7 +266,7 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
             'name' => 'users_id_contact',
             'width' => '250px',
             'value' => $users_id,
-            'entity' => Session::getActiveEntity(),
+            'entity' => $currentcatalog->fields["entities_id"],
             'right' => 'all',
         ]);
         echo "</td></tr>";
@@ -1039,6 +1048,20 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
 
 //            ajouter un catalogue existaant comme enfant
 
+            $used = [];
+            $fk = $this->getForeignKeyField();
+            $result = $DB->request(
+                [
+                    'FROM' => $this->getTable(),
+                    'WHERE' => [$fk => $ID],
+                    'ORDER' => 'name',
+                ]
+            );
+
+            foreach ($result as $id => $data) {
+                $used[$data['id']] = $data['id'];
+            }
+
             echo "<div class='firstbloc'>";
             $this->initForm($this->fields["id"], []);
             $this->showFormHeader([]);
@@ -1054,6 +1077,7 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
                 'name' => 'son_id',
                 'width' => '100%',
                 'entity_sons' => true,
+                'used' => $used,
                 'value' => null
             ]);
 
@@ -1089,27 +1113,6 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
 
         echo "</table>";
 
-        $fk = $this->getForeignKeyField();
-
-        $result = $DB->request(
-            [
-                'FROM' => $this->getTable(),
-                'WHERE' => [$fk => $ID],
-                'ORDER' => 'name',
-            ]
-        );
-
-//        $ma_processor = PluginDlteamsDatacatalog_Childs_Massiveactions::class;
-//
-//
-//        Html::openMassiveActionsForm('mass' . $ma_processor . $rand);
-//        $massiveactionparams = [
-//            'num_displayed' => min($_SESSION['glpilist_limit'], count($result)),
-//            'container' => 'mass' . $ma_processor . $rand
-//        ];
-//        Html::showMassiveActions($massiveactionparams);
-
-
         echo "<table class='tab_cadre_fixehov'>";
         $header = "<tr>";
 
@@ -1117,7 +1120,7 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
 //        $header .= Html::getCheckAllAsCheckbox('mass' . $ma_processor . $rand);
 //        $header .= "</th>";
 
-        echo "<th>" . __('Name') . "</th>";
+        $header.= "<th>" . __('Name') . "</th>";
         if ($entity_assign) {
             $header .= "<th>" . Entity::getTypeName(1) . "</th>";
         }
@@ -1147,7 +1150,7 @@ class PluginDlteamsDataCatalog extends CommonTreeDropdown implements
                 || (($fk != 'entities_id') && in_array($data['entities_id'], $_SESSION['glpiactiveentities']))
             ) {
                 echo "<a href='" . $this->getFormURL();
-                echo '?id=' . $data['id'] . "'>" . $data['name'] . "</a>";
+                echo '?id=' . $data['id'] . "'>" . $data['completename'] . "</a>";
             } else {
                 echo $data['name'];
             }

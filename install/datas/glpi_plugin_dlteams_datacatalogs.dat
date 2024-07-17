@@ -1,10 +1,10 @@
 0	\N	Logiciel CRM	Logiciel CRM	Logiciel de gestion de la prospection	\N	3	1	0	Comptes CRM	\N	1	\N	{"1708":"1708"}	\N	\N	\N	\N	1708
 0	\N	Gestion commerciale (commandes, factures, réglements)	Gestion commerciale (commandes, factures, réglements)	Fichiers clients, devis, commandes, facturation, paiements	\N	0	1	0	\N	\N	0	\N	\N	\N	\N	\N	\N	1710
-0	2021-11-17 11:43:39	Dossier partagé \\"Commun\\"	Dossiers et fichiers du Serveur > Dossier partagé \\"Commun\\"	Fichiers disponibles pour tout utilisateur ayant un accès au serveur	\N	0	8	0	\N	\N	1	{"2297":2297}	{"1879":"1879"}	\N	\N	\N	\N	1879
+0	2021-11-17 11:43:39	Dossier partagé "Commun"	Dossiers et fichiers du Serveur > Dossier partagé "Commun"	Fichiers disponibles pour tout utilisateur ayant un accès au serveur	\N	0	8	0	\N	\N	1	{"2297":2297}	{"1879":"1879"}	\N	\N	\N	\N	1879
 0	2021-11-17 11:46:19	Dossiers partagés %user \\"Mes Documents\\" &#38; \\"Bureau\\"	Dossiers et fichiers du Serveur > Dossiers partagés %user \\"Mes Documents\\" &#38; \\"Bureau\\"	Fichiers personnels de chaque utilisateur ayant un accès au serveur	\N	0	8	0	\N	\N	1	{"2297":2297}	{"1880":"1880"}	\N	\N	\N	\N	1880
 0	2021-11-26 00:13:54	%p.nom@organisme.fr	M365 > Exchange > %p.nom@organisme.fr	Boites mails individuelles ; gestion des mails, des calendriers, contacts, et tâches	\N	0	7	0	\N	\N	3	\N	{"1881":"1881","2072":2072}	\N	\N	\N	\N	1881
 0	2021-12-02 10:42:07	Statistiques du site internet	Statistiques du site internet		\N	0	0	0	\N	\N	0	\N	\N	\N	\N	\N	\N	1884
-0	2021-12-02 10:42:07	Base de données \\"personnes abonnées aux Newsletters\\"	Base de données \\"personnes abonnées aux Newsletters\\"	nom et email	\N	3	1	0	\N	\N	1	\N	\N	\N	\N	\N	\N	1885
+0	2021-12-02 10:42:07	Base de données "personnes abonnées aux Newsletters"	Base de données "personnes abonnées aux Newsletters"	nom et email	\N	3	1	0	\N	\N	1	\N	{"1885":"1885"}	\N	\N	\N	\N	1885
 0	2021-12-02 10:42:07	dossier comptabilité	Dossiers et fichiers du Serveur > dossier comptabilité	\\\\serveur\\compta	\N	0	8	0	\N	\N	1	{"2297":2297}	{"1886":"1886"}	\N	\N	\N	\N	1886
 0	2021-12-02 10:42:07	Dossier partagé \\"Direction\\"	Dossiers et fichiers du Serveur > Dossier partagé \\"Direction\\"	Fichiers personnels de chaque utilisateur ayant un accès au serveur	\N	0	8	0	\N	\N	1	{"2297":2297}	{"1888":"1888"}	\N	\N	\N	\N	1888
 0	2021-12-02 18:59:36	Boîte mail contact@organisme.com	M365 > Exchange > Boîte mail contact@organisme.com	Mail générique de l'organisme	\N	3	0	0	\N	\N	3	\N	{"1913":"1913"}	\N	\N	\N	\N	1913
@@ -15,9 +15,9 @@
 0	\N	Exchange	M365 > Exchange	Contient les boites aux lettres des utilisateurs		0	7	0	\N	\N	2	{"2370":2370}	\N	\N	\N	\N	\N	2295
 0	\N	Sharepoint	M365 > Sharepoint			0	8	0	\N	\N	2	{"2370":2370}	{"2296":"2296"}	\N	\N	\N	\N	2296
 0	\N	Dossiers et fichiers du Serveur	Dossiers et fichiers du Serveur	Ensemble des dossiers et fichiers stockés sur le serveur (arborescence) 		0	8	0	\N	\N	0	[]	\N	\N	\N	\N	\N	2297
-0	\N	Console d\\'administration du serveur	Console d\\'administration du serveur	Fiches utilisateurs, leurs rôles, droits et mots de passe		0	6	1	Active directory	\N	1	\N	\N	\N	\N	\N	\N	2298
+0	\N	Console d'administration du serveur	Console d'administration du serveur	Fiches utilisateurs, leurs rôles, droits et mots de passe		0	6	1	Active directory	\N	1	\N	{"2298":"2298"}	\N	\N	\N	\N	2298
 0	\N	Teams	M365 > Teams			0	1	0	\N	\N	2	{"2370":2370}	{"2299":"2299"}	\N	\N	\N	\N	2299
-0	\N	Centre d\\'administration	Centre d\\'administration	Fiches utilisateurs, leurs rôles, droits et mots de passe		0	0	0	\N	\N	1	\N	\N	\N	\N	\N	\N	2300
+0	\N	Centre d'administration	Centre d'administration	Fiches utilisateurs, leurs rôles, droits et mots de passe		0	0	0	\N	\N	1	\N	{"2300":"2300"}	\N	\N	\N	\N	2300
 0	\N	Console d\\'administration Google	Google workspace > Console d\\'administration Google	Fiches utilisateurs, leurs rôles, droits et mots de passe		5	6	0	\N	\N	2	{"2369":2369}	{"2301":"2301"}	\N	\N	\N	\N	2301
 0	\N	Système d'exploitation du serveur	Système d'exploitation du serveur			0	0	0	\N	\N	0	\N	\N	\N	\N	\N	\N	2302
 0	2024-01-10 18:51:11	Google workspace	Google workspace	Ensemble d'outils de gestion disponible pour les entreprises : gestion des identités, des emails, des fichiers, store d'applications  	\N	0	1	1	Comptes google	\N	1	[]	\N	\N	\N	\N	\N	2369

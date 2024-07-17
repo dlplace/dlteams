@@ -585,7 +585,6 @@ PluginDlteamsDataCatalog	\N	Fiches utilisateurs, leurs rôles, droits et mots de
 PluginDlteamsStoragePeriod	\N	Les durées de conservation des données sont régies selon chaque finalité de traitement, à défaut par la loi Informatique et Libertés du 17 juin 2019 comportant les dispositions relatives aux « marges de manœuvre nationales » autorisées par le Règlement général sur la Protection des Données (RGPD) et, plus précisément, selon les fondements auxquels notre organisme ou le traitement est soumis	\N	\N	2023-12-04 08:29:13	\N	1	0	424	305	\N
 PluginDlteamsStoragePeriod	\N	L'organisme archive les informations, documents et fichiers pour répondre à ses obligations légales en matière comptable, fiscale et gestion du personnel (code des impôts, art 3171-16)	\N	\N	2023-12-04 08:29:40	\N	2	0	424	1407	\N
 PluginDlteamsStoragePeriod	\N	L'organisme archive des informations, documents et fichiers, avec le consentement des personnes concernées, pour faciliter d'autres traitements connexes ou ultérieurs	\N	\N	2023-12-04 08:30:13	\N	2	0	424	1503	\N
-PluginDlteamsStoragePeriod	\N	à l'issue de la période ou en cas de retrait du consentement, l'internaute est invité à donner à nouveau son consentement ;	\N	\N	2023-12-04 08:34:41	\N	1	0	117	195	\N
 PluginDlteamsStoragePeriod	\N	durant la période des 2 ans	\N	\N	\N	\N	1	0	119	120	\N
 PluginDlteamsStoragePeriod	\N	durant la période des 3 ans	\N	\N	\N	\N	1	0	120	120	\N
 PluginDlteamsStoragePeriod	\N	3 ans après la date du jeu concours, sauf refus de la personne	\N	\N	\N	\N	2	0	285	412	\N
@@ -616,3 +615,8 @@ PluginDlteamsStoragePeriod	\N	pour certains messages ou correspondances constitu
 PluginDlteamsStoragePeriod	\N	archive dans l'outil métier ou suppression si la demande est close	\N	\N	2023-12-08 07:23:46	\N	1	0	122	778	\N
 PluginDlteamsProtectiveMeasure	\N		\N	\N	2024-01-25 18:57:57	\N	\N	0	285	190	\N
 PluginDlteamsStoragePeriod	\N	à compter de la clôture de l’exercice considéré (Article L. 123-22)	\N	\N	\N	\N	2	0	299	315	\N
+PluginDlteamsStoragePeriod	\N	à l'issue de la période ou en cas de retrait du consentement, l'internaute est invité à donner à nouveau son consentement ;	\N	\N	\N	1	1	0	117	195	\N
+PluginDlteamsConcernedPerson	PluginDlteamsProcessedData	\N	\N	\N	2024-06-13 14:49:24	\N	\N	1	1475	160	64
+PluginDlteamsConcernedPerson	PluginDlteamsProcessedData	\N	\N	\N	2024-06-13 14:50:27	\N	\N	1	1475	160	3570
+PluginDlteamsConcernedPerson	PluginDlteamsProcessedData	\N	\N	\N	2024-06-13 14:52:26	\N	\N	1	1475	160	3571
+PluginDlteamsConcernedPerson	PluginDlteamsProcessedData	\N	\N	\N	2024-06-13 14:55:12	\N	\N	0	1475	160	971

@@ -981,15 +981,15 @@ class Document extends CommonDBTM
         $search = [
             'criteria' => [
 				0 => [
-                    'field' => 1,
-                    'searchtype' => 'contains',
+                    'field' => 7,
+                    'searchtype' => 'under',
                     'value' => ''
                 ],                
 				1 => [
-                    'field' => 7,
+                    'field' => 0,
                     'searchtype' => 'contains',
                     'value' => ''
-                ],
+                ],                
             ],
 			'sort' => 19,
             'order' => 'DESC'
@@ -1188,7 +1188,7 @@ class Document extends CommonDBTM
             $link = $values["link"];
             $shortenedlink = Toolbox::substr($link, 0, $CFG_GLPI["url_maxlength"]) . "...";
             if(!empty($link))
-                return "<a href='$link' target='_blank'>$shortenedlink</a>";
+                return "<a href='$link' title='$link' target='_blank'>...</a>";
         }
         return parent::getSpecificValueToDisplay($field, $values, $options);
     }

@@ -29,27 +29,42 @@ include("../../../inc/includes.php");
 
 Plugin::load('dlteams', true);
 Session::checkCentralAccess();
-$glpiRoot = str_replace('\\', '/', GLPI_ROOT);
-if (isset($_POST['createpdf']) || isset($_POST['createhtml']) || isset($_POST['createhtmlppd'])) {
 
-    $print_options = PluginDlteamsCreatePDF::preparePrintOptionsFromForm($_POST);
-    if (isset($_POST['action'])) {
-        if ($_POST['action'] == 'prepare') {
+$glpiRoot = str_replace('\\', '/', GLPI_ROOT);
+if (isset($_GET["record_id"]))
+    $data = $_GET;
+else
+    $data = $_POST;
+
+
+if (isset($data['createpdf']) || isset($data['createhtml']) || isset($data['createhtmlppd'])) {
+
+/*    highlight_string("<?php\n\$data =\n" . var_export($data, true) . ";\n?>");*/
+//    die();
+    $print_options = PluginDlteamsCreatePDF::preparePrintOptionsFromForm($data);
+    if (isset($data['action'])) {
+        if ($data['action'] == 'prepare') {
             Html::header(PluginDlteamsRecord::getTypeName(0), '', "grc", "plugindlteamsmenu");
             PluginDlteamsCreatePDF::showPrepareForm(3);
         }
-        else if ($_POST['action'] == 'print' && isset($_POST['report_type'])) {
+        else if ($data['action'] == 'print' && isset($data['report_type'])) {
+
+            if($data['report_type'] == PluginDlteamsCreatePDF::REPORT_INTERNAL_RECORD){
+                Session::addMessageAfterRedirect("Cette fonctionnalité arrive bientôt");
+                Html::back();
+            }
+
             $pdfoutput = new PluginDlteamsCreatePDF();
-            if (isset($_POST['createhtml'])) {
-                $pdfoutput->generateHtml($_POST, $print_options);
+            if (isset($data['createhtml'])) {
+                $pdfoutput->generateHtml($data, $print_options);
 //            Html::back();
             }
 //            publier dlteams
-            elseif (isset($_POST['createhtmlppd'])) {
+            elseif (isset($data['createhtmlppd'])) {
 
                 $print_options["ispdf"] = false;
 
-                if (!isset($_POST["choosen_publication_folder"]) || !$_POST["choosen_publication_folder"] || $_POST["choosen_publication_folder"] == "0") {
+                if (!isset($data["choosen_publication_folder"]) || !$data["choosen_publication_folder"] || $data["choosen_publication_folder"] == "0") {
                     Session::addMessageAfterRedirect("Veuillez choisir un dossier de publication", false, ERROR);
                     Html::back();
                 }
@@ -57,16 +72,16 @@ if (isset($_POST['createpdf']) || isset($_POST['createhtml']) || isset($_POST['c
                 updateEditRecordSettings();
 
                 $record = new PluginDlteamsRecord();
-                $record->getFromDB($_POST['record_id']);
-                $print_options['print_first_page'] = isset($_POST['print_first_page']) && $_POST['print_first_page'] ? true : false;
-                $print_options['print_comments'] = $_POST['print_comments'];
+                $record->getFromDB($data['record_id']);
+                $print_options['print_first_page'] = isset($data['print_first_page']) && $data['print_first_page'] ? true : false;
+                $print_options['print_comments'] = $data['print_comments'];
                 $pdfoutput = new PluginDlteamsCreatePDF();
-                $print_options = PluginDlteamsCreatePDF::preparePrintOptionsFromForm($_POST);
+                $print_options = PluginDlteamsCreatePDF::preparePrintOptionsFromForm($data);
                 $glpiRoot = str_replace('\\', '/', GLPI_ROOT);
 
 
                 $link_folder = new Link();
-                $link_folder->getFromDB($_POST['choosen_publication_folder']);
+                $link_folder->getFromDB($data['choosen_publication_folder']);
                 $str_link = $link_folder->fields['link'];
 
                 $server_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
@@ -92,8 +107,8 @@ if (isset($_POST['createpdf']) || isset($_POST['createhtml']) || isset($_POST['c
 
                     $exist = $record_item->find([
                         "itemtype" => "Link",
-                        "items_id" => $_POST["choosen_publication_folder"],
-                        "records_id" => $_POST["record_id"]
+                        "items_id" => $data["choosen_publication_folder"],
+                        "records_id" => $data["record_id"]
                     ]);
 
                     if (count($exist) > 0) {
@@ -106,28 +121,28 @@ if (isset($_POST['createpdf']) || isset($_POST['createhtml']) || isset($_POST['c
 
                         $link_item_exist = new PluginDlteamsLink_Item();
                         $link_item_exist->deleteByCriteria([
-                            "links_id" => $_POST["choosen_publication_folder"],
-                            "itemtype" => "PluginDlteamsDeliverable",
-                            "items_id" => $_POST["record_id"]
+                            "links_id" => $data["choosen_publication_folder"],
+                            "itemtype" => "PluginDlteamsRecord",
+                            "items_id" => $data["record_id"]
                         ]);
 
 
                         $link_item_exist->add([
-                            "links_id" => $_POST["choosen_publication_folder"],
-                            "itemtype" => "PluginDlteamsDeliverable",
-                            "items_id" => $_POST["record_id"]
+                            "links_id" => $data["choosen_publication_folder"],
+                            "itemtype" => "PluginDlteamsRecord",
+                            "items_id" => $data["record_id"]
                         ]);
 
                         $record_item->deleteByCriteria([
                             "itemtype" => "Link",
-                            "items_id" => $_POST["choosen_publication_folder"],
-                            "records_id" => $_POST["record_id"],
+                            "items_id" => $data["choosen_publication_folder"],
+                            "records_id" => $data["record_id"],
                         ]);
 
                         $record_item->add([
                             "itemtype" => "Link",
-                            "items_id" => $_POST["choosen_publication_folder"],
-                            "records_id" => $_POST["record_id"]
+                            "items_id" => $data["choosen_publication_folder"],
+                            "records_id" => $data["record_id"]
                         ]);
 
                     }
@@ -135,31 +150,32 @@ if (isset($_POST['createpdf']) || isset($_POST['createhtml']) || isset($_POST['c
 
                         $record_item->add([
                             "itemtype" => "Link",
-                            "items_id" => $_POST["choosen_publication_folder"],
-                            "records_id" => $_POST["record_id"]
+                            "items_id" => $data["choosen_publication_folder"],
+                            "records_id" => $data["record_id"]
                         ]);
 
                         $link_item = new PluginDlteamsLink_Item();
                         $link_item->add([
-                            "links_id" => $_POST["choosen_publication_folder"],
+                            "links_id" => $data["choosen_publication_folder"],
                             "itemtype" => PluginDlteamsRecord::class,
-                            "items_id" => $_POST["record_id"]
+                            "items_id" => $data["record_id"]
                         ]);
                     }
 
 
-                    $print_options["print_first_page"] = isset($_POST["print_first_page"]) ? $_POST["print_first_page"] : false;
-                    $print_options["print_comments"] = $_POST["print_comments"];
+                    $print_options["print_first_page"] = isset($data["print_first_page"]) ? $data["print_first_page"] : false;
+                    $print_options["print_comments"] = $data["print_comments"];
 
 
                     updateEditRecordSettings();
-                    $pdfoutput->publishDlRegister($_POST, $print_options);
+
+                    $pdfoutput->publishDlteams($data, $print_options);
                     Session::addMessageAfterRedirect(sprintf(__('Fichier crée avec Succès')));
                     Html::back();
                 } else {
                     updateEditRecordSettings();
-                    $pdfoutput->generateGuid($_POST, $print_options);
-                    $pdfoutput->publishDlRegister($_POST, $print_options);
+                    $pdfoutput->generateGuid($data, $print_options);
+                    $pdfoutput->publishDlteams($data, $print_options);
                     Session::addMessageAfterRedirect(sprintf(__('Fichier crée avec Succès')));
                     Html::back();
                 }
@@ -169,15 +185,15 @@ if (isset($_POST['createpdf']) || isset($_POST['createhtml']) || isset($_POST['c
 //            editer pdf
             else {
                 updateEditRecordSettings();
-                $pdfoutput->generateReport($_POST, $print_options);
+                $pdfoutput->generateReport($data, $print_options);
 
-//            $pdfoutput->showPDF($_POST);
+//            $pdfoutput->showPDF($data);
             }
         }
         else Html::back();
     }
 }
-elseif(isset($_POST["save"])){
+elseif(isset($data["save"])){
     updateEditRecordSettings();
     Session::addMessageAfterRedirect("Paramètres d'impression mis à jour");
     Html::back();
@@ -186,19 +202,22 @@ elseif(isset($_POST["save"])){
 //Html::back();
 function updateEditRecordSettings()
 {
+    $data = $_POST;
     $record = new PluginDlteamsRecord();
-    $record->getFromDB($_POST["record_id"]);
+    $record->getFromDB($data["record_id"]);
 
     global $DB;
     $re = $DB->update(
         $record->getTable(),
         [
-            "print_logo" => isset($_POST["print_logo"]) && $_POST["print_logo"] ? true : false,
-            "links_id" => isset($_POST["choosen_publication_folder"])?$_POST["choosen_publication_folder"]:null,
-            "print_comments" => isset($_POST["print_comments"]) && $_POST["print_comments"] ? true : false,
+            "print_logo" => isset($data["print_logo"]) && $data["print_logo"] ? true : false,
+            "links_id" => isset($data["choosen_publication_folder"])?$data["choosen_publication_folder"]:null,
+            "print_comments" => isset($data["print_comments"]) && $data["print_comments"] ? true : false,
+            "deliverables_id" => isset($data["deliverables_id"]) && $data["deliverables_id"] ? $data["deliverables_id"] : 0,
+            "targettickets_id" => isset($data["targettickets_id"]) && $data["targettickets_id"] ? $data["targettickets_id"] : 0,
         ],
         [
-            "id" => $_POST['record_id']
+            "id" => $data['record_id']
         ]
     );
 

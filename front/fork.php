@@ -33,38 +33,50 @@ global $DLTEAMS_FILES_TO_RENAME;
 $glpi_versions = ["10.0.14"];
 
 $message = "Remplacement des fichiers fork et white label GLPI<->DLTEAMS". nl2br("\n");
+$fork_directory_versions = ["10.0.14", "10.0.15"];
 if (isset($_POST["fork_on"])) {
-    $directory = GLPI_ROOT . "/marketplace/dlteams/install/fork/" . "10.0.14" . "/fork_dlteams";
-    $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
-    $files = array();
-    foreach ($rii as $file) {
-        if ($file->isDir()) {
-            continue;
+
+
+    foreach ($fork_directory_versions as $fork_directory){
+        $directory = GLPI_ROOT . "/marketplace/dlteams/install/fork/" . $fork_directory . "/fork_dlteams";
+
+        $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
+        $files = array();
+        foreach ($rii as $file) {
+            if ($file->isDir()) {
+                continue;
+            }
+            $files[] = $file->getPathname();
+            $message .= "..." . substr($file, -40). nl2br("\n");
         }
-        $files[] = $file->getPathname();
-		$message .= "..." . substr($file, -40). nl2br("\n");
+
+        foreach ($files as $path) {
+            $resp = copy($path, GLPI_ROOT . str_replace($directory, "", $path));
+        }
+
+
     }
 
-    foreach ($files as $path) {
-        $resp = copy($path, GLPI_ROOT . str_replace($directory, "", $path));
-    }
+
     $message .= "Fork activé avec succès";
 }
 
 if (isset($_POST["fork_off"])) {
-    $directory = GLPI_ROOT . "/marketplace/dlteams/install/fork/" . "10.0.14" . "/origin_glpi";
-    $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
-    $files = array();
-    foreach ($rii as $file) {
-        if ($file->isDir()) {
-            continue;
+    foreach ($fork_directory_versions as $fork_directory){
+        $directory = GLPI_ROOT . "/marketplace/dlteams/install/fork/" . $fork_directory . "/origin_glpi";
+        $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
+        $files = array();
+        foreach ($rii as $file) {
+            if ($file->isDir()) {
+                continue;
+            }
+            $files[] = $file->getPathname();
+            $message .= "..." . substr($file, -40). nl2br("\n");
         }
-        $files[] = $file->getPathname();
-		$message .= "..." . substr($file, -40). nl2br("\n");
-    }
 
-    foreach ($files as $path) {
-        copy($path, GLPI_ROOT . str_replace($directory, "", $path));
+        foreach ($files as $path) {
+            copy($path, GLPI_ROOT . str_replace($directory, "", $path));
+        }
     }
     $message .= "Fork désactivé avec succès";
 }

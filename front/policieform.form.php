@@ -41,8 +41,18 @@ if (isset($_POST['add'])) {
 
 } else if (isset($_POST['update'])) {
 
-   $record->check($_POST['id'], UPDATE);
-   $record->update($_POST);
+    if(isset($_POST["update_document_modele"])){
+        $document = new Document();
+        $document->getFromDB($_POST["documents_id"]);
+        $document->update([
+            "id" => $_POST["documents_id"],
+            "deliverables_id" => $_POST["deliverables_id"],
+            "policieforms_id" => $_POST["policieforms_id"],
+        ]);
+    }else{
+       $record->check($_POST['id'], UPDATE);
+       $record->update($_POST);
+    }
    Html::back();
 
 } else if (isset($_POST['delete'])) {

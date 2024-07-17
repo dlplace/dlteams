@@ -119,7 +119,7 @@ class PluginDlteamsLegalBasi_Item extends CommonDBTM
                 self::showItems($item);
                 break;
             default:
-//                self::showForitem($item, $withtemplate);
+                self::showForitem($item, $withtemplate);
                 break;
         }
         return true;
@@ -525,6 +525,7 @@ class PluginDlteamsLegalBasi_Item extends CommonDBTM
                 'glpi_plugin_dlteams_legalbasis.' . 'id as id',
                 'glpi_plugin_dlteams_legalbasis.content',
                 'glpi_plugin_dlteams_legalbasis.plugin_dlteams_legalbasistypes_id as legalbasistypes_id',
+                'glpi_plugin_dlteams_legalbasistypes.name as typename',
             ],
             'FROM' => 'glpi_plugin_dlteams_legalbasis_items',
             'JOIN' => [
@@ -532,6 +533,12 @@ class PluginDlteamsLegalBasi_Item extends CommonDBTM
                     'FKEY' => [
                         'glpi_plugin_dlteams_legalbasis_items' => 'legalbasis_id',
                         'glpi_plugin_dlteams_legalbasis' => "id",
+                    ]
+                ],
+                'glpi_plugin_dlteams_legalbasistypes' => [
+                    'FKEY' => [
+                        'glpi_plugin_dlteams_legalbasis' => "plugin_dlteams_legalbasistypes_id",
+                        'glpi_plugin_dlteams_legalbasistypes' => "id"
                     ]
                 ],
             ],
@@ -798,7 +805,7 @@ class PluginDlteamsLegalBasi_Item extends CommonDBTM
 
             $header_end .= "<th>" . __("Legal basi") . "</th>";
             $header_end .= "<th width='20%'>" . __("Type", 'dlteams') . "</th>";
-            $header_end .= "<th width='20%'>" . __("Category", 'dlteams') . "</th>";
+//            $header_end .= "<th width='20%'>" . __("Category", 'dlteams') . "</th>";
             $header_end .= "<th width='40%'>" . __("Comment") . "</th>";
             $header_end .= "</tr>";
 
@@ -825,7 +832,7 @@ class PluginDlteamsLegalBasi_Item extends CommonDBTM
 
 
                     echo "<td class='left'>" . $data['typename'] . " </td>";
-                    echo "<td class='left'>" . $data['nameCat'] . " </td>";
+//                    echo "<td class='left'>" . $data['nameCat'] . " </td>";
 
                     echo "<td class='left'>" . $data['comment'] . "</td>";
                     echo "</tr>";

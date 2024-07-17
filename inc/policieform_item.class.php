@@ -129,6 +129,7 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
             'FROM' => self::getTable(),
             'SELECT' => [
                 self::getTable() . '.id',
+                self::getTable() . '.*',
                 self::getTable() . '.id as linkid',
                 self::getTable() . '.comment',
                 self::getTable() . '.itemtype as itemtype',
@@ -149,6 +150,8 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
             'ORDER' => [$temp->getTable().'.name ASC', self::getTable().'.itemtype ASC'],
         ]);
 
+/*        highlight_string("<?php\n\$data =\n" . var_export(iterator_to_array($items), true) . ";\n?>");*/
+//        die();
         return iterator_to_array($items);
     }
 
@@ -166,6 +169,9 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
         switch ($item->getType()) {
             case static::$itemtype_2:
                 self::showItems($item);
+                break;
+            case Document::class:
+                self::showForDocument($item);
                 break;
             default:
                 self::showForItem($item);
@@ -349,6 +355,95 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
         }
     }
 
+    static function showForDocument(CommonDBTM $item){
+        $id = $item->fields['id'];
+        $canedit = $item->can($id, UPDATE); // canedit booleen = true
+        $rand = mt_rand(1, mt_getrandmax());
+        global $DB;
+
+        $iterator = [];
+//        $iterator = static::getRequest($item);
+//        $number = count($iterator);
+        $items_list = [];
+        $used = [];
+
+        //while ($data = $iterator->next()) {
+//        foreach ($iterator as $id => $data) {
+//            $items_list[$data['linkid']] = $data;
+//            $used[$data['id']] = $data['id'];
+//        }
+
+        if ($canedit) {
+            echo "<form name='audititem_form$rand' id='audititem_form$rand' method='post'
+             action='" . Toolbox::getItemTypeFormURL(PluginDlteamsPolicieForm::class) . "'>";
+            echo "<input type='hidden' name='update_document_modele' value='" . $item->getType() . "' />";
+//            echo "<input type='hidden' name='itemtype' value='" . static::$itemtype_2 . "' />";
+            echo "<input type='hidden' name='documents_id' value='" . $item->getID() . "' />";
+//            echo "<input type='hidden' name='entities_id' value='" . $item->fields['entities_id'] . "' />";
+//
+            echo "<table class='tab_cadre_fixe'>";
+
+            echo "<tr class='tab_bg_2'><th colspan='3'>" . "Ce document est modèle de " .
+                "</th>";
+            echo "</tr>";
+
+            echo "<tr class='tab_bg_1'>";
+            echo "<td class='right' style='text-wrap: nowrap;' width='20%'>";
+            echo "Document modèle";
+            echo "</td>";
+
+            echo "<td style='display: flex;' class='left'>";
+
+
+            PluginDlteamsPolicieForm::dropdown([
+                'addicon' => true,
+                'name' => 'policieforms_id',
+                'value' => $item->fields["policieforms_id"], //$responsible,
+                // 'entity' => $this->fields["entities_id"],
+                'right' => 'all',
+                'width' => "250px",
+                'used' => $used
+            ]);
+
+
+            echo "</td>";
+            echo "<td class='left'>";
+            echo "</td>";
+            echo "</tr>";
+
+
+            echo "<tr class='tab_bg_2'><th colspan='3'>" . "Fichiers liés" .
+                "</th>";
+            echo "</tr>";
+
+            echo "<tr class='tab_bg_1'>";
+            echo "<td class='right' style='text-wrap: nowrap;' width='20%'>";
+            echo "Fichier html";
+            echo "</td>";
+
+            echo "<td style='display: flex;' class='left'>";
+
+
+            PluginDlteamsDeliverable::dropdown([
+                'addicon' => true,
+                'name' => 'deliverables_id',
+                'value' => $item->fields["deliverables_id"], //$responsible,
+                // 'entity' => $this->fields["entities_id"],
+                'right' => 'all',
+                'width' => "250px",
+                'used' => $used
+            ]);
+
+
+            echo "</table>";
+
+            $item->showFormButtons([
+                "candel" => false
+            ]);
+
+        }
+    }
+
     static function showForItem(CommonDBTM $item, $withtemplate = 0)
     {
         $id = $item->fields['id'];
@@ -377,6 +472,14 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
 //
             echo "<table class='tab_cadre_fixe'>";
 
+            switch ($item::getType()){
+                case PluginDlteamsDataCatalog::class:
+                    static::$title = "Ce jeu de données se trouve classé dans les catalogues suivants";
+                    break;
+                case Document::class:
+                    static::$title = "Ce jeu de données se trouve dans les documents suivants";
+                    break;
+            }
             echo "<tr class='tab_bg_2'><th colspan='3'>" . static::$title .
                 "</th>";
             echo "</tr>";
@@ -675,6 +778,31 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
         $relation_item->deleteByCriteria($criteria);
     }
 
+
+    public function post_updateItem($history = 1)
+    {
+/*        highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
+//        die();
+        $relation_item_str = $this->fields["itemtype"] . "_Item";
+        if(!class_exists($relation_item_str))
+            $relation_item_str = "PluginDlteams".$relation_item_str;
+        $relation_item = new $relation_item_str();
+        $relation_column_id = strtolower(str_replace("PluginDlteams", "", str_replace("_Item", "", $this->fields["itemtype"]))) . "s_id";
+
+        $criteria = [
+            "itemtype" => static::$itemtype_2,
+            "items_id" => $this->fields[static::$items_id_1],
+            $relation_column_id => $this->fields["items_id"],
+            "comment" => $this->oldvalues["comment"]
+        ];
+
+        $relation_item->deleteByCriteria($criteria);
+        $relation_item->add([
+            ...$criteria,
+            "comment" => $this->fields["comment"]
+        ]);
+    }
+
     public function update(array $input, $history = 1, $options = [])
     {
         global $DB;
@@ -727,30 +855,6 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
 
     }
 
-    public function post_updateItem($history = 1)
-    {
-/*        highlight_string("<?php\n\$data =\n" . var_export($_POST, true) . ";\n?>");*/
-//        die();
-        $relation_item_str = $this->fields["itemtype"] . "_Item";
-        if(!class_exists($relation_item_str))
-            $relation_item_str = "PluginDlteams".$relation_item_str;
-        $relation_item = new $relation_item_str();
-        $relation_column_id = strtolower(str_replace("PluginDlteams", "", str_replace("_Item", "", $this->fields["itemtype"]))) . "s_id";
-
-        $criteria = [
-            "itemtype" => static::$itemtype_2,
-            "items_id" => $this->fields[static::$items_id_1],
-            $relation_column_id => $this->fields["items_id"],
-            "comment" => $this->oldvalues["comment"]
-        ];
-
-        $relation_item->deleteByCriteria($criteria);
-        $relation_item->add([
-            ...$criteria,
-            "comment" => $this->fields["comment"]
-        ]);
-    }
-
     function rawSearchOptions()
     {
         $tab[] = [
@@ -782,6 +886,8 @@ class PluginDlteamsPolicieForm_Item extends CommonDropdown
         $forbidden[] = 'clone';
         $forbidden[] = 'MassiveAction:add_transfer_list';
         $forbidden[] = 'MassiveAction:amend_comment';
+        $forbidden[] = 'MassiveAction:purge_but_item_linked';
+        $forbidden[] = 'MassiveAction:add_note';
         return $forbidden;
     }
 

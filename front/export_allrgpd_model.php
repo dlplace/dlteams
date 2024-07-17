@@ -57,12 +57,18 @@ global $DB;
 	// pour les class glpi avec seulement oid
 	$object3s = ['appliances'];
 	foreach ($object3s as $object3) {
-		$table = "glpi_" . $object3;
+		$table = "glpi_" . $object3; 
+		$query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = '$table'";
+		$row = $DB->query($query)->fetch_assoc();
+		// var_dump ($row["COUNT(*)"]);
 		$query = "ALTER TABLE ".$table." ADD IF NOT EXISTS `oid` INT UNSIGNED NULL";
-		$DB->queryOrDie($query, $DB->error());
+		If ($row["COUNT(*)"] <> 0) {$DB->queryOrDie($query, $DB->error());}
+		
+		$query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = '$table"."_items'";
+		$row = $DB->query($query)->fetch_assoc();
 		$query = "ALTER TABLE ".$table."_items ADD IF NOT EXISTS `oid` INT UNSIGNED NULL, ADD IF NOT EXISTS `items_oid` INT UNSIGNED NULL";
-		$DB->queryOrDie($query, $DB->error());
-    } 
+		If ($row["COUNT(*)"] <> 0) {$DB->queryOrDie($query, $DB->error());}
+    }
 
 	// complément pour les class glpi deliverable et procedure
 	$object4s = ['deliverables_sections', 'deliverables_contents'];
@@ -75,6 +81,14 @@ global $DB;
 	$DB->queryOrDie($query, $DB->error());
 	$query = "ALTER TABLE glpi_plugin_dlteams_deliverables_contents ADD IF NOT EXISTS `oid` INT UNSIGNED NULL, ADD IF NOT EXISTS `deliverable_sections_oid` INT UNSIGNED NULL";
 	$DB->queryOrDie($query, $DB->error());
+
+	// pour les classes glpi avec parentname
+	$object5s = ['documentcategories'];
+	foreach ($object5s as $object5) {
+		$table = "glpi_" . $object5; 
+		$query = "ALTER TABLE ".$table." ADD IF NOT EXISTS `oid` INT UNSIGNED NULL, ADD IF NOT EXISTS `$object5"."_oid` INT UNSIGNED NULL" ;
+		$DB->queryOrDie($query, $DB->error());
+    }
 
 //STEP2 : on approvisionne $object pour entities_id = origin puis les $object_items liés
 	// classes avec deux liaisons items_id & items_id1
@@ -110,12 +124,16 @@ global $DB;
 	//classes GLPI
 	foreach ($object3s as $object3) {
 		$table = 'glpi_' . $object3;
-		$query = "UPDATE ".$table." as t1 SET t1.`oid` = t1.`id` WHERE entities_id= " . $entities_id_origin . " AND `is_deleted` = 0";
-		$DB->queryOrDie($query, $DB->error());
+		$query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = '$table'";
+		$row = $DB->query($query)->fetch_assoc();
+		$query = "UPDATE ".$table." as t1 SET t1.`oid` = t1.`id` WHERE entities_id= " . $entities_id_origin ;
+		If ($row["COUNT(*)"] <> 0) {$DB->queryOrDie($query, $DB->error());}
+
+		$query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = '$table"."_items'";
+		$row = $DB->query($query)->fetch_assoc();
 		$query = "UPDATE ".$table."_items AS t1 INNER JOIN ".$table." as t2 ON t1.`".$object3."_id` = t2.`id` and t2.`entities_id` = $entities_id_origin 
 		SET t1.`oid` = t1.`" . $object3 . "_id`, t1.`items_oid` = t1.`items_id`";
-		// var_dump ($query) ; die;
-		$DB->queryOrDie($query, $DB->error());
+		If ($row["COUNT(*)"] <> 0) {$DB->queryOrDie($query, $DB->error());}
 			$query = "SELECT COUNT(*) FROM $table WHERE `oid` <> 0";
 			$row = $DB->query($query)->fetch_assoc();
 			$message .= strval($row["COUNT(*)"]) . " " . $table . " copiés" . "<br>";
@@ -130,10 +148,24 @@ global $DB;
 		$DB->queryOrDie($query, $DB->error());
 		$query = "UPDATE $table3 AS t1 INNER JOIN $table2 as t2 ON t1.`deliverable_sections_id` = t2.`id` and t2.`oid` <> 0
 		SET t1.`deliverable_sections_oid` = t2.id, t1.`oid` = t1.`id`";
+		print_r ($query . "<br>");// $DB->queryOrDie($query, $DB->error());
+			$query = "SELECT COUNT(*) FROM $table1 WHERE `oid` <> 0";
+			$row = $DB->query($query)->fetch_assoc();
+			$message .= strval($row["COUNT(*)"]) . " " . $table . " copiés" . "<br>";
+	}
+	
+	// pour les classes glpi avec parentname
+	// $object5s = ['documentcategories'];
+	 foreach ($object5s as $object5) {
+		$table = "glpi_" . $object5; 
+		$query = "UPDATE $table AS t1 SET t1.`oid` = t1.id, t1.`$object5"."_oid`  = t1.`$object5"."_id` WHERE t1.`entities_id` = $entities_id_origin";
 		print_r ($query . "<br>");
 		$DB->queryOrDie($query, $DB->error());
+			$query = "SELECT COUNT(*) FROM $table WHERE `oid` <> 0";
+			$row = $DB->query($query)->fetch_assoc();
+			$message .= strval($row["COUNT(*)"]) . " " . $table . " copiés" . "<br>";
 	}
-
+  
     ExportDAT () ; 
 	
     function ExportDAT () {
@@ -176,6 +208,7 @@ global $DB;
 			['glpi_plugin_dlteams_deliverables_items', '`itemtype`, `itemtype1`, `comment`, `date_creation`, `oid`, `items_oid`'],
 			['glpi_plugin_dlteams_deliverables_sections', '`name`, `tab_name`, `comment`, `content`, `timeline_position`, `date_mod`, `date_creation`, `oid`,`deliverables_oid`'],
 			['glpi_plugin_dlteams_deliverables_contents', '`name`, `comment`, `content`, `timeline_position`, `date_mod`, `date_creation`, `oid`, `deliverable_sections_oid`'],
+			['glpi_documentcategories', '`name`, `comment`, `completename`, `level`, `sons_cache`, `date_mod`, `date_creation`, `entities_id`, `is_recursive`, `oid`, `documentcategories_oid`'],
 			];
 
 		$exportable_itemtype = ['"PluginDlteamsRecord", "PluginDlteamsConcernedPerson", "PluginDlteamsProcessedData", "PluginDlteamsLegalBasi", "PluginDlteamsStoragePeriod", "PluginDlteamsThirdPartyCategory",
@@ -202,16 +235,14 @@ global $DB;
 		$DB->queryOrDie($query, $DB->error());
 		}
 		chmod($glpiRoot. "/marketplace/dlteams/install/datas/", 0755);
-	
 
 	// STEP 4 Delete oid
-		foreach ($fields_exports as list($table, $fields_export)) {
-			$query = "ALTER TABLE $table DROP IF EXISTS `oid`, DROP IF EXISTS `items_oid`, DROP IF EXISTS `items_oid1` ";
+		/*foreach ($fields_exports as list($table, $fields_export)) {
+			$query = "ALTER TABLE $table DROP IF EXISTS `oid`, DROP IF EXISTS `items_oid`, DROP IF EXISTS `items_oid1`, DROP IF EXISTS `$table"."_oid`  ";
 			$DB->queryOrDie($query, $DB->error());
-		}
+		}*/
 	}
 	
 	$message .= "Fichiers .dat créés dans le dossier export";
 	Session::addMessageAfterRedirect($message, false, INFO);
-	echo "<script>window.location.href='config.form.php';</script>";// revient sur la page
-	//header("Refresh:0; url=config.form.php");
+	// echo "<script>window.location.href='config.form.php';</script>";// revient sur la page

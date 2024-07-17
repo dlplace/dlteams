@@ -100,16 +100,20 @@ class PluginDlteamsStoragePeriod extends CommonDropdown implements
 //	  echo "<td width='15%' style='text-align:right'>". " " . "</td>";
       echo "<td class='form-table-text'>". __("URL", 'dlteams')."</td>";
          echo "<td>";
-            Html::autocompletionTextField($this, "url");
+        $name = Html::cleanInputText($this->fields['url']);
+        echo "<input type='text' style='width:98%' name='url' value='" . $name. "'>" . "</td>";
+//            Html::autocompletionTextField($this, "url");
 			echo "&nbsp;<a target='_blank' href='" . $this->fields["url"] . "'><i class=\"fas fa-link\"></i></a>";
 		echo "</td>";
       echo "</tr>";
 
       echo "<tr>";
 //	  echo "<td width='15%' style='text-align:right'>". " " . "</td>";
-      echo "<td class='form-table-text'>". __("URL", 'dlteams')."</td>";
+      echo "<td class='form-table-text'>". __("URL2", 'dlteams')."</td>";
          echo "<td>";
-            Html::autocompletionTextField($this, "url2");
+//            Html::autocompletionTextField($this, "url2");
+        $name = Html::cleanInputText($this->fields['url2']);
+        echo "<input type='text' style='width:98%' name='url2' value='" . $name. "'>" . "</td>";
 			echo "&nbsp;<a target='_blank' href='" . $this->fields["url2"] . "'><i class=\"fas fa-link\"></i></a>";
 		 echo "</td>";
        echo "</tr>";
@@ -134,6 +138,22 @@ class PluginDlteamsStoragePeriod extends CommonDropdown implements
 
       return parent::prepareInputForAdd($input);
    }
+
+
+//    public static function addWhere($link = "", $nott = "", $itemtype = "", $ID = null, $searchtype = "", $val = "", $meta = 0)
+//    {
+//
+////        var_dump("zzz");
+////        die();
+//
+//            $entity_filter = " AND `glpi_tickets`.`entities_id` = " . Session::getActiveEntity();
+//
+//        $where = "";
+//        if($ID == 12){
+//            $where.= " `".TicketTask::getTable()."`.`state` = ".$val.$entity_filter;
+//        }
+//        return $where;
+//    }
 
    function prepareInputForUpdate($input) {
 
@@ -208,7 +228,7 @@ class PluginDlteamsStoragePeriod extends CommonDropdown implements
          'table'              => $this->getTable(),
          'field'              => 'content',
          'name'               => __("Contenu"),
-         'datatype'           => 'text',
+         'datatype'           => 'specific',
          'toview'             => true,
          'massiveaction'      => true,
          'htmltext'           => true
@@ -247,6 +267,20 @@ class PluginDlteamsStoragePeriod extends CommonDropdown implements
 
       return $tab;
    }
+
+    public static function getSpecificValueToDisplay($field, $values, array $options = [])
+    {
+        /*        highlight_string("<?php\n\$data =\n" . var_export($options, true) . ";\n?>");*/
+//        die();
+        $id = $options["raw_data"]["id"];
+        $storageperiod = new PluginDlteamsStoragePeriod();
+        $storageperiod->getFromDB($id);
+
+        if($field == "content"){
+            return htmlspecialchars_decode($storageperiod->fields["content"]??"");
+        }
+        return parent::getSpecificValueToDisplay($field, $values, $options);
+    }
 
    public function defineTabs($options = [])
    {

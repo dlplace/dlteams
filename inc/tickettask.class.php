@@ -580,7 +580,7 @@ class PluginDlteamsTicketTask extends CommonITILTask
                             dialogclass: 'modal-lg',
                             bs_focus: false,
                             url: '/marketplace/dlteams/ajax/tickettask_plannif.php?" . $queryString . "',
-                            title: i18n.textdomain('dlteams').__('Plannifier', 'dlteams'),
+                            title: i18n.textdomain('dlteams').__('Ajouter une planification', 'dlteams'),
                             close: function () {
             
                             },
@@ -699,9 +699,12 @@ class PluginDlteamsTicketTask extends CommonITILTask
         if ($count > 0)
             $this->addStandardTab(PluginDlteamsTicketTask_Planning::class, $ong, $options);*/
         // var_dump ($this->fields["tickettasks_id"]); // die;
-        if ($this->fields["tickettasks_id"] === NULL)
+        if ($this->fields["tickettasks_id"] === NULL) {
             $this->addStandardTab(PluginDlteamsTicketTask_Planning::class, $ong, $options);
-//        $this->addStandardTab('PluginDlteamsTicketTask_Item', $ong, $options);
+        }
+//        else
+            $this->addStandardTab(PluginDlteamsMessagerie::class, $ong, $options);
+//        $this->addStandardTab('PluginDlteamsTicketTask_Plannification', $ong, $options);
         $this->addStandardTab('Notepad', $ong, $options);
         $this->addStandardTab('Log', $ong, $options);
 
@@ -773,7 +776,7 @@ class PluginDlteamsTicketTask extends CommonITILTask
             'id' => 'common',
             'name' => __("Characteristics")
         ];
-
+//
         $tab[] = [
             'id' => '20',
             'table' => $this->getTable(),
@@ -782,7 +785,7 @@ class PluginDlteamsTicketTask extends CommonITILTask
             'searchtype' => 'equals',
             'datatype' => 'datetime'
         ];
-
+//
         $tab[] = [
             'id' => '1',
             'table' => static::getTable(),
@@ -793,8 +796,8 @@ class PluginDlteamsTicketTask extends CommonITILTask
             'massiveaction' => false,
             'searchtype' => 'contains'
         ];
-
-
+//
+//
         $tab[] = [
             'id' => '3',
             'table' => static::getTable(),
@@ -808,8 +811,8 @@ class PluginDlteamsTicketTask extends CommonITILTask
             'forcegroupby' => true,
             'massiveaction' => true,
         ];
-
-
+//
+//
         $tab[] = [
             'id' => '4',
             'table' => 'glpi_tickets',
@@ -818,7 +821,7 @@ class PluginDlteamsTicketTask extends CommonITILTask
             'name' => __("Evenement"),
             'massiveaction' => false,
         ];
-
+//
         $tab[] = [
             'id' => '5',
             'table' => TaskTemplate::getTable(),
@@ -836,8 +839,8 @@ class PluginDlteamsTicketTask extends CommonITILTask
             'name' => __("Num"),
             'massiveaction' => false,
         ];
-
-
+//
+//
         $tab[] = [
             'id' => '9',
             'table' => User::getTable(),
@@ -857,7 +860,7 @@ class PluginDlteamsTicketTask extends CommonITILTask
             'name' => __("Groupe"),
             'massiveaction' => true,
         ];
-
+//
         $tab[] = [
             'id' => '11',
             'table' => static::getTable(),
@@ -867,117 +870,63 @@ class PluginDlteamsTicketTask extends CommonITILTask
             'name' => __("Durée"),
             'massiveaction' => true,
         ];
-
+//
         $tab[] = [
             'id' => '12',
-            'table' => TicketTask::getTable(),
+            'table' => static::getTable(),
             'field' => 'state',
             'name' => __('Status'),
-            'datatype'           => 'specific',
-            'searchtype'         => ['equals'],
-            'searchequalsonfield' => true,
+//            'datatype'           => 'specific',
+//            'searchtype'         => ['equals'],
+//            'searchequalsonfield' => true,
             'massiveaction'      => true,
-            'forcegroupby'       => true,
+//            'forcegroupby'       => true,
         ];
-
-        $tab[] = [
-            'id' => '13',
-            'table' => static::getTable(),
-            'field' => 'date_mod',
-            'datatype' => 'datetime',
-//            'linkfield' => 'groups_id_tech',
-            'name' => __("Date MAJ"),
-            'massiveaction' => true,
-        ];
-
-        $tab[] = [
-            'id' => '14',
-            'table' => User::getTable(),
-            'field' => 'name',
-            'datatype' => 'dropdown',
-            'linkfield' => 'users_id_tech',
-            'name' => __("Créé par"),
-            'massiveaction' => true,
-        ];
-
-        $tab[] = [
-            'id' => '15',
-            'table' => Ticket::getTable(),
-            'field' => 'id',
-            'datatype' => 'itemlink',
+//
+//        $tab[] = [
+//            'id' => '13',
+//            'table' => static::getTable(),
+//            'field' => 'date_mod',
+//            'datatype' => 'datetime',
+////            'linkfield' => 'groups_id_tech',
+//            'name' => __("Date MAJ"),
+//            'massiveaction' => true,
+//        ];
+//
+//        $tab[] = [
+//            'id' => '14',
+//            'table' => User::getTable(),
+//            'field' => 'name',
+//            'datatype' => 'dropdown',
 //            'linkfield' => 'users_id_tech',
-            'name' => __("Evt"),
-            'massiveaction' => false,
-        ];
-
-        $tab[] = [
-            'id' => '16',
-            'table' => static::getTable(),
-            'field' => 'tickettasks_id',
-            'datatype' => 'itemlink',
-            'name' => __("Sous tâche de"),
-            'massiveaction' => false,
-        ];
-
-
+//            'name' => __("Créé par"),
+//            'massiveaction' => true,
+//        ];
+//
 //        $tab[] = [
 //            'id' => '15',
-//            'table' => Project::getTable(),
-//            'field' => 'name',
-//            'datatype' => 'numeric',
+//            'table' => Ticket::getTable(),
+//            'field' => 'id',
+//            'datatype' => 'itemlink',
 ////            'linkfield' => 'users_id_tech',
-//            'name' => __("ID Ticket"),
+//            'name' => __("Evt"),
+//            'massiveaction' => false,
+//        ];
+//
+//        $tab[] = [
+//            'id' => '16',
+//            'table' => static::getTable(),
+//            'field' => 'tickettasks_id',
+//            'datatype' => 'itemlink',
+//            'name' => __("Sous tâche de"),
 //            'massiveaction' => false,
 //        ];
 
-/* tentative pour afficher les sous-projets d'un evt d'une tâche
-        $tab[] = [
-            'id'                 => '89',
-            'table'              => ProjectTask::getTable(),
-            'field'              => 'name',
-            'name'               => ProjectTask::getTypeName(2),
-            'forcegroupby'       => true,
-            'datatype'           => 'dropdown',
-			'linkfield' 		 => 'projecttasks_id ',
-			'field'      		 => 'id',
-            'joinparams'         => [
-                   'jointype'           => 'child',
-				   'field'      => 'tickets_id',
-                    // 'condition'         => "AND NEWTABLE.`itemtype` = '$itil_type'",
-                'beforejoin'        => [
-                    'table'      => 'glpi_projecttasks_tickets',
-					'field'      => 'tickets_id',
-                    'joinparams' => [
-                        'jointype' => 'child',
-                    ]
-                ]
-            ]
-		];
-*/
+
+
 
         $entityId = $_SESSION["glpiactive_entity"];
 
-/* // tentative ??? 
-        $tab[] = [
-            'id' => '15',
-            'name' => __("Entité"),
-            'table' => 'glpi_entities', // La table où se trouve le nom de l'entité
-            'field' => 'name', // Le champ pour le nom de l'entité
-            'datatype' => 'dropdown',
-            'condition' => " AND glpi_tickets.entities_id = '$entityId'",
-            // Définition de la jointure
-            'joinparams' => [
-                'join' => [
-                    'table' => 'glpi_tickets', // Jointure avec glpi_tickets pour accéder à entities_id
-                    'jointype' => 'child'
-                    'joinparams' => [
-                        'jointype' => 'child', // Type de jointure
-                        'linkfield' => 'tickets_id', // Le champ dans votre table de tâches qui fait référence aux tickets
-                    ]
-               ]
-           ]
-        ];
-*/
         return $tab;
     }
 

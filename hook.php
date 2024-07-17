@@ -160,6 +160,7 @@ function plugin_dlteams_getDropdown()
         PluginDlteamsTransmissionMethod::class => PluginDlteamsTransmissionMethod::getTypeName(2), // Méthode de transmission
         PluginDlteamsUserProfile::class => PluginDlteamsUserProfile::getTypeName(2), // Rôle et droits pour les utilisateurs
 		PluginDlteamsVehicleType::class => PluginDlteamsVehicleType::getTypeName(2), // Catégories de véhicule
+        PluginDlteamsRgpdAdequacy::class => PluginDlteamsRgpdAdequacy::getTypeName(2), // Catégories de véhicule
     ];
 }
 
@@ -172,11 +173,45 @@ function plugin_dlteams_getAddSearchOptions($itemtype)
     return $options;
 }
 
-//function add_default_where($temp, $test){
+//function plugin_dlteams_addwhere($temp, $test){
 //
 //    var_dump("kkk");
 //    die();
 //}
+
+function plugin_dlteams_addWhere($link, $nott, $type, $ID, $val) {
+//    $backtrace = debug_backtrace();
+
+    // Afficher l'appel précédent
+//    if (isset($backtrace[1])) {
+//        $caller = $backtrace[1];
+//        echo "La fonction a été appelée depuis le fichier " . $caller['file'] . " à la ligne " . $caller['line'] . " dans la fonction " . $caller['function'] . "()\n";
+//    } else {
+//        echo "La fonction a été appelée directement.\n";
+//    }
+//
+//    die();
+    $searchopt = &Search::getOptions($type);
+    $table     = $searchopt[$ID]["table"];
+    $field     = $searchopt[$ID]["field"];
+
+    $SEARCH = Search::makeTextSearch($val, $nott);
+
+    switch ($table . "." . $field) {
+        case "glpi_plugin_resources_managers.name":
+        case "glpi_plugin_resources_recipients_leaving.name":
+        case "glpi_plugin_resources_recipients.name":
+        case "glpi_plugin_resources_salemanagers.name":
+            $ADD = " OR `" . $table . "`.`firstname` LIKE '%" . $val . "%' OR `" . $table . "`.`realname` LIKE '%" . $val . "%' ";
+            if ($nott && $val != "NULL") {
+                $ADD = " OR `$table`.`$field` IS NULL";
+            }
+            return $link . " (`$table`.`$field` $SEARCH " . $ADD . " ) ";
+
+            break;
+    }
+    return "";
+}
 
 function plugin_dlteams_addSelect(...$args){
     switch ($args[0]){
@@ -192,7 +227,6 @@ function plugin_dlteams_getDatabaseRelations()
         return [
             'glpi_entities' => [
                 'glpi_plugin_dlteams_accountkeys' => 'entities_id',
-                'glpi_plugin_dlteams_configs' => 'entities_id',
                 'glpi_plugin_dlteams_records' => 'entities_id',
                 'glpi_plugin_dlteams_controllerinfos' => 'entities_id',
                 'glpi_plugin_dlteams_impacts' => 'entities_id',
@@ -219,7 +253,7 @@ function plugin_dlteams_getDatabaseRelations()
             ],
             'glpi_users' =>
                 ['glpi_plugin_dlteams_controllerinfos' => ['users_id_representative', 'users_id_dpo',],
-                    'glpi_plugin_dlteams_configs' => ['users_id_creator', 'users_id_lastupdater',],
+                    // 'glpi_plugin_dlteams_configs' => ['users_id_creator', 'users_id_lastupdater',],
                     'glpi_plugin_dlteams_activitycategories' => ['users_id_creator', 'users_id_lastupdater',],
                     'glpi_plugin_dlteams_impacts' => ['users_id_creator', 'users_id_lastupdater',],
                     'glpi_plugin_dlteams_storageendactions' => ['users_id_creator', 'users_id_lastupdater',],
@@ -325,7 +359,7 @@ function plugin_dlteams_MassiveActions($itemtype)
         case PluginDlteamsDeliverable::class:
             return ['PluginDlteamsDeliverable' . MassiveAction::CLASS_ACTION_SEPARATOR . 'copyTo' => __('Copy To', 'dlteams'),];
         case Appliance::class:
-            return ['PluginDlteamsAppliance' . MassiveAction::CLASS_ACTION_SEPARATOR . 'copyTo' => __('Copy To', 'dlteams'),];
+            return [PluginDlteamsMassiveAction::class . MassiveAction::CLASS_ACTION_SEPARATOR . 'copyTo' => __('Copy To', 'dlteams'),];
         case PluginDlteamsRightMeasure::class:
             return ['PluginDlteamsRightMeasure' . MassiveAction::CLASS_ACTION_SEPARATOR . 'copyTo' => __('Copy To', 'dlteams'),];
         case User::class:
@@ -363,6 +397,9 @@ function plugin_dlteams_MassiveActions($itemtype)
             $action[$prefix . "add_protectivemeasure_to_computer"] = __('Ajouter une mesure de protection', 'dlteams');
 
             return $action;
+        case SupplierType::class:
+            return ['PluginDlteamsMassiveAction' . MassiveAction::CLASS_ACTION_SEPARATOR . 'copyTo' => __('Copy To', 'dlteams'),];
+            break;
     }
 }
 
@@ -482,15 +519,14 @@ function plugin_dlteams_redefine_menus(array $menu)
 
 
 //        array_splice_assoc($menu, 2, 0, ['actifs' => $assets]);
-        if($can_read_dashboard) {
 
 
             array_splice_assoc($menu, 2, 0, ['actifs' => $assets]);
             array_splice_assoc($menu, 3, 0, ['dlteams' => $dlteams]);
-/*        highlight_string("<?php\n\$data =\n" . var_export($menu, true) . ";\n?>");*/
-//        die();
-        }
+
     }
+/*    highlight_string("<?php\n\$data =\n" . var_export($menu, true) . ";\n?>");*/
+//    die();
     return $menu;
 }
 

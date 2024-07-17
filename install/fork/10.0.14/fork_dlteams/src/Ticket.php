@@ -941,7 +941,8 @@ class Ticket extends CommonITILObject
         $ong = [];
         $this->addDefaultFormTab($ong);
         $this->addStandardTab(__CLASS__, $ong, $options);
-        $this->addStandardTab(PluginDlteamsTicketTask_Item::class, $ong, $options);
+		// fork dlteams #1
+		$this->addStandardTab(PluginDlteamsTicketTask_Plannification::class, $ong, $options);
         $this->addStandardTab('TicketValidation', $ong, $options);
         $this->addStandardTab('KnowbaseItem_Item', $ong, $options);
         $this->addStandardTab('Item_Ticket', $ong, $options);
@@ -954,6 +955,7 @@ class Ticket extends CommonITILObject
         $this->addStandardTab('Itil_Project', $ong, $options);
         $this->addStandardTab('ProjectTask_Ticket', $ong, $options);
         $this->addStandardTab('Problem_Ticket', $ong, $options);
+        $this->addStandardTab(PluginDlteamsMessagerie::class, $ong, $options);
         $this->addStandardTab('Change_Ticket', $ong, $options);
 
         if (Session::getCurrentInterface() == 'central') {
@@ -2584,16 +2586,21 @@ class Ticket extends CommonITILObject
             0 => [
                 'field'      => 12,
                 'searchtype' => 'equals',
-                'value'      => 'notclosed'
+				'value'       => 
+                        'self::INCOMING',
+                        'self::ASSIGNED',
+                        'self::PLANNED',
+                        'self::WAITING',
+						'self:SOLVED',  //dlteams fork
             ],
-            1 => [
+            1 => [ //dlteams fork
                 'field' => 0,
                 'searchtype' => 'contains',
                 'value' => ''
             ],
         ],
-            'sort'     => 19,
-            'order'    => 'DESC'
+            'sort'     => 19,  //dlteams fork
+            'order'    => 'DESC' 
         ];
 
         if (Session::haveRight(self::$rightname, self::READALL)) {
@@ -4634,6 +4641,14 @@ JAVASCRIPT;
                     ]
                 ];
 
+                $planifications_todo_query = [
+                    "FROM" => TicketTask::getTable(),
+                    "WHERE" => [
+                        "tickettasks_id" => $task->fields["id"],
+                        "state" => Planning::TODO
+                    ]
+                ];
+
                 if (!$params['check_view_rights'] || $task->canViewItem()) {
                     $task_row['can_edit'] = $task->canUpdateItem();
                     $task_row['can_promote'] =
@@ -4641,13 +4656,26 @@ JAVASCRIPT;
                         && $this instanceof Ticket
                         && Ticket::canCreate()
                     ;
+                    $result = $DB->request([
+                        'COUNT'  => 'cpt',
+                        'FROM'   => ITILFollowup::getTable(),
+                        'WHERE'  => [
+                            'items_id' => $task_row["id"],
+                            'itemtype' => PluginDlteamsTicketTask::class,
+                        ]
+                    ])->current();
                     $timeline[$task::getType() . "_" . $tasks_id] = [
                         'type'     => $taskClass,
                         'item'     => [...$task_row, 'nb_planification' => count($DB->request($planifications_query)),
-                            'nb_planification_todo' => count($DB->request($planifications_todo_query)),],
+                            'nb_planification_todo' => count($DB->request($planifications_todo_query)),
+                            'nb_messages' => $result['cpt'],],
                         'object'   => $task,
                         'itiltype' => 'Task',
                     ];
+
+
+
+                    $stats['nb_messages'] = $result['cpt'];
                 }
             }
         }
@@ -6358,7 +6386,8 @@ JAVASCRIPT;
                         self::INCOMING,
                         self::ASSIGNED,
                         self::PLANNED,
-                        self::WAITING
+                        self::WAITING,
+						self::SOLVED,
                     ],
                     'closedate'    => null,
                     new QueryExpression("ADDDATE(" . $DB->quoteName('date') . ", INTERVAL $value DAY) < NOW()")
@@ -7552,6 +7581,18 @@ JAVASCRIPT;
         ])->current();
 
         $stats['nb_planifications_done'] = $result['cpt'];
+
+
+        $result = $DB->request([
+            'COUNT'  => 'cpt',
+            'FROM'   => ITILFollowup::getTable(),
+            'WHERE'  => [
+                'items_id' => $this->fields['id'],
+                'itemtype' => PluginDlteamsTicketTask::class,
+            ]
+        ])->current();
+
+        $stats['nb_messages'] = $result['cpt'];
 
         // compute itilobject percent done
         $criteria    = [

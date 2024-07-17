@@ -121,6 +121,7 @@ if (isset($_POST['add'])) {
             ];
 
             $base_insert_result = $base_item_instance->add($base_array);
+//            var_dump($base_insert_result);
 
 
             //add item 1 side
@@ -138,6 +139,7 @@ if (isset($_POST['add'])) {
                 ];
 
                 $itemtype_insert_result = $itemtype_item_instance->add($itemtype_array);
+//                var_dump($itemtype_insert_result);
             }
 
 
@@ -156,8 +158,13 @@ if (isset($_POST['add'])) {
                 ];
 
                 $itemtype1_insert_result = $itemtype1_item_instance->add($itemtype1_array);
+//                var_dump($itemtype1_insert_result);
             }
 
+            if(isset($_POST["items_id"])){
+                $_SESSION["dlteams_pf_recent_concernedperson"] = $_POST["items_id"];
+            }
+//            die();
         }
     }
 }

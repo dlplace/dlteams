@@ -152,10 +152,8 @@ class PluginDlteamsRecord_SecurityMeasure extends CommonDBTM
         echo "
             .form-table-text {
                 text-align: right;
-                width: 55%;
+                width: 40%;
             }
-            
-            
             @media (max-width: 800px) {
                 .form-table-text {
                     text-align: left;

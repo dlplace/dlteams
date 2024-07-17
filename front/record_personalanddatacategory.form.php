@@ -158,6 +158,10 @@ if (isset($_POST['add'])) {
                 $itemtype1_insert_result = $itemtype1_item_instance->add($itemtype1_array);
             }
 
+            if(isset($_POST["items_id"])){
+                $_SESSION["dlteams_recent_concernedperson"] = $_POST["items_id"];
+            }
+
         }
     }
 }

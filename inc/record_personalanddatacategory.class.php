@@ -192,6 +192,7 @@ class PluginDlteamsRecord_PersonalAndDataCategory extends CommonDBTM implements
                 //'addicon'  => PluginDlteamsConcernedPerson::canCreate(),
                 'name' => "items_id",
                 'width' => '300px',
+                'value' => $_SESSION["dlteams_recent_concernedperson"]??""
             ]);
 
             echo "</td>";
@@ -202,7 +203,7 @@ class PluginDlteamsRecord_PersonalAndDataCategory extends CommonDBTM implements
             PluginDlteamsProcessedData::dropdown([
                 //'addicon' => PluginDlteamsProcessedData::canCreate(),
                 'name' => 'items_id1',
-                'width' => '300px'
+                'width' => '300px',
             ]);
 
             echo "</td>";

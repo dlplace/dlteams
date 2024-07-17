@@ -236,16 +236,108 @@ class PluginDlteamsRecord_Item extends CommonDBTM
     public static function showItems(PluginDlteamsRecord $object_item)
     {
         global $DB;
+
         $instID = $object_item->fields['id'];
         if (!$object_item->can($instID, READ)) {
             return false;
         }
         $canedit = $object_item->can($instID, UPDATE);
-        // for a measure,
-        // don't show here others protective measures associated to this one,
-        // it's done for both directions in self::showAssociated
         $types_iterator = [];
         $number = count($types_iterator);
+
+        $rand = mt_rand();
+        if ($canedit) {
+            echo "<form name='recorditem_form$rand' id='recorditem_form$rand' method='post'
+            action='" . Toolbox::getItemTypeFormURL(__CLASS__) . "'>";
+            echo "<input type='hidden' name='" . static::$items_id_1 . "' value='$instID'>";
+            echo "<input type='hidden' name='itemtype1' value='" . str_replace("_Item", "", __CLASS__) . "'>";
+            echo "<input type='hidden' name='items_id1' value='" . $instID . "'>";
+
+            echo "<table class='tab_cadre_fixe'>";
+            $title = "Elément copié depuis un modèle";
+//                $entitled = "Objet à relier";
+            echo "<tr class='tab_bg_2'><th colspan='3'>" . __($title, 'dlteams') .
+                "</th>";
+            echo "</tr>";
+
+//                echo "<tr class='tab_bg_1'><td class='right' style='text-wrap: nowrap;' width='40%'>" . __($entitled, 'dlteams');
+//                echo "</td><td width='40%' class='left'>";
+//                $types = PluginDlteamsItemType::getTypes();
+//                $key = array_search("PluginDlteamsLegalBasi", $types);
+//                unset($types[$key]);
+//                echo "<div style='display: flex; gap: 4px;'>";
+//                Dropdown::showSelectItemFromItemtypes(['itemtypes' => $types,
+//                    'entity_restrict' => ($object_item->fields['is_recursive'] ? getSonsOf('glpi_entities', $object_item->fields['entities_id'])
+//                        : $object_item->fields['entities_id']),
+//                    'checkright' => true,
+//                    'used' => $used,
+//                    'ajax_page' => "/marketplace/dlteams/ajax/dlteamsDropdownAllItem.php"
+//                ]);
+//                echo "</div>";
+//                unset($types);
+//                echo "</td><td width='20%' class='left'>";
+//                echo "</td></tr>";
+
+            echo "<tr class='tab_bg_1'>";
+            echo "<td>" . __("Entité"); echo "</td>";
+            echo "<td class='left comment-td'>"; echo __("Id"); echo "</td>";
+            echo "<td class='left'>"; echo __("Date"); echo "</td>";
+            echo "<td class='left'>";  echo "</td>";
+            echo "</tr>";
+            echo "<style>
+                .comment-td {width: 40%;}
+                @media (max-width: 767px) {.comment-td {width: 100%;}}
+              </style>";
+
+            echo "<tr class='tab_bg_1' id='field_submit'><td>";
+            if(isset($item->fields["entity_model"]) && $item->fields["entity_model"]){
+                $entity = new Entity();
+                $entity->getFromDB($item->fields["entity_model"]);
+                echo $entity->fields["name"];
+            }
+            else
+                echo "---";
+            echo "</td>";
+            echo "<td class='left'>";
+
+            if(isset($item->fields["date_majmodel"]) && $item->fields["date_majmodel"]){
+                Html::convDate($item->fields["date_majmodel"]);
+            }
+            else
+                echo "---";
+
+            echo "</td>";
+            echo "<td  class='left'>";
+            if(isset($item->fields["id_model"]) && $item->fields["id_model"]){
+                $itemtype_str = $item::getType();
+
+                $itemtype = new $itemtype_str();
+                $itemtype->getFromDB($item->fields["id_model"]);
+                echo $itemtype->fields["name"];
+            }
+            else
+                echo "---";
+            echo "</td>";
+            echo "<td class='left'>";
+
+            echo "<div style='display: flex; gap: 4px;'>";
+            echo "<input for='recorditem_form$rand' type='submit' name='add' value=\"" . _sx('button', 'Add') . "\" class='submit'>";
+            echo "</div>";
+            echo "</td>";
+            echo "</tr>";
+
+            echo "</table>";
+            Html::closeForm();
+        }
+
+
+
+
+
+
+
+//
+
 
         $used = [];
         $types = PluginDlteamsItemType::getTypes();
@@ -254,8 +346,6 @@ class PluginDlteamsRecord_Item extends CommonDBTM
 
 //
         unset($types[$key]);
-        /*        highlight_string("<?php\n\$data =\n" . var_export($types, true) . ";\n?>");*/
-//        die();
         $rand = mt_rand();
 
         if ($canedit) {
@@ -266,8 +356,8 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             echo "<input type='hidden' name='items_id1' value='" . $instID . "'>";
 
             echo "<table class='tab_cadre_fixe'>";
-            $title = "Related objects";
-            $entitled = "Indicate the objects related to this element";
+            $title = "Ajouter une relation / Créer un élément et le relier";
+            $entitled = "Objet à relier";
             echo "<tr class='tab_bg_2'><th colspan='3'>" . __($title, 'dlteams') .
                 "</th>";
             echo "</tr>";
@@ -400,6 +490,7 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             if ($canedit) {
                 Html::closeForm();
             }
+
         }
     }
 
@@ -665,6 +756,8 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             }
 
 
+/*            highlight_string("<?php\n\$data =\n" . var_export($data, true) . ";\n?>");*/
+//            die();
 
             foreach (static::$table_match_str as $key => $column) {
 
@@ -748,6 +841,8 @@ class PluginDlteamsRecord_Item extends CommonDBTM
         $relation_item = new $relation_item_str();
 
         $relation_column_id = strtolower(str_replace("PluginDlteams", "", str_replace("_Item", "", $this->fields["itemtype"]))) . "s_id";
+        if ($this->fields["itemtype"] == PluginDlteamsThirdPartyCategory::class)
+            $relation_column_id = "thirdpartycategories_id";
 
         $criteria = [
             "itemtype" => static::$itemtype_2,
@@ -756,11 +851,43 @@ class PluginDlteamsRecord_Item extends CommonDBTM
 //            "comment" => $this->fields["comment"]
         ];
         global $DB;
-        if ($DB->fieldExists($relation_item->getTable(), 'comment')) {
+        if ($DB->fieldExists($relation_item->getTable(), 'itemtype1') && $this->fields["itemtype1"]) {
+            $criteria["itemtype1"] = $this->fields["itemtype1"];
+            $criteria["items_id1"] = $this->fields["items_id1"];
+        }
+
+        if ($DB->fieldExists($relation_item->getTable(), 'itemtype1')) {
             $criteria["comment"] = $this->fields["comment"];
         }
 
         $relation_item->deleteByCriteria($criteria);
+
+
+        //        purge relation 2
+        if ($this->fields["itemtype1"] && $this->fields["items_id1"]) {
+
+            $relation_item_str = $this->fields["itemtype1"] . "_Item";
+            if (!class_exists($relation_item_str))
+                $relation_item_str = "PluginDlteams" . $relation_item_str;
+            $relation_item = new $relation_item_str();
+
+            $relation_column_id = strtolower(str_replace("PluginDlteams", "", str_replace("_Item", "", $this->fields["itemtype1"]))) . "s_id";
+            if ($this->fields["itemtype1"] == PluginDlteamsRgpdAdequacy::class)
+                $relation_column_id = "rgpdadequacies_id";
+
+            $criteria = [
+                "itemtype" => "PluginDlteamsRecord",
+                "items_id" => $this->fields["records_id"],
+                $relation_column_id => $this->fields["items_id1"],
+                "itemtype1" => $this->fields["itemtype"],
+                "items_id1" => $this->fields["items_id"],
+                "comment" => $this->fields["comment"]
+            ];
+
+            if ($relation_item->deleteByCriteria($criteria))
+                Session::addMessageAfterRedirect("Relation " . $relation_item::getTypeName() . " supprimé avec succès");
+
+        }
     }
 
 
@@ -862,6 +989,8 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             $columnid_name = strtolower(str_replace("PluginDlteams", "", static::$itemtype_2::getType())) . "s_id"; // $columnid_name contiendra users_id si $item = User
         }
 
+//        var_dump($columnid_name);
+//        die();
 
         $query = [
             'SELECT' => [
@@ -888,16 +1017,21 @@ class PluginDlteamsRecord_Item extends CommonDBTM
             $query["SELECT"][] = $table_name . '.number AS number';
             $query["ORDERBY"][] = $table_name . '.number ASC';
         }
+        
 
 //        if ($item::getType() == PluginDlteamsRecord::class){
 //            var_dump("zzz");
 //            die();
+        if($table_item_name == PluginDlteamsRecord_Item::getTable())
+            $joincolumn_id = "records_id";
+        else
+            $joincolumn_id = "items_id";
             $query["SELECT"][] = PluginDlteamsRecord::getTable() . '.number AS number';
             $query["SELECT"][] = PluginDlteamsRecord::getTable() . '.parentnumber AS parentnumber';
             $query["ORDERBY"][] = PluginDlteamsRecord::getTable() . '.number ASC';
             $query["LEFT JOIN"][PluginDlteamsRecord::getTable()] = [
                 'ON' => [
-                    $table_item_name => 'items_id',
+                    $table_item_name => $joincolumn_id,
                     PluginDlteamsRecord::getTable() => 'id'
                 ]
             ];
@@ -983,18 +1117,42 @@ class PluginDlteamsRecord_Item extends CommonDBTM
 
             //echo __("Tiers Categories <i class='fas fa-dolly'></i>&nbsp;", 'dlteams');
 
+            echo "<span style='margin-right:10px;'>";
+            //echo __("Tiers ", 'dlteams');
+            //echo "<br/><br/>";
+
+            PluginDlteamsRgpdAdequacy::dropdown([
+                'addicon' => PluginDlteamsRgpdAdequacy::canCreate(),
+                'name' => "rgpdadequacies_id",
+                'display_emptychoice' => false,
+                'width' => '150px'
+            ]);
+            echo "</span>";
+
+
             PluginDlteamsThirdPartyCategory::dropdown([
                 'addicon' => PluginDlteamsThirdPartyCategory::canCreate(),
                 'name' => "plugin_dlteams_thirdpartycategories_id1",
                 'width' => "200px"
             ]);
-            echo "<textarea type='text' maxlength=600 rows='1' name='comment' placeholder='Commentaire' style='margin-bottom:-15px;margin-left:90px;width:45%'></textarea>";
+            echo "<textarea type='text' maxlength=600 rows='1' name='comment' placeholder='Commentaire' style='margin-bottom:-15px;margin-left:10px;width:35%'></textarea>";
             echo "<input type='submit' name='add1' value=\"" . _sx('button', 'Add') . "\" class='submit' style='float:right;margin-right:7.5%'>";
 
         } else if ($data['consent_type1'] == 4) {
             // Display explicit consentecho "<td><br>" . "</td><td>";
 
             //echo __("Tiers <i class='fas fa-dolly'></i>&nbsp;", 'dlteams');
+            echo "<span style='margin-right:10px;'>";
+            //echo __("Tiers ", 'dlteams');
+            //echo "<br/><br/>";
+
+            PluginDlteamsRgpdAdequacy::dropdown([
+                'addicon' => PluginDlteamsRgpdAdequacy::canCreate(),
+                'name' => "rgpdadequacies_id",
+                'display_emptychoice' => false,
+                'width' => '150px'
+            ]);
+            echo "</span>";
 
             Supplier::dropdown([
                 'addicon' => Supplier::canCreate(),
@@ -1002,7 +1160,7 @@ class PluginDlteamsRecord_Item extends CommonDBTM
                 'display_emptychoice' => false,
                 'width' => "200px"
             ]);
-            echo "<textarea type='text' maxlength=600 rows='1' name='comment' placeholder='Commentaire' style='margin-bottom:-15px;margin-left:90px;width:45%'></textarea>";
+            echo "<textarea type='text' maxlength=600 rows='1' name='comment' placeholder='Commentaire' style='margin-bottom:-15px;margin-left:10px;width:35%'></textarea>";
 
             echo "<input type='submit' name='add1' value=\"" . _sx('button', 'Add') . "\" class='submit' style='float:right;margin-right:7.5%'>";
         }

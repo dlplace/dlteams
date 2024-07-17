@@ -26,10 +26,12 @@
  */
 
 define('broadcast_part', [
-    0 => __("Editer ce traitement", 'dlteams'),
+    0 => __("Editer uniquement ce traitement", 'dlteams'),
+    4 => __("Editer tous les traitements individuellement", 'dlteams'),
+    3 => __("Rapport complet : ne pas tenir en compte la diffusion", 'dlteams'),
     1 => __("Third party data protection politics", 'dlteams'),
     2 => __("Employees data protection politics", 'dlteams'),
-    3 => __("Rapport complet : ne pas tenir en compte la diffusion", 'dlteams')
+    5 => __("Traitement interne", 'dlteams'),
 ]);
 
 class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
@@ -40,6 +42,8 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
     const REPORT_BROADCAST_THRIDPARTIES = 1;
     const REPORT_BROADCAST_EMPLOYEES = 2;
     const REPORT_ALL = 3;
+    const REPORT_ALL_AS_UNIQUE = 4;
+    const REPORT_INTERNAL_RECORD = 5;
 //    const REPORT_FOR_ENTITY = 2;
 //    const REPORT_BROADCAST_INTERNAL = 6;
     const REPORT_BROADCAST_DELIVERABLE = 7;
@@ -93,6 +97,124 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         'show_supplier_informations' => 1,
     ];
     protected bool $HTML = false;
+
+    private static function showGenerationLinkFormElements(array $_config, mixed $record_id)
+    {
+        global $CFG_GLPI;
+        $record = new PluginDlteamsRecord();
+        $record->getFromDB($record_id);
+
+        echo "<table class='tab_cadre_fixe' id='mainformtable'>";
+        echo "<tbody>";
+        echo "<tr class='headerRow'>";
+        echo "<th colspan='3' class=''>" . __("Génération de l'URL", 'dlteams') . "</th>";
+        echo "</tr>";
+        echo "<tr class='tab_bg_1'>";
+        echo "<td>" . __("Choose dlteams folder", 'dlteams') . "</td>";
+        echo "<td colspan='2' style='display: flex; gap: 5px; align-items: center'>";
+
+        $links = static::getPublicationFoldersLinks();
+
+        $links_list = [];
+        foreach ($links as $link) {
+            array_push($links_list, $link);
+        }
+
+        Dropdown::show(Link::class, [
+            'name' => 'choosen_publication_folder',
+            'value' => $record->fields["links_id"]
+        ]);
+
+
+        $record = new PluginDlteamsRecord();
+        $record->getFromDB($record_id);
+        if ($record && isset($record->fields["links_id"]) && $record->fields["links_id"]) {
+            $link = new Link();
+            $link->getFromDB($record->fields["links_id"]);
+            $folder_link = $link->fields["link"];
+            echo "<div> <a class='btn btn-outline-secondary' style='display: block' target='_blank' href='" . $folder_link . "' id='btn_publication_folder'><i class='fa fa-eye'></i></a> </div>";
+        } else
+            echo "<div> <a class='btn btn-outline-secondary' style='display: none' target='_blank' id='btn_publication_folder'><i class='fa fa-eye'></i></a> </div>";
+        echo "</td></tr>";
+
+        echo "<tr class='tab_bg_1'>";
+        echo "<td width='25%'>" . __("Document URL", 'dlteams') . "</td>";
+        echo "<td width='75%' style='display: flex; align-items: center'>";
+
+        $document_url = self::slugifyString($record->fields["name"]);
+
+        $entity = new Entity();
+        $entity->getFromDB($record->fields["entities_id"]);
+        $entity_name = $entity->fields["name"];
+        $slugified_entity_name = PluginDlteamsUtils::slugify($entity_name);
+
+        echo Html::input('document_url', ['value' => $slugified_entity_name . "-" . $record->fields["number"], 'size' => 60]);
+
+        if ($record && isset($record->fields["links_id"]) && $record->fields["links_id"]) {
+            $link_text = $link->fields["link"] . "/" . $slugified_entity_name . "-" . $record->fields["number"] . ".html";
+            echo "&nbsp;<a target='_blank' id='link_to_published' href='" . $link_text . "'><i class=\"fas fa-link\"></i></a>";
+        }
+        echo "</td></tr>";
+        echo "</table>";
+    }
+
+    private static function showDocumentsConnexesFormElements(array $_config, mixed $record_id)
+    {
+        global $CFG_GLPI;
+        $record = new PluginDlteamsRecord();
+        $record->getFromDB($record_id);
+
+        echo "<table class='tab_cadre_fixe' id='mainformtable'>";
+        echo "<tbody>";
+        echo "<tr class='headerRow'>";
+        echo "<th colspan='3' class=''>" . __("Ajouter des documents connexes", 'dlteams') . "</th>";
+        echo "</tr>";
+        echo "<tr class='tab_bg_1'>";
+        echo "<td>" . __("Livrable", 'dlteams') . "</td>";
+        echo "<td colspan='2' style='display: flex; gap: 5px; align-items: center'>";
+
+        $links = static::getPublicationFoldersLinks();
+
+        $links_list = [];
+        foreach ($links as $link) {
+            array_push($links_list, $link);
+        }
+
+        Dropdown::show(PluginDlteamsDeliverable::class, [
+            'name' => 'deliverables_id',
+            'value' => $record->fields["deliverables_id"]
+        ]);
+
+
+//        $record = new PluginDlteamsRecord();
+//        $record->getFromDB($record_id);
+//
+        echo "</td></tr>";
+
+        echo "<tr class='tab_bg_1'>";
+        echo "<td width='25%'>" . __("Questionnaires", 'dlteams') . "</td>";
+        echo "<td width='75%' style='display: flex; align-items: center'>";
+
+        $document_url = self::slugifyString($record->fields["name"]);
+
+        $entity = new Entity();
+        $entity->getFromDB($record->fields["entities_id"]);
+        $entity_name = $entity->fields["name"];
+        $slugified_entity_name = PluginDlteamsUtils::slugify($entity_name);
+
+//        echo Html::input('document_url', ['value' => "", 'size' => 60]);
+        Dropdown::show(PluginFormcreatorTargetTicket::class, [
+            'name' => 'targettickets_id',
+            'value' => $record->fields["targettickets_id"]
+        ]);
+
+//        if ($record && isset($record->fields["links_id"]) && $record->fields["links_id"]) {
+//            $link_text = $link->fields["link"] . "/" . $slugified_entity_name . "-" . $record->fields["number"] . ".html";
+//            echo "&nbsp;<a target='_blank' id='link_to_published' href='" . $link_text . "'><i class=\"fas fa-link\"></i></a>";
+//        }
+        echo "</td></tr>";
+        echo "</table>";
+    }
 
     /**
      * Get an list of choices checked in $choices looking at $checked separated by HTML br
@@ -179,6 +301,12 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
 
         $record = new PluginDlteamsRecord();
         $record->getFromDB($record_id);
+        echo "<table class='tab_cadre_fixe' id='mainformtable'>";
+        echo "<tbody>";
+        echo "<tr class='headerRow'>";
+        echo "<th colspan='3' class=''>" . __("PDF creation settings", 'dlteams') . "</th>";
+        echo "</tr>";
+
         echo "<tr class='tab_bg_1'>";
         echo "<td width='25%'>" . __("Print logo", 'dlteams') . "</td>";
         echo "<td width='75%'>";
@@ -252,52 +380,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         echo "</tr>";
 
 
-        echo "<tr class='tab_bg_1'>";
-        echo "<td>" . __("Choose dlteams folder", 'dlteams') . "</td>";
-        echo "<td colspan='2' style='display: flex; gap: 5px; align-items: center'>";
 
-        $links = static::getPublicationFoldersLinks();
-
-        $links_list = [];
-        foreach ($links as $link) {
-            array_push($links_list, $link);
-        }
-
-        Dropdown::show(Link::class, [
-            'name' => 'choosen_publication_folder',
-            'value' => $record->fields["links_id"]
-        ]);
-
-
-        $record = new PluginDlteamsRecord();
-        $record->getFromDB($record_id);
-        if ($record && isset($record->fields["links_id"]) && $record->fields["links_id"]) {
-            $link = new Link();
-            $link->getFromDB($record->fields["links_id"]);
-            $folder_link = $link->fields["link"];
-            echo "<div> <a class='btn btn-outline-secondary' style='display: block' target='_blank' href='" . $folder_link . "' id='btn_publication_folder'><i class='fa fa-eye'></i></a> </div>";
-        } else
-            echo "<div> <a class='btn btn-outline-secondary' style='display: none' target='_blank' id='btn_publication_folder'><i class='fa fa-eye'></i></a> </div>";
-        echo "</td></tr>";
-
-        echo "<tr class='tab_bg_1'>";
-        echo "<td width='25%'>" . __("Document URL", 'dlteams') . "</td>";
-        echo "<td width='75%' style='display: flex; align-items: center'>";
-
-        $document_url = self::slugifyString($record->fields["name"]);
-
-        $entity = new Entity();
-        $entity->getFromDB($record->fields["entities_id"]);
-        $entity_name = $entity->fields["name"];
-        $slugified_entity_name = PluginDlteamsUtils::slugify($entity_name);
-
-        echo Html::input('document_url', ['value' => $slugified_entity_name . "-" . $record->fields["number"], 'size' => 60]);
-
-        if ($record && isset($record->fields["links_id"]) && $record->fields["links_id"]) {
-            $link_text = $link->fields["link"] . "/" . $slugified_entity_name . "-" . $record->fields["number"] . ".html";
-            echo "&nbsp;<a target='_blank' id='link_to_published' href='" . $link_text . "'><i class=\"fas fa-link\"></i></a>";
-        }
-        echo "</td></tr>";
 
         echo "<tr class='tab_bg_1'>";
         echo "<td width='25%'>" . __("Document title", 'dlteams') . "</td>";
@@ -308,6 +391,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         echo Html::input('document_title', ['value' => $document_name, 'size' => 60]);
         echo "</td></tr>";
 
+        echo "</table>";
         echo "
         <script>
     $('select[name=choosen_publication_folder]').on('change', function (e) {
@@ -824,35 +908,32 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
 
         echo "<div class='spaced' id='tabsbody'>";
 
-        echo "<table class='tab_cadre_fixe' id='mainformtable'>";
-        echo "<tbody>";
-        echo "<tr class='headerRow'>";
-        echo "<th colspan='3' class=''>" . __("PDF creation settings", 'dlteams') . "</th>";
-        echo "</tr>";
-
         $_config = PluginDlteamsCreatePDF::getDefaultPrintOptions();
         $_config['report_type'] = $report_type;
+        self::showSelectType($record->fields);
+
         PluginDlteamsCreatePDF::showConfigFormElements($_config, $record_id);
+        PluginDlteamsCreatePDF::showGenerationLinkFormElements($_config, $record_id);
+        PluginDlteamsCreatePDF::showDocumentsConnexesFormElements($_config, $record_id);
 
         echo "</table>";
         echo "</div>";
-        echo "<input type='hidden' name='report_type' value=\"" . $report_type . "\">";
+//        echo "<input type='hidden' name='report_type' value=\"" . $report_type . "\">";
         if ($report_type == PluginDlteamsCreatePDF::REPORT_SINGLE_RECORD) {
             echo "<input type='hidden' name='record_id' value=\"" . $record_id . "\">";
         }
 
 //        if ($report_type != PluginDlteamsCreatePDF::REPORT_SINGLE_RECORD)
-        self::showSelectType($record->fields);
 
         echo "<input type='hidden' name='action' value=\"print\">";
         echo "<input type='hidden' name='guid_value' value='55'>";
         echo "<input type='submit' class='submit' name='save' value='" . __("Save") . "' />";
         echo "&nbsp;";
-        echo "<input type='submit' class='submit' name='createpdf' value='" . __("Generate PDF", 'dlteams') . "' />";
+        echo "<input type='submit' class='submit' name='createpdf' value='" . __("Voir / PDF", 'dlteams') . "' />";
         echo "&nbsp;";
         echo "<input type='submit' class='submit' name='createhtml' value='" . __("Generate HTML", 'dlteams') . "' />";
         echo "&nbsp;";
-        echo "<input type='submit' class='submit' name='createhtmlppd' value='" . __("Publier DLteams", 'dlteams') . "' />";
+        echo "<input type='submit' class='submit' name='createhtmlppd' value='" . __("Générer URL", 'dlteams') . "' />";
         Html::closeForm();
     }
 
@@ -1463,11 +1544,13 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
                 ]
             ];
 
-            if ($print_options["report_type"] != self::REPORT_ALL) {
+            if ($print_options["report_type"] != self::REPORT_ALL && $print_options["report_type"] != self::REPORT_ALL_AS_UNIQUE) {
                 $request["WHERE"]["states_id"] = $print_options["report_type"];
             }
 
 
+/*            highlight_string("<?php\n\$data =\n" . var_export($request, true) . ";\n?>");*/
+//            die();
             $records_list = $DB->request($request);
             return $records_list;
         }
@@ -1515,8 +1598,8 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
 
         $this->printRecordHeader($temp_record);
         $i = 0;
-        if ($record instanceof DBmysqlIterator) {
 
+        if ($record instanceof DBmysqlIterator) {
             $lastpage = true;
             foreach ($record as $key => $item) {
                 $rec = new PluginDlteamsRecord();
@@ -1763,9 +1846,11 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
 
     function publishDlteams($generator_options, $print_options)
     {
-
+/*        highlight_string("<?php\n\$data =\n" . var_export($generator_options, true) . ";\n?>");*/
+//        die();
         $temp_record = new PluginDlteamsRecord();
         $temp_record->getFromDB($generator_options['record_id']);
+//        $generator_options['report_type'] = 3;
         switch ($generator_options['report_type']) {
             case self::REPORT_SINGLE_RECORD:
                 $record_id = $generator_options['record_id'];
@@ -1777,7 +1862,6 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
                 break;
         }
 
-
         $glpiRoot = str_replace('\\', '/', GLPI_ROOT);
         ob_start();
         global $DB;
@@ -1787,36 +1871,67 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         $entity = new Entity();
         $entity->getFromDB($entities_id);
         $filename = PluginDlteamsUtils::normalize($generator_options["document_url"]);
+        if (substr($filename, -5) === ".html") {
+            // Supprimer l'extension .html
+            $filename = substr($filename, 0, strrpos($filename, ".html"));
+        }
+
         $this->preparePrintOptions($print_options);
 
 
         $this->setEntityAndControllerInfo($entities_id);
-//        $this->printHtmlHead($filename);
-        $this->printRecordHeader($temp_record);
+        $this->printHtmlHead($filename);
 
-        if ($record instanceof DBmysqlIterator) {
+
+        $directory = $glpiRoot . "/pub/" . $print_options['guid_value'];
+        if (!is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
+/*        highlight_string("<?php\n\$data =\n" . var_export(count($record), true) . ";\n?>");*/
+//        die();
+        if($record instanceof DBmysqlIterator && $generator_options['report_type'] == self::REPORT_ALL_AS_UNIQUE){
             $i = 0;
+
+            foreach ($record as $key => $item) {
+                $rec = new PluginDlteamsRecord();
+                $rec->getFromDB($item['id']);
+                $this->printRecordHeader($temp_record);
+                $this->addPageForRecord($rec, $generator_options, $i);
+                $filename = self::slugifyString($rec->fields["name"]);
+                $file_path = $directory . "/" . $filename . ".html";
+                file_put_contents($file_path, ob_get_contents());
+                $i++;
+            }
+
+        }
+        elseif ($record instanceof DBmysqlIterator) {
+            $i = 0;
+            $this->printRecordHeader($temp_record);
             foreach ($record as $key => $item) {
                 $rec = new PluginDlteamsRecord();
                 $rec->getFromDB($item['id']);
                 $this->addPageForRecord($rec, $generator_options, $i);
                 $i++;
             }
+            $file_path = $directory . "/" . $filename . ".html";
+            file_put_contents($file_path, ob_get_contents());
         } else if ($record instanceof PluginDlteamsRecord) {
             $rec = new PluginDlteamsRecord();
+
+            $this->printRecordHeader($temp_record);
             $rec->getFromDB($record->fields['id']);
+//            header("Content-Type: text/html; charset=UTF-8");
+//            Html::header_nocache();
+
             $this->addPageForRecord($rec, $generator_options);
+            $file_path = $directory . "/" . $filename . ".html";
+            file_put_contents($file_path, ob_get_contents());
+
         } else {
             $this->addPageForRecord($record, $generator_options);
+            $file_path = $directory . "/" . $filename . ".html";
+            file_put_contents($file_path, ob_get_contents());
         }
-
-        $directory = $glpiRoot . "/pub/" . $print_options['guid_value'];
-        if (!is_dir($directory)) {
-            mkdir($directory, 0755, true);
-        }
-
-        $file_path = $directory . "/" . $filename . ".html";
-        file_put_contents($file_path, ob_get_contents());
 
     }
 
@@ -2424,7 +2539,8 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         $psm_data = $this->printSecurityMeasures($record);
 
 
-        \Glpi\Application\View\TemplateRenderer::getInstance()->display('@dlteams/pages/record_content_placeholder.html.twig', [
+        \Glpi\Application\View\TemplateRenderer::getInstance()->display('@dlteams/pages/record_content_placeholder.html.twig',
+            [
             "isHtml" => $this->HTML,
             "ispdf" => isset($print_options["ispdf"]) ? $print_options["ispdf"] : false,
             "title" => "Traitement",
@@ -2515,6 +2631,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         }
 
         $datas = [];
+        $print_first_page = filter_var($print_first_page, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
         if ($print_first_page) {
             $datas[] = $this->prepareControllerInfo();
 
@@ -2531,11 +2648,11 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
                 "document_comment" => html_entity_decode($deliverable->fields["document_comment"]),
             ],
             "isHtml" => $this->HTML,
-            "ispdf" => isset($print_options["ispdf"]) ? $print_options["ispdf"] : false,
+            "ispdf" => isset($print_options["ispdf"]) ?filter_var($print_options["ispdf"], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : false,
             "logo_uri" => $logo_uri,
             "title" => "Livrables",
-            "prevent_contextmenu" => isset($print_options["prevent_contextmenu"]) ? $print_options["prevent_contextmenu"] : false,
-            "print_comments" => isset($print_options['print_comments']) ? $print_options['print_comments'] : false,
+            "prevent_contextmenu" => isset($print_options["prevent_contextmenu"]) ?filter_var($print_options["prevent_contextmenu"], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : false,
+            "print_comments" => isset($print_options['print_comments']) ? filter_var($print_options['print_comments'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : false,
             "first_page_datas" => $datas,
             "css_files" => [
                 [
@@ -3156,20 +3273,21 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         ];
         $rows[] = [
             'section' => $consent_type ? __("Explicit consent", 'dlteams') : __("Consent", 'dlteams'),
-            'value' => $consent_text
+            'value' => html_entity_decode($consent_text??"")
         ];
         $rows[] = [
             'section' => __("Information right", 'dlteams'),
-            'value' => nl2br($record->fields['right_information']??"") ?: __("N/A", 'dlteams')
+            'value' => nl2br(html_entity_decode($record->fields['right_information']??"")??"") ?: __("N/A", 'dlteams')
         ];
         $rows[] = [
             'section' => __("Opposition right", 'dlteams'),
-            'value' => nl2br($record->fields['right_opposition']??"") ?: __("N/A", 'dlteams')
+            'value' => nl2br(html_entity_decode($record->fields['right_opposition']??"")??"") ?: __("N/A", 'dlteams')
         ];
         $rows[] = [
             'section' => __("Portability right", 'dlteams'),
-            'value' => nl2br($record->fields['right_portability']??"") ?: __("N/A", 'dlteams')
+            'value' => nl2br(html_entity_decode($record->fields['right_portability']??"")??"") ?: __("N/A", 'dlteams')
         ];
+
 
         return [
             "pre_rows" => $rows
@@ -3933,7 +4051,6 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
 
     static function preparePrintOptionsFromForm($config = [])
     {
-
         $mod_config = self::getDefaultPrintOptions();
 
         if (is_array($config) && count($config)) {
@@ -4068,7 +4185,7 @@ class PluginDlteamsCreatePDF extends PluginDlteamsCreatePDFBase
         echo "<head><title>$title</title>";
         echo "<meta charset=\"utf-8\">";
         echo "<!-- Here is CSS and JS files that you can create to include your style and more without modifying this html each time a report is generated -->\n";
-        echo "<!-- Voici des fichiers CSS et JS que vous pouvez créer pour inclure du style ou des modifications avoir à modifier cet html à chaque génération de rapport -->";
+        echo "<!-- Voici des   fichiers CSS et JS que vous pouvez créer pour inclure du style ou des modifications avoir à modifier cet html à chaque génération de rapport -->";
         echo "<link rel='stylesheet' type='text/css' href='report.css'>";
         echo "<script src='report.js'></script>";
         echo "</head><body>";

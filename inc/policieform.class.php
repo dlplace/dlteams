@@ -83,6 +83,48 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         echo "<textarea style='width: 98%;' name='content' rows='3'>" . $content . "</textarea>";
         echo "</td></tr>";
 
+
+        echo "<tr>";
+//        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
+        echo "<td class='form-table-text'>" . __("Activité / métier", 'dlteams') . "</td>";
+        echo "<td>";
+        $content = Html::cleanInputText($this->fields['content']);
+//        echo Dropdown::show(PluginDlteamsActivityCategory::class);
+//        Dropdown::show(
+//            PluginDlteamsActivityCategory::class,
+//            [
+//                'name'      => "zzz",
+//                'multiple'  => true,
+//                'values'    => [],
+//                'used'      => []
+//            ]
+//        );
+
+        PluginDlteamsActivityCategory::dropdown([
+            "name" => "activitycategories_idx[]",
+            "width" => "150px",
+            'values' => json_decode($this->fields["activitycategories_idx"] ?? "[]"),
+            'value' => null,
+//            'right' => 'all',
+            'multiple' => true,
+            'ajax_page' => "/marketplace/dlteams/ajax/dlteamsDropdownAllItem.php"
+        ]);
+
+//        PluginDlteamsUtils::select2Dropdown([
+//            'itemtype' => "PluginDlteamsActivityCategory",
+//            'addicon'  => PluginDlteamsActivityCategory::canCreate(),
+//            'name' => 'activitycategories_idx[]',
+//            'entity' => $this->fields['entities_id'],
+//            'display_emptychoice' => false,
+//            'width' => '85%',
+//            'values' => json_decode($this->fields['plugin_dlteams_datacarriertypes_id']),
+//            'specific_tags' => [
+//                'multiple' => true
+//            ],
+//        ]);
+        echo "</td></tr>";
+
+
         
         echo "<tr>";
 //        echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
@@ -183,19 +225,21 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
 
         $this->showFormButtons($options);
 		// $this->ShowDcpType($id);
-        $this->ShowDatacarrierType($id);
+//        $this->ShowDatacarrierType($id);
         return true;
     }
 
     function prepareInputForAdd($input)
     {
         $input['users_id_creator'] = Session::getLoginUserID();
+        $input['activitycategories_idx'] = json_encode($input["activitycategories_idx"] ?? "[]");
         return parent::prepareInputForAdd($input);
     }
 
     function prepareInputForUpdate($input)
     {
         $input['users_id_lastupdater'] = Session::getLoginUserID();
+        $input['activitycategories_idx'] = json_encode($input["activitycategories_idx"] ?? "[]");
         return parent::prepareInputForUpdate($input);
     }
 
@@ -351,6 +395,33 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         }
     }
 
+    public function ShowDatacarrierTypeGetRequest($id){
+        global $DB;
+
+        return $DB->request([
+            'SELECT' => [
+                'glpi_plugin_dlteams_policieforms_items.id AS linkid',
+                'glpi_plugin_dlteams_policieforms_items.comment as comment',
+                'glpi_plugin_dlteams_datacarriertypes.id as id',
+                'glpi_plugin_dlteams_datacarriertypes.name as name',
+            ],
+            'FROM' => 'glpi_plugin_dlteams_policieforms_items',
+            'JOIN' => [
+                'glpi_plugin_dlteams_datacarriertypes' => [
+                    'FKEY' => [
+                        'glpi_plugin_dlteams_policieforms_items' => 'items_id',
+                        'glpi_plugin_dlteams_datacarriertypes' => 'id'
+                    ]
+                ]
+            ],
+            'WHERE' => [
+                'glpi_plugin_dlteams_policieforms_items.policieforms_id' => $this->fields['id'],
+                'glpi_plugin_dlteams_policieforms_items.itemtype' => "PluginDlteamsDataCarrierType"
+            ],
+            'ORDER' => ['name ASC'],
+        ], "", true);
+    }
+
     public function ShowDatacarrierType($id)
     {
         if ($id) {
@@ -361,30 +432,7 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
             $canedit = $this->can($id, UPDATE);
             $rand = mt_rand(1, mt_getrandmax());
             global $CFG_GLPI;
-            global $DB;
-
-            $iterator = $DB->request([
-                'SELECT' => [
-                    'glpi_plugin_dlteams_policieforms_items.id AS linkid',
-                    'glpi_plugin_dlteams_policieforms_items.comment as comment',
-                    'glpi_plugin_dlteams_datacarriertypes.id as id',
-                    'glpi_plugin_dlteams_datacarriertypes.name as name',
-                ],
-                'FROM' => 'glpi_plugin_dlteams_policieforms_items',
-                'JOIN' => [
-                    'glpi_plugin_dlteams_datacarriertypes' => [
-                        'FKEY' => [
-                            'glpi_plugin_dlteams_policieforms_items' => 'items_id',
-                            'glpi_plugin_dlteams_datacarriertypes' => 'id'
-                        ]
-                    ]
-                ],
-                'WHERE' => [
-                    'glpi_plugin_dlteams_policieforms_items.policieforms_id' => $this->fields['id'],
-                    'glpi_plugin_dlteams_policieforms_items.itemtype' => "PluginDlteamsDataCarrierType"
-                ],
-                'ORDER' => ['name ASC'],
-            ], "", true);
+            $iterator = $this->ShowDatacarrierTypeGetRequest($id);
 
             $number = count($iterator);
             $items_list = [];
@@ -412,18 +460,20 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
                 echo "<table class='tab_cadre_fixe'>";
                 echo "<td class='form-table-text'>" . __("Type de données", 'dlteams') . "</td>";
                 echo "<td>";
+                $randdtct = mt_rand();
                 PluginDlteamsDataCarrierType::dropdown([
                     'addicon' => PluginDlteamsDataCarrierType::canCreate(),
                     'name' => 'items_id',
                     'width' => '300px',
-                    'used' => $used
+                    'used' => $used,
+                    'rand' => $randdtct
                 ]);
                 echo "</td>";
 
                 echo "<tr>";
                 echo "<td class='form-table-text'>" . __("Comment") . " " . "</td>";
 //                $comment = Html::cleanInputText($this->fields['comment']);
-                echo "<td>" . "<textarea style='width:100%' rows='1' name='comment' ></textarea>" . "</td>";
+                echo "<td>" . "<textarea style='width:100%' rows='1' name='comment' id='comment$randdtct'></textarea>" . "</td>";
                 echo "<td class='left'><input type='submit' name='add' value=\"" . _sx('button', 'Add') . "\" class='submit' style='margin:0px auto!important'>" . "</td>";
                 echo "</tr>";
                 echo "</table>";
@@ -494,9 +544,51 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
                 }
 
                 echo "</div>";
+
+                echo "<script>
+                $(document).ready(function(e){
+
+                $('#dropdown_items_id".$randdtct."').on('change', function () {
+                    if($(this).val() != '0'){
+                        
+                        
+                        $.ajax({
+                                url: '/marketplace/dlteams/ajax/get_object_specific_field.php',
+                                type: 'POST',
+                                data: {
+                                    id: $(this).val(),
+                                    object: '" . PluginDlteamsDataCarrierType::class . "',
+                                    field: 'comment'
+                                },
+                                success: function (data) {
+                                    // Handle the returned data here
+                                    let comm_field = $('#comment".$randdtct."');
+                                    comm_field.val(data);
+                                    comm_field.val(comm_field.val().replace(/^\s+/, ''));
+                                }
+                            });                      
+                        
+                        
+                    }
+                    else{
+                       
+                    }
+                       
+                    });
+                });
+        </script>";
             }
         }
     }
+
+//    public static function getDefaultSearchRequest()
+//    {
+//        $search = [
+//			'sort' => 19,
+//            'order' => 'DESC'
+//        ];
+//		return $search;
+//	}
 	
     function rawSearchOptions()
     {
@@ -514,7 +606,7 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
             'name' => __("Name"),
             'datatype' => 'itemlink',
             'massiveaction' => false,
-            'autocomplete' => true,
+            'autocomplete' => true
         ];
 
         $tab[] = [
@@ -563,22 +655,73 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
             'massiveaction' => false,
         ];
 
+
         $tab[] = [
-            'id' => '7',
-            'table' => $this->getTable(),
-            'field' => 'doc_a_signer',
-            'name' => __("Document à signer"),
-            'datatype' => 'bool',
-            'massiveaction' => true,
+            'id' => '150',
+            'table' => Entity::getTable(),
+            'field' => 'entity_model',
+            'name' => __("Entité modele"),
+            'datatype' => 'itemlink',
+            'massiveaction' => false,
+        ];
+
+
+        // $output = "<a href='/front/document.send.php?docid=" . $this->fields["documents_id"] . "' target='_blank'>" . $dc->getDownloadLink(null, 45) . "</a> <NOBR>";
+		// $output = "<a href='/front/document.send.php?docid= " . $this->fields["documents_id"] . "' target='_blank'> </a>";
+		// $output = "https://dlteams.app/front/document.send.php?docid=1949";
+/* dans documents
+        $tab[] = [
+            'id'                 => '3',
+            'table'              => $this->getTable(),
+            'field'              => 'filename',
+            'name'               => __('File'),
+            'massiveaction'      => false,
+            'datatype'           => 'string'
+        ];
+*/
+		$tab[] = [
+            'id' 		=> '7',
+            //'table' 	=> $this->getTable(),
+            //'field' 	=> 'documents_id',
+             'table'     => 'glpi_documents',
+			 'field'     => 'id',
+            'name' 		=> __('File'),
+			'datatype'  => 'string',
+            'massiveaction' => false,
+                'beforejoin'         => [
+                    'table'              => 'glpi_documents',
+			'additionalfields'   => ['filename'],
+            'joinparams'         => [
+                'jointype'           => 'child'
+            ],
+			],
         ];
 
         $tab[] = [
             'id' => '8',
             'table' => 'glpi_documentcategories',
-            'field' => 'name',
-            'name' => __("Catégorie"),
+            'field' => 'completename',
+            'name' => __("Dossier des documents"),
             'datatype' => 'dropdown',
             'massiveaction' => true,
+        ];
+
+        $tab[] = [
+            'id'                 => '19',
+            'table'              => $this->getTable(),
+            'field'              => 'date_mod',
+            'name'               => __('Last update'),
+            'datatype'           => 'datetime',
+            'massiveaction'      => false
+        ];
+
+        $tab[] = [
+            'id'                 => '20',
+            'table'              => $this->getTable(),
+            'field'              => 'date_creation',
+            'name'               => __('Creation date'),
+            'datatype'           => 'datetime',
+            'massiveaction'      => false
         ];
 
         $tab[] = [
@@ -694,45 +837,93 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
             'joinparams' => [
                 'jointype' => 'itemtype_item'
             ]
+		];
+
+        $tab[] = [
+            'id' => '110',
+            'table' => 'glpi_documents_items',
+            'field' => 'id',
+            'name' => _x('quantity', 'Docs'),
+            'forcegroupby' => true,
+            'usehaving' => true,
+            // 'datatype' => 'count',
+			'datatype' => 'dropdown',
+			'datatype' => 'itemlink',
+            'massiveaction' => false,
+            'joinparams' => [
+                'jointype' => 'itemtype_item'
+            ]
 			
         ];
 
-
-        /*$tab[] = [
-            'id' => '108',
-            'table' => 'glpi_plugin_dlteams_policiesforms_items',
+        $tab[] = [
+            'id' => '111',
+            'table' => 'glpi_plugin_dlteams_activitycategories_items',
             'field' => 'id',
-            'name' => _x('quantity', 'Jeu de données'),
+			// 'field' => 'activitycategories_id',
+            'name' => _x('quantity', 'Activité, Métier'),
             'forcegroupby' => true,
             'usehaving' => true,
-            'datatype' => 'count',
+            'datatype' => 'dropdown',
             'massiveaction' => false,
             'joinparams' => [
              'jointype' => 'itemtype_item'
             ]
-        ];*/
+        ];
 
-        /*$tab[] = [
-           'id' => '101',
-           'table' => 'users',
-           'field' => 'users_id_responsible',
-           'name' => __("Responsable du traitement"),
-           'forcegroupby' => true,
-           'massiveaction' => true,
-           'datatype' => 'dropdown',
-           'searchtype' => ['equals', 'notequals'],
-           'joinparams' => [
-              'beforejoin' => [
-                 'table' => self::getTable(),
-                 'joinparams' => [
-                    'jointype' => 'child'
-                 ]
-              ]
-           ]
+		/*$tab[] = [
+            'id' 		=> '112',
+            //'table' 	=> $this->getTable(),
+            //'field' 	=> 'documents_id',
+             'table'     => 'glpi_plugin_dlteams_activitycategories',
+			 'field'     => 'id',
+            'name' 		=> __('Activité, métier'),
+			'datatype'  => 'string',
+            'massiveaction' => false,
+                'beforejoin'         => [
+                    'table'              => 'glpi_plugin_dlteams_activitycategories_items',
+			'additionalfields'   => ['activitycategories_id'],
+            'joinparams'         => [
+                'jointype'           => 'child'
+            ],
+			],
         ];*/
+		
+        $tab[] = [
+            'id' => '113',
+            'table' => 'glpi_plugin_dlteams_datacarriertypes_items',
+            'field' => 'id',
+			// 'field' => 'activitycategories_id',
+            'name' => _x('quantity', 'Données'),
+            'forcegroupby' => true,
+            'usehaving' => true,
+            'datatype' => 'count', // 'datatype' => 'dropdown',
+            'massiveaction' => false,
+            'joinparams' => [
+             'jointype' => 'itemtype_item'
+            ]
+        ];
+
+        $tab[] = [
+            'id' => '114',
+            'table' => static::getTable(),
+            'field' => 'entity_model',
+			// 'field' => 'activitycategories_id',
+            'name' => _x('quantity', 'Données'),
+            'forcegroupby' => true,
+            'usehaving' => true,
+            'datatype' => 'count', // 'datatype' => 'dropdown',
+            'massiveaction' => false,
+            'joinparams' => [
+             'jointype' => 'itemtype_item'
+            ]
+        ];
+
 
         return $tab;
     }
+
+
 
     public function defineTabs($options = [])
     {
@@ -740,11 +931,12 @@ class PluginDlteamsPolicieForm extends CommonDropdown implements
         $ong = array();
 
         $this->addDefaultFormTab($ong)
+			->addStandardTab(PluginDlteamsPolicieForm_PersonalAndDataCategory::class, $ong, $options)
+			->addStandardTab(PluginDlteamsConservation_Element::class, $ong, $options)
+			->addStandardTab(PluginDlteamsProtectiveMeasure_Item::class, $ong, $options)
             ->addStandardTab('PluginDlteamsRecord_Item', $ong, $options)
             ->addStandardTab(PluginDlteamsDataCatalog_Item::class, $ong, $options)
-			->addStandardTab(PluginDlteamsPolicieForm_PersonalAndDataCategory::class, $ong, $options)
-            ->addStandardTab(PluginDlteamsConservation_Element::class, $ong, $options)
-            ->addStandardTab(PluginDlteamsProtectiveMeasure_Item::class, $ong, $options)
+            ->addStandardTab(PluginDlteamsActivitycategory_Item::class, $ong, $options)
             ->addStandardTab(PluginDlteamsAcces_PolicieForm::class, $ong, $options)
             ->addStandardTab('PluginDlteamsObject_document', $ong, $options)
             ->addStandardTab('ManualLink', $ong, $options)

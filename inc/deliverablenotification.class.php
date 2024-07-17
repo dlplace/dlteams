@@ -301,6 +301,34 @@ class PluginDlteamsDeliverableNotification extends CommonDBTM
         }
         echo "</table>";
 
+        echo "
+        <script>
+    $(document).ready(function () {
+        $('.btn-showcomment').on('click', function () {
+            var comment_id = $(this).attr('data-comment-id');
+
+
+            glpi_ajax_dialog({
+                dialogclass: 'modal-xl',
+                bs_focus: false,
+                url: '/marketplace/dlteams/ajax/get_deliverable_notification_data.php',
+                params: {
+                    comment_id,
+                },
+                title: i18n.textdomain('dlteams').__('Commentaires', 'dlteams'),
+                close: function () {
+
+                },
+                fail: function () {
+                    displayAjaxMessageAfterRedirect();
+                }
+            });
+        });
+    });
+
+</script>
+        ";
+
         if ($canedit && $number > 10) {
             $massive_action_params['ontop'] = false;
             Html::showMassiveActions($massive_action_params);
@@ -413,29 +441,3 @@ class PluginDlteamsDeliverableNotification extends CommonDBTM
 }
 
 ?>
-
-<script>
-    $(document).ready(function () {
-        $(".btn-showcomment").on('click', function () {
-            var comment_id = $(this).attr("data-comment-id");
-
-
-            glpi_ajax_dialog({
-                dialogclass: 'modal-xl',
-                bs_focus: false,
-                url: '/marketplace/dlteams/ajax/get_deliverable_notification_data.php',
-                params: {
-                    comment_id,
-                },
-                title: i18n.textdomain('dlteams').__('Commentaires', 'dlteams'),
-                close: function () {
-
-                },
-                fail: function () {
-                    displayAjaxMessageAfterRedirect();
-                }
-            });
-        });
-    });
-
-</script>

@@ -9,7 +9,7 @@
                 {% else %}
                     {{ record.number }}
                 {% endif %}
-                 - {{ record.name }}
+                 - {{ record.name | raw }}
             </button>
         </h2>
         <div id="collapse-{{ key }}" class="accordion-collapse collapse {% if deplier_traitements %} show {% endif %}" aria-labelledby="heading-{{ key }}"

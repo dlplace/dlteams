@@ -38,7 +38,7 @@ class PluginDlteamsDeliverable extends CommonDropdown
 
     static function getTypeName($nb = 0)
     {
-        return _n("Delivrable", "Delivrables", $nb, 'dlteams');
+        return _n("Fichier HTML", "Fichiers HTML", $nb, 'dlteams');
     }
 
     public function showTabsContent($options = [])
@@ -111,17 +111,23 @@ class PluginDlteamsDeliverable extends CommonDropdown
         echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
         echo "<td width='15%' div style='text-align:right'>" . __("Rubrique", 'dlteams') . "</div></td>";
         echo "<td>";
-        ProjectTask::dropdown([
-            'name' => 'projecttasks_id',
-            //'entity' 	=> Session::getActiveEntity(),
-            //'entity_sons' => $entities_id->isRecursive(),
-            'width' => '350px',
-            'value' => $this->fields['projecttasks_id']
+
+//        Document::dropdown([
+//            'name' => 'documents_id',
+//            'entity' 	=> Session::getActiveEntity(),
+//            //'entity_sons' => $entities_id->isRecursive(),
+////            'width' => '250px',
+//            'value' => $this->fields['documents_id']
+//        ]);
+        Dropdown::show(Document::class,[
+            'addicon'  => Document::canCreate(),
+            'name' => 'documents_id',
+            'value' => $this->fields['documents_id']
         ]);
         echo "</td>";
         echo "</tr>";
 
-        echo "<tr>";
+        echo "<tr>.";
         echo "<td width='15%' style='text-align:right'>" . " " . "</td>";
         echo "<td width='15%' style='text-align:right'>" . __("Content", 'dlteams') . "</td>";
         echo "<td>";
@@ -349,7 +355,7 @@ class PluginDlteamsDeliverable extends CommonDropdown
         $search = [
             'criteria' => [
                 0 => [
-                    'field' => 10,
+                    'field' => 0,
                     'searchtype' => 'contains',
                     'value' => ''
                 ],

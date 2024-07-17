@@ -286,12 +286,16 @@ class PluginDlteamsAccountKey_Directory extends CommonDBTM
         foreach ($iterator as $ak) {
             $used[$ak["id"]] = $ak["id"];
         }
+
         PluginDlteamsAccountKey::dropdown([
             "name" => "accountkeys_id",
             "addicon" => false,
             "width" => "150px",
             "used" => $used,
-            "value" => $value
+            "value" => $value,
+            "condition" => [
+                'plugin_dlteams_datacatalogs_id' => 0
+            ]
         ]);
 
         global $CFG_GLPI;
@@ -411,6 +415,8 @@ class PluginDlteamsAccountKey_Directory extends CommonDBTM
 
     static function showForItem(CommonDBTM $item, $is_directory = false)
     {
+//        var_dump($is_directory);
+//        die();
         $id = $item->fields['id'];
         $canedit = $item->can($id, UPDATE); // canedit booleen = true
         $rand = mt_rand(1, mt_getrandmax());

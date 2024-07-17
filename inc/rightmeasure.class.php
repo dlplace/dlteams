@@ -72,7 +72,15 @@ class PluginDlteamsRightMeasure extends CommonDBTM {
 	  echo "<td class='form-table-text''>" . __("Content", 'dlteams') . "</td>";
 	  echo "<td>";
       $content = Html::cleanInputText($this->fields['content']);
-      echo "<textarea style='width: 98%;' name='content' rows='3'>" . $content . "</textarea>";
+//      echo "<textarea style='width: 98%;' name='content' rows='3'>" . $content . "</textarea>";
+       Html::textarea(['name'              => 'content',
+           'value'             => $content,
+           'enable_fileupload' => false,
+           'enable_richtext'   => true,
+           'enable_images'     => false,
+           'cols'              => 12,
+           'rows'              => 80
+       ]);
       echo "</td></tr>";
 
 	  echo "<tr>";
@@ -81,10 +89,11 @@ class PluginDlteamsRightMeasure extends CommonDBTM {
 	  echo "<td>";
 		PluginDlteamsRightMeasureCategory::dropdown([
          'addicon'  => PluginDlteamsRightMeasureCategory::canCreate(),
-         'name' => 'plugin_dlteams_rightmeasurecategories_id',
-         'value'  => $this->fields['plugin_dlteams_rightmeasurecategories_id'] ?? "", //$responsible,
+         'name' => 'rightmeasurecategories[]',
+         'value'  => json_decode($this->fields['rightmeasurecategories']??"[]"), //$responsible,
          'right'  => 'all',
          'width'  => "300px",
+         'multiple' => true
         // 'rand'   => $randDropdown
        ]);
 	  echo "</td></tr>" ;

@@ -46,7 +46,7 @@ if (isset($_POST['consent_type']) && $_POST['consent_type'] && $_POST['plugin_dl
                     'records_id' => $_POST['plugin_dlteams_records_id'],
                     'itemtype' => 'Group',
                     'items_id' => $_POST['groups_id'],
-                    'comment' => $_POST['comment'],
+                    'comment' => addslashes($_POST['comment']),
                     'name' => addslashes($record->fields['name']),
                     'groups_id' => $_POST['groups_id'],
                 ]);
@@ -60,7 +60,7 @@ if (isset($_POST['consent_type']) && $_POST['consent_type'] && $_POST['plugin_dl
                     'groups_id' => $_POST['groups_id'],
                     'itemtype' => 'PluginDlteamsRecord',
                     'items_id' => $_POST['plugin_dlteams_records_id'],
-                    'comment' => $_POST['comment'],
+                    'comment' => addslashes($_POST['comment']),
 //                    'name' => $group->fields['name']
                 ]);
 
@@ -73,7 +73,7 @@ if (isset($_POST['consent_type']) && $_POST['consent_type'] && $_POST['plugin_dl
                     'records_id' => $_POST['plugin_dlteams_records_id'],
                     'itemtype' => 'User',
                     'items_id' => $_POST['users_id'],
-                    'comment' => $_POST['comment'],
+                    'comment' => addslashes($_POST['comment']),
                     'name' => addslashes($record->fields['name']),
                     'users_id' => $_POST['users_id'],
                 ]);
@@ -86,7 +86,7 @@ if (isset($_POST['consent_type']) && $_POST['consent_type'] && $_POST['plugin_dl
                     'users_id' => $_POST['users_id'],
                     'itemtype' => 'PluginDlteamsRecord',
                     'items_id' => $_POST['plugin_dlteams_records_id'],
-                    'comment' => $_POST['comment'],
+                    'comment' => addslashes($_POST['comment']),
 //                    'name' => $user->fields["name"]
                 ]);
 
@@ -95,24 +95,41 @@ if (isset($_POST['consent_type']) && $_POST['consent_type'] && $_POST['plugin_dl
             break;
         case 3:
             if ($_POST['plugin_dlteams_thirdpartycategories_id1']) {
-                $r_id = $record_item->add([
+                $thpc_item = new PluginDlteamsThirdPartyCategory_Item();
+                $rgpdadequacy_item = new PluginDlteamsRgpdAdequacy_Item();
+                if($r_id = $record_item->add([
                     'records_id' => $_POST['plugin_dlteams_records_id'],
                     'itemtype' => 'PluginDlteamsThirdPartyCategory',
                     'items_id' => $_POST['plugin_dlteams_thirdpartycategories_id1'],
-                    'comment' => $_POST['comment'],
-                    'name' => $record->fields['name']
-                ]);
-
-                $group_item = new PluginDlteamsThirdPartyCategory_Item();
-                $group_item->add([
+                    'itemtype1' => PluginDlteamsRgpdAdequacy::class,
+                    'items_id1' => $_POST["rgpdadequacies_id"],
+                    'comment' => addslashes($_POST['comment']),
+                    'name' => addslashes($record->fields['name'])
+                ])
+                    &&
+                $g_id = $thpc_item->add([
                     'thirdpartycategories_id' => $_POST['plugin_dlteams_thirdpartycategories_id1'],
                     'itemtype' => 'PluginDlteamsRecord',
                     'items_id' => $_POST['plugin_dlteams_records_id'],
-                    'comment' => $_POST['comment'],
+                    'itemtype1' => PluginDlteamsRgpdAdequacy::class,
+                    'items_id1' => $_POST["rgpdadequacies_id"],
+                    'comment' => addslashes($_POST['comment']),
 //                    'foreign_id' => $r_id
-                ]);
-
+                ])
+                &&
+                    $ra_id = $rgpdadequacy_item->add([
+                        "rgpdadequacies_id" =>  $_POST["rgpdadequacies_id"],
+                        'itemtype' => 'PluginDlteamsRecord',
+                        'items_id' => $_POST['plugin_dlteams_records_id'],
+                        'itemtype1' => 'PluginDlteamsThirdPartyCategory',
+                        'items_id1' => $_POST['plugin_dlteams_thirdpartycategories_id1'],
+                        'comment' => addslashes($_POST['comment']),
+                    ])
+                )
                 Session::addMessageAfterRedirect("Tier catégorie responsable ajouté avec succès");
+                else{
+                    Session::addMessageAfterRedirect("Une erreur s'est produite", 0, ERROR);
+                }
             }
             break;
         case 4:
@@ -121,8 +138,8 @@ if (isset($_POST['consent_type']) && $_POST['consent_type'] && $_POST['plugin_dl
                     'records_id' => $_POST['plugin_dlteams_records_id'],
                     'itemtype' => 'Supplier',
                     'items_id' => $_POST['suppliers_id1'],
-                    'comment' => $_POST['comment'],
-                    'name' => $record->fields['name']
+                    'comment' => addslashes($_POST['comment']),
+                    'name' => addslashes($record->fields['name'])
                 ]);
 
                 $group_item = new PluginDlteamsSupplier_Item();
@@ -130,7 +147,7 @@ if (isset($_POST['consent_type']) && $_POST['consent_type'] && $_POST['plugin_dl
                     'suppliers_id' => $_POST['suppliers_id1'],
                     'itemtype' => 'PluginDlteamsRecord',
                     'items_id' => $_POST['plugin_dlteams_records_id'],
-                    'comment' => $_POST['comment'],
+                    'comment' => addslashes($_POST['comment']),
 //                    'foreign_id' => $r_id
                 ]);
 

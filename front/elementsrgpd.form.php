@@ -65,15 +65,16 @@ if (isset($_POST['link_element'])) {
         $itemtype_item = "PluginDlteams" . $itemtype . "_Item";
     }
 
-//    var_dump($itemtype_item);
+    var_dump($itemtype_item);
 //    die();
 
     if (isset($_POST["transformdocument"])) {
-        $itemtype_item = PluginDlteamsDocument_Item::class;
+        $itemtype_item = Document_Item::class;
     }
 
-    if (!class_exists($itemtype) || !class_exists($itemtype1_item)) {
 
+
+    if (!class_exists($itemtype) || !class_exists($itemtype1_item)) {
         Session::addMessageAfterRedirect(__("L'un des éléments a relier n'existe pas"), 0, ERROR);
         Html::back();
     }
@@ -129,6 +130,9 @@ if (isset($_POST['link_element'])) {
 
         $DB->beginTransaction();
         $insert = $DB->insert($itemtype1_item::getTable(), $i2);
+//        var_dump("result 1");
+//        var_dump($insert);
+//        var_dump($DB->error());
 
 
         $baseItem_items = new $itemtype_item();
@@ -136,8 +140,12 @@ if (isset($_POST['link_element'])) {
 
         if ($_POST["itemtype"] == 'PluginDlteamsThirdPartyCategory')
             $i1_itemsid_column = 'thirdpartycategories_id';
+        else if ($_POST["itemtype"] == PluginDlteamsActivitycategory::class)
+            $i1_itemsid_column = 'activitycategories_id';
         else
             $i1_itemsid_column = strtolower(str_replace("PluginDlteams", "", $itemtype)) . "s_id";
+//        var_dump($i1_itemsid_column);
+//        die();
         $i1 = [
             $i1_itemsid_column => $_POST["items_id"],
             "items_id" => $_POST["items_id1"],
@@ -152,6 +160,7 @@ if (isset($_POST['link_element'])) {
         $result = $DB->insert($itemtype_item::getTable(), $i1);
 
 
+//        var_dump("result 2");
 //        var_dump($result);
 //        var_dump($DB->error());
 //        die();
@@ -223,7 +232,7 @@ if (isset($_POST['link_element'])) {
         }
 
         $DB->commit();
-        Session::addMessageAfterRedirect(__('Ajoutée avec succès'));
+        Session::addMessageAfterRedirect(__('Ajouté avec succès'));
 
     }
 }

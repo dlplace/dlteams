@@ -165,22 +165,40 @@ class PluginDlteamsDeliverable_Section extends CommonDBTM
             echo "<input type='hidden' name='tabnum' value='" . $tabnum . "' />";
             echo "<input type='hidden' name='deliverables_id' value='" . $instID . "' />";
             echo "<input type='hidden' name='deliverables_sections_id' value='" . $tabnum . "' />";
-            echo "<div style='display: flex; gap: 5px;'>";
+            echo "<div style='display: flex; gap: 5px; align-items: center'>";
             if (!static::isFirstTab($tabnum, $item)) {
                 echo "<input type='submit' class='submit' name='moveup_tab' value='" . __("Monter", 'dlteams') . "' />";
             }
             if (!static::isLastTab($tabnum, $item)) {
                 echo "<input type='submit' class='submit' name='movedown_tab' value='" . __("Descendre", 'dlteams') . "' />";
             }
-            echo "<input type='submit' class='submit' name='delete_tab' value='" . __("Supprimer", 'dlteams') . "' />";
+//            echo "<input type='submit' class='submit' name='delete_tab' value='" . __("Supprimer", 'dlteams') . "' />";
+
 
             echo "<div style='padding: 4px; background-color: #cbcbcb; border-radius: 5px; display: flex; gap: 4px;'>";
             echo "<input type='text' placeholder='Nom de l\'onglet' class='formcontrol' name='tabname' value='" . $tab->fields["tab_name"] . "' />";
-            echo "<input type='submit' class='submit' name='rename_tab' value='" . __("Renommer onglet", 'dlteams') . "' />";
+            echo "<input type='submit' class='submit' name='rename_tab' value='" . __("Renommer", 'dlteams') . "' />";
             echo "</div>";
 
-            echo "<input type='button' class='submit addparagraphe_btn' name='addparagraphe_btn_$sections_id'  value='" . __("Ajouter un paragraphe", 'dlteams') . "' />";
+            echo "<button type='submit' style='background-color: transparent; border: none' name='delete_tab'><i style='color: red' class='fa fa-trash'></i></button>";
+
+            echo "<input type='button' class='submit addparagraphe_btn' name='addparagraphe_btn_$sections_id'  value='" . __("Ajouter paragraphe", 'dlteams') . "' />";
+//            if ($item->fields["links_id"]) {
+                $link = new Link();
+
+                $link->getFromDB($item->fields["links_id"]);
+//                $folder_link = $link->fields["link"];
+                $url = Toolbox::getItemTypeFormURL("PluginDlteamsDeliverable")
+                ."?deliverable_id=".$item->fields["id"]."&report_type="
+                .PluginDlteamsCreatePDF::REPORT_SINGLE_RECORD
+                ."&print_comments=true"
+                ."&prevent_contextmenu=true"
+                ."&print_first_page=true"
+                ."&edit_pdf=true";
+                echo "<div> <a class='btn btn-outline-secondary' style='display: block' target='_blank' href='" . $url . "' id='btn_publication_folder'><i class='fa fa-eye'></i></a> </div>";
+//            }
             echo "</div>";
+
 
             echo "<div class='col-12 col-sm content-block' style='margin-bottom: 125px;'>
             

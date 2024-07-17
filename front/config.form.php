@@ -215,8 +215,10 @@ if ($plugin->isActivated('dlteams')) {
 
    }
    else {
-      Html::header(PluginDlteamsRecord::getTypeName(0), '', "grc", "plugindlteamsmenu");
-      $config->showForm(0);
+      Html::header(PluginDlteamsConfig::getTypeName(0), '', "dlteams", "plugindlteamsmenu");
+//      $config->defineTabs();
+      $config->display();
+//      $config->showForm(0);
       Html::footer();
    }
 

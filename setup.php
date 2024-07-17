@@ -25,7 +25,7 @@
  --------------------------------------------------------------------------
  */
 
-define('plugin_dlteams_version', '24.06.01');
+define('plugin_dlteams_version', '24.07.02');
 define('plugin_dlteams_root', __DIR__);
 // include_once __DIR__ . '/dlteams.php';
 function plugin_init_dlteams()
@@ -81,6 +81,10 @@ function plugin_init_dlteams()
     Plugin::registerClass(PluginDlteamsLocation_Item::class, ['addtabon' => [Location::class, 'KnowbaseItem']]);
 //    Plugin::registerClass(PluginDlteamsTicketTask::class, ['addtabon' => [Ticket::class]]);
     Plugin::registerClass(PluginDlteamsObject_document::class, ['addtabon' => [Ticket::class]]);
+    Plugin::registerClass(PluginDlteamsActivitycategory_Item::class, ['addtabon' => [KnowbaseItem::class]]);
+    Plugin::registerClass(PluginDlteamsPolicieForm_Item::class, ['addtabon' => [Document::class]]);
+    Plugin::registerClass(PluginDlteamsProjectTask_Item::class, ['addtabon' => [Problem::class]]);
+    Plugin::registerClass(PluginDlteamsCentral::class, ['addtabon' => Central::class]);
 
     Plugin::registerClass(PluginDlteamsDataCatalog::class,
         ['linkgroup_types' => true,
@@ -168,10 +172,12 @@ function plugin_init_dlteams()
 
     $PLUGIN_HOOKS['process_massive_actions_plan']['dlteams'] = ['PluginDlteamsDatabase_Item' => 'processMassiveActionsForOneItemtypetest'];
     $PLUGIN_HOOKS['display_login']['dlteams'] = 'dlteams_display_login';
+//    $PLUGIN_HOOKS['addwhere']['dlteams'] = 'plugin_dlteams_addwhere';
     $PLUGIN_HOOKS['item_add']['dlteams'] = ['Supplier' => 'dlteams_additem_called'];
 
 
     $PLUGIN_HOOKS['add_javascript']['dlteams'] = 'js/plugin.js';
+
     $PLUGIN_HOOKS['add_javascript']['dlteams'] = 'js/libraries/jquery-ui.js';
     $PLUGIN_HOOKS['redefine_menus']['dlteams'] = 'plugin_dlteams_redefine_menus';
 
@@ -185,8 +191,21 @@ function plugin_init_dlteams()
 //    $PLUGIN_HOOKS['menu_toadd']['dlteams']['assets'][] = PluginDlteamsPhysicalStorage::class;
     $PLUGIN_HOOKS['menu_toadd']['dlteams']['helpdesk'][] = PluginDlteamsTicketTask::class;
     $PLUGIN_HOOKS['menu_toadd']['dlteams']['helpdesk'][] = PluginDlteamsProjectTask::class;
+    $PLUGIN_HOOKS['menu_toadd']['dlteams']['helpdesk'][] = PluginDlteamsMessagerie::class;
 //	$PLUGIN_HOOKS['menu_toadd']['dlteams']['assets'][] = PluginDlteamsVehicle::class;
 //	$PLUGIN_HOOKS['menu_toadd']['dlteams']['assets'][] = PluginDlteamsVehicle::class;
+    $PLUGIN_HOOKS['menu_toadd']['dlteams']['management']  = [PluginDlteamsDeliverable::class];
+    $mailable = new PluginDlteamsDeliverableNotification();
+    $PLUGIN_HOOKS['timeline_answer_actions']['dlteams'][] = [
+        'type'          => PluginDlteamsMailable::class,
+        'class'         => 'PluginDlteamsMailable',
+        'icon'          => PluginDlteamsMailable::getIcon(),
+        'label'         => _x('button', 'Envoyer un mail'),
+        'short_label'   => _x('button', 'Envoyer un mail'),
+        'template'      => '@dlteams/components/itilobject/timeline/mailable.html.twig',
+        'item'          => $mailable,
+        'hide_in_menu'  => false
+    ];
 
     global $CFG_GLPI;
     $CFG_GLPI['appliance_types'][] = 'PluginDlteamsDataCatalog';
@@ -218,7 +237,7 @@ function plugin_post_init_dlteams() {
     // ajout d'onglets dans certaines classe de GLPI
     Plugin::registerClass(Location::class, ['addtabon' => [PluginDlteamsPhysicalStorage::class]]);
     Plugin::registerClass(ManualLink::class, ['addtabon' => ['Ticket', 'KnowbaseItem']]);
-//    Plugin::registerClass('PluginDlteamsTicketTask_Item', ['addtabon' => 'Ticket']);
+//    Plugin::registerClass('PluginDlteamsTicketTask_Plannification', ['addtabon' => 'Ticket']);
     Plugin::registerClass('KnowbaseItem_Comment', ['addtabon' => ['Ticket']]);
     
 	// ajout d'onglets dans certaines classe de dlteams
@@ -229,6 +248,7 @@ function plugin_post_init_dlteams() {
     Plugin::registerClass('PluginDlteamsProfile', ['addtabon' => ['Profile']]);
     // Plugin::registerClass(PluginDlteamsAudit_Item::class, ['addtabon' => [Datacenter::class]]);
     Plugin::registerClass(PluginDlteamsUserCreatePDF::class, ['addtabon' => ['User']]);
+    Plugin::registerClass(PluginDlteamsConfig::class, ['addtabon' => [PluginDlteamsConfig::class]]);
     // ajout de l'onglet Elements DLTeams -> n'a aps d'effet pour le moment
 
     Plugin::registerClass(

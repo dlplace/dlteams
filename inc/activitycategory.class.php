@@ -25,7 +25,7 @@
  --------------------------------------------------------------------------
  */
 
-class PluginDlteamsActivityCategory extends CommonDropdown {
+class PluginDlteamsActivityCategory extends CommonTreeDropdown {
    static $rightname = 'plugin_dlteams_activitycategory';
    public $dohistory = true;
    protected $usenotepad = true;
@@ -43,13 +43,15 @@ class PluginDlteamsActivityCategory extends CommonDropdown {
 
 
    static function getTypeName($nb = 0) {
-      return _n("Domaine d'activités", "Domaines d'activité", $nb, 'dlteams');
+      return _n("Activity or profession", "Activities, professions", $nb, 'dlteams');
    }
 
 
    function prepareInputForAdd($input) {
       $input['users_id_creator'] = Session::getLoginUserID();
+      $input["activitycategories_idx"] = json_encode($_POST["activitycategories_idx"]);
       return parent::prepareInputForAdd($input);
+
    }
 
     function showForm($id, $options = [])
@@ -76,27 +78,42 @@ class PluginDlteamsActivityCategory extends CommonDropdown {
 //        ]);
 //        echo "</td></tr>";
 
-        echo "<tr class='tab_bg_1'>";
+        /* echo "<tr class='tab_bg_1'>";
         echo "<td width='40%' style='text-align:right'>" . __("Number (order)", 'dlteams') . "</td>";
         echo "<td colspan='2'>";
         $number = Html::cleanInputText($this->fields['number']);
         echo "<input type='number' min='1' max='9999' name='number' required value='" . $number . "'>";
         //echo "<input type='number' style='width:10%' step='0.1' name='number' required value='" . $number . "'>";
-        echo "</td></tr>";
+        echo "</td></tr>";*/
 
         echo "<tr class='tab_bg_1'>";
         echo "<td width='40%' style='text-align:right'>" . __("Name", 'dlteams') . "</td>";
         echo "<td colspan='2'>";
         $title = Html::cleanInputText($this->fields['name']);
-        echo "<input type='text' style='width:98%' maxlength=250 name='name' required value='" . $title . "'>";
+        echo "<input type='text' style='width:98%' maxlength=250 name='name' value='" . $title . "'>";
         echo "</td></tr>";
+
+
+        echo "<tr class='tab_bg_1'>";
+        echo "<td width='40%' style='text-align:right'>" . __("As child of") . "</td>";
+        echo "<td colspan='2'>";
+//        $title = Html::cleanInputText($this->fields['name']);
+
+            Dropdown::show(PluginDlteamsActivityCategory::class, [
+                'name' => 'activitycategories_id',
+                'value' => $this->fields["activitycategories_id"],
+                'used'   => (($id > 0) ? getSonsOf($this->getTable(), $id) : []),
+                'width'  => '250px'
+            ]);
+        echo "</td></tr>";
+
 
         echo "<tr class='tab_bg_1'>";
         echo "<td width='40%' style='text-align:right'>" . __("Comment", 'dlteams') . "</td>";
 
         echo "<td colspan='2' >";
         $purpose = Html::cleanInputText($this->fields['comment']);
-        echo "<textarea style='width:98%' name='comment' required maxlength='1000' rows='5'>" . $purpose . "</textarea>";
+        echo "<textarea style='width:98%' name='comment' maxlength='1000' rows='5'>" . $purpose . "</textarea>";
         echo "</td></tr>";
 
         $this->showFormButtons($options);
@@ -121,7 +138,8 @@ class PluginDlteamsActivityCategory extends CommonDropdown {
         //add main tab for current object
         $this->addDefaultFormTab($ong)
             ->addStandardTab('PluginDlteamsRecord_Item', $ong, $options)
-            ->addStandardTab(PluginDlteamsLegalBasi_Item::class, $ong, $options);
+            ->addStandardTab(PluginDlteamsLegalBasi_Item::class, $ong, $options)
+            ->addStandardTab(PluginDlteamsPolicieForm_Item::class, $ong, $options);
         return $ong;
     }
 
@@ -134,14 +152,14 @@ class PluginDlteamsActivityCategory extends CommonDropdown {
          'name'               => __("Characteristics")
       ];
 
-      $tab[] = [
-         'id'                 => '1',
-         'table'              => $this->getTable(),
-         'field'              => 'number',
-         'name'               => __("Num"),
-         'datatype'           => 'number',
-         'massiveaction'      => false,
-      ];
+//      $tab[] = [
+//         'id'                 => '1',
+//         'table'              => $this->getTable(),
+//         'field'              => 'number',
+//         'name'               => __("Num"),
+//         'datatype'           => 'number',
+//         'massiveaction'      => false,
+//      ];
 
       $tab[] = [
          'id'                 => '2',
@@ -153,8 +171,17 @@ class PluginDlteamsActivityCategory extends CommonDropdown {
          'autocomplete'       => true,
       ];
 
+        $tab[] = [
+            'id' => '3',
+            'table' => $this->getTable(),
+            'field' => 'completename',
+            'name' => self::getTypeName(),
+            'datatype' => 'dropdown',
+            'massiveaction' => true,
+        ];
+
       $tab[] = [
-         'id'                 => '3',
+         'id'                 => '4',
          'table'              => $this->getTable(),
          'field'              => 'id',
          'name'               => __("ID"),
@@ -163,7 +190,7 @@ class PluginDlteamsActivityCategory extends CommonDropdown {
       ];
 
       $tab[] = [
-         'id'                 => '4',
+         'id'                 => '5',
          'table'              => $this->getTable(),
          'field'              => 'comment',
          'name'               => __("Comments"),
@@ -173,7 +200,7 @@ class PluginDlteamsActivityCategory extends CommonDropdown {
       ];
 
       $tab[] = [
-         'id'                 => '5',
+         'id'                 => '6',
          'table'              => 'glpi_entities',
          'field'              => 'completename',
          'name'               => __("Entity"),
@@ -182,7 +209,7 @@ class PluginDlteamsActivityCategory extends CommonDropdown {
       ];
 
       $tab[] = [
-         'id'                 => '6',
+         'id'                 => '7',
          'table'              => $this->getTable(),
          'field'              => 'is_recursive',
          'name'               => __("Child entities"),

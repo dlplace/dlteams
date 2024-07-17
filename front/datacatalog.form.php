@@ -114,7 +114,7 @@ else if (isset($_POST['update'])) {
 
             Session::addMessageAfterRedirect(sprintf("%s clé(s) ont été supprimé de cet annuaire", $count));
         }
-
+        
     }
     $datacatalog->update($data);
 

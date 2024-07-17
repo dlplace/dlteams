@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_accounts_accounts_items` (
     `date_creation` timestamp,
     `date_mod` timestamp,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 ALTER TABLE IF EXISTS `glpi_databases`
     ADD IF NOT EXISTS `comment` varchar(255) DEFAULT NULL AFTER `name`;
@@ -39,12 +39,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_meansofacces` (
  `users_id` INT unsigned NOT NULL DEFAULT 0,
  `is_helpdesk_visible` TINYINT(1) NOT NULL DEFAULT 0,
  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='PluginDlteamsMeansOfAcces';
-INSERT INTO `glpi_displaypreferences` (`itemtype`, `num`, `rank`, `users_id`) VALUES
-('PluginDlteamsMeansOfAcce', 7, 1, 0),
-('PluginDlteamsMeansOfAcce', 3, 3, 0),
-('PluginDlteamsMeansOfAcce', 4, 4, 0),
-('PluginDlteamsMeansOfAcce', 5, 5, 0) ON DUPLICATE KEY UPDATE `num` = `num`;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='PluginDlteamsMeansOfAcces';
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_meansofacces_items` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -56,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_meansofacces_items` (
     `date_creation` timestamp,
     `date_mod` timestamp,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS `glpi_plugin_dlteams_datacarriers`;
 DELETE FROM `glpi_displaypreferences` WHERE `itemtype` = 'PluginDlteamsDatabase';
@@ -81,25 +76,6 @@ ALTER TABLE IF EXISTS `glpi_plugin_dlteams_deliverables`
 
 ALTER TABLE IF EXISTS `glpi_plugin_dlteams_records`
     ADD IF NOT EXISTS `users_id_tech` INT UNSIGNED NULL AFTER `content`;
-
-INSERT INTO `glpi_displaypreferences` (`itemtype`, `num`, `rank`, `users_id`) VALUES
-('PluginDlteamsDataCatalog', 3, 3, 0),
-('PluginDlteamsDataCatalog', 4, 5, 0),
-('PluginDlteamsDataCatalog', 5, 9, 0),
-('PluginDlteamsDatacatalog', 6, 3, 0),
-('PluginDlteamsDataCatalog', 7, 13, 0),
-('PluginDlteamsDataCatalog', 8, 14, 0),
-('PluginDlteamsDataCatalog', 10, 6, 0),
-('PluginDlteamsDataCatalog', 11, 7, 0),
-('PluginDlteamsDatacatalog', 12, 12, 0),
-('PluginDlteamsDataCatalog', 101, 16, 0),
-('PluginDlteamsDataCatalog', 102, 17, 0),
-('PluginDlteamsDataCatalog', 103, 18, 0),
-('PluginDlteamsDataCatalog', 104, 19, 0),
-('PluginDlteamsDataCatalog', 105, 20, 0),
-('PluginDlteamsDataCatalog', 106, 21, 0),
-('PluginDlteamsDataCatalog', 118, 15, 0),
-('PluginDlteamsDataCatalog', 119, 22, 0) ON DUPLICATE KEY UPDATE `num` = `num`;
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_deliverables_variables` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -142,7 +118,7 @@ ALTER TABLE `glpi_plugin_dlteams_datacatalogs_items`
     ADD IF NOT EXISTS `is_directory` tinyint(1) NOT NULL DEFAULT 0 AFTER `comment`;
 
 # ALTER TABLE `glpi_plugin_dlteams_datacatalogs_items`
-#     CHANGE `profiles_json` `profiles_json` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL;
+#     CHANGE `profiles_json` `profiles_json` LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
 
 ALTER TABLE `glpi_users`
     ADD IF NOT EXISTS `position` VARCHAR(255) NOT NULL DEFAULT '' AFTER `firstname`;
@@ -210,13 +186,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_procedures` (
  PRIMARY KEY (`id`),
  KEY `date_mod` (`date_mod`),
  KEY `date_creation` (`date_creation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='PluginDlteamsProcedure';
-INSERT INTO `glpi_displaypreferences` (`itemtype`, `num`, `rank`, `users_id`) VALUES
-('PluginDlteamsProcedure', 6, 5, 0),
-('PluginDlteamsProcedure', 5, 2, 0),
-('PluginDlteamsProcedure', 4, 1, 0),
-('PluginDlteamsProcedure', 60, 3, 0),
-('PluginDlteamsProcedure', 119, 4, 0) ON DUPLICATE KEY UPDATE `num` = `num`;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='PluginDlteamsProcedure';
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_procedures_items` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -242,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_procedures_items` (
   `is_recursive` tinyint(1) NOT NULL DEFAULT 0,
   `date_mod` timestamp NULL DEFAULT NULL,
    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_procedures_sections` (
     `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -255,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_procedures_sections` (
     `date_creation` timestamp NULL DEFAULT NULL,
     `date_mod` timestamp NULL DEFAULT NULL,
     PRIMARY KEY (`id`), KEY `procedures_id` (`procedures_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- 31/05/2023 : 10:04 GMT
 CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_procedures_contents` (
@@ -269,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_procedures_contents` (
       `date_mod` TIMESTAMP NULL DEFAULT NULL,
       PRIMARY KEY (`id`),
       KEY `procedure_sections_id` (`procedure_sections_id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_procedures_variables` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -293,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_activitycategories_items` (
     `date_creation` timestamp,
     `date_mod` timestamp,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_procedures_variables_items` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -348,10 +318,6 @@ CREATE TABLE IF NOT EXISTS `glpi_plugin_dlteams_storageunittypes` (
    `date_creation` timestamp NULL DEFAULT NULL,
    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
-INSERT INTO `glpi_displaypreferences` (`itemtype`, `num`, `rank`, `users_id`) VALUES
-('PluginDlteamsStorageUnitType', 3, 1, 0),
-('PluginDlteamsStorageUnitType', 4, 2, 0),
-('PluginDlteamsStorageUnitType', 5, 3, 0) ON DUPLICATE KEY UPDATE `num` = `num`;
 
 ALTER TABLE `glpi_plugin_dlteams_policieforms`
 	ADD UNIQUE IF NOT EXISTS `name-entities` (`entities_id`, `name`);

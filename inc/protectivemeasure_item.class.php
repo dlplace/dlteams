@@ -57,10 +57,6 @@ class PluginDlteamsProtectiveMeasure_Item extends CommonDBRelation
                 'head_text' => __("Categorie"),
                 'column_name' => 'namecat',
             ],
-//            [
-//                'head_text' => __("Content"),
-//                'column_name' => 'content',
-//            ],
             [
                 'head_text' => __("Comment"),
                 'column_name' => 'comment',
@@ -389,6 +385,7 @@ class PluginDlteamsProtectiveMeasure_Item extends CommonDBRelation
 
             $mesures_applicables_iterator = $DB->request($mesures_applicables_query);
 
+
             $applicables = [];
             foreach ($mesures_applicables_iterator as $applicable){
                 $applicables[] = $applicable["id"];
@@ -409,7 +406,7 @@ class PluginDlteamsProtectiveMeasure_Item extends CommonDBRelation
 
             if(count($applicables) > 0) {
                 $params['condition'] = [
-                    'id' => $applicables
+                    'glpi_plugin_dlteams_protectivemeasures.id' => $applicables
                 ];
             }
             static::$itemtype_2::dropdown($params);
